@@ -13,31 +13,11 @@
 #include "read_line.h"
 #include "messages.h"
 
-#define RL_BUFF_SIZE 8
-
 t_read_line		*rl(void)
 {
 	static t_read_line rl;
 
 	return (&rl);
-}
-
-static int32_t	rl_key_events(char buf[RL_BUFF_SIZE])
-{
-	if ((UP) || (DOWN) || (LEFT) || (RIGHT) || (WTF_UP) || (WTF_DOWN) ||
-	(BACK_SPACE) || (TAB) || (CTRL_D) || (NEW_LINE))
-	{
-		if (BACK_SPACE)
-			rl_back_space();
-		else if (TAB)
-			rl_tab();
-		else if (CTRL_D)
-			rl_ctrl_d();
-		else if (NEW_LINE)
-			return (rl_new_line());
-		return (RL_CONTINUE);
-	}
-	return (RL_OK);
 }
 
 static void		read_line_loop(void)

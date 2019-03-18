@@ -19,6 +19,7 @@ DIR_LIB_INC	:=	$(DIR_LIB)includes/libc/ $(DIR_LIB)includes/printf/\
 				$(DIR_LIB)includes/get_next_line/
 LIBFT		:=	$(DIR_LIB)libft.a
 
+#-------------------------- Paths ----------------------------------------------
 DIR_COR_INC	:=	$(DIR_INC)$(COR)
 DIR_LNP_INC	:=	$(DIR_INC)$(LNP)
 DIR_RL_INC	:=	$(DIR_INC)$(RL)
@@ -29,12 +30,20 @@ DIR_LNP_SRC	:=	$(DIR_SRC)$(LNP)
 DIR_RL_SRC	:=	$(DIR_SRC)$(RL)
 DIR_ENV_SRC	:=	$(DIR_SRC)$(ENV)
 
+# core
 DIR_BLT		:=	$(DIR_COR_SRC)builtin/
 DIR_EXC		:=	$(DIR_COR_SRC)exec/
 DIR_HLP		:=	$(DIR_COR_SRC)helpers/
 DIR_INI		:=	$(DIR_COR_SRC)init/
+
+# line_parser
 DIR_LPCMD	:=	$(DIR_LNP_SRC)lp_commands/
+
+# read_line
 DIR_LS		:=	$(DIR_RL_SRC)line_syntax/
+DIR_KE		:=	$(DIR_RL_SRC)key_events/
+DIR_AC		:=	$(DIR_KE)tab_auto_comp/
+DIR_AROWS	:=	$(DIR_KE)arrows/
 
 #-------------------------- Header files ---------------------------------------
 COR_H		:=	$(DIR_COR_INC)shell.h\
@@ -90,12 +99,20 @@ LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 
 RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_join_to_line.c\
-				$(DIR_RL_SRC)rl_tab.c\
-				$(DIR_RL_SRC)rl_tab_proc_match.c\
-				$(DIR_RL_SRC)rl_key_hooks.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
-				$(DIR_LS)rl_ls_print_info.c
+				$(DIR_LS)rl_ls_print_info.c\
+				$(DIR_KE)rl_key_events.c\
+				$(DIR_KE)rl_ke_ctrl_d.c\
+				$(DIR_KE)rl_ke_back_space.c\
+				$(DIR_KE)rl_ke_delete.c\
+				$(DIR_KE)rl_ke_return.c\
+				$(DIR_AROWS)rl_ke_left.c\
+				$(DIR_AROWS)rl_ke_right.c\
+				$(DIR_AROWS)rl_ke_up.c\
+				$(DIR_AROWS)rl_ke_down.c\
+				$(DIR_AC)rl_ke_tab.c\
+				$(DIR_AC)tab_proc_match.c
 
 #-------------------------- Init OBJ, INC --------------------------------------
 OBJ			:=	$(patsubst $(DIR_COR_SRC)%,$(DIR_OBJ)%,\

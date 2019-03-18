@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_tab_proc_match.c                                :+:      :+:    :+:   */
+/*   tab_proc_match.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -60,7 +60,7 @@ static void		rl_t_end_move(const char *postfix, const t_list *m)
 	}
 }
 
-void			rl_t_process_matches(const t_list *m, size_t len)
+void			tab_process_matches(const t_list *m, size_t len)
 {
 	char			postfix[FILENAME_MAX + 1];
 	size_t			elem_max_len;

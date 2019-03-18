@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_tab.c                                           :+:      :+:    :+:   */
+/*   rl_ke_tab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,6 +16,7 @@
 #include "builtin_static_arr.h"
 #include "environ_manipulation.h"
 #include "messages.h"
+#include "keys.h"
 
 static void		rl_t_gm_push_cmd(t_list **m, const char *bc, const char *c)
 {
@@ -105,7 +106,7 @@ static char		*rl_t_get_cmd_from_line(void)
 	return (cmd);
 }
 
-void			rl_tab(void)
+void			rl_ke_tab(void)
 {
 	char	*base_cmd;
 	t_list	*matches;
@@ -117,7 +118,7 @@ void			rl_tab(void)
 	if ((matches = rl_t_get_matches(base_cmd)))
 	{
 		ft_lstrev(&matches);
-		rl_t_process_matches(matches, ft_strlen(base_cmd));
+		tab_process_matches(matches, ft_strlen(base_cmd));
 		ft_lstdel(&matches, ft_lstdel_content);
 	}
 	ft_memdel((void **)&base_cmd);
