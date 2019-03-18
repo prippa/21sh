@@ -45,7 +45,7 @@ static void		rl_t_end_move(const char *postfix, const t_list *m)
 	if (*postfix)
 	{
 		ft_putstr(postfix);
-		rl_join_str_to_line(postfix);
+		// rl_join_str_to_line(postfix);
 	}
 	else
 	{

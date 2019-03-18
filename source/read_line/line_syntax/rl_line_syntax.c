@@ -32,7 +32,7 @@ int32_t				rl_line_syntax(void)
 	uint8_t			iter;
 	t_line_syntax	ls;
 
-	res = RL_OK;
+	res = OK;
 	ft_bzero(&ls, sizeof(t_line_syntax));
 	rl()->i = -1;
 	while (rl()->line[++rl()->i])

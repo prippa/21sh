@@ -10,23 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
 #include "keys.h"
 
-int32_t		rl_key_events(char buf[RL_BUFF_SIZE])
+static const int64_t	g_keys[KE_SIZE] =
 {
-	if ((UP) || (DOWN) || (LEFT) || (RIGHT) || (WTF_UP) || (WTF_DOWN) ||
-	(BACK_SPACE) || (TAB) || (CTRL_D) || (NEW_LINE))
-	{
-		if (BACK_SPACE)
-			rl_ke_back_space();
-		else if (TAB)
-			rl_ke_tab();
-		else if (CTRL_D)
-			rl_ke_ctrl_d();
-		else if (NEW_LINE)
-			return (rl_ke_return());
-		return (RL_CONTINUE);
-	}
-	return (RL_OK);
+	KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN,
+	KEY_RETURN,
+	KEY_BACK_SPACE, KEY_DELETE,
+	KEY_CTRL_D, KEY_CTRL_A,
+	KEY_ALT_LEFT, KEY_ALT_RIGHT, KEY_ALT_UP, KEY_ALT_DOWN,
+	KEY_TAB
+};
+
+typedef int32_t			(*t_events)(t_cursor *cur);
+static const			t_events g_ke[KE_SIZE] =
+{
+	rl_ke_left, rl_ke_right, rl_ke_up, rl_ke_down,
+	rl_ke_return,
+	rl_ke_back_space, rl_ke_delete,
+	rl_ke_ctrl_d, rl_ke_ctrl_a,
+	rl_ke_alt_left, rl_ke_alt_right, rl_ke_alt_up, rl_ke_alt_down,
+	rl_ke_tab,
+};
+
+int32_t					rl_key_events(const char buf[RL_BUFF_SIZE])
+{
+	uint64_t	key;
+	size_t		i;
+
+	ft_memcpy(&key, buf, RL_BUFF_SIZE);
+	i = -1;
+	while (++i < KE_SIZE)
+		if (g_keys[i] == key)
+			return (g_ke[i](&rl()->cur));
+	return (OK);
 }

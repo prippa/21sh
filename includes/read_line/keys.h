@@ -13,35 +13,45 @@
 #ifndef KEYS_H
 # define KEYS_H
 
+# include "read_line.h"
+
+# define KE_SIZE		14
+
+# define KEY_LEFT		4479771
+# define KEY_RIGHT		4414235
 # define KEY_UP			4283163
 # define KEY_DOWN		4348699
-# define KEY_RIGHT		4414235
-# define KEY_LEFT		4479771
+int32_t					rl_ke_left(t_cursor *cur);
+int32_t					rl_ke_right(t_cursor *cur);
+int32_t					rl_ke_up(t_cursor *cur);
+int32_t					rl_ke_down(t_cursor *cur);
+
 # define KEY_RETURN		10
-# define KEY_SPACE		32
+int32_t					rl_ke_return(t_cursor *cur);
+
 # define KEY_BACK_SPACE	127
-# define KEY_DEL		2117294875
+# define KEY_DELETE		2117294875
+int32_t					rl_ke_back_space(t_cursor *cur);
+int32_t					rl_ke_delete(t_cursor *cur);
+
+# define KEY_CTRL_D		4
 # define KEY_CTRL_A		1
-# define KEY_CTRL_W		23
+int32_t					rl_ke_ctrl_d(t_cursor *cur);
+int32_t					rl_ke_ctrl_a(t_cursor *cur);
 
-# define UP buf[0] == 27 && buf[1] == 91 && buf[2] == 65
-# define DOWN buf[0] == 27 && buf[1] == 91 && buf[2] == 66
-# define RIGHT buf[0] == 27 && buf[1] == 91 && buf[2] == 67
-# define LEFT buf[0] == 27 && buf[1] == 91 && buf[2] == 68
+# define KEY_ALT_LEFT	1146821403
+# define KEY_ALT_RIGHT	1130044187
+# define KEY_ALT_UP		1096489755
+# define KEY_ALT_DOWN	1113266971
+int32_t					rl_ke_alt_left(t_cursor *cur);
+int32_t					rl_ke_alt_right(t_cursor *cur);
+int32_t					rl_ke_alt_up(t_cursor *cur);
+int32_t					rl_ke_alt_down(t_cursor *cur);
 
-# define WTF_UP buf[0] == 27 && buf[1] == 91 && buf[2] == 72
-# define WTF_DOWN buf[0] == 27 && buf[1] == 91 && buf[2] == 70
+# define KEY_TAB		9
+int32_t					rl_ke_tab(t_cursor *cur);
+void					tab_process_matches(const t_list *m, size_t len);
 
-# define TAB buf[0] == 9
-# define BACK_SPACE buf[0] == 127
-# define CTRL_D buf[0] == 4
-# define NEW_LINE buf[0] == 10
-
-void			rl_ke_back_space(void);
-void			rl_ke_ctrl_d(void);
-int32_t			rl_ke_return(void);
-void			rl_ke_tab(void);
-
-void			tab_process_matches(const t_list *m, size_t len);
+void					rl_ke_goto(int32_t x, int32_t y);
 
 #endif

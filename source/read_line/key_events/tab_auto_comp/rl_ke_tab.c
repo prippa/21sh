@@ -106,15 +106,15 @@ static char		*rl_t_get_cmd_from_line(void)
 	return (cmd);
 }
 
-void			rl_ke_tab(void)
+int32_t			rl_ke_tab(t_cursor *cur)
 {
 	char	*base_cmd;
 	t_list	*matches;
 
 	if (rl()->if_inhibitors_in_use_flag)
-		return ;
+		return (OK);
 	if (!(base_cmd = rl_t_get_cmd_from_line()))
-		return ;
+		return (OK);
 	if ((matches = rl_t_get_matches(base_cmd)))
 	{
 		ft_lstrev(&matches);
@@ -122,4 +122,5 @@ void			rl_ke_tab(void)
 		ft_lstdel(&matches, ft_lstdel_content);
 	}
 	ft_memdel((void **)&base_cmd);
+	return (OK);
 }

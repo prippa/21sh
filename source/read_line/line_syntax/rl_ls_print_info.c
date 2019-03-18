@@ -23,7 +23,7 @@
 
 void	ls_print_info(int32_t key)
 {
-	if (key == RL_OK)
+	if (key == OK)
 		return ;
 	if (key == RL_SEMIX1)
 	{

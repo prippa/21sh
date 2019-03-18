@@ -25,7 +25,7 @@ int32_t	ls_backslash_check(t_line_syntax *ls)
 		rl()->new_line_flag = false;
 		return (RL_SLASH);
 	}
-	return (RL_OK);
+	return (OK);
 }
 
 int32_t	ls_dobule_q_check(t_line_syntax *ls)
@@ -47,7 +47,7 @@ int32_t	ls_dobule_q_check(t_line_syntax *ls)
 		if (rl()->line[rl()->i] == BACKSLASH_C)
 			++rl()->i;
 		else if (rl()->line[rl()->i] == DOUBLE_QUOTES_C)
-			return (RL_OK);
+			return (OK);
 	}
 }
 
@@ -59,7 +59,7 @@ int32_t	ls_single_q_check(t_line_syntax *ls)
 		if (!rl()->line[++rl()->i])
 			return (RL_Q);
 		if (rl()->line[rl()->i] == SINGLE_QUOTES_C)
-			return (RL_OK);
+			return (OK);
 	}
 }
 
@@ -74,5 +74,5 @@ int32_t	ls_semi_check(t_line_syntax *ls)
 			return (RL_SEMIX1);
 	}
 	ls->semi_flag = false;
-	return (RL_OK);
+	return (OK);
 }

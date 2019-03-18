@@ -22,7 +22,6 @@ t_read_line		*rl(void)
 
 static void		read_line_loop(void)
 {
-	int32_t		ke_res;
 	char		buf[RL_BUFF_SIZE + 1];
 
 	while (true)
@@ -33,12 +32,13 @@ static void		read_line_loop(void)
 			sh_fatal_err(READ_ERR);
 		if (!rl()->line && !(rl()->line = ft_strdup("")))
 			sh_fatal_err(MALLOC_ERR);
-		if ((ke_res = rl_key_events(buf)) == RL_BREAK)
+		if (rl_key_events(buf))
 			break ;
-		else if (ke_res == RL_CONTINUE)
-			continue ;
-		rl_join_str_to_line(buf);
-		ft_putstr(buf);
+		if (ft_is_str_print(buf))
+		{
+			// rl_join_str_to_line(buf);
+			ft_putstr(buf);
+		}
 	}
 }
 

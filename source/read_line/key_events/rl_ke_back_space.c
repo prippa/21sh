@@ -12,13 +12,18 @@
 
 #include "read_line.h"
 
-void		rl_ke_back_space(void)
+int32_t		rl_ke_back_space(t_cursor *cur)
 {
-	if (rl()->len)
-	{
-		--rl()->len;
-		GET_MEM(MALLOC_ERR, rl()->line, ft_strsub_free,
-			&rl()->line, 0, ft_strlen(rl()->line) - 1);
-		ft_putstr("\b  \b\b");
-	}
+	return (OK);
 }
+
+// void		rl_ke_back_space(void)
+// {
+// 	if (rl()->len)
+// 	{
+// 		--rl()->len;
+// 		GET_MEM(MALLOC_ERR, rl()->line, ft_strsub_free,
+// 			&rl()->line, 0, ft_strlen(rl()->line) - 1);
+// 		ft_putstr("\b  \b\b");
+// 	}
+// }

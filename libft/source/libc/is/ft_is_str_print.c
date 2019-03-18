@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_ke_ctrl_d.c                                     :+:      :+:    :+:   */
+/*   ft_is_str_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 13:34:13 by prippa            #+#    #+#             */
-/*   Updated: 2019/03/18 13:34:16 by prippa           ###   ########.fr       */
+/*   Created: 2019/03/18 17:03:54 by prippa            #+#    #+#             */
+/*   Updated: 2019/03/18 17:05:16 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
-#include "builtin.h"
+#include "ft_is.h"
 
-int32_t		rl_ke_ctrl_d(t_cursor *cur)
+int32_t	ft_is_str_print(const char *str)
 {
-	(void)cur;
-	if (ft_is_str_empty(rl()->line))
-		sh_exit(NULL);
-	return (OK);
+	while (*str)
+		if (!ft_isprint(*str++))
+			return (0);
+	return (1);
 }
