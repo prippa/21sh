@@ -35,6 +35,7 @@ DIR_BLT		:=	$(DIR_COR_SRC)builtin/
 DIR_EXC		:=	$(DIR_COR_SRC)exec/
 DIR_HLP		:=	$(DIR_COR_SRC)helpers/
 DIR_INI		:=	$(DIR_COR_SRC)init/
+DIR_SIG		:=	$(DIR_COR_SRC)signal/
 
 # line_parser
 DIR_LPCMD	:=	$(DIR_LNP_SRC)lp_commands/
@@ -64,6 +65,8 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_INI)sh_init.c\
 				$(DIR_INI)sh_init_env.c\
 				$(DIR_INI)sh_init_term.c\
+				$(DIR_SIG)sh_init_sig.c\
+				$(DIR_SIG)sh_sig_handle.c\
 				$(DIR_BLT)sh_cd.c\
 				$(DIR_BLT)sh_exit.c\
 				$(DIR_BLT)sh_echo.c\
@@ -75,7 +78,6 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_HLP)sh_check_path_permision.c\
 				$(DIR_HLP)sh_utility.c\
 				$(DIR_HLP)sh_is.c\
-				$(DIR_HLP)sh_sig_handle.c\
 				$(DIR_HLP)sh_join_path_to_pwd.c
 
 ENV_C		:=	$(DIR_ENV_SRC)env_convert.c\
@@ -108,10 +110,16 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_KE)rl_ke_back_space.c\
 				$(DIR_KE)rl_ke_delete.c\
 				$(DIR_KE)rl_ke_return.c\
+				$(DIR_KE)rl_ke_home.c\
+				$(DIR_KE)rl_ke_end.c\
 				$(DIR_AROWS)rl_ke_left.c\
 				$(DIR_AROWS)rl_ke_right.c\
 				$(DIR_AROWS)rl_ke_up.c\
 				$(DIR_AROWS)rl_ke_down.c\
+				$(DIR_AROWS)rl_ke_alt_left.c\
+				$(DIR_AROWS)rl_ke_alt_right.c\
+				$(DIR_AROWS)rl_ke_alt_up.c\
+				$(DIR_AROWS)rl_ke_alt_down.c\
 				$(DIR_AC)rl_ke_tab.c\
 				$(DIR_AC)tab_proc_match.c
 

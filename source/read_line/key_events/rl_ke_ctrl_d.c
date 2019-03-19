@@ -13,10 +13,10 @@
 #include "read_line.h"
 #include "builtin.h"
 
-int32_t		rl_ke_ctrl_d(t_cursor *cur)
+int32_t		rl_ke_ctrl_d(t_line *ln)
 {
-	(void)cur;
-	if (ft_is_str_empty(rl()->line))
+	(void)ln;
+	if (ft_is_str_empty(ln->line))
 		sh_exit(NULL);
 	return (OK);
 }

@@ -12,7 +12,7 @@
 
 #include "keys.h"
 
-int32_t		rl_ke_ctrl_a(t_cursor *cur)
+int32_t		rl_ke_ctrl_a(t_line *ln)
 {
-	return (rl_ke_alt_down(cur));
+	return (rl_ke_alt_down(ln));
 }

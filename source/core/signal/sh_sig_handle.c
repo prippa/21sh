@@ -12,12 +12,13 @@
 
 #include "shell.h"
 #include "read_line.h"
+#include <signal.h>
 
-void		sh_handle_sigint_rl(int sig)
+void		sh_sig_handle_rl(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_memdel((void **)&rl()->line);
+		ft_memdel((void **)&rl()->ln.line);
 		rl()->if_inhibitors_in_use_flag = false;
 		sh()->exec_code = SIGINT;
 		ft_putchar('\n');
@@ -26,7 +27,7 @@ void		sh_handle_sigint_rl(int sig)
 	}
 }
 
-void		sh_handle_sigint_base(int sig)
+void		sh_sig_handle_base(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -37,7 +38,7 @@ void		sh_handle_sigint_base(int sig)
 	}
 }
 
-void		sh_handle_sigint_incase(int sig)
+void		sh_sig_handle_incase(int sig)
 {
 	if (sig == SIGINT)
 	{

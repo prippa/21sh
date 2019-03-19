@@ -40,7 +40,7 @@ static t_bool	rl_t_compare(const char *cmpr_str,
 	return (false);
 }
 
-static void		rl_t_end_move(const char *postfix, const t_list *m)
+static void		rl_t_end_move(const char *postfix, const t_list *m, t_line *ln)
 {
 	if (*postfix)
 	{
@@ -56,11 +56,11 @@ static void		rl_t_end_move(const char *postfix, const t_list *m)
 			m = m->next;
 		}
 		ft_putstr(sh()->prompt);
-		ft_putstr(rl()->line);
+		ft_putstr(ln->line);
 	}
 }
 
-void			tab_process_matches(const t_list *m, size_t len)
+void			tab_process_matches(const t_list *m, size_t len, t_line *ln)
 {
 	char			postfix[FILENAME_MAX + 1];
 	size_t			elem_max_len;
@@ -79,5 +79,5 @@ void			tab_process_matches(const t_list *m, size_t len)
 		else
 			ft_strncat(postfix, &((char *)m->content)[len - 1], 1);
 	}
-	rl_t_end_move(postfix, m);
+	rl_t_end_move(postfix, m, ln);
 }

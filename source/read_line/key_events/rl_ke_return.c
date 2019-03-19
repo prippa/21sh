@@ -12,8 +12,10 @@
 
 #include "read_line.h"
 
-int32_t		rl_ke_return(t_cursor *cur)
+int32_t		rl_ke_return(t_line *ln)
 {
+	#include "builtin.h"
+	sh_exit(NULL);
 	// int32_t	ls_res;
 
 	// ft_putstr("\n");

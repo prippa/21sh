@@ -17,11 +17,10 @@
 
 int32_t	ls_backslash_check(t_line_syntax *ls)
 {
-	(void)ls;
-	if (!rl()->line[++rl()->i])
+	if (!ls->line[++ls->i])
 	{
-		GET_MEM(MALLOC_ERR, rl()->line, ft_strsub_free,
-			&rl()->line, 0, rl()->i - 1);
+		GET_MEM(MALLOC_ERR, ls->line, ft_strsub_free,
+			&ls->line, 0, ls->i - 1);
 		rl()->new_line_flag = false;
 		return (RL_SLASH);
 	}
@@ -30,35 +29,33 @@ int32_t	ls_backslash_check(t_line_syntax *ls)
 
 int32_t	ls_dobule_q_check(t_line_syntax *ls)
 {
-	(void)ls;
 	while (true)
 	{
-		if (!rl()->line[++rl()->i] ||
-			(rl()->line[rl()->i] == BACKSLASH_C && !rl()->line[rl()->i + 1]))
+		if (!ls->line[++ls->i] ||
+			(ls->line[ls->i] == BACKSLASH_C && !ls->line[ls->i + 1]))
 		{
-			if (rl()->line[rl()->i] == BACKSLASH_C && !rl()->line[rl()->i + 1])
+			if (ls->line[ls->i] == BACKSLASH_C && !ls->line[ls->i + 1])
 			{
-				GET_MEM(MALLOC_ERR, rl()->line, ft_strsub_free,
-					&rl()->line, 0, rl()->i);
+				GET_MEM(MALLOC_ERR, ls->line, ft_strsub_free,
+					&ls->line, 0, ls->i);
 				rl()->new_line_flag = false;
 			}
 			return (RL_DQ);
 		}
-		if (rl()->line[rl()->i] == BACKSLASH_C)
-			++rl()->i;
-		else if (rl()->line[rl()->i] == DOUBLE_QUOTES_C)
+		if (ls->line[ls->i] == BACKSLASH_C)
+			++ls->i;
+		else if (ls->line[ls->i] == DOUBLE_QUOTES_C)
 			return (OK);
 	}
 }
 
 int32_t	ls_single_q_check(t_line_syntax *ls)
 {
-	(void)ls;
 	while (true)
 	{
-		if (!rl()->line[++rl()->i])
+		if (!ls->line[++ls->i])
 			return (RL_Q);
-		if (rl()->line[rl()->i] == SINGLE_QUOTES_C)
+		if (ls->line[ls->i] == SINGLE_QUOTES_C)
 			return (OK);
 	}
 }
@@ -67,8 +64,8 @@ int32_t	ls_semi_check(t_line_syntax *ls)
 {
 	if (!ls->semi_flag)
 	{
-		if (rl()->line[rl()->i + 1] == SEMICOLON_C || (rl()->i &&
-			rl()->line[rl()->i - 1] == SEMICOLON_C))
+		if (ls->line[ls->i + 1] == SEMICOLON_C || (ls->i &&
+			ls->line[ls->i - 1] == SEMICOLON_C))
 			return (RL_SEMIX2);
 		else
 			return (RL_SEMIX1);

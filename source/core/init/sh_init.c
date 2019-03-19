@@ -29,5 +29,5 @@ void		sh_init(void)
 	sh_init_term();
 	sh_update_curent_dir_name();
 	sh_update_prompt(true);
-	signal(SIGINT, sh_handle_sigint_base);
+	sh_init_sig_base();
 }

@@ -20,22 +20,24 @@
 typedef struct	s_line_syntax
 {
 	t_bool		semi_flag;
+	const char	*line;
+	size_t		i;
 }				t_line_syntax;
 
-typedef struct	s_cursor
+typedef struct	s_line
 {
-	int32_t		x;
-	int32_t		y;
-}				t_cursor;
-
+	char		*line;
+	size_t		line_len;
+	size_t		cursor_pos;
+	int32_t		cursor_x;
+	int32_t		cursor_y;
+}				t_line;
 
 typedef struct	s_read_line
 {
-	char		*line;
-	size_t		i;
+	t_line		ln;
 	t_bool		new_line_flag;
 	t_bool		if_inhibitors_in_use_flag;
-	t_cursor	cur;
 }				t_read_line;
 
 enum
@@ -50,7 +52,7 @@ enum
 t_read_line		*rl(void);
 int32_t			rl_key_events(const char buf[RL_BUFF_SIZE]);
 
-int32_t			rl_line_syntax(void);
+int32_t			rl_line_syntax(const char *line);
 int32_t			ls_backslash_check(t_line_syntax *ls);
 int32_t			ls_dobule_q_check(t_line_syntax *ls);
 int32_t			ls_single_q_check(t_line_syntax *ls);

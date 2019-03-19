@@ -20,7 +20,7 @@ t_read_line		*rl(void)
 	return (&rl);
 }
 
-static void		read_line_loop(void)
+static void		read_line_loop(t_line *ln)
 {
 	char		buf[RL_BUFF_SIZE + 1];
 
@@ -30,7 +30,7 @@ static void		read_line_loop(void)
 		ft_bzero(buf, RL_BUFF_SIZE + 1);
 		if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)
 			sh_fatal_err(READ_ERR);
-		if (!rl()->line && !(rl()->line = ft_strdup("")))
+		if (!ln->line && !(ln->line = ft_strdup("")))
 			sh_fatal_err(MALLOC_ERR);
 		if (rl_key_events(buf))
 			break ;
@@ -46,12 +46,12 @@ char			*read_line(void)
 {
 	ft_bzero(rl(), sizeof(t_read_line));
 	ft_putstr(sh()->prompt);
-	signal(SIGINT, sh_handle_sigint_rl);
+	sh_init_sig_rl();
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, sh()->new_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);
-	read_line_loop();
+	read_line_loop(&rl()->ln);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, sh()->old_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);
-	signal(SIGINT, sh_handle_sigint_base);
-	return (rl()->line);
+	sh_init_sig_base();
+	return (rl()->ln.line);
 }

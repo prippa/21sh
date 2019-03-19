@@ -20,7 +20,7 @@ static void		sh_do_magic(const char *path, char **args, char **env)
 {
 	pid_t	father;
 
-	signal(SIGINT, sh_handle_sigint_incase);
+	sh_init_sig_incase();
 	if ((father = fork()) == ERR)
 		sh_fatal_err(FORK_FAILED);
 	if (father)
@@ -35,11 +35,11 @@ static void		sh_do_magic(const char *path, char **args, char **env)
 	}
 	if (!father)
 	{
-		signal(SIGINT, SIG_DFL);
+		sh_init_sig_default();
 		execve(path, args, env);
 		exit(EXIT_FAILURE);
 	}
-	signal(SIGINT, sh_handle_sigint_base);
+	sh_init_sig_base();
 }
 
 void			sh_exec(const char *path, t_build *b)

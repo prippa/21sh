@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <dirent.h>
-#include "read_line.h"
 #include "syntax_characters.h"
 #include "builtin_static_arr.h"
 #include "environ_manipulation.h"
@@ -80,45 +79,45 @@ static t_list	*rl_t_get_matches(const char *bc)
 	return (m);
 }
 
-static char		*rl_t_get_cmd_from_line(void)
+static char		*rl_t_get_cmd_from_line(t_line *ln)
 {
 	char	*cmd;
 	size_t	len;
 	size_t	size;
 	t_bool	space_flag;
 
-	size = ft_strlen(rl()->line);
+	size = ft_strlen(ln->line);
 	space_flag = false;
 	len = 0;
 	while (size--)
 	{
-		if (rl()->line[size] == SEMICOLON_C)
+		if (ln->line[size] == SEMICOLON_C)
 			break ;
-		if (ft_isspace(rl()->line[size]))
+		if (ft_isspace(ln->line[size]))
 			space_flag = true;
-		else if (space_flag && ft_isascii(rl()->line[size]))
+		else if (space_flag && ft_isascii(ln->line[size]))
 			return (NULL);
 		if (!space_flag)
 			++len;
 	}
 	GET_MEM(MALLOC_ERR, cmd, ft_strsub,
-		rl()->line, ft_strlen(rl()->line) - len, len);
+		ln->line, ft_strlen(ln->line) - len, len);
 	return (cmd);
 }
 
-int32_t			rl_ke_tab(t_cursor *cur)
+int32_t			rl_ke_tab(t_line *ln)
 {
 	char	*base_cmd;
 	t_list	*matches;
 
 	if (rl()->if_inhibitors_in_use_flag)
 		return (OK);
-	if (!(base_cmd = rl_t_get_cmd_from_line()))
+	if (!(base_cmd = rl_t_get_cmd_from_line(ln)))
 		return (OK);
 	if ((matches = rl_t_get_matches(base_cmd)))
 	{
 		ft_lstrev(&matches);
-		tab_process_matches(matches, ft_strlen(base_cmd));
+		tab_process_matches(matches, ft_strlen(base_cmd), ln);
 		ft_lstdel(&matches, ft_lstdel_content);
 	}
 	ft_memdel((void **)&base_cmd);

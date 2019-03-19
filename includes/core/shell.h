@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "ft_printf.h"
+# include <stdio.h>
 # include <termios.h>
 
 # define PATH_MAX		4096
@@ -47,9 +48,13 @@ void				sh_fatal_err(const char *message);
 
 # define GET_MEM(m, v, f, a ...) if (!(v = f(a))) sh_fatal_err(m)
 
-void				sh_handle_sigint_rl(int sig);
-void				sh_handle_sigint_base(int sig);
-void				sh_handle_sigint_incase(int sig);
+void				sh_sig_handle_rl(int sig);
+void				sh_sig_handle_base(int sig);
+void				sh_sig_handle_incase(int sig);
+void				sh_init_sig_rl(void);
+void				sh_init_sig_base(void);
+void				sh_init_sig_incase(void);
+void				sh_init_sig_default(void);
 void				sh_init(void);
 void				sh_init_env(void);
 void				sh_init_term(void);

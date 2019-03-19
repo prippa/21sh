@@ -12,7 +12,7 @@
 
 #include "read_line.h"
 
-int32_t		rl_ke_back_space(t_cursor *cur)
+int32_t		rl_ke_back_space(t_line *ln)
 {
 	return (OK);
 }
