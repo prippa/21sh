@@ -39,7 +39,9 @@ int32_t rl_key_events(const char buf[RL_BUFF_SIZE])
 	size_t i;
 
 	ft_memcpy(&key, buf, RL_BUFF_SIZE);
-	// ft_printf("\n%zu\n", key);
+	// uint32_t y = 0, x = 0;
+	// rl_get_pos(&y, &x);
+	// ft_printf("\ny - [%d] x - [%d]\n", y, x);
 	// #include "builtin.h"
 	// sh_exit(NULL);
 	i = -1;

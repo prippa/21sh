@@ -53,8 +53,6 @@ int32_t					rl_ke_tab(t_line *ln);
 void					tab_process_matches(const t_list *m,
 							size_t len, t_line *ln);
 
-void					rl_ke_goto(int32_t x, int32_t y);
-
 # define KEY_HOME		4741915
 # define KEY_END		4610843
 int32_t					rl_ke_home(t_line *ln);

@@ -13,6 +13,9 @@
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
+# include "ft_lst.h"
+# include "ft_def.h"
+
 typedef struct	s_builtin
 {
 	t_list2		**env_start;

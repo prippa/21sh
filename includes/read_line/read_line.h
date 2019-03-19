@@ -20,7 +20,7 @@
 typedef struct	s_line_syntax
 {
 	t_bool		semi_flag;
-	const char	*line;
+	char		*line;
 	size_t		i;
 }				t_line_syntax;
 
@@ -51,8 +51,10 @@ enum
 
 t_read_line		*rl(void);
 int32_t			rl_key_events(const char buf[RL_BUFF_SIZE]);
+void			rl_goto(int32_t x, int32_t y);
+void			rl_get_pos(int32_t *x, int32_t *y);
 
-int32_t			rl_line_syntax(const char *line);
+int32_t			rl_line_syntax(char **line);
 int32_t			ls_backslash_check(t_line_syntax *ls);
 int32_t			ls_dobule_q_check(t_line_syntax *ls);
 int32_t			ls_single_q_check(t_line_syntax *ls);
