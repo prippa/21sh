@@ -14,8 +14,24 @@
 
 int32_t		rl_ke_return(t_line *ln)
 {
-	#include "builtin.h"
-	sh_exit(NULL);
+	int32_t	ls_res;
+
+	ft_putstr_fd("\n", STDIN_FILENO);
+	if (!(ls_res = rl_line_syntax(&ln->line)))
+		return (ERR);
+	ls_print_info(ls_res);
+	if (ls_res < 0)
+		return (ERR);
+	if (rl()->new_line_flag)
+		rl_jnd_to_line(ln, "\n");
+	if (ls_res > 0)
+	{
+		ln->line_len = 0;
+		rl()->if_inhibitors_in_use_flag = true;
+	}
+	// #include "builtin.h"
+	// sh_exit(NULL);
+
 	// int32_t	ls_res;
 
 	// ft_putstr("\n");

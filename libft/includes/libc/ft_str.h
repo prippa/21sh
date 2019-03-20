@@ -48,5 +48,6 @@ char		*ft_strnjoin(char const *s1, char const *s2,
 				size_t s1len, size_t s2len);
 char		*ft_strjoin_free(char **dst, const char *src,
 				size_t dstsize, size_t srcsize);
+char		*ft_strinsert_free(char **dst, const char *src, size_t len);
 
 #endif

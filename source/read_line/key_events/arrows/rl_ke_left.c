@@ -14,5 +14,7 @@
 
 int32_t		rl_ke_left(t_line *ln)
 {
+	if (ln->cursor_pos)
+		rl_move_cursor(ln, MV_LEFT, 1);
 	return (OK);
 }

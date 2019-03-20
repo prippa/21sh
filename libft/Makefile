@@ -90,6 +90,7 @@ LIB_C		:=	$(DIR_MEM)ft_bzero.c\
 				$(DIR_STR)ft_strsub.c\
 				$(DIR_STR)ft_strsub_free.c\
 				$(DIR_STR)ft_strtrim.c\
+				$(DIR_STR)ft_strinsert_free.c\
 				$(DIR_IS)ft_isalnum.c\
 				$(DIR_IS)ft_isalpha.c\
 				$(DIR_IS)ft_isascii.c\

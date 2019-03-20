@@ -34,9 +34,9 @@ void	ls_print_info(int32_t key)
 		PRINT_ERR(EXIT_FAILURE, WTF_SEMICOLON_X2, NULL);
 	}
 	else if (key == RL_Q)
-		ft_putstr(QUOT_PROMPT);
+		ft_putstr_fd(QUOT_PROMPT, STDIN_FILENO);
 	else if (key == RL_DQ)
-		ft_putstr(DQUOT_PROMPT);
+		ft_putstr_fd(DQUOT_PROMPT, STDIN_FILENO);
 	else if (key == RL_SLASH)
-		ft_putstr(SLASH_PROMPT);
+		ft_putstr_fd(SLASH_PROMPT, STDIN_FILENO);
 }

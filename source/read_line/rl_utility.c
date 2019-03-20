@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_ke_utility.c                                    :+:      :+:    :+:   */
+/*   rl_utility.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,38 +15,34 @@
 
 #define GP_BUF_SIZE 30
 
-void		rl_goto(int32_t x, int32_t y)
+static void	rl_ke_get_pos_calc(char buf[GP_BUF_SIZE], int32_t i, t_point *p)
 {
-	ft_putstr_fd(tgoto(tgetstr("cm", NULL), x, y), STDIN_FILENO);
-}
-
-static void	rl_ke_get_pos_calc(char buf[GP_BUF_SIZE], int32_t i,
-				int32_t *x, int32_t *y)
-{
-	int32_t	p;
+	int32_t	_pow;
 
 	--i;
-	p = 1;
+	_pow = 1;
 	while (buf[--i] != ';')
 	{
-		*y = *y + (buf[i] - '0') * p;
-		p *= 10;
+		p->x = p->x + (buf[i] - '0') * _pow;
+		_pow *= 10;
 	}
-	p = 1;
+	_pow = 1;
 	while (buf[--i] != '[')
 	{
-		*x = *x + (buf[i] - '0') * p;
-		p *= 10;
+		p->y = p->y + (buf[i] - '0') * _pow;
+		_pow *= 10;
 	}
 }
 
-void		rl_get_pos(int32_t *x, int32_t *y)
+t_point		rl_get_pos(void)
 {
 	char	buf[GP_BUF_SIZE + 1];
 	char	ch;
 	int32_t	i;
+	t_point	p;
 
 	ft_bzero(buf, GP_BUF_SIZE + 1);
+	ft_bzero(&p, sizeof(t_point));
 	write(1, "\033[6n", 4);
 	i = 0;
 	while (ch != 'R')
@@ -57,7 +53,22 @@ void		rl_get_pos(int32_t *x, int32_t *y)
 	}
 	if (i < 2)
 		sh_fatal_err("rl_get_pos: i < 2");
-	rl_ke_get_pos_calc(buf, i, y, x);
-	*x -= 1;
-	*y -= 1;
+	rl_ke_get_pos_calc(buf, i, &p);
+	--p.x;
+	--p.y;
+	return (p);
+}
+
+void		rl_goto(t_point p)
+{
+	ft_putstr_fd(tgoto(tgetstr("cm", NULL), p.x, p.y), STDIN_FILENO);
+}
+
+void		rl_do_magic(size_t len)
+{
+	char	*boom;
+
+	GET_MEM(MALLOC_ERR, boom, ft_memalloc, len + 1);
+	ft_memset(boom, ' ', len);
+	ft_putstr_fd(boom, STDIN_FILENO);
 }

@@ -13,6 +13,8 @@
 #ifndef FT_DEF_H
 # define FT_DEF_H
 
+# include <stdint.h>
+
 # define ERR			-1
 # define OK				0
 # define MALLOC_ERR		"malloc() failed"
@@ -23,6 +25,12 @@
 
 typedef char	t_bool;
 enum			{ false, true };
+
+typedef struct	s_point
+{
+	int32_t		x;
+	int32_t		y;
+}				t_point;
 
 # define ABS(x) (((x) < 0) ? -(x) : (x))
 

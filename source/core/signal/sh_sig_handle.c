@@ -18,10 +18,10 @@ void		sh_sig_handle_rl(int sig)
 {
 	if (sig == SIGINT)
 	{
-		ft_memdel((void **)&rl()->ln.line);
-		rl()->if_inhibitors_in_use_flag = false;
+		free(rl()->ln.line);
+		ft_bzero(rl(), sizeof(t_read_line));
 		sh()->exec_code = SIGINT;
-		ft_putchar('\n');
+		ft_putchar_fd('\n', STDIN_FILENO);
 		sh_update_prompt(false);
 		ft_putstr(sh()->prompt);
 	}
@@ -32,7 +32,7 @@ void		sh_sig_handle_base(int sig)
 	if (sig == SIGINT)
 	{
 		sh()->exec_code = SIGINT;
-		ft_putchar('\n');
+		ft_putchar_fd('\n', STDIN_FILENO);
 		sh_update_prompt(false);
 		ft_putstr(sh()->prompt);
 	}
@@ -44,6 +44,6 @@ void		sh_sig_handle_incase(int sig)
 	{
 		sh()->exec_code = SIGINT;
 		sh()->ok = false;
-		ft_putchar('\n');
+		ft_putchar_fd('\n', STDIN_FILENO);
 	}
 }
