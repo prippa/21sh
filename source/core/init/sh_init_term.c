@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "read_line.h"
 #include <fcntl.h>
 #include <term.h>
 #include "messages.h"
@@ -19,6 +19,22 @@
 # define NO_TERM "Specify a terminal type with 'setenv TERM <yourtype>'."
 # define NO_ACCESS_TO_DB "Could not access the termcap data base."
 # define NO_SUCH_ENTRY "Terminal type `%s' is not defined."
+
+static void	sh_init_termcaps(void)
+{
+	t_tc *t;
+
+	t = tc();
+	t->le = tgetstr("le", NULL);
+	t->nd = tgetstr("nd", NULL);
+	t->down = tgetstr("do", NULL);
+	t->up = tgetstr("up", NULL);
+	t->dc = tgetstr("dc", NULL);
+	t->im = tgetstr("im", NULL);
+	t->ei = tgetstr("ei", NULL);
+	t->sc = tgetstr("sc", NULL);
+	t->rc = tgetstr("rc", NULL);
+}
 
 static void	sh_init_new_settings(void)
 {
@@ -43,4 +59,5 @@ void		sh_init_term(void)
 	else if (res == 0)
 		sh_fatal_err(MSG(NO_SUCH_ENTRY, term_type));
 	sh_init_new_settings();
+	sh_init_termcaps();
 }

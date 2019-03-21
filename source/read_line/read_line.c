@@ -12,12 +12,20 @@
 
 #include "read_line.h"
 #include "messages.h"
+#include <sys/ioctl.h>
 
 t_read_line		*rl(void)
 {
 	static t_read_line rl;
 
 	return (&rl);
+}
+
+t_tc			*tc(void)
+{
+	static t_tc tc;
+
+	return (&tc);
 }
 
 static void		read_line_loop(t_line *ln)
@@ -43,6 +51,7 @@ static void		rl_init(void)
 {
 	ft_bzero(rl(), sizeof(t_read_line));
 	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
+	ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
 }
 
 char			*read_line(void)

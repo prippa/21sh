@@ -4,6 +4,7 @@
 void		sh_init_sig_rl(void)
 {
 	signal(SIGINT, sh_sig_handle_rl);
+	signal(SIGWINCH, sh_sig_handle_rl);
 }
 
 void		sh_init_sig_base(void)

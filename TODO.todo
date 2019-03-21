@@ -1,7 +1,19 @@
-termcap:
-	cm, le, rd, dc, cd
+/*
+**	le	->	cursor go one character left
+**	nd	->	cursor go one character right
+**	do	->	cursor go one line down
+**	up	->	cursor go one line up
+**	dc	->	delete one character
+**	im	->	enter insert mode
+**	ei	->	exit insert mode
 
+**	cr	->	cursor go to the beginning of the line
+**	cl	->	clear the screen
+**	cd	->	clear the line from the cursor until the end of screen
 
+**	sc	->	save cursor position
+**	rc	->	restore cursor position
+*/
 
 Bonuses:
 	Auto Comp
