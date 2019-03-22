@@ -10,30 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "keys.h"
+#include "button_keys.h"
 
-static const int64_t g_keys[KE_SIZE] =
-	{
-		KEY_LEFT, KEY_RIGHT, KEY_UP, KEY_DOWN,
-		KEY_RETURN,
-		KEY_BACK_SPACE, KEY_DELETE,
-		KEY_CTRL_D, KEY_CTRL_A,
-		KEY_ALT_LEFT, KEY_ALT_RIGHT, KEY_ALT_UP, KEY_ALT_DOWN,
-		KEY_TAB,
-		KEY_HOME, KEY_END};
+static t_event const	g_ke[KE_SIZE] =
+{
+	{rl_ke_left, KEY_LEFT},
+	{rl_ke_right, KEY_RIGHT},
+	{rl_ke_up, KEY_UP},
+	{rl_ke_down, KEY_DOWN},
+	{rl_ke_return, KEY_RETURN},
+	{rl_ke_back_space, KEY_BACK_SPACE},
+	{rl_ke_delete, KEY_DELETE},
+	{rl_ke_ctrl_d, KEY_CTRL_D},
+	{rl_ke_ctrl_a, KEY_CTRL_A},
+	{rl_ke_alt_left, KEY_ALT_LEFT},
+	{rl_ke_alt_right, KEY_ALT_RIGHT},
+	{rl_ke_alt_up, KEY_ALT_UP},
+	{rl_ke_alt_down, KEY_ALT_DOWN},
+	{rl_ke_tab, KEY_TAB},
+	{rl_ke_home, KEY_HOME},
+	{rl_ke_end, KEY_END},
+};
 
-typedef int32_t (*t_events)(t_line *ln);
-static const t_events g_ke[KE_SIZE] =
-	{
-		rl_ke_left, rl_ke_right, rl_ke_up, rl_ke_down,
-		rl_ke_return,
-		rl_ke_back_space, rl_ke_delete,
-		rl_ke_ctrl_d, rl_ke_ctrl_a,
-		rl_ke_alt_left, rl_ke_alt_right, rl_ke_alt_up, rl_ke_alt_down,
-		rl_ke_tab,
-		rl_ke_home, rl_ke_end};
-
-int32_t rl_key_events(const char buf[RL_BUFF_SIZE])
+int32_t					rl_key_events(const char buf[RL_BUFF_SIZE])
 {
 	uint64_t key;
 	size_t i;
@@ -46,7 +45,7 @@ int32_t rl_key_events(const char buf[RL_BUFF_SIZE])
 	// sh_exit(NULL);
 	i = -1;
 	while (++i < KE_SIZE)
-		if (g_keys[i] == key)
-			return (g_ke[i](&rl()->ln));
+		if (g_ke[i].key == key)
+			return (g_ke[i].f(&rl()->ln));
 	return (OK);
 }

@@ -15,6 +15,8 @@
 int32_t		rl_ke_right(t_line *ln)
 {
 	if (ln->cursor_pos < ln->line_len)
-		rl_move_cursor(ln, MV_RIGHT, 1);
+	{
+		
+	}
 	return (OK);
 }

@@ -15,7 +15,7 @@
 #include "builtin_static_arr.h"
 #include "environ_manipulation.h"
 #include "messages.h"
-#include "keys.h"
+#include "button_keys.h"
 
 static void		rl_t_gm_push_cmd(t_list **m, const char *bc, const char *c)
 {

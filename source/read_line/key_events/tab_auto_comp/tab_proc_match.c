@@ -43,20 +43,16 @@ static t_bool	rl_t_compare(const char *cmpr_str,
 static void		rl_t_end_move(const char *postfix, const t_list *m, t_line *ln)
 {
 	if (*postfix)
-	{
-		ft_putstr(postfix);
-		// rl_join_str_to_line(postfix);
-	}
+		rl_jnd_to_line(ln, postfix);
 	else
 	{
-		ft_putchar('\n');
+		ft_putchar_fd('\n', STDIN_FILENO);
 		while (m)
 		{
 			ft_putendl((char *)m->content);
 			m = m->next;
 		}
-		ft_putstr(sh()->prompt);
-		ft_putstr(ln->line);
+		rl_redraw_line(ln);
 	}
 }
 

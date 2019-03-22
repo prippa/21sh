@@ -29,11 +29,10 @@ static void	sh_init_termcaps(void)
 	t->nd = tgetstr("nd", NULL);
 	t->down = tgetstr("do", NULL);
 	t->up = tgetstr("up", NULL);
-	t->dc = tgetstr("dc", NULL);
-	t->im = tgetstr("im", NULL);
-	t->ei = tgetstr("ei", NULL);
 	t->sc = tgetstr("sc", NULL);
 	t->rc = tgetstr("rc", NULL);
+	t->cd = tgetstr("cd", NULL);
+	t->cr = tgetstr("cr", NULL);
 }
 
 static void	sh_init_new_settings(void)

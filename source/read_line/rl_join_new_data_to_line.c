@@ -23,7 +23,7 @@ void		rl_jnd_to_line(t_line *ln, const char *src)
 	ln->line_len += src_len;
 	ln->cursor_pos += src_len;
 	ft_putstr_fd(src, STDIN_FILENO);
-	rl_move_cursor(ln, MV_LEFT, 1);
+	rl_increase_x(ln, src_len, rl()->w.ws_col);
 	// right_index = ln->line_len - ln->cursor_pos;
 	// rl_do_magic(right_index);
 	// ln->cursor_pos += right_index;

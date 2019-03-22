@@ -18,17 +18,19 @@ void		sh_sig_handle_rl(int sig)
 {
 	if (sig == SIGINT)
 	{
-		free(rl()->ln.line);
-		ft_bzero(&rl()->ln, sizeof(t_line));
-		rl()->if_inhibitors_in_use_flag = false;
-		sh()->exec_code = SIGINT;
 		ft_putchar_fd('\n', STDIN_FILENO);
+		sh()->exec_code = SIGINT;
 		sh_update_prompt(false);
-		ft_putstr(sh()->prompt);
+		free(rl()->ln.line);
+		rl_init();
 	}
 	if (sig == SIGWINCH)
 	{
+		rl_move_cursor_up((P_SIZE + rl()->ln.line_len) / rl()->w.ws_col);
+		rl_make_tc_magic(tc()->cr);
+		rl_make_tc_magic(tc()->cd);
 		ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
+		rl_redraw_line(&rl()->ln);
 	}
 }
 
@@ -36,10 +38,10 @@ void		sh_sig_handle_base(int sig)
 {
 	if (sig == SIGINT)
 	{
-		sh()->exec_code = SIGINT;
 		ft_putchar_fd('\n', STDIN_FILENO);
+		sh()->exec_code = SIGINT;
 		sh_update_prompt(false);
-		ft_putstr(sh()->prompt);
+		ft_putstr_fd(sh()->prompt, STDIN_FILENO);
 	}
 }
 
@@ -47,8 +49,8 @@ void		sh_sig_handle_incase(int sig)
 {
 	if (sig == SIGINT)
 	{
+		ft_putchar_fd('\n', STDIN_FILENO);
 		sh()->exec_code = SIGINT;
 		sh()->ok = false;
-		ft_putchar_fd('\n', STDIN_FILENO);
 	}
 }

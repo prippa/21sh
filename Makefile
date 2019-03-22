@@ -58,7 +58,8 @@ ENV_H		:=	$(DIR_ENV_INC)environ_manipulation.h
 LNP_H		:=	$(DIR_LNP_INC)line_parser.h
 
 RL_H		:=	$(DIR_RL_INC)read_line.h\
-				$(DIR_RL_INC)keys.h
+				$(DIR_RL_INC)button_keys.h\
+				$(DIR_RL_INC)line_syntax.h
 
 #-------------------------- Source files ---------------------------------------
 COR_C		:=	$(DIR_COR_SRC)main.c\
@@ -100,6 +101,7 @@ LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LPCMD)lp_tilde.c
 
 RL_C		:=	$(DIR_RL_SRC)read_line.c\
+				$(DIR_RL_SRC)rl_init.c\
 				$(DIR_RL_SRC)rl_utility.c\
 				$(DIR_RL_SRC)rl_move_cursor.c\
 				$(DIR_RL_SRC)rl_join_new_data_to_line.c\

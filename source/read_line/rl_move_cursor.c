@@ -12,70 +12,80 @@
 
 #include "read_line.h"
 
-t_bool			rl_move_cursor(t_line *ln, t_motion_vector mv, size_t len)
+void			rl_move_cursor_up(size_t n)
+{
+	t_tc	*t;
+
+	t = tc();
+	while (n--)
+		rl_make_tc_magic(t->up);
+}
+
+static void		rl_move_cursor_right(size_t n)
+{
+	t_tc	*t;
+
+	t = tc();
+	while (n--)
+		rl_make_tc_magic(t->nd);
+}
+
+static void		rl_move_cursor_left(size_t n)
+{
+	t_tc	*t;
+
+	t = tc();
+	while (n--)
+		rl_make_tc_magic(t->le);
+}
+//t_line *ln, t_motion_vector mv, size_t len
+t_bool			rl_move_cursor(void)
 {
 	t_bool			op_res;
-	t_tc			*t;
+	t_tc	*t;
 
 	t = tc();
 	// system("clear");
-	tputs(t->up, 0, &sl_print_key);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->up);
 	sleep(1);
-	ft_putstr_fd("lol1", 0);
-	tputs(t->up, 0, &sl_print_key);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->up);
 	sleep(1);
-	ft_putstr_fd("lol2", 0);
-	tputs(t->up, 0, &sl_print_key);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->up);
 	sleep(1);
-	ft_putstr_fd("lol3", 0);
-	tputs(t->up, 0, &sl_print_key);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->up);
 	sleep(1);
-	ft_putstr_fd("lol4", 0);
-	tputs(t->up, 0, &sl_print_key);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->le);
 	sleep(1);
-	ft_putstr_fd("lol5", 0);
-	sleep(2);
-	// tputs(TC_IM, 0, &sl_print_key);
-	// ft_putstr_fd("aaaaaaaaaa", 0);
-	// sleep(1);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// tputs(TC_LE, 0, &sl_print_key);
-	// ft_putstr_fd("gggggggggg", 0);
-	// sleep(2);
-	// tputs(TC_EI, 0, &sl_print_key);
-	// ft_putstr_fd("123", 0);
-	// sleep(1);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// sleep(1);
-	// tputs(TC_DO, 0, &sl_print_key);
-	// sleep(1);
-	// tputs(TC_UP, 0, &sl_print_key);
-	// sleep(1);
-	// tputs(TC_ND, 0, &sl_print_key);
-	// sleep(1);
-	// tputs(TC_DC, 0, &sl_print_key);
+	rl_make_tc_magic(t->le);
+	sleep(1);
+	rl_make_tc_magic(t->le);
+	sleep(1);
+	rl_make_tc_magic(t->le);
+	sleep(1);
+	rl_make_tc_magic(t->le);
+	sleep(1);
+	rl_make_tc_magic(t->le);
+	sleep(1);
+	rl_make_tc_magic(t->le);
+	sleep(1);
+	rl_make_tc_magic(t->le);
+	sleep(1);
+	rl_make_tc_magic(t->le);
+	rl_make_tc_magic(t->up);
+	rl_make_tc_magic(t->up);
+	sleep(1);
+	rl_make_tc_magic(t->nd);
+	sleep(1);
+	rl_make_tc_magic(t->down);
+	sleep(1);
 	// sleep(2);
 	#include "builtin.h"
 	sh_exit(NULL);

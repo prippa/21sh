@@ -19,7 +19,8 @@
 # include <termios.h>
 
 # define PATH_MAX		4096
-# define PROMPT_SIZE	FILENAME_MAX + 256
+# define PROMPT_ADS		5
+# define PROMPT_SIZE	FILENAME_MAX + PROMPT_ADS
 
 typedef struct		s_shell
 {
@@ -43,6 +44,7 @@ t_shell				*sh(void);
 # define PE_NL ft_putendl_fd(EMPTY_STR, STDERR_FILENO)
 # define PE_SE(ec) sh()->exec_code = ec; sh()->ok = false
 # define PRINT_ERR(ec, f, a ...) PE_P(f, a); PE_NL; PE_SE(ec)
+# define P_SIZE (PROMPT_ADS + ft_strlen(sh()->curent_path))
 
 void				sh_fatal_err(const char *message);
 

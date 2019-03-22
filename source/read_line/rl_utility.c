@@ -12,7 +12,28 @@
 
 #include "read_line.h"
 
-int32_t		sl_print_key(int32_t n)
+static int32_t	rl_print_key(int32_t n)
 {
 	return (write(STDIN_FILENO, &n, 1));
+}
+
+void			rl_make_tc_magic(const char *t)
+{
+	tputs(t, 0, &rl_print_key);
+}
+
+void			rl_increase_x(t_line *ln, size_t n, uint16_t col)
+{
+	ln->x = (ln->x + n) % col;
+	if (ln->x == 0)
+		rl_make_tc_magic(tc()->down);
+}
+
+void			rl_redraw_line(t_line *ln)
+{
+	ln->x = 0;
+	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
+	ft_putstr_fd(ln->line, STDIN_FILENO);
+	rl_increase_x(ln, (P_SIZE + ln->line_len)
+		- (ln->line_len - ln->cursor_pos), rl()->w.ws_col);
 }

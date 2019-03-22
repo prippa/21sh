@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
+#include "line_syntax.h"
 #include "messages.h"
 #include "syntax_characters.h"
 #include "builtin.h"

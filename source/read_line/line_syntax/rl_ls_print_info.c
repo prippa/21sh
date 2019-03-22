@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
+#include "line_syntax.h"
 #include "messages.h"
 
 #define LS_ERR				SHELL_NAME ": syntax error : "

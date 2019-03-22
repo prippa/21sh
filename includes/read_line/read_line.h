@@ -16,21 +16,15 @@
 # include "shell.h"
 # include <term.h>
 
-#define RL_BUFF_SIZE 8
+# define RL_BUFF_SIZE 8
 
 typedef struct		s_line
 {
 	char			*line;
 	size_t			line_len;
 	size_t			cursor_pos;
+	int32_t			x;
 }					t_line;
-
-typedef struct		s_line_syntax
-{
-	t_bool			semi_flag;
-	char			*line;
-	size_t			i;
-}					t_line_syntax;
 
 typedef struct		s_read_line
 {
@@ -40,47 +34,40 @@ typedef struct		s_read_line
 	struct winsize	w;
 }					t_read_line;
 
+typedef int32_t		(*t_func)(t_line *ln);
+typedef struct		s_event
+{
+	t_func			f;
+	uint64_t		key;
+}					t_event;
+
 typedef struct		s_tc
 {
 	char			*le;
 	char			*nd;
 	char			*down;
 	char			*up;
-	char			*dc;
-	char			*im;
-	char			*ei;
 	char			*sc;
 	char			*rc;
+	char			*cd;
+	char			*cr;
 }					t_tc;
-
-enum
-{
-	RL_SEMIX1 = -2,
-	RL_SEMIX2,
-	RL_Q,
-	RL_DQ,
-	RL_SLASH
-};
-
-typedef enum		s_motion_vector
-{
-	MV_LEFT,
-	MV_RIGHT
-}					t_motion_vector;
 
 t_read_line			*rl(void);
 t_tc				*tc(void);
+void				rl_init(void);
+void				rl_init_screen_col_row(void);
 int32_t				rl_key_events(const char buf[RL_BUFF_SIZE]);
-int32_t				sl_print_key(int32_t n);
+void				rl_make_tc_magic(const char *t);
+void				rl_increase_x(t_line *ln, size_t n, uint16_t col);
+void				rl_redraw_line(t_line *ln);
+
+void				rl_move_cursor_up(size_t n);
 
 void				rl_jnd_to_line(t_line *ln, const char *src);
-t_bool				rl_move_cursor(t_line *ln, t_motion_vector mv, size_t len);
+t_bool				rl_move_cursor(void);
 
 int32_t				rl_line_syntax(char **line);
-int32_t				ls_backslash_check(t_line_syntax *ls);
-int32_t				ls_dobule_q_check(t_line_syntax *ls);
-int32_t				ls_single_q_check(t_line_syntax *ls);
-int32_t				ls_semi_check(t_line_syntax *ls);
 void				ls_print_info(int32_t key);
 
 #endif
