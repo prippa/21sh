@@ -12,7 +12,6 @@
 
 #include "read_line.h"
 #include <signal.h>
-#include <sys/ioctl.h>
 
 void		sh_sig_handle_rl(int sig)
 {
@@ -26,10 +25,10 @@ void		sh_sig_handle_rl(int sig)
 	}
 	if (sig == SIGWINCH)
 	{
-		rl_move_cursor_up((P_SIZE + rl()->ln.line_len) / rl()->w.ws_col);
+		rl_move_cursor_up((P_SIZE + rl()->ln.line_len) / rl()->w_size.ws_col);
 		rl_make_tc_magic(tc()->cr);
 		rl_make_tc_magic(tc()->cd);
-		ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
+		ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w_size);
 		rl_redraw_line(&rl()->ln);
 	}
 }

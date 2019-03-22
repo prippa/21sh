@@ -35,5 +35,5 @@ void			rl_redraw_line(t_line *ln)
 	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
 	ft_putstr_fd(ln->line, STDIN_FILENO);
 	rl_increase_x(ln, (P_SIZE + ln->line_len)
-		- (ln->line_len - ln->cursor_pos), rl()->w.ws_col);
+		- (ln->line_len - ln->cursor_pos), rl()->w_size.ws_col);
 }

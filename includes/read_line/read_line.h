@@ -15,6 +15,7 @@
 
 # include "shell.h"
 # include <term.h>
+# include <sys/ioctl.h>
 
 # define RL_BUFF_SIZE 8
 
@@ -31,7 +32,7 @@ typedef struct		s_read_line
 	t_line			ln;
 	t_bool			new_line_flag;
 	t_bool			if_inhibitors_in_use_flag;
-	struct winsize	w;
+	struct winsize	w_size;
 }					t_read_line;
 
 typedef int32_t		(*t_func)(t_line *ln);
