@@ -14,6 +14,8 @@ int main(void)
 	ft_strinsert_free(&dst, " mid ", 4);
 	ft_printf("[%s]\n", dst);
 
+	ft_strcut_free(&dst, 111, 923123);
+	ft_printf("[%s]\n", dst);
 	system("leaks -q a.out");
 	return (0);
 }

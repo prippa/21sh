@@ -6,19 +6,23 @@
 **	dc	->	delete one character //unused
 **	im	->	enter insert mode //unused
 **	ei	->	exit insert mode //unused
-**	sc	->	save cursor position
-**	rc	->	restore cursor position
+**	sc	->	save cursor position //unused
+**	rc	->	restore cursor position //unused
 **	cd	->	clear the line from the cursor until the end of screen
 **	cr	->	cursor go to the beginning of the line
+**	ch	->	string to position the cursor at column c in the same line.
 
 **	cl	->	clear the screen
 
 */
 
-vi, ve, ch, DO, UP
+vi, ve, DO, UP
 
 Bonuses:
 	Auto Comp
 	Inhibitors
 	shell prompt
 	Path Rights
+
+TODO:
+	prompt change: dquote> , > ,

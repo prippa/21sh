@@ -15,57 +15,58 @@
 #include "syntax_characters.h"
 #include "builtin.h"
 
-int32_t	ls_backslash_check(t_line_syntax *ls)
+int32_t	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 {
-	if (!ls->line[++ls->i])
+	if (!ln->line[++ls->i])
 	{
-		GET_MEM(MALLOC_ERR, ls->line, ft_strsub_free,
-			&ls->line, 0, ls->i - 1);
+		GET_MEM(MALLOC_ERR, ln->line, ft_strsub_free,
+			&ln->line, 0, ls->i - 1);
 		rl()->new_line_flag = false;
 		return (RL_SLASH);
 	}
 	return (OK);
 }
 
-int32_t	ls_dobule_q_check(t_line_syntax *ls)
+int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 {
 	while (true)
 	{
-		if (!ls->line[++ls->i] ||
-			(ls->line[ls->i] == BACKSLASH_C && !ls->line[ls->i + 1]))
+		if (!ln->line[++ls->i] ||
+			(ln->line[ls->i] == BACKSLASH_C && !ln->line[ls->i + 1]))
 		{
-			if (ls->line[ls->i] == BACKSLASH_C && !ls->line[ls->i + 1])
+			if (ln->line[ls->i] == BACKSLASH_C && !ln->line[ls->i + 1])
 			{
-				GET_MEM(MALLOC_ERR, ls->line, ft_strsub_free,
-					&ls->line, 0, ls->i);
+				// rl_add_to_line(rl()->ln, )
+				GET_MEM(MALLOC_ERR, ln->line, ft_strsub_free,
+					&ln->line, 0, ls->i);
 				rl()->new_line_flag = false;
 			}
 			return (RL_DQ);
 		}
-		if (ls->line[ls->i] == BACKSLASH_C)
+		if (ln->line[ls->i] == BACKSLASH_C)
 			++ls->i;
-		else if (ls->line[ls->i] == DOUBLE_QUOTES_C)
+		else if (ln->line[ls->i] == DOUBLE_QUOTES_C)
 			return (OK);
 	}
 }
 
-int32_t	ls_single_q_check(t_line_syntax *ls)
+int32_t	ls_single_q_check(t_line_syntax *ls, t_line *ln)
 {
 	while (true)
 	{
-		if (!ls->line[++ls->i])
+		if (!ln->line[++ls->i])
 			return (RL_Q);
-		if (ls->line[ls->i] == SINGLE_QUOTES_C)
+		if (ln->line[ls->i] == SINGLE_QUOTES_C)
 			return (OK);
 	}
 }
 
-int32_t	ls_semi_check(t_line_syntax *ls)
+int32_t	ls_semi_check(t_line_syntax *ls, t_line *ln)
 {
 	if (!ls->semi_flag)
 	{
-		if (ls->line[ls->i + 1] == SEMICOLON_C || (ls->i &&
-			ls->line[ls->i - 1] == SEMICOLON_C))
+		if (ln->line[ls->i + 1] == SEMICOLON_C || (ls->i &&
+			ln->line[ls->i - 1] == SEMICOLON_C))
 			return (RL_SEMIX2);
 		else
 			return (RL_SEMIX1);

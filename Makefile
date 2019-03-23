@@ -104,7 +104,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_init.c\
 				$(DIR_RL_SRC)rl_utility.c\
 				$(DIR_RL_SRC)rl_move_cursor.c\
-				$(DIR_RL_SRC)rl_join_new_data_to_line.c\
+				$(DIR_RL_SRC)rl_modify_line.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_print_info.c\

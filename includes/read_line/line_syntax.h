@@ -6,7 +6,6 @@
 typedef struct		s_line_syntax
 {
 	t_bool			semi_flag;
-	char			*line;
 	size_t			i;
 }					t_line_syntax;
 
@@ -19,9 +18,9 @@ enum
 	RL_SLASH
 };
 
-int32_t				ls_backslash_check(t_line_syntax *ls);
-int32_t				ls_dobule_q_check(t_line_syntax *ls);
-int32_t				ls_single_q_check(t_line_syntax *ls);
-int32_t				ls_semi_check(t_line_syntax *ls);
+int32_t				ls_backslash_check(t_line_syntax *ls, t_line *ln);
+int32_t				ls_dobule_q_check(t_line_syntax *ls, t_line *ln);
+int32_t				ls_single_q_check(t_line_syntax *ls, t_line *ln);
+int32_t				ls_semi_check(t_line_syntax *ls, t_line *ln);
 
 #endif

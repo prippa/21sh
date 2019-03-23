@@ -37,12 +37,12 @@ static void		read_line_loop(t_line *ln)
 		ft_bzero(buf, RL_BUFF_SIZE + 1);
 		if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)
 			sh_fatal_err(READ_ERR);
-		if (!ln->line && !(ln->line = ft_strdup("")))
-			sh_fatal_err(MALLOC_ERR);
-		if (rl_key_events(buf))
+		if (!ln->line)
+		{
+			GET_MEM(MALLOC_ERR, ln->line, ft_strdup, EMPTY_STR);
+		}
+		if (rl_key_events(ln, buf) == RL_BREAK)
 			break ;
-		if (ft_is_str_print(buf))
-			rl_jnd_to_line(ln, buf);
 	}
 }
 

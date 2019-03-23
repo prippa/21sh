@@ -22,18 +22,31 @@ void			rl_make_tc_magic(const char *t)
 	tputs(t, 0, &rl_print_key);
 }
 
-void			rl_increase_x(t_line *ln, size_t n, uint16_t col)
+void			rl_determine_x(t_line *ln, size_t n, uint16_t col)
 {
+	if (!n)
+		return ;
 	ln->x = (ln->x + n) % col;
 	if (ln->x == 0)
 		rl_make_tc_magic(tc()->down);
 }
 
-void			rl_redraw_line(t_line *ln)
+void			rl_redraw_line(t_line *ln, uint16_t col)
 {
+	t_tc	*t;
+	size_t	left_len;
+
+	t = tc();
 	ln->x = 0;
+	left_len = ln->l_end - ln->l_cur_pos;
 	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
 	ft_putstr_fd(ln->line, STDIN_FILENO);
-	rl_increase_x(ln, (P_SIZE + ln->line_len)
-		- (ln->line_len - ln->cursor_pos), rl()->w_size.ws_col);
+	rl_determine_x(ln, (P_SIZE + ln->l_end), col);
+	ln->l_cur_pos = ln->l_end;
+	rl_move_cursor_left(ln, left_len, col);
+}
+
+void			rl_goto_x(uint16_t x)
+{
+	tputs(tgoto(tc()->ch, 0, x), 0, rl_print_key);
 }

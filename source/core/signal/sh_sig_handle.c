@@ -20,16 +20,16 @@ void		sh_sig_handle_rl(int sig)
 		ft_putchar_fd('\n', STDIN_FILENO);
 		sh()->exec_code = SIGINT;
 		sh_update_prompt(false);
-		free(rl()->ln.line);
+		ft_memdel((void **)&rl()->ln);
 		rl_init();
 	}
 	if (sig == SIGWINCH)
 	{
-		rl_move_cursor_up((P_SIZE + rl()->ln.line_len) / rl()->w_size.ws_col);
+		rl_move_cursor_up((P_SIZE + rl()->ln.l_cur_pos) / rl()->w_size.ws_col);
 		rl_make_tc_magic(tc()->cr);
 		rl_make_tc_magic(tc()->cd);
 		ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w_size);
-		rl_redraw_line(&rl()->ln);
+		rl_redraw_line(&rl()->ln, rl()->w_size.ws_col);
 	}
 }
 

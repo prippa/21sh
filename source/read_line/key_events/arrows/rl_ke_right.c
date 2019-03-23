@@ -10,13 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
+#include "button_keys.h"
 
 int32_t		rl_ke_right(t_line *ln)
 {
-	if (ln->cursor_pos < ln->line_len)
+	if (ln->l_cur_pos < ln->l_end)
 	{
-		
+		rl_move_cursor_right(ln, 1, rl()->w_size.ws_col);
+		return (OK);
 	}
-	return (OK);
+	return (ERR);
 }

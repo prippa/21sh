@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
+#include "button_keys.h"
 
 static size_t	rl_t_get_max_len(const t_list *m)
 {
@@ -43,7 +43,7 @@ static t_bool	rl_t_compare(const char *cmpr_str,
 static void		rl_t_end_move(const char *postfix, const t_list *m, t_line *ln)
 {
 	if (*postfix)
-		rl_jnd_to_line(ln, postfix);
+		rl_add_to_line(ln, postfix, rl()->w_size.ws_col, true);
 	else
 	{
 		ft_putchar_fd('\n', STDIN_FILENO);
@@ -52,7 +52,7 @@ static void		rl_t_end_move(const char *postfix, const t_list *m, t_line *ln)
 			ft_putendl((char *)m->content);
 			m = m->next;
 		}
-		rl_redraw_line(ln);
+		rl_redraw_line(ln, rl()->w_size.ws_col);
 	}
 }
 

@@ -32,20 +32,17 @@ static t_event const	g_ke[KE_SIZE] =
 	{rl_ke_end, KEY_END},
 };
 
-int32_t					rl_key_events(const char buf[RL_BUFF_SIZE])
+int32_t					rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE])
 {
 	uint64_t key;
 	size_t i;
 
 	ft_memcpy(&key, buf, RL_BUFF_SIZE);
-	// uint32_t y = 0, x = 0;
-	// rl_get_pos(&y, &x);
-	// ft_printf("\ny - [%d] x - [%d]\n", y, x);
-	// #include "builtin.h"
-	// sh_exit(NULL);
 	i = -1;
 	while (++i < KE_SIZE)
 		if (g_ke[i].key == key)
 			return (g_ke[i].f(&rl()->ln));
+	if (ft_is_str_print(buf))
+			rl_add_to_line(ln, buf, rl()->w_size.ws_col, true);
 	return (OK);
 }

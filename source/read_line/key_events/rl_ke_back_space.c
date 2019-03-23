@@ -10,20 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
+#include "button_keys.h"
 
 int32_t		rl_ke_back_space(t_line *ln)
 {
-	return (OK);
+	if (ln->l_cur_pos > ln->l_start)
+	{
+		rl_ke_left(ln);
+		rl_del_from_line(ln, ln->l_cur_pos + 1, rl()->w_size.ws_col, true);
+		return (OK);
+	}
+	return (ERR);
 }
-
-// void		rl_ke_back_space(void)
-// {
-// 	if (rl()->len)
-// 	{
-// 		--rl()->len;
-// 		GET_MEM(MALLOC_ERR, rl()->line, ft_strsub_free,
-// 			&rl()->line, 0, ft_strlen(rl()->line) - 1);
-// 		ft_putstr("\b  \b\b");
-// 	}
-// }

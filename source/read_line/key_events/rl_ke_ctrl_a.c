@@ -14,5 +14,5 @@
 
 int32_t		rl_ke_ctrl_a(t_line *ln)
 {
-	return (rl_ke_alt_down(ln));
+	return (rl_ke_home(ln));
 }

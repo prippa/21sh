@@ -15,7 +15,7 @@
 
 #define LS_CMD_SIZE	4
 
-typedef int32_t		(*t_func_cmd)(t_line_syntax *ls);
+typedef int32_t		(*t_func_cmd)(t_line_syntax *ls, t_line *ln);
 static const		t_func_cmd	g_ls_cmd_f[LS_CMD_SIZE] =
 {
 	ls_single_q_check, ls_dobule_q_check, ls_backslash_check, ls_semi_check
@@ -26,7 +26,7 @@ static const char	g_ls_cmd_c[LS_CMD_SIZE] =
 	SINGLE_QUOTES_C, DOUBLE_QUOTES_C, BACKSLASH_C, SEMICOLON_C
 };
 
-int32_t				rl_line_syntax(char **line)
+int32_t				rl_line_syntax(t_line *ln)
 {
 	int32_t			res;
 	uint8_t			iter;
@@ -35,19 +35,18 @@ int32_t				rl_line_syntax(char **line)
 	res = OK;
 	ft_bzero(&ls, sizeof(t_line_syntax));
 	ls.i = -1;
-	ls.line = *line;
-	while (ls.line[++ls.i])
+	while (ln->line[++ls.i])
 	{
 		iter = -1;
 		while (++iter < LS_CMD_SIZE)
-			if (ls.line[ls.i] == g_ls_cmd_c[iter])
+			if (ln->line[ls.i] == g_ls_cmd_c[iter])
 			{
-				if ((res = g_ls_cmd_f[iter](&ls)))
+				if ((res = g_ls_cmd_f[iter](&ls, ln)))
 					return (res);
 				break ;
 			}
-		if (ls.i != SIZE_MAX && !ft_isspace(ls.line[ls.i]) &&
-			ls.line[ls.i] != SEMICOLON_C)
+		if (ls.i != SIZE_MAX && !ft_isspace(ln->line[ls.i]) &&
+			ln->line[ls.i] != SEMICOLON_C)
 			ls.semi_flag = true;
 	}
 	return (res);
