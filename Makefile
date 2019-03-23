@@ -45,6 +45,7 @@ DIR_LS		:=	$(DIR_RL_SRC)line_syntax/
 DIR_KE		:=	$(DIR_RL_SRC)key_events/
 DIR_AC		:=	$(DIR_KE)tab_auto_comp/
 DIR_AROWS	:=	$(DIR_KE)arrows/
+DIR_CTRL	:=	$(DIR_KE)ctrl/
 
 #-------------------------- Header files ---------------------------------------
 COR_H		:=	$(DIR_COR_INC)shell.h\
@@ -109,23 +110,24 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_print_info.c\
 				$(DIR_KE)rl_key_events.c\
-				$(DIR_KE)rl_ke_ctrl_d.c\
-				$(DIR_KE)rl_ke_ctrl_a.c\
 				$(DIR_KE)rl_ke_back_space.c\
 				$(DIR_KE)rl_ke_delete.c\
 				$(DIR_KE)rl_ke_return.c\
 				$(DIR_KE)rl_ke_home.c\
 				$(DIR_KE)rl_ke_end.c\
+				$(DIR_AC)rl_ke_tab.c\
+				$(DIR_AC)tab_proc_match.c\
 				$(DIR_AROWS)rl_ke_left.c\
 				$(DIR_AROWS)rl_ke_right.c\
 				$(DIR_AROWS)rl_ke_up.c\
 				$(DIR_AROWS)rl_ke_down.c\
-				$(DIR_AROWS)rl_ke_alt_left.c\
-				$(DIR_AROWS)rl_ke_alt_right.c\
-				$(DIR_AROWS)rl_ke_alt_up.c\
-				$(DIR_AROWS)rl_ke_alt_down.c\
-				$(DIR_AC)rl_ke_tab.c\
-				$(DIR_AC)tab_proc_match.c
+				$(DIR_CTRL)rl_ke_ctrl_left.c\
+				$(DIR_CTRL)rl_ke_ctrl_right.c\
+				$(DIR_CTRL)rl_ke_ctrl_up.c\
+				$(DIR_CTRL)rl_ke_ctrl_down.c\
+				$(DIR_CTRL)rl_ke_ctrl_d.c\
+				$(DIR_CTRL)rl_ke_ctrl_a.c\
+				$(DIR_CTRL)rl_ke_ctrl_e.c
 
 #-------------------------- Init OBJ, INC --------------------------------------
 OBJ			:=	$(patsubst $(DIR_COR_SRC)%,$(DIR_OBJ)%,\

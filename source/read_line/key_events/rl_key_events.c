@@ -21,21 +21,22 @@ static t_event const	g_ke[KE_SIZE] =
 	{rl_ke_return, KEY_RETURN},
 	{rl_ke_back_space, KEY_BACK_SPACE},
 	{rl_ke_delete, KEY_DELETE},
+	{rl_ke_ctrl_left, KEY_CTRL_LEFT},
+	{rl_ke_ctrl_right, KEY_CTRL_RIGHT},
+	{rl_ke_ctrl_up, KEY_CTRL_UP},
+	{rl_ke_ctrl_down, KEY_CTRL_DOWN},
 	{rl_ke_ctrl_d, KEY_CTRL_D},
 	{rl_ke_ctrl_a, KEY_CTRL_A},
-	{rl_ke_alt_left, KEY_ALT_LEFT},
-	{rl_ke_alt_right, KEY_ALT_RIGHT},
-	{rl_ke_alt_up, KEY_ALT_UP},
-	{rl_ke_alt_down, KEY_ALT_DOWN},
+	{rl_ke_ctrl_e, KEY_CTRL_E},
 	{rl_ke_tab, KEY_TAB},
 	{rl_ke_home, KEY_HOME},
-	{rl_ke_end, KEY_END},
+	{rl_ke_end, KEY_END}
 };
 
 int32_t					rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE])
 {
-	uint64_t key;
-	size_t i;
+	uint64_t	key;
+	size_t		i;
 
 	ft_memcpy(&key, buf, RL_BUFF_SIZE);
 	i = -1;
@@ -43,6 +44,6 @@ int32_t					rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE])
 		if (g_ke[i].key == key)
 			return (g_ke[i].f(&rl()->ln));
 	if (ft_is_str_print(buf))
-			rl_add_to_line(ln, buf, rl()->w_size.ws_col, true);
+		rl_add_to_line(ln, buf, rl()->w_size.ws_col, true);
 	return (OK);
 }

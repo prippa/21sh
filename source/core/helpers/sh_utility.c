@@ -17,7 +17,7 @@
 
 #define SH_ERR		"ERROR: " SHELL_NAME " : %s\n"
 
-t_shell		*sh()
+t_shell		*sh(void)
 {
 	static t_shell sh;
 

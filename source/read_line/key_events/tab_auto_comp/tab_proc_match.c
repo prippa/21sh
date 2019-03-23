@@ -67,7 +67,8 @@ void			tab_process_matches(const t_list *m, size_t len, t_line *ln)
 	{
 		if (++len > elem_max_len)
 		{
-			ft_strcat(postfix, " ");
+			if (ln->l_cur_pos == ln->l_end)
+				ft_strcat(postfix, " ");
 			break ;
 		}
 		if ((rl_t_compare((char *)m->content, m->next, len)))

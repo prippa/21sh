@@ -13,20 +13,6 @@
 #include "read_line.h"
 #include "messages.h"
 
-t_read_line		*rl(void)
-{
-	static t_read_line rl;
-
-	return (&rl);
-}
-
-t_tc			*tc(void)
-{
-	static t_tc tc;
-
-	return (&tc);
-}
-
 static void		read_line_loop(t_line *ln)
 {
 	char		buf[RL_BUFF_SIZE + 1];

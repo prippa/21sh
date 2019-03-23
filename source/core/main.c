@@ -21,13 +21,16 @@ void		sh_update_prompt(t_bool ok)
 {
 	ft_strcpy(sh()->prompt, (ok ? SH_OK_ICON : SH_ERROR_ICON));
 	ft_strcat(sh()->prompt, COLOR_RESET);
-	ft_strcat(sh()->prompt, BOLD MAGENTA);
+	ft_strcat(sh()->prompt, BOLD);
+	ft_strcat(sh()->prompt, MAGENTA);
 	ft_strcat(sh()->prompt, " (");
 	ft_strcat(sh()->prompt, COLOR_RESET);
-	ft_strcat(sh()->prompt, BOLD YELLOW);
+	ft_strcat(sh()->prompt, BOLD);
+	ft_strcat(sh()->prompt, YELLOW);
 	ft_strcat(sh()->prompt, sh()->curent_path);
 	ft_strcat(sh()->prompt, COLOR_RESET);
-	ft_strcat(sh()->prompt, BOLD MAGENTA);
+	ft_strcat(sh()->prompt, BOLD);
+	ft_strcat(sh()->prompt, MAGENTA);
 	ft_strcat(sh()->prompt, ") ");
 	ft_strcat(sh()->prompt, COLOR_RESET);
 }

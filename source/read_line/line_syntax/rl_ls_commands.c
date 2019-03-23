@@ -36,7 +36,6 @@ int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 		{
 			if (ln->line[ls->i] == BACKSLASH_C && !ln->line[ls->i + 1])
 			{
-				// rl_add_to_line(rl()->ln, )
 				GET_MEM(MALLOC_ERR, ln->line, ft_strsub_free,
 					&ln->line, 0, ls->i);
 				rl()->new_line_flag = false;

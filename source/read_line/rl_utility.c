@@ -41,7 +41,7 @@ void			rl_redraw_line(t_line *ln, uint16_t col)
 	left_len = ln->l_end - ln->l_cur_pos;
 	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
 	ft_putstr_fd(ln->line, STDIN_FILENO);
-	rl_determine_x(ln, (P_SIZE + ln->l_end), col);
+	rl_determine_x(ln, (rl()->prompt_size + ln->l_end), col);
 	ln->l_cur_pos = ln->l_end;
 	rl_move_cursor_left(ln, left_len, col);
 }

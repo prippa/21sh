@@ -44,7 +44,6 @@ t_shell				*sh(void);
 # define PE_NL ft_putendl_fd(EMPTY_STR, STDERR_FILENO)
 # define PE_SE(ec) sh()->exec_code = ec; sh()->ok = false
 # define PRINT_ERR(ec, f, a ...) PE_P(f, a); PE_NL; PE_SE(ec)
-# define P_SIZE (PROMPT_ADS + ft_strlen(sh()->curent_path))
 
 void				sh_fatal_err(const char *message);
 

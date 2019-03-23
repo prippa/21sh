@@ -86,7 +86,7 @@ static char		*rl_t_get_cmd_from_line(t_line *ln)
 	size_t	size;
 	t_bool	space_flag;
 
-	size = ft_strlen(ln->line);
+	size = ln->l_cur_pos;
 	space_flag = false;
 	len = 0;
 	while (size--)
@@ -101,7 +101,7 @@ static char		*rl_t_get_cmd_from_line(t_line *ln)
 			++len;
 	}
 	GET_MEM(MALLOC_ERR, cmd, ft_strsub,
-		ln->line, ft_strlen(ln->line) - len, len);
+		ln->line, ln->l_cur_pos - len, len);
 	return (cmd);
 }
 

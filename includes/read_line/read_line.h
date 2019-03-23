@@ -35,6 +35,7 @@ typedef struct		s_read_line
 	t_bool			new_line_flag;
 	t_bool			if_inhibitors_in_use_flag;
 	struct winsize	w_size;
+	size_t			prompt_size;
 }					t_read_line;
 
 typedef int32_t		(*t_func)(t_line *ln);
