@@ -26,28 +26,40 @@ static const char	g_ls_cmd_c[LS_CMD_SIZE] =
 	SINGLE_QUOTES_C, DOUBLE_QUOTES_C, BACKSLASH_C, SEMICOLON_C
 };
 
-int32_t				rl_line_syntax(t_line *ln)
+static int32_t		rl_ls_loop(t_line *ln, t_line_syntax *ls)
 {
 	int32_t			res;
 	uint8_t			iter;
-	t_line_syntax	ls;
 
-	res = OK;
-	ft_bzero(&ls, sizeof(t_line_syntax));
-	ls.i = -1;
-	while (ln->line[++ls.i])
+	res = LS_OK;
+	ls->i = -1;
+	while (ln->line[++ls->i])
 	{
 		iter = -1;
 		while (++iter < LS_CMD_SIZE)
-			if (ln->line[ls.i] == g_ls_cmd_c[iter])
+			if (ln->line[ls->i] == g_ls_cmd_c[iter])
 			{
-				if ((res = g_ls_cmd_f[iter](&ls, ln)))
+				if ((res = g_ls_cmd_f[iter](ls, ln)))
 					return (res);
 				break ;
 			}
-		if (ls.i != SIZE_MAX && !ft_isspace(ln->line[ls.i]) &&
-			ln->line[ls.i] != SEMICOLON_C)
-			ls.semi_flag = true;
+		if (ls->i != SIZE_MAX && !ft_isspace(ln->line[ls->i]) &&
+			ln->line[ls->i] != SEMICOLON_C)
+			ls->semi_flag = true;
 	}
 	return (res);
+}
+
+t_bool				rl_line_syntax(t_line *ln)
+{
+	t_line_syntax	ls;
+	int32_t			res;
+
+	ft_bzero(&ls, sizeof(t_line_syntax));
+	if (*ln->line != SEMICOLON_C && !ft_isspace(*ln->line))
+		ls.semi_flag = true;
+	res = rl_ls_loop(ln, &ls);
+	if (res == LS_OK || res == LS_SYNTAX_ERR)
+		return (true);
+	return (false);
 }

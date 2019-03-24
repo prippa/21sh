@@ -14,20 +14,10 @@
 
 int32_t		rl_ke_return(t_line *ln)
 {
-	int32_t	ls_res;
-
-	ft_putstr_fd("\n", STDIN_FILENO);
-	if (!(ls_res = rl_line_syntax(ln)))
+	rl_ke_end(ln);
+	if (ln->x)
+		ft_putstr_fd("\n", STDIN_FILENO);
+	if (rl_line_syntax(ln))
 		return (RL_BREAK);
-	ls_print_info(ls_res);
-	if (ls_res < 0)
-		return (RL_BREAK);
-	if (rl()->new_line_flag)
-		rl_add_to_line(ln, "\n", rl()->w_size.ws_col, false);
-	if (ls_res > 0)
-	{
-		ln->l_end = 0;
-		rl()->if_inhibitors_in_use_flag = true;
-	}
 	return (OK);
 }

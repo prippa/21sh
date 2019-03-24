@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_ls_print_info.c                                 :+:      :+:    :+:   */
+/*   rl_ls_handle_err.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -21,22 +21,41 @@
 #define DQUOT_PROMPT		"dquote> "
 #define SLASH_PROMPT		"> "
 
-void	ls_print_info(int32_t key)
+static const char	*g_syntax_err_messages[] =
 {
-	if (key == OK)
-		return ;
-	if (key == RL_SEMIX1)
-	{
-		PRINT_ERR(EXIT_FAILURE, WTF_SEMICOLON_X1, NULL);
-	}
-	else if (key == RL_SEMIX2)
-	{
-		PRINT_ERR(EXIT_FAILURE, WTF_SEMICOLON_X2, NULL);
-	}
-	else if (key == RL_Q)
-		ft_putstr_fd(QUOT_PROMPT, STDIN_FILENO);
-	else if (key == RL_DQ)
-		ft_putstr_fd(DQUOT_PROMPT, STDIN_FILENO);
-	else if (key == RL_SLASH)
-		ft_putstr_fd(SLASH_PROMPT, STDIN_FILENO);
+	WTF_SEMICOLON_X2,
+	WTF_SEMICOLON_X1
+};
+
+static const char	*g_new_prompts[] =
+{
+	QUOT_PROMPT,
+	DQUOT_PROMPT,
+	SLASH_PROMPT
+};
+
+static void	rl_ls_update_line(t_line *ln, t_bool new_line_f,
+				const char *new_prompt, size_t np_size)
+{
+	if (new_line_f)
+		rl_add_to_line(ln, "\n", rl()->w_size.ws_col, false);
+	ln->l_start = ln->l_end;
+	ln->l_cur_pos = ln->l_start;
+	ft_strcpy(sh()->prompt, new_prompt);
+	rl()->prompt_size = np_size;
+	rl()->if_inhibitors_in_use_flag = true;
+	ln->x = 0;
+	rl_determine_x(ln, np_size, rl()->w_size.ws_col);
+	ft_putstr_fd(new_prompt, STDIN_FILENO);
+}
+
+void		rl_ls_syntax_err(int32_t key)
+{
+	PRINT_ERR(EXIT_FAILURE, g_syntax_err_messages[ABS(key) - 1], NULL);
+}
+
+void		rl_ls_new_prompt(t_line *ln, t_bool new_line_f, int32_t key)
+{
+	rl_ls_update_line(ln, new_line_f, g_new_prompts[key - 1],
+			ft_strlen(g_new_prompts[key - 1]));
 }

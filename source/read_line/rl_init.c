@@ -31,7 +31,8 @@ void		rl_init(void)
 	t_read_line *r;
 
 	r = rl();
-	ft_bzero(r, sizeof(t_read_line));
+	ft_bzero(&r->ln, sizeof(t_line));
+	r->if_inhibitors_in_use_flag = false;
 	r->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
 	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w_size);

@@ -23,16 +23,27 @@ typedef struct		s_line_syntax
 
 enum
 {
-	RL_SEMIX1 = -2,
-	RL_SEMIX2,
-	RL_Q,
-	RL_DQ,
-	RL_SLASH
+	LS_SYNTAX_ERR = -1,
+	LS_OK,
+	LS_NEW_PROMPT
+};
+
+enum
+{
+	LS_SEMIX1 = -2,
+	LS_SEMIX2,
+	LS_Q = 1,
+	LS_DQ,
+	LS_SLASH
 };
 
 int32_t				ls_backslash_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_dobule_q_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_single_q_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_semi_check(t_line_syntax *ls, t_line *ln);
+
+void				rl_ls_syntax_err(int32_t key);
+void				rl_ls_new_prompt(t_line *ln, t_bool new_line_f,
+						int32_t key);
 
 #endif

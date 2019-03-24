@@ -19,7 +19,6 @@ static void		read_line_loop(t_line *ln)
 
 	while (true)
 	{
-		rl()->new_line_flag = true;
 		ft_bzero(buf, RL_BUFF_SIZE + 1);
 		if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)
 			sh_fatal_err(READ_ERR);
@@ -30,14 +29,16 @@ static void		read_line_loop(t_line *ln)
 		if (rl_key_events(ln, buf) == RL_BREAK)
 			break ;
 	}
+	if (rl()->if_inhibitors_in_use_flag)
+		sh_update_prompt(sh()->ok);
 }
 
 char			*read_line(void)
 {
-	rl_init();
 	sh_init_sig_rl();
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, sh()->new_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);
+	rl_init();
 	read_line_loop(&rl()->ln);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, sh()->old_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);

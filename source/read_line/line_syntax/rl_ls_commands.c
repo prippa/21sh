@@ -14,21 +14,26 @@
 #include "messages.h"
 #include "syntax_characters.h"
 #include "builtin.h"
+#include "button_keys.h"
 
 int32_t	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 {
 	if (!ln->line[++ls->i])
 	{
-		GET_MEM(MALLOC_ERR, ln->line, ft_strsub_free,
-			&ln->line, 0, ls->i - 1);
-		rl()->new_line_flag = false;
-		return (RL_SLASH);
+		rl_ke_left(ln);
+		rl_del_from_line(ln, ln->l_cur_pos + 1,
+			rl()->w_size.ws_col, false);
+		rl_ls_new_prompt(ln, false, LS_SLASH);
+		return (LS_NEW_PROMPT);
 	}
-	return (OK);
+	return (LS_OK);
 }
 
 int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 {
+	t_bool new_line_f;
+
+	new_line_f = true;
 	while (true)
 	{
 		if (!ln->line[++ls->i] ||
@@ -36,16 +41,18 @@ int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 		{
 			if (ln->line[ls->i] == BACKSLASH_C && !ln->line[ls->i + 1])
 			{
-				GET_MEM(MALLOC_ERR, ln->line, ft_strsub_free,
-					&ln->line, 0, ls->i);
-				rl()->new_line_flag = false;
+				rl_ke_left(ln);
+				rl_del_from_line(ln, ln->l_cur_pos + 1,
+					rl()->w_size.ws_col, false);
+				new_line_f = false;
 			}
-			return (RL_DQ);
+			rl_ls_new_prompt(ln, new_line_f, LS_DQ);
+			return (LS_NEW_PROMPT);
 		}
 		if (ln->line[ls->i] == BACKSLASH_C)
 			++ls->i;
 		else if (ln->line[ls->i] == DOUBLE_QUOTES_C)
-			return (OK);
+			return (LS_OK);
 	}
 }
 
@@ -54,9 +61,12 @@ int32_t	ls_single_q_check(t_line_syntax *ls, t_line *ln)
 	while (true)
 	{
 		if (!ln->line[++ls->i])
-			return (RL_Q);
+		{
+			rl_ls_new_prompt(ln, true, LS_Q);
+			return (LS_NEW_PROMPT);
+		}
 		if (ln->line[ls->i] == SINGLE_QUOTES_C)
-			return (OK);
+			return (LS_OK);
 	}
 }
 
@@ -66,10 +76,11 @@ int32_t	ls_semi_check(t_line_syntax *ls, t_line *ln)
 	{
 		if (ln->line[ls->i + 1] == SEMICOLON_C || (ls->i &&
 			ln->line[ls->i - 1] == SEMICOLON_C))
-			return (RL_SEMIX2);
+			rl_ls_syntax_err(LS_SEMIX2);
 		else
-			return (RL_SEMIX1);
+			rl_ls_syntax_err(LS_SEMIX1);
+		return (LS_SYNTAX_ERR);
 	}
 	ls->semi_flag = false;
-	return (OK);
+	return (LS_OK);
 }

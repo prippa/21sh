@@ -108,7 +108,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_modify_line.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
-				$(DIR_LS)rl_ls_print_info.c\
+				$(DIR_LS)rl_ls_handle_err.c\
 				$(DIR_KE)rl_key_events.c\
 				$(DIR_KE)rl_ke_back_space.c\
 				$(DIR_KE)rl_ke_delete.c\
