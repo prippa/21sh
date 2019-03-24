@@ -24,8 +24,8 @@
 
 typedef struct		s_shell
 {
-	struct termios	*old_settings;
-	struct termios	*new_settings;
+	struct termios	old_settings;
+	struct termios	new_settings;
 	char			prompt[PROMPT_SIZE];
 	char			curent_path[PATH_MAX + 1];
 	t_list2			*env_start;

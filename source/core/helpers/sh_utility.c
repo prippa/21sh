@@ -44,8 +44,7 @@ void		sh_update_curent_dir_name(void)
 
 void		sh_reset_settings(void)
 {
-	if (sh()->old_settings)
-		tcsetattr(STDIN_FILENO, TCSANOW, sh()->old_settings);
+	tcsetattr(STDIN_FILENO, TCSANOW, &sh()->old_settings);
 }
 
 void		sh_fatal_err(const char *message)

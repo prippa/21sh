@@ -36,11 +36,11 @@ static void		read_line_loop(t_line *ln)
 char			*read_line(void)
 {
 	sh_init_sig_rl();
-	if ((tcsetattr(STDIN_FILENO, TCSANOW, sh()->new_settings)) == ERR)
+	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->new_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);
 	rl_init();
 	read_line_loop(&rl()->ln);
-	if ((tcsetattr(STDIN_FILENO, TCSANOW, sh()->old_settings)) == ERR)
+	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->old_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);
 	sh_init_sig_base();
 	return (rl()->ln.line);

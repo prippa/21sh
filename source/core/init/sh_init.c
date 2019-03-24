@@ -15,17 +15,10 @@
 
 void		sh_init(void)
 {
-	char *pwd;
-
 	ft_bzero(sh(), sizeof(t_shell));
 	sh()->ok = true;
-	GET_MEM(GETCWD_FAILED, pwd, getcwd, NULL, 0);
-	sh()->pwd = pwd;
+	GET_MEM(GETCWD_FAILED, sh()->pwd, getcwd, NULL, 0);
 	sh_init_env();
-	GET_MEM(MALLOC_ERR, sh()->old_settings, ft_memalloc,
-		sizeof(struct termios));
-	GET_MEM(MALLOC_ERR, sh()->new_settings, ft_memalloc,
-		sizeof(struct termios));
 	sh_init_term();
 	sh_update_curent_dir_name();
 	sh_update_prompt(true);

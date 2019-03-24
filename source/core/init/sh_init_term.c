@@ -37,11 +37,11 @@ static void	sh_init_termcaps(void)
 
 static void	sh_init_new_settings(void)
 {
-	if ((tcgetattr(STDIN_FILENO, sh()->old_settings)) == ERR)
+	if ((tcgetattr(STDIN_FILENO, &sh()->old_settings)) == ERR)
 		sh_fatal_err(TCGETATTR_FAILED);
-	if ((tcgetattr(STDIN_FILENO, sh()->new_settings)) == ERR)
+	if ((tcgetattr(STDIN_FILENO, &sh()->new_settings)) == ERR)
 		sh_fatal_err(TCGETATTR_FAILED);
-	sh()->new_settings->c_lflag &= ~(ICANON | ECHO | ECHONL);
+	sh()->new_settings.c_lflag &= ~(ICANON | ECHO | ECHONL);
 }
 
 void		sh_init_term(void)
@@ -50,13 +50,13 @@ void		sh_init_term(void)
 	char	*term_type;
 
 	if (!isatty(STDIN_FILENO))
-		sh_fatal_err(NOT_A_TERM);
+		ft_fatal_err_exit(NOT_A_TERM);
 	if (!(term_type = getenv("TERM")))
-		sh_fatal_err(MSG(NO_TERM, NULL));
+		ft_fatal_err_exit(NO_TERM);
 	if ((res = tgetent(NULL, term_type)) == ERR)
-		sh_fatal_err(NO_ACCESS_TO_DB);
+		ft_fatal_err_exit(NO_ACCESS_TO_DB);
 	else if (res == 0)
-		sh_fatal_err(MSG(NO_SUCH_ENTRY, term_type));
+		ft_fatal_err_exit(MSG(NO_SUCH_ENTRY, term_type));
 	sh_init_new_settings();
 	sh_init_termcaps();
 }
