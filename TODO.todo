@@ -25,4 +25,6 @@ Bonuses:
 	Inhibitors
 	shell prompt
 	Path Rights
-	
+TODO:
+	ARROWS up, down.
+	moving cursor in line with '\n' by formula x
