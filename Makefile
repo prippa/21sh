@@ -105,7 +105,8 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_init.c\
 				$(DIR_RL_SRC)rl_utility.c\
 				$(DIR_RL_SRC)rl_move_cursor.c\
-				$(DIR_RL_SRC)rl_modify_line.c\
+				$(DIR_RL_SRC)rl_edit_line.c\
+				$(DIR_RL_SRC)rl_make_tc_magic.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\
@@ -121,13 +122,21 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_AROWS)rl_ke_right.c\
 				$(DIR_AROWS)rl_ke_up.c\
 				$(DIR_AROWS)rl_ke_down.c\
-				$(DIR_CTRL)rl_ke_ctrl_left.c\
-				$(DIR_CTRL)rl_ke_ctrl_right.c\
-				$(DIR_CTRL)rl_ke_ctrl_up.c\
-				$(DIR_CTRL)rl_ke_ctrl_down.c\
+				$(DIR_AROWS)rl_ke_ctrl_left.c\
+				$(DIR_AROWS)rl_ke_ctrl_right.c\
+				$(DIR_AROWS)rl_ke_ctrl_up.c\
+				$(DIR_AROWS)rl_ke_ctrl_down.c\
+				$(DIR_AROWS)rl_ke_ctrl_shift_left.c\
+				$(DIR_AROWS)rl_ke_ctrl_shift_right.c\
+				$(DIR_AROWS)rl_ke_ctrl_shift_up.c\
+				$(DIR_AROWS)rl_ke_ctrl_shift_down.c\
 				$(DIR_CTRL)rl_ke_ctrl_d.c\
 				$(DIR_CTRL)rl_ke_ctrl_a.c\
-				$(DIR_CTRL)rl_ke_ctrl_e.c
+				$(DIR_CTRL)rl_ke_ctrl_e.c\
+				$(DIR_CTRL)rl_ke_ctrl_g.c\
+				$(DIR_CTRL)rl_ke_ctrl_u.c\
+				$(DIR_CTRL)rl_ke_ctrl_k.c\
+				$(DIR_CTRL)rl_ke_ctrl_l.c
 
 #-------------------------- Init OBJ, INC --------------------------------------
 OBJ			:=	$(patsubst $(DIR_COR_SRC)%,$(DIR_OBJ)%,\

@@ -32,6 +32,7 @@ static void	sh_init_termcaps(void)
 	t->cd = tgetstr("cd", NULL);
 	t->cr = tgetstr("cr", NULL);
 	t->ch = tgetstr("ch", NULL);
+	t->cl = tgetstr("cl", NULL);
 }
 
 static void	sh_init_new_settings(void)

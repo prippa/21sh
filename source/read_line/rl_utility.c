@@ -12,16 +12,6 @@
 
 #include "read_line.h"
 
-static int32_t	rl_print_key(int32_t n)
-{
-	return (write(STDIN_FILENO, &n, 1));
-}
-
-void			rl_make_tc_magic(const char *t)
-{
-	tputs(t, 0, &rl_print_key);
-}
-
 void			rl_determine_x(t_line *ln, size_t n, uint16_t col)
 {
 	if (!n)
@@ -29,6 +19,20 @@ void			rl_determine_x(t_line *ln, size_t n, uint16_t col)
 	ln->x = (ln->x + n) % col;
 	if (ln->x == 0)
 		rl_make_tc_magic(tc()->down);
+}
+
+void			rl_clear_line(void)
+{
+	t_read_line	*r;
+	t_tc		*t;
+
+	r = rl();
+	t = tc();
+	if (r->w_size.ws_col)
+		rl_move_cursor_up((r->prompt_size + r->ln.l_cur_pos)
+			/ r->w_size.ws_col);
+	rl_make_tc_magic(t->cr);
+	rl_make_tc_magic(t->cd);
 }
 
 void			rl_redraw_line(t_line *ln, uint16_t col)
@@ -43,9 +47,4 @@ void			rl_redraw_line(t_line *ln, uint16_t col)
 	ft_putstr_fd(ln->line + ln->l_start, STDIN_FILENO);
 	rl_determine_x(ln, (rl()->prompt_size + (ln->l_end - ln->l_start)), col);
 	ln->l_cur_pos = rl_move_cursor_left(ln, ln->l_end, left_len, col);
-}
-
-void			rl_goto_x(uint16_t x)
-{
-	tputs(tgoto(tc()->ch, 0, x), 0, rl_print_key);
 }

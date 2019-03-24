@@ -29,9 +29,17 @@ typedef struct		s_line
 	int32_t			x;
 }					t_line;
 
+typedef struct		s_history
+{
+	t_list2			*h_start;
+	t_list2			*h_end;
+	t_list2			*curent;
+}					t_history;
+
 typedef struct		s_read_line
 {
 	t_line			ln;
+	t_history		hs;
 	t_bool			if_inhibitors_in_use_flag;
 	struct winsize	w_size;
 	size_t			prompt_size;
@@ -53,16 +61,19 @@ typedef struct		s_tc
 	char			*cd;
 	char			*cr;
 	char			*ch;
+	char			*cl;
 }					t_tc;
 
 t_read_line			*rl(void);
 t_tc				*tc(void);
 void				rl_init(void);
-void				rl_init_screen_col_row(void);
 int32_t				rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE]);
+
 void				rl_make_tc_magic(const char *t);
-void				rl_determine_x(t_line *ln, size_t n, uint16_t col);
 void				rl_goto_x(uint16_t x);
+
+void				rl_determine_x(t_line *ln, size_t n, uint16_t col);
+void				rl_clear_line(void);
 void				rl_redraw_line(t_line *ln, uint16_t col);
 
 void				rl_move_cursor_up(size_t n);

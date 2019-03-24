@@ -34,10 +34,7 @@ void		sh_sig_handle_rl(int sig)
 	}
 	if (sig == SIGWINCH)
 	{
-		rl_move_cursor_up((r->prompt_size + r->ln.l_cur_pos)
-			/ r->w_size.ws_col);
-		rl_make_tc_magic(tc()->cr);
-		rl_make_tc_magic(tc()->cd);
+		rl_clear_line();
 		ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w_size);
 		rl_redraw_line(&r->ln, r->w_size.ws_col);
 	}
