@@ -12,7 +12,27 @@
 
 #include "button_keys.h"
 
-int32_t		rl_ke_up(t_line *ln)
+int32_t			rl_ke_up(t_line *ln)
 {
-	return (OK);
+	t_read_line *r;
+
+	r = rl();
+	if (!r->hs.curent)
+	{
+		if (r->hs.h_end)
+		{
+			r->hs.curent = r->hs.h_end;
+			GET_MEM(MALLOC_ERR, r->hs.cur_line_buf, ft_strdup_free,
+				&r->hs.cur_line_buf, ln->line);
+			rl_history_move((char *)r->hs.curent->content, ln);
+		}
+		return (ERR);
+	}
+	else if (r->hs.h_start && r->hs.curent != r->hs.h_start)
+	{
+		r->hs.curent = r->hs.curent->prev;
+		rl_history_move((char *)r->hs.curent->content, ln);
+		return (OK);
+	}
+	return (ERR);
 }

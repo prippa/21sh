@@ -14,5 +14,17 @@
 
 int32_t		rl_ke_down(t_line *ln)
 {
-	return (OK);
+	t_read_line *r;
+
+	r = rl();
+	if (r->hs.curent)
+	{
+		if (!r->hs.curent->next)
+			rl_history_move(r->hs.cur_line_buf, ln);
+		else
+			rl_history_move((char *)r->hs.curent->next->content, ln);
+		r->hs.curent = r->hs.curent->next;
+		return (OK);
+	}
+	return (ERR);
 }

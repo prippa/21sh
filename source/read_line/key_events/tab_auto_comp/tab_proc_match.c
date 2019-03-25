@@ -40,19 +40,42 @@ static t_bool	rl_t_compare(const char *cmpr_str,
 	return (false);
 }
 
-static void		rl_t_end_move(const char *postfix, const t_list *m, t_line *ln)
+static void		rl_t_draw_matches(const t_list *m, size_t col, size_t max)
 {
+	size_t	n;
+
+	n = 0;
+	while (m)
+	{
+		if ((n + max + 2) >= col)
+		{
+			ft_putchar_fd('\n', STDIN_FILENO);
+			n = 0;
+		}
+		ft_dprintf(STDIN_FILENO, "%-*s  ", max, (char *)m->content);
+		m = m->next;
+		n += max + 2;
+	}
+	ft_putchar_fd('\n', STDIN_FILENO);
+}
+
+static void		rl_t_end_move(const char *postfix, const t_list *m,
+					t_line *ln, size_t max)
+{
+	t_line		buf_ln;
+	t_read_line	*r;
+
+	ft_memcpy(&buf_ln, ln, sizeof(t_line));
+	r = rl();
 	if (*postfix)
-		rl_add_to_line(ln, postfix, rl()->w_size.ws_col, true);
+		rl_add_to_line(ln, postfix, r->w_size.ws_col, true);
 	else
 	{
-		ft_putchar_fd('\n', STDIN_FILENO);
-		while (m)
-		{
-			ft_putendl((char *)m->content);
-			m = m->next;
-		}
-		rl_redraw_line(ln, rl()->w_size.ws_col);
+		rl_ke_end(&buf_ln);
+		if (buf_ln.x)
+			ft_putchar_fd('\n', STDIN_FILENO);
+		rl_t_draw_matches(m, r->w_size.ws_col, max);
+		rl_redraw_line(ln, r->w_size.ws_col);
 	}
 }
 
@@ -76,5 +99,5 @@ void			tab_process_matches(const t_list *m, size_t len, t_line *ln)
 		else
 			ft_strncat(postfix, &((char *)m->content)[len - 1], 1);
 	}
-	rl_t_end_move(postfix, m, ln);
+	rl_t_end_move(postfix, m, ln, elem_max_len);
 }

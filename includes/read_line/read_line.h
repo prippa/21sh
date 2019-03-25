@@ -34,6 +34,7 @@ typedef struct		s_history
 	t_list2			*h_start;
 	t_list2			*h_end;
 	t_list2			*curent;
+	char			*cur_line_buf;
 }					t_history;
 
 typedef struct		s_read_line
@@ -88,5 +89,7 @@ void				rl_del_from_line(t_line *ln, size_t end,
 						uint16_t col, t_bool print_to_term);
 
 t_bool				rl_line_syntax(t_line *ln);
+void				rl_history_add(const char *line);
+void				rl_history_move(const char *line, t_line *ln);
 
 #endif

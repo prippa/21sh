@@ -18,6 +18,9 @@ int32_t		rl_ke_return(t_line *ln)
 	if (ln->x)
 		ft_putstr_fd("\n", STDIN_FILENO);
 	if (rl_line_syntax(ln))
+	{
+		rl_history_add(ln->line);
 		return (RL_BREAK);
+	}
 	return (OK);
 }

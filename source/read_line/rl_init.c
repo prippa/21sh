@@ -31,6 +31,7 @@ void		rl_init(void)
 	t_read_line *r;
 
 	r = rl();
+	r->hs.curent = NULL;
 	ft_bzero(&r->ln, sizeof(t_line));
 	r->if_inhibitors_in_use_flag = false;
 	r->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);

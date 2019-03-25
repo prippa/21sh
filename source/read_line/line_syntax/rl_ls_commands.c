@@ -18,6 +18,7 @@
 
 int32_t	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 {
+	ls->semi_flag = true;
 	if (!ln->line[++ls->i])
 	{
 		rl_ke_left(ln);

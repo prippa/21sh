@@ -56,8 +56,6 @@ t_bool				rl_line_syntax(t_line *ln)
 	int32_t			res;
 
 	ft_bzero(&ls, sizeof(t_line_syntax));
-	if (*ln->line != SEMICOLON_C && !ft_isspace(*ln->line))
-		ls.semi_flag = true;
 	res = rl_ls_loop(ln, &ls);
 	if (res == LS_OK || res == LS_SYNTAX_ERR)
 		return (true);

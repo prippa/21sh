@@ -107,6 +107,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_move_cursor.c\
 				$(DIR_RL_SRC)rl_edit_line.c\
 				$(DIR_RL_SRC)rl_make_tc_magic.c\
+				$(DIR_RL_SRC)rl_history.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\

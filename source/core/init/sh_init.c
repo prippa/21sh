@@ -11,7 +11,16 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "read_line.h"
 #include "messages.h"
+
+static void	sh_init_read_line(void)
+{
+	t_read_line *r;
+
+	r = rl();
+	GET_MEM(MALLOC_ERR, r->hs.cur_line_buf, ft_strdup, EMPTY_STR);
+}
 
 void		sh_init(void)
 {
