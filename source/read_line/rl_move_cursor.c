@@ -31,7 +31,7 @@ size_t			rl_move_cursor_right(t_line *ln, size_t cur,
 	i = -1;
 	while (++i < n && cur < ln->l_end)
 	{
-		if (ln->x == col - 1)
+		if (ln->x == col - 1 || ln->line[cur] == '\n') //
 		{
 			rl_make_tc_magic(t->down);
 			ln->x = 0;
@@ -46,6 +46,14 @@ size_t			rl_move_cursor_right(t_line *ln, size_t cur,
 	return (cur);
 }
 
+// static void		rl_move_cursor_left_new_line_case(t_line *ln,
+// 					size_t cur, size_t col)
+// {
+// 	rl_make_tc_magic(tc()->up);
+// 	rl_goto_x(1);
+// 	ln->x = 1;
+// }
+
 size_t			rl_move_cursor_left(t_line *ln, size_t cur,
 					size_t n, uint16_t col)
 {
@@ -56,7 +64,9 @@ size_t			rl_move_cursor_left(t_line *ln, size_t cur,
 	i = -1;
 	while (++i < n && cur > ln->l_start)
 	{
-		if (ln->x == 0)
+		if (ln->line[cur - 1] == '\n') //
+			rl_move_cursor_left_new_line_case(ln, cur, col); //
+		else if (ln->x == 0)
 		{
 			rl_make_tc_magic(t->up);
 			rl_goto_x(col - 1);

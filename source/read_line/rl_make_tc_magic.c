@@ -12,5 +12,5 @@ void			rl_make_tc_magic(const char *t)
 
 void			rl_goto_x(uint16_t x)
 {
-	tputs(tgoto(tc()->ch, 0, x), 0, rl_print_key);
+	tputs(tgoto(tc()->ch, 0, x), 0, &rl_print_key);
 }
