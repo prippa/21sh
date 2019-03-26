@@ -14,9 +14,9 @@
 
 int32_t		rl_ke_delete(t_line *ln)
 {
-	if (ln->l_cur_pos < ln->l_end)
+	if (ln->pc < ln->l_end)
 	{
-		rl_del_from_line(ln, ln->l_cur_pos + 1, rl()->w_size.ws_col, true);
+		rl_del_from_line(ln, ln->pc + 1, rl()->w.ws_col, true);
 		return (OK);
 	}
 	return (ERR);

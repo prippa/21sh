@@ -68,14 +68,14 @@ static void		rl_t_end_move(const char *postfix, const t_list *m,
 	ft_memcpy(&buf_ln, ln, sizeof(t_line));
 	r = rl();
 	if (*postfix)
-		rl_add_to_line(ln, postfix, r->w_size.ws_col, true);
+		rl_add_to_line(ln, postfix, r->w.ws_col, true);
 	else
 	{
 		rl_ke_end(&buf_ln);
 		if (buf_ln.x)
 			ft_putchar_fd('\n', STDIN_FILENO);
-		rl_t_draw_matches(m, r->w_size.ws_col, max);
-		rl_redraw_line(ln, r->w_size.ws_col);
+		rl_t_draw_matches(m, r->w.ws_col, max);
+		rl_redraw_line(ln, r->w.ws_col);
 	}
 }
 
@@ -90,7 +90,7 @@ void			tab_process_matches(const t_list *m, size_t len, t_line *ln)
 	{
 		if (++len > elem_max_len)
 		{
-			if (ln->l_cur_pos == ln->l_end)
+			if (ln->pc == ln->l_end)
 				ft_strcat(postfix, " ");
 			break ;
 		}

@@ -22,8 +22,8 @@ int32_t	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 	if (!ln->line[++ls->i])
 	{
 		rl_ke_left(ln);
-		rl_del_from_line(ln, ln->l_cur_pos + 1,
-			rl()->w_size.ws_col, false);
+		rl_del_from_line(ln, ln->pc + 1,
+			rl()->w.ws_col, false);
 		rl_ls_new_prompt(ln, false, LS_SLASH);
 		return (LS_NEW_PROMPT);
 	}
@@ -43,8 +43,8 @@ int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 			if (ln->line[ls->i] == BACKSLASH_C && !ln->line[ls->i + 1])
 			{
 				rl_ke_left(ln);
-				rl_del_from_line(ln, ln->l_cur_pos + 1,
-					rl()->w_size.ws_col, false);
+				rl_del_from_line(ln, ln->pc + 1,
+					rl()->w.ws_col, false);
 				new_line_f = false;
 			}
 			rl_ls_new_prompt(ln, new_line_f, LS_DQ);

@@ -14,10 +14,10 @@
 
 int32_t		rl_ke_back_space(t_line *ln)
 {
-	if (ln->l_cur_pos > ln->l_start)
+	if (ln->pc > ln->l_start)
 	{
 		rl_ke_left(ln);
-		rl_del_from_line(ln, ln->l_cur_pos + 1, rl()->w_size.ws_col, true);
+		rl_del_from_line(ln, ln->pc + 1, rl()->w.ws_col, true);
 		return (OK);
 	}
 	return (ERR);

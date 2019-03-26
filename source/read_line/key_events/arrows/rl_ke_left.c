@@ -14,10 +14,9 @@
 
 int32_t		rl_ke_left(t_line *ln)
 {
-	if (ln->l_cur_pos > ln->l_start)
+	if (ln->pc > ln->l_start)
 	{
-		ln->l_cur_pos = rl_move_cursor_left(ln, ln->l_cur_pos,
-			1, rl()->w_size.ws_col);
+		ln->pc = rl_move_cursor_left(ln, ln->pc, 1, rl()->w.ws_col);
 		return (OK);
 	}
 	return (ERR);

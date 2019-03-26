@@ -21,13 +21,13 @@ void			rl_move_cursor_up(size_t n)
 		rl_make_tc_magic(t->up);
 }
 
-size_t			rl_move_cursor_right(t_line *ln, size_t cur,
+size_t			rl_move_cursor_right(t_line *ln, size_t pc,
 					size_t n, uint16_t col)
 {
 	t_tc	*t;
 
 	t = tc();
-	while (n-- && cur < ln->l_end)
+	while (n-- && pc < ln->l_end)
 	{
 		if (ln->x == col - 1)
 		{
@@ -39,18 +39,18 @@ size_t			rl_move_cursor_right(t_line *ln, size_t cur,
 			rl_make_tc_magic(t->nd);
 			++ln->x;
 		}
-		++cur;
+		++pc;
 	}
-	return (cur);
+	return (pc);
 }
 
-size_t			rl_move_cursor_left(t_line *ln, size_t cur,
+size_t			rl_move_cursor_left(t_line *ln, size_t pc,
 					size_t n, uint16_t col)
 {
 	t_tc	*t;
 
 	t = tc();
-	while (n-- && cur > ln->l_start)
+	while (n-- && pc > ln->l_start)
 	{
 		if (ln->x == 0)
 		{
@@ -63,7 +63,7 @@ size_t			rl_move_cursor_left(t_line *ln, size_t cur,
 			rl_make_tc_magic(t->le);
 			--ln->x;
 		}
-		--cur;
+		--pc;
 	}
-	return (cur);
+	return (pc);
 }

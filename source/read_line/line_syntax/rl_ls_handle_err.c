@@ -41,14 +41,14 @@ static void	rl_ls_update_line(t_line *ln, t_bool new_line_f,
 
 	r = rl();
 	if (new_line_f)
-		rl_add_to_line(ln, "\n", r->w_size.ws_col, false);
+		rl_add_to_line(ln, "\n", r->w.ws_col, false);
 	ln->l_start = ln->l_end;
-	ln->l_cur_pos = ln->l_start;
+	ln->pc = ln->l_start;
 	ft_strcpy(sh()->prompt, new_prompt);
 	r->prompt_size = np_size;
 	r->if_inhibitors_in_use_flag = true;
 	ln->x = 0;
-	rl_determine_x(ln, np_size, r->w_size.ws_col);
+	rl_determine_x(ln, np_size, r->w.ws_col);
 	ft_putstr_fd(new_prompt, STDIN_FILENO);
 	r->hs.curent = NULL;
 }

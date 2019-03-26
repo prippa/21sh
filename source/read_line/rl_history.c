@@ -37,9 +37,6 @@ void		rl_history_add(const char *line)
 
 void		rl_history_move(const char *line, t_line *ln)
 {
-	t_read_line *r;
-
-	r = rl();
 	rl_ke_ctrl_g(ln);
-	rl_add_to_line(ln, line, r->w_size.ws_col, true);
+	rl_add_to_line(ln, line, rl()->w.ws_col, true);
 }

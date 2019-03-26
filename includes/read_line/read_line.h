@@ -25,7 +25,7 @@ typedef struct		s_line
 	char			*line;
 	size_t			l_start;
 	size_t			l_end;
-	size_t			l_cur_pos;
+	size_t			pc;
 	int32_t			x;
 }					t_line;
 
@@ -42,7 +42,7 @@ typedef struct		s_read_line
 	t_line			ln;
 	t_history		hs;
 	t_bool			if_inhibitors_in_use_flag;
-	struct winsize	w_size;
+	struct winsize	w;
 	size_t			prompt_size;
 }					t_read_line;
 
@@ -78,9 +78,9 @@ void				rl_clear_line(void);
 void				rl_redraw_line(t_line *ln, uint16_t col);
 
 void				rl_move_cursor_up(size_t n);
-size_t				rl_move_cursor_right(t_line *ln, size_t cur,
+size_t				rl_move_cursor_right(t_line *ln, size_t pc,
 						size_t n, uint16_t col);
-size_t				rl_move_cursor_left(t_line *ln, size_t cur,
+size_t				rl_move_cursor_left(t_line *ln, size_t pc,
 						size_t n, uint16_t col);
 
 void				rl_add_to_line(t_line *ln, const char *src,

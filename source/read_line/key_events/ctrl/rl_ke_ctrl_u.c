@@ -4,11 +4,11 @@ int32_t		rl_ke_ctrl_u(t_line *ln)
 {
 	size_t end;
 
-	if (ln->l_cur_pos > ln->l_start)
+	if (ln->pc > ln->l_start)
 	{
-		end = ln->l_cur_pos;
+		end = ln->pc;
 		rl_ke_home(ln);
-		rl_del_from_line(ln, end, rl()->w_size.ws_col, true);
+		rl_del_from_line(ln, end, rl()->w.ws_col, true);
 		return (OK);
 	}
 	return (ERR);

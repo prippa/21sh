@@ -27,5 +27,7 @@ uint16_t	ft_nbrlen(intmax_t nb);
 void		ft_clear(void);
 void		ft_perror_exit(const char *message);
 void		ft_fatal_err_exit(const char *message);
+size_t		ft_get_right_word(const char *line, size_t pos, size_t end);
+size_t		ft_get_left_word(const char *line, size_t pos, size_t start);
 
 #endif

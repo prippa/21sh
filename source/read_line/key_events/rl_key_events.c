@@ -52,6 +52,6 @@ int32_t					rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE])
 		if (g_ke[i].key == key)
 			return (g_ke[i].f(&rl()->ln));
 	if (ft_is_str_print(buf))
-		rl_add_to_line(ln, buf, rl()->w_size.ws_col, true);
+		rl_add_to_line(ln, buf, rl()->w.ws_col, true);
 	return (OK);
 }

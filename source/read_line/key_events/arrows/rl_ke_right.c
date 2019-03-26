@@ -14,10 +14,9 @@
 
 int32_t		rl_ke_right(t_line *ln)
 {
-	if (ln->l_cur_pos < ln->l_end)
+	if (ln->pc < ln->l_end)
 	{
-		ln->l_cur_pos = rl_move_cursor_right(ln, ln->l_cur_pos,
-			1, rl()->w_size.ws_col);
+		ln->pc = rl_move_cursor_right(ln, ln->pc, 1, rl()->w.ws_col);
 		return (OK);
 	}
 	return (ERR);

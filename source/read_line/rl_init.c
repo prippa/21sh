@@ -36,6 +36,6 @@ void		rl_init(void)
 	r->if_inhibitors_in_use_flag = false;
 	r->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
 	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
-	ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w_size);
-	rl_determine_x(&r->ln, r->prompt_size, r->w_size.ws_col);
+	ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w);
+	rl_determine_x(&r->ln, r->prompt_size, r->w.ws_col);
 }

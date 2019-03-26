@@ -14,6 +14,11 @@
 
 int32_t		rl_ke_ctrl_down(t_line *ln)
 {
-	ft_printf("rl_ke_ctrl_down\n");
-	return (OK);
+	if (ln->pc < ln->l_end)
+	{
+		ln->pc = rl_move_cursor_right(ln, ln->pc,
+			rl()->w.ws_col, rl()->w.ws_col);
+		return (OK);
+	}
+	return (ERR);
 }

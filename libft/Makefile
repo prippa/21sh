@@ -140,7 +140,9 @@ LIB_C		:=	$(DIR_MEM)ft_bzero.c\
 				$(DIR_OTHER)ft_nbrlen.c\
 				$(DIR_OTHER)ft_clear.c\
 				$(DIR_OTHER)ft_perror_exit.c\
-				$(DIR_OTHER)ft_fatal_err_exit.c
+				$(DIR_OTHER)ft_fatal_err_exit.c\
+				$(DIR_OTHER)ft_get_left_word.c\
+				$(DIR_OTHER)ft_get_right_word.c
 
 GNL_C		:=	$(DIR_GNL_SRC)get_next_line.c
 

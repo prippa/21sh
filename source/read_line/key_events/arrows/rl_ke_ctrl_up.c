@@ -14,6 +14,13 @@
 
 int32_t		rl_ke_ctrl_up(t_line *ln)
 {
-	ft_printf("rl_ke_ctrl_up\n");
-	return (OK);
+	uint16_t	col;
+
+	if (ln->pc > ln->l_start)
+	{
+		col = rl()->w.ws_col;
+		ln->pc = rl_move_cursor_left(ln, ln->pc, col, col);
+		return (OK);
+	}
+	return (ERR);
 }
