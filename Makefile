@@ -43,7 +43,7 @@ DIR_LPCMD	:=	$(DIR_LNP_SRC)lp_commands/
 # read_line
 DIR_LS		:=	$(DIR_RL_SRC)line_syntax/
 DIR_KE		:=	$(DIR_RL_SRC)key_events/
-DIR_AC		:=	$(DIR_KE)tab_auto_comp/
+DIR_AC		:=	$(DIR_KE)tab/
 DIR_AROWS	:=	$(DIR_KE)arrows/
 DIR_CTRL	:=	$(DIR_KE)ctrl/
 
