@@ -18,6 +18,8 @@ void		rl_del_from_line(t_line *ln, size_t end,
 	size_t	del_sum;
 	size_t	rc_size;
 
+	if (end > ln->l_end)
+		end = ln->l_end;
 	del_sum = end - ln->pc;
 	GET_MEM(MALLOC_ERR, ln->line, ft_strcut_free, &ln->line, ln->pc, end);
 	ln->l_end -= del_sum;
