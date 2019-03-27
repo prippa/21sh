@@ -20,6 +20,7 @@ static void	sh_init_read_line(void)
 
 	r = rl();
 	GET_MEM(MALLOC_ERR, r->hs.cur_line_buf, ft_strdup, EMPTY_STR);
+	ft_bzero(&r->prev_ln, sizeof(t_line));
 }
 
 void		sh_init(void)

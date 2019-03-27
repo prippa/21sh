@@ -108,17 +108,19 @@ int32_t			rl_ke_tab(t_line *ln)
 {
 	char	*base_cmd;
 	t_list	*matches;
+	int32_t	res;
 
-	if (rl()->if_inhibitors_in_use_flag)
-		return (OK);
+	res = ERR;
+	if (rl()->inhibitors_in_use)
+		return (res);
 	if (!(base_cmd = rl_t_get_cmd_from_line(ln)))
-		return (OK);
+		return (res);
 	if ((matches = rl_t_get_matches(base_cmd)))
 	{
 		ft_lstrev(&matches);
-		tab_process_matches(matches, ft_strlen(base_cmd), ln);
+		res = tab_process_matches(matches, ft_strlen(base_cmd), ln);
 		ft_lstdel(&matches, ft_lstdel_content);
 	}
 	ft_memdel((void **)&base_cmd);
-	return (OK);
+	return (res);
 }

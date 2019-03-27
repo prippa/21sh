@@ -59,7 +59,7 @@ static void		rl_t_draw_matches(const t_list *m, size_t col, size_t max)
 	ft_putchar_fd('\n', STDIN_FILENO);
 }
 
-static void		rl_t_end_move(const char *postfix, const t_list *m,
+static int32_t	rl_t_end_move(const char *postfix, const t_list *m,
 					t_line *ln, size_t max)
 {
 	t_line		buf_ln;
@@ -68,18 +68,19 @@ static void		rl_t_end_move(const char *postfix, const t_list *m,
 	ft_memcpy(&buf_ln, ln, sizeof(t_line));
 	r = rl();
 	if (*postfix)
-		rl_add_to_line(ln, postfix, r->w.ws_col, true);
-	else
 	{
-		rl_ke_end(&buf_ln);
-		if (buf_ln.x)
-			ft_putchar_fd('\n', STDIN_FILENO);
-		rl_t_draw_matches(m, r->w.ws_col, max);
-		rl_redraw_line(ln, r->w.ws_col);
+		rl_add_to_line(ln, postfix, r->w.ws_col, true);
+		return (OK);
 	}
+	rl_ke_end(&buf_ln);
+	if (buf_ln.x)
+		ft_putchar_fd('\n', STDIN_FILENO);
+	rl_t_draw_matches(m, r->w.ws_col, max);
+	rl_redraw_line(ln, r->w.ws_col);
+	return (ERR);
 }
 
-void			tab_process_matches(const t_list *m, size_t len, t_line *ln)
+int32_t			tab_process_matches(const t_list *m, size_t len, t_line *ln)
 {
 	char			postfix[FILENAME_MAX + 1];
 	size_t			elem_max_len;
@@ -99,5 +100,5 @@ void			tab_process_matches(const t_list *m, size_t len, t_line *ln)
 		else
 			ft_strncat(postfix, &((char *)m->content)[len - 1], 1);
 	}
-	rl_t_end_move(postfix, m, ln, elem_max_len);
+	return (rl_t_end_move(postfix, m, ln, elem_max_len));
 }

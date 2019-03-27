@@ -18,15 +18,16 @@
 # include <stdio.h>
 # include <termios.h>
 
-# define PATH_MAX		4096
-# define PROMPT_ADS		5
-# define PROMPT_SIZE	FILENAME_MAX + PROMPT_ADS
+# define PATH_MAX			4096
+# define PROMPT_ADS			5
+# define PROMPT_COLORS_SIZE	100
+# define PROMPT_SIZE		FILENAME_MAX + PROMPT_ADS + PROMPT_COLORS_SIZE
 
 typedef struct		s_shell
 {
 	struct termios	old_settings;
 	struct termios	new_settings;
-	char			prompt[PROMPT_SIZE];
+	char			prompt[PROMPT_SIZE + 1];
 	char			curent_path[PATH_MAX + 1];
 	t_list2			*env_start;
 	t_list2			*env_end;

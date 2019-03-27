@@ -29,8 +29,6 @@ static void		read_line_loop(t_line *ln)
 		if (rl_key_events(ln, buf) == RL_BREAK)
 			break ;
 	}
-	if (rl()->if_inhibitors_in_use_flag)
-		sh_update_prompt(sh()->ok);
 }
 
 char			*read_line(void)

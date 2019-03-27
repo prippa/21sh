@@ -12,7 +12,7 @@
 
 #include "read_line.h"
 
-void			rl_determine_x(t_line *ln, size_t n, uint16_t col)
+void	rl_determine_x(t_line *ln, size_t n, uint16_t col)
 {
 	if (!n)
 		return ;
@@ -21,23 +21,18 @@ void			rl_determine_x(t_line *ln, size_t n, uint16_t col)
 		rl_make_tc_magic(tc()->down);
 }
 
-void			rl_clear_line(void)
+void	rl_clear_line(t_line *ln, uint16_t col)
 {
-	t_read_line	*r;
-	t_tc		*t;
-
-	r = rl();
-	t = tc();
-	if (r->w.ws_col)
-		rl_move_cursor_up((r->prompt_size + r->ln.pc) / r->w.ws_col);
-	rl_make_tc_magic(t->cr);
-	rl_make_tc_magic(t->cd);
+	if (col)
+		rl_move_cursor_up((rl()->prompt_size + ln->pc) / col);
+	rl_make_tc_magic(tc()->cr);
+	rl_make_tc_magic(tc()->cd);
 }
 
-void			rl_redraw_line(t_line *ln, uint16_t col)
+void	rl_redraw_line(t_line *ln, uint16_t col)
 {
 	ln->x = 0;
-	ft_putstr_fd(sh()->prompt, STDIN_FILENO);
+	ft_putstr_fd(rl()->prompt, STDIN_FILENO);
 	ft_putstr_fd(ln->line + ln->l_start, STDIN_FILENO);
 	rl_determine_x(ln, (rl()->prompt_size + (ln->l_end - ln->l_start)), col);
 	rl_move_cursor_left(ln, ln->l_end, ln->l_end - ln->pc, col);

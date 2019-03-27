@@ -15,7 +15,7 @@
 
 # include "read_line.h"
 
-# define KE_SIZE				25
+# define KE_SIZE				26
 
 # define KEY_BACK_SPACE			127
 # define KEY_DELETE				2117294875
@@ -43,6 +43,7 @@
 # define KEY_CTRL_G				7
 # define KEY_CTRL_U				21
 # define KEY_CTRL_K				11
+# define KEY_CTRL_H				8
 # define KEY_CTRL_L				12
 
 int32_t					rl_ke_back_space(t_line *ln);
@@ -51,7 +52,7 @@ int32_t					rl_ke_return(t_line *ln);
 int32_t					rl_ke_home(t_line *ln);
 int32_t					rl_ke_end(t_line *ln);
 int32_t					rl_ke_tab(t_line *ln);
-void					tab_process_matches(const t_list *m,
+int32_t					tab_process_matches(const t_list *m,
 							size_t len, t_line *ln);
 int32_t					rl_ke_left(t_line *ln);
 int32_t					rl_ke_right(t_line *ln);
@@ -71,6 +72,7 @@ int32_t					rl_ke_ctrl_e(t_line *ln);
 int32_t					rl_ke_ctrl_g(t_line *ln);
 int32_t					rl_ke_ctrl_u(t_line *ln);
 int32_t					rl_ke_ctrl_k(t_line *ln);
+int32_t					rl_ke_ctrl_h(t_line *ln);
 int32_t					rl_ke_ctrl_l(t_line *ln);
 
 #endif

@@ -25,9 +25,10 @@ Project from UNIX branch in school 42
 | TAB | ⇥ | Auto compilation |
 | Ctrl + a | ⌃a | work same as Home |
 | Ctrl + e | ⌃e | work same as End |
-| Ctrl + g | ⌃g | clear all characters in line |
 | Ctrl + u | ⌃u | clear all characters in front the cursor |
 | Ctrl + k | ⌃k | clear all characters after the cursor |
+| Ctrl + g | ⌃g | clear all characters in line |
+| Ctrl + h | ⌃h | Undo the last change |
 | Ctrl + l | ⌃l | clear screen |
 
 [more info](https://github.com/prippa/21sh/blob/master/21sh.en.pdf)

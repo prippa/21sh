@@ -28,22 +28,27 @@ enum
 	LS_NEW_PROMPT
 };
 
-enum
+typedef enum		e_syntax_err
 {
-	LS_SEMIX1 = -2,
+	LS_SEMIX1 = -3,
 	LS_SEMIX2,
+	LS_WTF_EOF
+}					t_syntax_err;
+
+typedef enum		e_inhibitors
+{
 	LS_Q = 1,
 	LS_DQ,
 	LS_SLASH
-};
+}					t_inhibitors;
 
 int32_t				ls_backslash_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_dobule_q_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_single_q_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_semi_check(t_line_syntax *ls, t_line *ln);
 
-void				rl_ls_syntax_err(int32_t key);
+void				rl_ls_syntax_err(t_syntax_err serr);
 void				rl_ls_new_prompt(t_line *ln, t_bool new_line_f,
-						int32_t key);
+						t_inhibitors inh);
 
 #endif

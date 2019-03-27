@@ -34,7 +34,7 @@ void		sh_sig_handle_rl(int sig)
 	}
 	if (sig == SIGWINCH)
 	{
-		rl_clear_line();
+		rl_clear_line(&r->ln, r->w.ws_col);
 		ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w);
 		rl_redraw_line(&r->ln, r->w.ws_col);
 	}

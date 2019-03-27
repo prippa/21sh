@@ -137,6 +137,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_CTRL)rl_ke_ctrl_g.c\
 				$(DIR_CTRL)rl_ke_ctrl_u.c\
 				$(DIR_CTRL)rl_ke_ctrl_k.c\
+				$(DIR_CTRL)rl_ke_ctrl_h.c\
 				$(DIR_CTRL)rl_ke_ctrl_l.c
 
 #-------------------------- Init OBJ, INC --------------------------------------

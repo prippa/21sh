@@ -40,9 +40,11 @@ typedef struct		s_history
 typedef struct		s_read_line
 {
 	t_line			ln;
+	t_line			prev_ln;
 	t_history		hs;
-	t_bool			if_inhibitors_in_use_flag;
+	int32_t			inhibitors_in_use;
 	struct winsize	w;
+	char			prompt[PROMPT_SIZE + 1];
 	size_t			prompt_size;
 }					t_read_line;
 
@@ -74,7 +76,7 @@ void				rl_make_tc_magic(const char *t);
 void				rl_goto_x(uint16_t x);
 
 void				rl_determine_x(t_line *ln, size_t n, uint16_t col);
-void				rl_clear_line(void);
+void				rl_clear_line(t_line *ln, uint16_t col);
 void				rl_redraw_line(t_line *ln, uint16_t col);
 
 void				rl_move_cursor_up(size_t n);
@@ -87,6 +89,8 @@ void				rl_add_to_line(t_line *ln, const char *src,
 						uint16_t col, t_bool print_to_term);
 void				rl_del_from_line(t_line *ln, size_t end,
 						uint16_t col, t_bool print_to_term);
+void				rl_line_del(t_line *ln);
+void				rl_line_cpy(t_line *dst, t_line *src);
 
 t_bool				rl_line_syntax(t_line *ln);
 void				rl_history_add(const char *line);
