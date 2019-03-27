@@ -21,6 +21,27 @@ void	rl_determine_x(t_line *ln, size_t n, uint16_t col)
 		rl_make_tc_magic(tc()->down);
 }
 
+int32_t	rl_get_x_pos(const char *u7_str)
+{
+	char	buf[30];
+	char	ch;
+	size_t	i;
+
+	i = -1;
+	write(STDOUT_FILENO, u7_str, 4);
+	read(STDOUT_FILENO, buf, 30);
+	// while (ch != 'R')
+	// {
+	// 	if (!read(STDIN_FILENO, &ch, 1))
+	// 		sh_fatal_err(READ_ERR);
+	// 	buf[++i] = ch;
+	// }
+	i = 0;
+	while (buf[i] != ';')
+		++i;
+	return (ft_atoi(&buf[i + 1]));
+}
+
 void	rl_clear_line(t_line *ln, uint16_t col)
 {
 	if (col)

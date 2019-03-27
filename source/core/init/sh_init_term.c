@@ -20,6 +20,19 @@
 #define NO_ACCESS_TO_DB "Could not access the termcap data base."
 #define NO_SUCH_ENTRY "Terminal type `%s' is not defined."
 
+/*
+** le - move cursor left by one col
+** nd - move cursor right by one col
+** do - move cursor down by one row
+** up - move cursor up by one row
+** cr - move cursor to the beginning of the row
+** cd - clear the line the cursor is on, and all the lines below it,
+**      down to the bottom of the screen.
+** ch - position the cursor at column c in the same line it is on.
+** cl - clear the entire screen and position the cursor at the upper left corner
+** u7 - cursor position request (equiv. to VT100/ANSI/ECMA-48 DSR 6)
+*/
+
 static void	sh_init_termcaps(void)
 {
 	t_tc *t;
@@ -29,10 +42,11 @@ static void	sh_init_termcaps(void)
 	t->nd = tgetstr("nd", NULL);
 	t->down = tgetstr("do", NULL);
 	t->up = tgetstr("up", NULL);
-	t->cd = tgetstr("cd", NULL);
 	t->cr = tgetstr("cr", NULL);
+	t->cd = tgetstr("cd", NULL);
 	t->ch = tgetstr("ch", NULL);
 	t->cl = tgetstr("cl", NULL);
+	t->u7 = tgetstr("u7", NULL);
 }
 
 static void	sh_init_new_settings(void)

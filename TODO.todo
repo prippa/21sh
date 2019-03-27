@@ -14,8 +14,6 @@ debug str:
 **	cr	->	cursor go to the beginning of the line
 **	ch	->	string to position the cursor at column c in the same line.
 **	cl	->	clear the screen
-
-
 */
 
 vi, ve, DO, UP

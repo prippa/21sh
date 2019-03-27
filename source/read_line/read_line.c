@@ -26,6 +26,8 @@ static void		read_line_loop(t_line *ln)
 		{
 			GET_MEM(MALLOC_ERR, ln->line, ft_strdup, EMPTY_STR);
 		}
+		// ft_printf("---%d---\n", rl_get_x_pos(tgetstr("u7", NULL)));
+		// rl_get_x_pos(tgetstr("u7", NULL));
 		if (rl_key_events(ln, buf) == RL_BREAK)
 			break ;
 	}
