@@ -11,23 +11,54 @@
 /* ************************************************************************** */
 
 #include "read_line.h"
+#include "read_line_signals.h"
 #include "messages.h"
 
-static void		read_line_loop(t_line *ln)
+static void		rl_read(char buf[RL_BUFF_SIZE])
 {
-	char		buf[RL_BUFF_SIZE + 1];
+	rl_execute_aside_signals();
+	rl_init_sig();
+	ft_bzero(buf, RL_BUFF_SIZE);
+	if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)
+		sh_fatal_err(READ_ERR);
+	rl_init_sig_aside();
+}
 
+static void		rl_read_key(t_line *ln, char buf[RL_BUFF_SIZE])
+{
+	// char	*text;
+
+	// GET_MEM(MALLOC_ERR, text, ft_strdup, EMPTY_STR);
 	while (true)
 	{
-		ft_bzero(buf, RL_BUFF_SIZE + 1);
-		if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)
-			sh_fatal_err(READ_ERR);
+		rl_read(buf);
 		if (!ln->line)
 		{
 			GET_MEM(MALLOC_ERR, ln->line, ft_strdup, EMPTY_STR);
 		}
-		// ft_printf("---%d---\n", rl_get_x_pos(tgetstr("u7", NULL)));
-		// rl_get_x_pos(tgetstr("u7", NULL));
+		if (ft_is_str_print(buf))
+		{
+			rl_add_to_line(ln, buf, rl()->w.ws_col, false);
+			ft_putstr_fd(buf, 0);
+			// GET_MEM(MALLOC_ERR, text, ft_strjoin_free,
+			// 	&text, buf, ft_strlen(text), ft_strlen(buf));
+		}
+		else
+		{
+			rl_determine_x(ln, rl()->w.ws_col);
+			break ;
+		}
+	}
+}
+
+static void		rl_loop(t_line *ln)
+{
+	char		buf[RL_BUFF_SIZE + 1];
+
+	ft_bzero(buf, RL_BUFF_SIZE + 1);
+	while (true)
+	{
+		rl_read_key(ln, buf);
 		if (rl_key_events(ln, buf) == RL_BREAK)
 			break ;
 	}
@@ -35,11 +66,10 @@ static void		read_line_loop(t_line *ln)
 
 char			*read_line(void)
 {
-	sh_init_sig_rl();
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->new_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);
 	rl_init();
-	read_line_loop(&rl()->ln);
+	rl_loop(&rl()->ln);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->old_settings)) == ERR)
 		sh_fatal_err(TCSETATTR_FAILED);
 	sh_init_sig_base();

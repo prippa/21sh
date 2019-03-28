@@ -38,6 +38,6 @@ void		rl_init(void)
 	r->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
 	ft_putstr_fd(r->prompt, STDIN_FILENO);
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w);
-	rl_determine_x(&r->ln, r->prompt_size, r->w.ws_col);
+	rl_determine_x(&r->ln, r->w.ws_col);
 	rl_line_cpy(&r->prev_ln, &r->ln);
 }

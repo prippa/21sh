@@ -13,34 +13,13 @@
 #include "button_keys.h"
 #include <signal.h>
 
-static void	sh_sigint_base_reaction(void)
+void		sh_sigint_base_reaction(void)
 {
 	ft_putchar_fd('\n', STDIN_FILENO);
 	sh()->exec_code = SIGINT;
 }
 
-void		sh_sig_handle_rl(int sig)
-{
-	t_read_line *r;
-
-	r = rl();
-	if (sig == SIGINT)
-	{
-		rl_ke_end(&r->ln);
-		sh_sigint_base_reaction();
-		sh_update_prompt(false);
-		ft_memdel((void **)&r->ln.line);
-		rl_init();
-	}
-	if (sig == SIGWINCH)
-	{
-		rl_clear_line(&r->ln, r->w.ws_col);
-		ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w);
-		rl_redraw_line(&r->ln, r->w.ws_col);
-	}
-}
-
-void		sh_sig_handle_base(int sig)
+void		sh_sig_handle_base(int32_t sig)
 {
 	if (sig == SIGINT)
 	{
@@ -50,7 +29,7 @@ void		sh_sig_handle_base(int sig)
 	}
 }
 
-void		sh_sig_handle_incase(int sig)
+void		sh_sig_handle_incase(int32_t sig)
 {
 	if (sig == SIGINT)
 	{

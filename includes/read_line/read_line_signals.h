@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_init_sig.c                                      :+:      :+:    :+:   */
+/*   read_line_signals.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/23 18:07:58 by prippa            #+#    #+#             */
-/*   Updated: 2019/03/23 18:07:59 by prippa           ###   ########.fr       */
+/*   Created: 2019/03/28 16:03:56 by prippa            #+#    #+#             */
+/*   Updated: 2019/03/28 16:03:58 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
-#include "signal.h"
+#ifndef READ_LINE_SIGNALS_H
+# define READ_LINE_SIGNALS_H
 
-void		sh_init_sig_base(void)
-{
-	signal(SIGINT, sh_sig_handle_base);
-}
+# include <stdint.h>
+# include <signal.h>
 
-void		sh_init_sig_incase(void)
+typedef void			(*t_sig_func)(int32_t sig);
+struct					s_sig_box
 {
-	signal(SIGINT, sh_sig_handle_incase);
-}
+	const t_sig_func	func;
+	t_bool				flag;
+	int32_t				sig;
+};
 
-void		sh_init_sig_default(void)
-{
-	signal(SIGINT, SIG_DFL);
-}
+void					rl_init_sig(void);
+void					rl_init_sig_aside(void);
+void					rl_sig_handle(int32_t sig);
+void					rl_execute_aside_signals(void);
+
+#endif

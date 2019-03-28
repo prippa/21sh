@@ -42,7 +42,7 @@ static t_event const	g_ke[KE_SIZE] =
 	{rl_ke_tab, KEY_TAB},
 };
 
-static int32_t			rl_call_event(t_func f, uint64_t key)
+static int32_t			rl_call_event(t_func f, uint64_t key, t_line *ln)
 {
 	int32_t	res;
 	t_line	tmp;
@@ -50,8 +50,8 @@ static int32_t			rl_call_event(t_func f, uint64_t key)
 	ft_bzero(&tmp, sizeof(t_line));
 	rl_line_cpy(&tmp, &rl()->prev_ln);
 	if (key != KEY_CTRL_H)
-		rl_line_cpy(&rl()->prev_ln, &rl()->ln);
-	res = f(&rl()->ln);
+		rl_line_cpy(&rl()->prev_ln, ln);
+	res = f(ln);
 	if (res == ERR)
 		rl_line_cpy(&rl()->prev_ln, &tmp);
 	rl_line_del(&tmp);
@@ -62,19 +62,11 @@ int32_t					rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE])
 {
 	uint64_t	key;
 	size_t		i;
-	int32_t		res;
 
-	res = ERR;
 	ft_memcpy(&key, buf, RL_BUFF_SIZE);
 	i = -1;
 	while (++i < KE_SIZE)
 		if (g_ke[i].key == key)
-			return (rl_call_event(g_ke[i].f, key));
-	if (ft_is_str_print(buf))
-	{
-		res = OK;
-		rl_line_cpy(&rl()->prev_ln, &rl()->ln);
-		rl_add_to_line(ln, buf, rl()->w.ws_col, true);
-	}
-	return (res);
+			return (rl_call_event(g_ke[i].f, key, ln));
+	return (ERR);
 }

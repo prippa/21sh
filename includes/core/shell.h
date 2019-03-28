@@ -50,13 +50,6 @@ void				sh_fatal_err(const char *message);
 
 # define GET_MEM(m, v, f, a ...) if (!(v = f(a))) sh_fatal_err(m)
 
-void				sh_sig_handle_rl(int sig);
-void				sh_sig_handle_base(int sig);
-void				sh_sig_handle_incase(int sig);
-void				sh_init_sig_rl(void);
-void				sh_init_sig_base(void);
-void				sh_init_sig_incase(void);
-void				sh_init_sig_default(void);
 void				sh_init(void);
 void				sh_init_env(void);
 void				sh_init_term(void);
@@ -71,5 +64,12 @@ void				sh_reset_settings(void);
 char				*read_line(void);
 
 void				line_parser(void);
+
+void				sh_sigint_base_reaction(void);
+void				sh_sig_handle_base(int32_t sig);
+void				sh_sig_handle_incase(int32_t sig);
+void				sh_init_sig_base(void);
+void				sh_init_sig_incase(void);
+void				sh_init_sig_default(void);
 
 #endif

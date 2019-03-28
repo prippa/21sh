@@ -60,7 +60,8 @@ LNP_H		:=	$(DIR_LNP_INC)line_parser.h
 
 RL_H		:=	$(DIR_RL_INC)read_line.h\
 				$(DIR_RL_INC)button_keys.h\
-				$(DIR_RL_INC)line_syntax.h
+				$(DIR_RL_INC)line_syntax.h\
+				$(DIR_RL_INC)read_line_signals.h
 
 #-------------------------- Source files ---------------------------------------
 COR_C		:=	$(DIR_COR_SRC)main.c\
@@ -108,6 +109,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_edit_line.c\
 				$(DIR_RL_SRC)rl_make_tc_magic.c\
 				$(DIR_RL_SRC)rl_history.c\
+				$(DIR_RL_SRC)rl_signals.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\

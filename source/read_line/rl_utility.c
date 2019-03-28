@@ -12,37 +12,34 @@
 
 #include "read_line.h"
 
-void	rl_determine_x(t_line *ln, size_t n, uint16_t col)
-{
-	if (!n)
-		return ;
-	ln->x = (ln->x + n) % col;
-	if (ln->x == 0)
-		rl_make_tc_magic(tc()->down);
-}
-
-int32_t	rl_get_x_pos(const char *u7_str)
+static int32_t	rl_get_x_pos(void)
 {
 	char	buf[30];
-	char	ch;
 	size_t	i;
 
-	i = -1;
-	write(STDOUT_FILENO, u7_str, 4);
-	read(STDOUT_FILENO, buf, 30);
-	// while (ch != 'R')
-	// {
-	// 	if (!read(STDIN_FILENO, &ch, 1))
-	// 		sh_fatal_err(READ_ERR);
-	// 	buf[++i] = ch;
-	// }
+	ft_bzero(buf, 30);
+	write(STDOUT_FILENO, tc()->u7, 4);
+	if (read(STDOUT_FILENO, buf, 100) == ERR)
+		ft_fatal_err_exit(READ_ERR);
 	i = 0;
 	while (buf[i] != ';')
 		++i;
 	return (ft_atoi(&buf[i + 1]));
 }
 
-void	rl_clear_line(t_line *ln, uint16_t col)
+void			rl_determine_x(t_line *ln, uint16_t col)
+{
+	ln->x = rl_get_x_pos();
+	if (ln->x == col)
+	{
+		ln->x = 0;
+		rl_make_tc_magic(tc()->down);
+	}
+	else
+		--ln->x;
+}
+
+void			rl_clear_line(t_line *ln, uint16_t col)
 {
 	if (col)
 		rl_move_cursor_up((rl()->prompt_size + ln->pc) / col);
@@ -50,11 +47,11 @@ void	rl_clear_line(t_line *ln, uint16_t col)
 	rl_make_tc_magic(tc()->cd);
 }
 
-void	rl_redraw_line(t_line *ln, uint16_t col)
+void			rl_redraw_line(t_line *ln, uint16_t col)
 {
 	ln->x = 0;
 	ft_putstr_fd(rl()->prompt, STDIN_FILENO);
 	ft_putstr_fd(ln->line + ln->l_start, STDIN_FILENO);
-	rl_determine_x(ln, (rl()->prompt_size + (ln->l_end - ln->l_start)), col);
+	rl_determine_x(ln, col);
 	rl_move_cursor_left(ln, ln->l_end, ln->l_end - ln->pc, col);
 }
