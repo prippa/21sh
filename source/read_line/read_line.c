@@ -26,9 +26,6 @@ static void		rl_read(char buf[RL_BUFF_SIZE])
 
 static void		rl_read_key(t_line *ln, char buf[RL_BUFF_SIZE])
 {
-	// char	*text;
-
-	// GET_MEM(MALLOC_ERR, text, ft_strdup, EMPTY_STR);
 	while (true)
 	{
 		rl_read(buf);
@@ -37,17 +34,9 @@ static void		rl_read_key(t_line *ln, char buf[RL_BUFF_SIZE])
 			GET_MEM(MALLOC_ERR, ln->line, ft_strdup, EMPTY_STR);
 		}
 		if (ft_is_str_print(buf))
-		{
-			rl_add_to_line(ln, buf, rl()->w.ws_col, false);
-			ft_putstr_fd(buf, 0);
-			// GET_MEM(MALLOC_ERR, text, ft_strjoin_free,
-			// 	&text, buf, ft_strlen(text), ft_strlen(buf));
-		}
+			rl_add_to_line(ln, buf, rl()->w.ws_col, true);
 		else
-		{
-			rl_determine_x(ln, rl()->w.ws_col);
 			break ;
-		}
 	}
 }
 

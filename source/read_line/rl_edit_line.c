@@ -26,7 +26,7 @@ void		rl_del_from_line(t_line *ln, size_t end,
 		rl_make_tc_magic(tc()->cd);
 		ft_putstr_fd(ln->line + ln->pc, STDIN_FILENO);
 		rc_size = ft_strlen(ln->line + ln->pc);
-		rl_determine_x(ln, col);
+		rl_move_x(&ln->x, rc_size, col);
 		rl_move_cursor_left(ln, ln->pc + rc_size, rc_size, col);
 	}
 }
@@ -48,7 +48,7 @@ void		rl_add_to_line(t_line *ln, const char *src,
 		ft_putstr_fd(src, STDIN_FILENO);
 		ft_putstr_fd(ln->line + ln->pc, STDIN_FILENO);
 		rc_size = ft_strlen(ln->line + ln->pc);
-		rl_determine_x(ln, col);
+		rl_move_x(&ln->x, src_len + rc_size, col);
 		rl_move_cursor_left(ln, ln->pc + rc_size, rc_size, col);
 	}
 }

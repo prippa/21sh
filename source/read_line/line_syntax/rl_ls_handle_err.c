@@ -56,7 +56,7 @@ static void	rl_ls_update_line(t_line *ln, t_bool new_line_f,
 	ft_strcpy(r->prompt, new_prompt);
 	r->prompt_size = np_size;
 	ln->x = 0;
-	rl_determine_x(ln, r->w.ws_col);
+	rl_move_x(&ln->x, np_size, r->w.ws_col);
 	ft_putstr_fd(new_prompt, STDIN_FILENO);
 	r->hs.curent = NULL;
 	rl_line_cpy(&r->prev_ln, &r->ln);

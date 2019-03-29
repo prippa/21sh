@@ -76,7 +76,7 @@ int32_t				rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE]);
 void				rl_make_tc_magic(const char *t);
 void				rl_goto_x(uint16_t x);
 
-void				rl_determine_x(t_line *ln, uint16_t col);
+void				rl_move_x(int32_t *x, size_t n, uint16_t col);
 // int32_t				rl_get_x_pos(void);
 void				rl_clear_line(t_line *ln, uint16_t col);
 void				rl_redraw_line(t_line *ln, uint16_t col);
