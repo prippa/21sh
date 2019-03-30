@@ -114,43 +114,24 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\
 				$(DIR_KE)rl_key_events.c\
-				$(DIR_KE)rl_ke_back_space.c\
-				$(DIR_KE)rl_ke_delete.c\
-				$(DIR_KE)rl_ke_return.c\
-				$(DIR_KE)rl_ke_home.c\
-				$(DIR_KE)rl_ke_end.c\
+				$(DIR_KE)rl_basic_keys.c\
 				$(DIR_AC)rl_ke_tab.c\
 				$(DIR_AC)tab_proc_match.c\
-				$(DIR_AROWS)rl_ke_left.c\
-				$(DIR_AROWS)rl_ke_right.c\
-				$(DIR_AROWS)rl_ke_up.c\
-				$(DIR_AROWS)rl_ke_down.c\
-				$(DIR_AROWS)rl_ke_ctrl_left.c\
-				$(DIR_AROWS)rl_ke_ctrl_right.c\
-				$(DIR_AROWS)rl_ke_ctrl_up.c\
-				$(DIR_AROWS)rl_ke_ctrl_down.c\
-				$(DIR_AROWS)rl_ke_ctrl_shift_left.c\
-				$(DIR_AROWS)rl_ke_ctrl_shift_right.c\
-				$(DIR_AROWS)rl_ke_ctrl_shift_up.c\
-				$(DIR_AROWS)rl_ke_ctrl_shift_down.c\
-				$(DIR_CTRL)rl_ke_ctrl_d.c\
-				$(DIR_CTRL)rl_ke_ctrl_a.c\
-				$(DIR_CTRL)rl_ke_ctrl_e.c\
-				$(DIR_CTRL)rl_ke_ctrl_g.c\
-				$(DIR_CTRL)rl_ke_ctrl_u.c\
-				$(DIR_CTRL)rl_ke_ctrl_k.c\
-				$(DIR_CTRL)rl_ke_ctrl_h.c\
-				$(DIR_CTRL)rl_ke_ctrl_l.c
+				$(DIR_AROWS)rl_ke_arrows.c\
+				$(DIR_AROWS)rl_ke_ctrl_arrows.c\
+				$(DIR_AROWS)rl_ke_ctrl_shift_arrows.c\
+				$(DIR_CTRL)rl_ke_ctrl_d_a_e_l_h.c\
+				$(DIR_CTRL)rl_ke_ctrl_g_u_k.c
 
 #-------------------------- Init OBJ, INC --------------------------------------
 OBJ			:=	$(patsubst $(DIR_COR_SRC)%,$(DIR_OBJ)%,\
 				$(COR_C:.$(CH_SRC)=.$(CH_OBJ)))
+OBJ			+=	$(patsubst $(DIR_ENV_SRC)%,$(DIR_OBJ)%,\
+				$(ENV_C:.$(CH_SRC)=.$(CH_OBJ)))
 OBJ			+=	$(patsubst $(DIR_LNP_SRC)%,$(DIR_OBJ)%,\
 				$(LNP_C:.$(CH_SRC)=.$(CH_OBJ)))
 OBJ			+=	$(patsubst $(DIR_RL_SRC)%,$(DIR_OBJ)%,\
 				$(RL_C:.$(CH_SRC)=.$(CH_OBJ)))
-OBJ			+=	$(patsubst $(DIR_ENV_SRC)%,$(DIR_OBJ)%,\
-				$(ENV_C:.$(CH_SRC)=.$(CH_OBJ)))
 
 INC			:=	$(addprefix -I, $(DIR_LIB_INC) $(DIR_COR_INC) $(DIR_LNP_INC)\
 				$(DIR_RL_INC) $(DIR_ENV_INC))
