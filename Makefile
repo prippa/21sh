@@ -121,7 +121,8 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_AROWS)rl_ke_ctrl_arrows.c\
 				$(DIR_AROWS)rl_ke_ctrl_shift_arrows.c\
 				$(DIR_CTRL)rl_ke_ctrl_d_a_e_l_h.c\
-				$(DIR_CTRL)rl_ke_ctrl_g_u_k.c
+				$(DIR_CTRL)rl_ke_ctrl_g_u_k.c\
+				$(DIR_CTRL)rl_ke_ctrl_r.c
 
 #-------------------------- Init OBJ, INC --------------------------------------
 OBJ			:=	$(patsubst $(DIR_COR_SRC)%,$(DIR_OBJ)%,\

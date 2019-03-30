@@ -45,6 +45,7 @@
 # define KEY_CTRL_K				11
 # define KEY_CTRL_H				8
 # define KEY_CTRL_L				12
+# define KEY_CTRL_R				18
 
 int32_t					rl_ke_back_space(t_line *ln);
 int32_t					rl_ke_delete(t_line *ln);
@@ -74,5 +75,7 @@ int32_t					rl_ke_ctrl_u(t_line *ln);
 int32_t					rl_ke_ctrl_k(t_line *ln);
 int32_t					rl_ke_ctrl_h(t_line *ln);
 int32_t					rl_ke_ctrl_l(t_line *ln);
+
+uint64_t				rl_ke_ctrl_r(t_line *ln);
 
 #endif
