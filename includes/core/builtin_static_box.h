@@ -24,12 +24,12 @@ typedef struct		s_builtin_box
 
 static const t_builtin_box	g_builtin_box[SH_BUILTIN_SIZE] =
 {
-	{sh_cd, CD_CMD},
-	{sh_echo, ECHO_CMD},
-	{sh_env, ENV_CMD},
-	{sh_setenv, SETENV_CMD},
-	{sh_unsetenv, UNSETENV_CMD},
-	{sh_exit, EXIT_CMD},
+	{&sh_cd, CD_CMD},
+	{&sh_echo, ECHO_CMD},
+	{&sh_env, ENV_CMD},
+	{&sh_setenv, SETENV_CMD},
+	{&sh_unsetenv, UNSETENV_CMD},
+	{&sh_exit, EXIT_CMD},
 };
 
 #endif

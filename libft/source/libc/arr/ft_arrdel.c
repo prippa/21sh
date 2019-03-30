@@ -22,7 +22,7 @@ void	ft_arrdel(char ***arr)
 		tmp = *arr;
 		while (*tmp)
 			ft_strdel(tmp++);
-		ft_memdel((void **)*arr);
+		ft_memdel((void **)arr);
 		*arr = NULL;
 	}
 }

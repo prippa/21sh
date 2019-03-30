@@ -119,7 +119,7 @@ int32_t			rl_ke_tab(t_line *ln)
 	{
 		ft_lstrev(&matches);
 		res = tab_process_matches(matches, ft_strlen(base_cmd), ln);
-		ft_lstdel(&matches, ft_lstdel_content);
+		ft_lstdel(&matches, &ft_lstdel_content);
 	}
 	ft_strdel(&base_cmd);
 	return (res);

@@ -17,8 +17,8 @@
 
 static struct s_sig_box	g_sig_box[SIG_SIZE] =
 {
-	{rl_sig_handle, false, SIGINT},
-	{rl_sig_handle, false, SIGWINCH},
+	{&rl_sig_handle, false, SIGINT},
+	{&rl_sig_handle, false, SIGWINCH},
 };
 
 void		rl_execute_aside_signals(void)
