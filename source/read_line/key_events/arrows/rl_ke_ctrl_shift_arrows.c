@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rl_ke_ctrl_shift_arrows.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/30 13:54:41 by prippa            #+#    #+#             */
+/*   Updated: 2019/03/30 13:54:43 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "button_keys.h"
 
-int32_t		rl_ke_ctrl_shift_left(t_line *ln)
+int32_t	rl_ke_ctrl_shift_left(t_line *ln)
 {
 	size_t	end;
 
@@ -14,7 +26,7 @@ int32_t		rl_ke_ctrl_shift_left(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_shift_right(t_line *ln)
+int32_t	rl_ke_ctrl_shift_right(t_line *ln)
 {
 	size_t	end;
 
@@ -27,7 +39,7 @@ int32_t		rl_ke_ctrl_shift_right(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_shift_up(t_line *ln)
+int32_t	rl_ke_ctrl_shift_up(t_line *ln)
 {
 	size_t		end;
 	uint16_t	col;
@@ -43,7 +55,7 @@ int32_t		rl_ke_ctrl_shift_up(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_shift_down(t_line *ln)
+int32_t	rl_ke_ctrl_shift_down(t_line *ln)
 {
 	uint16_t	col;
 

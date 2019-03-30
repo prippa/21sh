@@ -16,6 +16,7 @@
 #include "environ_manipulation.h"
 #include "messages.h"
 #include "button_keys.h"
+#include "line_syntax.h"
 
 static void		rl_t_gm_push_cmd(t_list **m, const char *bc, const char *c)
 {
@@ -111,7 +112,7 @@ int32_t			rl_ke_tab(t_line *ln)
 	int32_t	res;
 
 	res = ERR;
-	if (rl()->inhibitors_in_use)
+	if (rl()->inhibitors_in_use && rl()->inhibitors_in_use < LS_SLASH)
 		return (res);
 	if (!(base_cmd = rl_t_get_cmd_from_line(ln)))
 		return (res);

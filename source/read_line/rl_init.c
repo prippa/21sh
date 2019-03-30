@@ -12,32 +12,47 @@
 
 #include "read_line.h"
 
-t_read_line	*rl(void)
+t_read_line		*rl(void)
 {
 	static t_read_line rl;
 
 	return (&rl);
 }
 
-t_tc		*tc(void)
+t_tc			*tc(void)
 {
 	static t_tc tc;
 
 	return (&tc);
 }
 
-void		rl_init(void)
+static void		rl_check_if_not_new_line(void)
 {
-	t_read_line *r;
+	char	buf[42];
+	size_t	i;
 
-	r = rl();
-	r->hs.curent = NULL;
-	ft_bzero(&r->ln, sizeof(t_line));
-	r->inhibitors_in_use = false;
-	ft_strcpy(r->prompt, sh()->prompt);
-	r->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
-	ft_putstr_fd(r->prompt, STDIN_FILENO);
-	ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w);
-	rl_move_x(&r->ln.x, r->prompt_size, r->w.ws_col);
-	rl_line_cpy(&r->prev_ln, &r->ln);
+	write(STDOUT_FILENO, tc()->u7, 4);
+	read(STDIN_FILENO, buf, 42);
+	i = 0;
+	while (buf[i] != ';')
+		++i;
+	if (ft_atoi(&buf[i + 1]) - 1)
+	{
+		ft_dprintf(STDIN_FILENO, "%s%~c", BOLD, CT_BACK, C_WHITE, '%');
+		rl_make_tc_magic(tc()->down);
+	}
+}
+
+void			rl_init(void)
+{
+	rl_check_if_not_new_line();
+	rl()->hs.curent = NULL;
+	ft_bzero(&rl()->ln, sizeof(t_line));
+	rl()->inhibitors_in_use = false;
+	ft_strcpy(rl()->prompt, sh()->prompt);
+	rl()->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
+	ft_putstr_fd(rl()->prompt, STDIN_FILENO);
+	ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
+	rl_move_x(&rl()->ln.x, rl()->prompt_size, rl()->w.ws_col);
+	rl_line_cpy(&rl()->prev_ln, &rl()->ln);
 }

@@ -21,7 +21,7 @@ int32_t	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 	ls->semi_flag = true;
 	if (!ln->line[++ls->i])
 	{
-		rl_ke_left(ln);
+		--ln->pc;
 		rl_del_from_line(ln, ln->pc + 1,
 			rl()->w.ws_col, false);
 		rl_ls_new_prompt(ln, false, LS_SLASH);
@@ -42,7 +42,7 @@ int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 		{
 			if (ln->line[ls->i] == BACKSLASH_C && !ln->line[ls->i + 1])
 			{
-				rl_ke_left(ln);
+				--ln->pc;
 				rl_del_from_line(ln, ln->pc + 1,
 					rl()->w.ws_col, false);
 				new_line_f = false;

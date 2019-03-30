@@ -20,7 +20,7 @@ void		rl_del_from_line(t_line *ln, size_t end,
 	if (end > ln->l_end)
 		end = ln->l_end;
 	GET_MEM(MALLOC_ERR, ln->line, ft_strcut_free, &ln->line, ln->pc, end);
-	ln->l_end -= end - ln->pc;
+	ln->l_end -= (end - ln->pc);
 	if (print_to_term)
 	{
 		rl_make_tc_magic(tc()->cd);

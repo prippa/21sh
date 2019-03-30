@@ -49,34 +49,32 @@ static void		rl_t_draw_matches(const t_list *m, size_t col, size_t max)
 	{
 		if ((n + max + 2) >= col)
 		{
-			ft_putchar_fd('\n', STDIN_FILENO);
+			rl_make_tc_magic(tc()->down);
 			n = 0;
 		}
 		ft_dprintf(STDIN_FILENO, "%-*s  ", max, (char *)m->content);
 		m = m->next;
 		n += max + 2;
 	}
-	ft_putchar_fd('\n', STDIN_FILENO);
+	rl_make_tc_magic(tc()->down);
 }
 
 static int32_t	rl_t_end_move(const char *postfix, const t_list *m,
 					t_line *ln, size_t max)
 {
 	t_line		buf_ln;
-	t_read_line	*r;
 
 	ft_memcpy(&buf_ln, ln, sizeof(t_line));
-	r = rl();
 	if (*postfix)
 	{
-		rl_add_to_line(ln, postfix, r->w.ws_col, true);
+		rl_add_to_line(ln, postfix, rl()->w.ws_col, true);
 		return (OK);
 	}
 	rl_ke_end(&buf_ln);
 	if (buf_ln.x)
-		ft_putchar_fd('\n', STDIN_FILENO);
-	rl_t_draw_matches(m, r->w.ws_col, max);
-	rl_redraw_line(ln, r->w.ws_col);
+		rl_make_tc_magic(tc()->down);
+	rl_t_draw_matches(m, rl()->w.ws_col, max);
+	rl_redraw_line(ln, rl()->w.ws_col);
 	return (ERR);
 }
 

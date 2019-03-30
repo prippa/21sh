@@ -12,15 +12,6 @@
 
 #include "read_line.h"
 
-void			rl_move_cursor_up(size_t n)
-{
-	t_tc	*t;
-
-	t = tc();
-	while (n--)
-		rl_make_tc_magic(t->up);
-}
-
 size_t			rl_move_cursor_right(t_line *ln, size_t pc,
 					size_t n, uint16_t col)
 {

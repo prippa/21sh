@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rl_ke_ctrl_g_u_k.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/30 13:54:34 by prippa            #+#    #+#             */
+/*   Updated: 2019/03/30 13:54:35 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "button_keys.h"
 
-int32_t		rl_ke_ctrl_g(t_line *ln)
+int32_t	rl_ke_ctrl_g(t_line *ln)
 {
 	if (!ft_is_str_empty(ln->line))
 	{
@@ -11,7 +23,7 @@ int32_t		rl_ke_ctrl_g(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_u(t_line *ln)
+int32_t	rl_ke_ctrl_u(t_line *ln)
 {
 	size_t end;
 
@@ -25,7 +37,7 @@ int32_t		rl_ke_ctrl_u(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_k(t_line *ln)
+int32_t	rl_ke_ctrl_k(t_line *ln)
 {
 	if (ln->pc < ln->l_end)
 	{

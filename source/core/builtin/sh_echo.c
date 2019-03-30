@@ -40,5 +40,5 @@ void		sh_echo(t_build *b)
 			ft_putchar(' ');
 	}
 	if (!nl_f)
-		ft_putchar('\n');
+		ft_putchar(ENDL);
 }

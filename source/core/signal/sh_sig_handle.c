@@ -15,7 +15,7 @@
 
 void		sh_sigint_base_reaction(void)
 {
-	ft_putchar_fd('\n', STDIN_FILENO);
+	ft_putchar_fd(ENDL, STDIN_FILENO);
 	sh()->exec_code = SIGINT;
 }
 

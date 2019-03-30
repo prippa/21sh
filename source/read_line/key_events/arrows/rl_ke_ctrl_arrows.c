@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rl_ke_ctrl_arrows.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/30 13:54:48 by prippa            #+#    #+#             */
+/*   Updated: 2019/03/30 13:54:50 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "button_keys.h"
 
-int32_t			rl_ke_ctrl_left(t_line *ln)
+int32_t	rl_ke_ctrl_left(t_line *ln)
 {
 	if (ln->pc > ln->l_start)
 	{
@@ -12,7 +24,7 @@ int32_t			rl_ke_ctrl_left(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_right(t_line *ln)
+int32_t	rl_ke_ctrl_right(t_line *ln)
 {
 	if (ln->pc < ln->l_end)
 	{
@@ -24,7 +36,7 @@ int32_t		rl_ke_ctrl_right(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_up(t_line *ln)
+int32_t	rl_ke_ctrl_up(t_line *ln)
 {
 	uint16_t	col;
 
@@ -37,7 +49,7 @@ int32_t		rl_ke_ctrl_up(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_ctrl_down(t_line *ln)
+int32_t	rl_ke_ctrl_down(t_line *ln)
 {
 	if (ln->pc < ln->l_end)
 	{

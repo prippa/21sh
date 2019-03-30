@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rl_basic_keys.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/30 13:54:27 by prippa            #+#    #+#             */
+/*   Updated: 2019/03/30 13:54:28 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "button_keys.h"
 
-int32_t		rl_ke_back_space(t_line *ln)
+int32_t	rl_ke_back_space(t_line *ln)
 {
 	if (ln->pc > ln->l_start)
 	{
@@ -11,7 +23,7 @@ int32_t		rl_ke_back_space(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_delete(t_line *ln)
+int32_t	rl_ke_delete(t_line *ln)
 {
 	if (ln->pc < ln->l_end)
 	{
@@ -21,11 +33,11 @@ int32_t		rl_ke_delete(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_return(t_line *ln)
+int32_t	rl_ke_return(t_line *ln)
 {
 	rl_ke_end(ln);
 	if (ln->x)
-		ft_putstr_fd("\n", STDIN_FILENO);
+		rl_make_tc_magic(tc()->down);
 	if (rl_line_syntax(ln))
 	{
 		rl_history_add(ln->line);
@@ -34,7 +46,7 @@ int32_t		rl_ke_return(t_line *ln)
 	return (OK);
 }
 
-int32_t		rl_ke_home(t_line *ln)
+int32_t	rl_ke_home(t_line *ln)
 {
 	if (ln->pc > ln->l_start)
 	{
@@ -44,7 +56,7 @@ int32_t		rl_ke_home(t_line *ln)
 	return (ERR);
 }
 
-int32_t		rl_ke_end(t_line *ln)
+int32_t	rl_ke_end(t_line *ln)
 {
 	if (ln->pc < ln->l_end)
 	{

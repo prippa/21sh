@@ -57,13 +57,11 @@ typedef struct		s_event
 
 typedef struct		s_tc
 {
-	char			*le;
-	char			*nd;
-	char			*down;
+	char			*ch;
 	char			*up;
+	char			*down;
 	char			*cd;
 	char			*cr;
-	char			*ch;
 	char			*cl;
 	char			*u7;
 }					t_tc;
@@ -80,7 +78,6 @@ void				rl_move_x(int32_t *x, size_t n, uint16_t col);
 void				rl_clear_line(t_line *ln, uint16_t col);
 void				rl_redraw_line(t_line *ln, uint16_t col);
 
-void				rl_move_cursor_up(size_t n);
 size_t				rl_move_cursor_right(t_line *ln, size_t pc,
 						size_t n, uint16_t col);
 size_t				rl_move_cursor_left(t_line *ln, size_t pc,

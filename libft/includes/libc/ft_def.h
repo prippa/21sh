@@ -22,6 +22,7 @@
 # define READ_ERR		"read() failed"
 
 # define EMPTY_STR		""
+# define ENDL			'\n'
 
 typedef char	t_bool;
 enum			{ false, true };

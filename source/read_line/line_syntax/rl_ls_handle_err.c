@@ -46,20 +46,17 @@ static const char	g_wtf_eof_matching_characters[] =
 static void	rl_ls_update_line(t_line *ln, t_bool new_line_f,
 				const char *new_prompt, size_t np_size)
 {
-	t_read_line *r;
-
-	r = rl();
 	if (new_line_f)
-		rl_add_to_line(ln, "\n", r->w.ws_col, false);
+		rl_add_to_line(ln, "\n", rl()->w.ws_col, false);
 	ln->l_start = ln->l_end;
 	ln->pc = ln->l_start;
-	ft_strcpy(r->prompt, new_prompt);
-	r->prompt_size = np_size;
-	ln->x = 0;
-	rl_move_x(&ln->x, np_size, r->w.ws_col);
+	ft_strcpy(rl()->prompt, new_prompt);
+	rl()->prompt_size = np_size;
 	ft_putstr_fd(new_prompt, STDIN_FILENO);
-	r->hs.curent = NULL;
-	rl_line_cpy(&r->prev_ln, &r->ln);
+	ln->x = 0;
+	rl_move_x(&ln->x, np_size, rl()->w.ws_col);
+	rl_line_cpy(&rl()->prev_ln, &rl()->ln);
+	rl()->hs.curent = NULL;
 }
 
 void		rl_ls_syntax_err(t_syntax_err serr)

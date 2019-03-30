@@ -55,22 +55,19 @@ void		rl_init_sig_aside(void)
 
 void		rl_sig_handle(int32_t sig)
 {
-	t_read_line *r;
-
-	r = rl();
 	if (sig == SIGINT)
 	{
-		rl_ke_end(&r->ln);
+		rl_ke_end(&rl()->ln);
 		sh_sigint_base_reaction();
 		sh_update_prompt(false);
-		ft_strdel(&r->ln.line);
+		ft_strdel(&rl()->ln.line);
 		rl_init();
 	}
 	if (sig == SIGWINCH)
 	{
-		rl_clear_line(&r->ln, r->w.ws_col);
-		ioctl(STDIN_FILENO, TIOCGWINSZ, &r->w);
-		rl_redraw_line(&r->ln, r->w.ws_col);
+		rl_clear_line(&rl()->ln, rl()->w.ws_col);
+		ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
+		rl_redraw_line(&rl()->ln, rl()->w.ws_col);
 	}
 }
 

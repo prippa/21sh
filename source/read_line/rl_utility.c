@@ -23,8 +23,15 @@ void			rl_move_x(int32_t *x, size_t n, uint16_t col)
 
 void			rl_clear_line(t_line *ln, uint16_t col)
 {
+	t_tc	*t;
+	size_t	n;
+
+	t = tc();
+	n = 0;
 	if (col)
-		rl_move_cursor_up((rl()->prompt_size + ln->pc) / col);
+		n = (rl()->prompt_size + ln->pc) / col;
+	while (n--)
+		rl_make_tc_magic(t->up);
 	rl_make_tc_magic(tc()->cr);
 	rl_make_tc_magic(tc()->cd);
 }
