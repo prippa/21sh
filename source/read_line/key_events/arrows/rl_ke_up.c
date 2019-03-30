@@ -19,14 +19,13 @@ int32_t			rl_ke_up(t_line *ln)
 	r = rl();
 	if (!r->hs.curent)
 	{
-		if (r->hs.h_end)
-		{
-			r->hs.curent = r->hs.h_end;
-			GET_MEM(MALLOC_ERR, r->hs.cur_line_buf, ft_strdup_free,
-				&r->hs.cur_line_buf, ln->line + ln->l_start);
-			rl_history_move((char *)r->hs.curent->content, ln);
-		}
-		return (ERR);
+		if (!r->hs.h_end)
+			return (ERR);
+		r->hs.curent = r->hs.h_end;
+		GET_MEM(MALLOC_ERR, r->hs.cur_line_buf, ft_strdup_free,
+			&r->hs.cur_line_buf, ln->line + ln->l_start);
+		rl_history_move((char *)r->hs.curent->content, ln);
+		return (OK);
 	}
 	else if (r->hs.h_start && r->hs.curent != r->hs.h_start)
 	{

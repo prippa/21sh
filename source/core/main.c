@@ -48,7 +48,7 @@ static void	sh_loop(void)
 			sh_update_prompt(sh()->ok);
 			sh()->ok = true;
 		}
-		ft_memdel((void **)&sh()->line);
+		ft_strdel(&sh()->line);
 	}
 }
 

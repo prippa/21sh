@@ -12,7 +12,7 @@
 
 #include "shell.h"
 #include "messages.h"
-#include "builtin_static_arr.h"
+#include "builtin_static_box.h"
 #include "environ_manipulation.h"
 
 #define SH_CMD_NOT_FOUND	"%s: command not found"
@@ -22,11 +22,11 @@ static t_bool		sh_base_cmd_search(t_build *b)
 	size_t	i;
 
 	i = -1;
-	while (++i < SH_CMD_SIZE)
-		if (!ft_strcmp(*b->args, g_cmd_string[i]))
+	while (++i < SH_BUILTIN_SIZE)
+		if (!ft_strcmp(*b->args, g_builtin_box[i].s))
 		{
 			++b->args;
-			g_cmd_func[i](b);
+			g_builtin_box[i].f(b);
 			return (true);
 		}
 	return (false);
@@ -45,7 +45,7 @@ static t_bool		sh_check_path(const char *path, t_build *b)
 	if (!(res = access(full_path, F_OK)) &&
 		!(res = sh_is_dir(full_path)))
 		sh_exec(full_path, b);
-	ft_memdel((void **)&full_path);
+	ft_strdel(&full_path);
 	return (res ? false : true);
 }
 

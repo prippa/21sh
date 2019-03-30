@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_lst.h"
+#include "ft_mem.h"
 
 void	ft_lstdelone(t_list **lst, void (*del)(void *, size_t))
 {
@@ -18,6 +19,6 @@ void	ft_lstdelone(t_list **lst, void (*del)(void *, size_t))
 		return ;
 	if (del)
 		del((*lst)->content, (*lst)->content_size);
-	free(*lst);
+	ft_memdel((void **)lst);
 	*lst = NULL;
 }

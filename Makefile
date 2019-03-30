@@ -1,6 +1,6 @@
 #-------------------------- Key Values -----------------------------------------
 NAME		:=	21sh
-# CFLAGS		:=	-Wall -Werror -Wextra
+CFLAGS		:=	-Wall -Werror -Wextra
 CC			:=	gcc
 
 DIR_INC		:=	includes/
@@ -50,7 +50,7 @@ DIR_CTRL	:=	$(DIR_KE)ctrl/
 #-------------------------- Header files ---------------------------------------
 COR_H		:=	$(DIR_COR_INC)shell.h\
 				$(DIR_COR_INC)syntax_characters.h\
-				$(DIR_COR_INC)builtin_static_arr.h\
+				$(DIR_COR_INC)builtin_static_box.h\
 				$(DIR_COR_INC)builtin.h\
 				$(DIR_COR_INC)messages.h
 

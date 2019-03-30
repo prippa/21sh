@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "ft_mem.h"
+#include "ft_str.h"
 
 void	ft_arrdel(char ***arr)
 {
@@ -20,8 +21,8 @@ void	ft_arrdel(char ***arr)
 	{
 		tmp = *arr;
 		while (*tmp)
-			free(*tmp++);
-		free(*arr);
+			ft_strdel(tmp++);
+		ft_memdel((void **)*arr);
 		*arr = NULL;
 	}
 }

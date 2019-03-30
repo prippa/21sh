@@ -55,7 +55,7 @@ void		rl_add_to_line(t_line *ln, const char *src,
 
 void		rl_line_del(t_line *ln)
 {
-	ft_memdel((void **)&ln->line);
+	ft_strdel(&ln->line);
 }
 
 void		rl_line_cpy(t_line *dst, t_line *src)

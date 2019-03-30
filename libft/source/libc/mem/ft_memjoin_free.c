@@ -22,6 +22,6 @@ void	*ft_memjoin_free(void **dst, const void *src,
 		return (NULL);
 	ft_memcpy(*dst, tmp, dstsize);
 	ft_memcpy(*dst + dstsize, src, srcsize);
-	free(tmp);
+	ft_memdel(&tmp);
 	return (*dst);
 }

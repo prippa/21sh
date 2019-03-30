@@ -22,6 +22,6 @@ char	*ft_strcut_free(char **dst, size_t start, size_t end)
 		return (NULL);
 	ft_strncpy(*dst, tmp, start);
 	ft_strcpy(*dst + start, tmp + end);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (*dst);
 }

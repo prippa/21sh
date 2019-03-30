@@ -21,6 +21,13 @@ typedef struct		s_line_syntax
 	size_t			i;
 }					t_line_syntax;
 
+typedef int32_t		(*t_func_check)(t_line_syntax *ls, t_line *ln);
+typedef struct		s_ls_box
+{
+	t_func_check	f;
+	char			c;
+}					t_ls_box;
+
 enum
 {
 	LS_SYNTAX_ERR = -1,

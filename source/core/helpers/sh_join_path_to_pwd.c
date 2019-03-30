@@ -59,7 +59,7 @@ char		*sh_join_path_to_pwd(const char *cur_pwd, const char *path)
 		{
 			GET_MEM(MALLOC_ERR, dir, ft_strsub, path - len, 0, len);
 			sh_move(&pwd, dir);
-			ft_memdel((void **)&dir);
+			ft_strdel(&dir);
 			len = -1;
 		}
 		if (!*path++)

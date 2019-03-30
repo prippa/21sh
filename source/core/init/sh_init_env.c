@@ -23,7 +23,7 @@ static void	sh_set_shell_lvl(t_build *b)
 	{
 		GET_MEM(MALLOC_ERR, value, ft_itoa_max, ft_atoi_max(value) + 1);
 		env_set(b->env_start, b->env_end, ENV(SHELL_LVL_ENV, value), true);
-		ft_memdel((void **)&value);
+		ft_strdel(&value);
 	}
 	else
 		env_set(b->env_start, b->env_end, ENV(SHELL_LVL_ENV, "1"), true);
@@ -37,7 +37,7 @@ static void	sh_set_pwd(t_build *b)
 	{
 		GET_MEM(GETCWD_FAILED, value, getcwd, NULL, 0);
 		env_set(b->env_start, b->env_end, ENV(PWD_ENV, value), true);
-		ft_memdel((void **)&value);
+		ft_strdel(&value);
 	}
 }
 

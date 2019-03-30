@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_lst.h"
+#include "ft_mem.h"
 
 void	ft_lstdel(t_list **lst, void (*del)(void *, size_t))
 {
@@ -53,5 +54,5 @@ void	ft_lst2del_by_obj(t_list2 **start, t_list2 **end,
 void	ft_lstdel_content(void *content, size_t content_size)
 {
 	(void)content_size;
-	free(content);
+	ft_memdel(&content);
 }

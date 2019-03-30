@@ -20,7 +20,7 @@ static void	lp_dollar_write(t_line_parser *lp, char *s, size_t len)
 	GET_MEM(MALLOC_ERR, key, ft_strsub, s, 0, len);
 	if ((s = env_get_vlu_by_key(sh()->env_start, key)))
 		lp_write_to_arg_buf_str(lp, s, ft_strlen(s));
-	ft_memdel((void **)&key);
+	ft_strdel(&key);
 }
 
 void		lp_dollar(t_line_parser *lp)

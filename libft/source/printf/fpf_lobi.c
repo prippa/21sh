@@ -12,6 +12,7 @@
 
 #include "ft_printf.h"
 #include "ft_mem.h"
+#include "ft_str.h"
 #include <unistd.h>
 
 static void	fpf_dispatcher(t_printf *fpf)
@@ -47,7 +48,7 @@ static void	fpf_handle_type(t_printf *fpf)
 	if (fpf->str)
 	{
 		fpf_dispatcher(fpf);
-		free(fpf->str);
+		ft_strdel(&fpf->str);
 	}
 }
 

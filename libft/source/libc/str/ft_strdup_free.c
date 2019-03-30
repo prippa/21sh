@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_str.h"
+#include "ft_mem.h"
 
 char	*ft_strdup_free(char **dst, const char *src)
 {
@@ -19,6 +20,6 @@ char	*ft_strdup_free(char **dst, const char *src)
 	tmp = *dst;
 	if (!(*dst = ft_strdup(src)))
 		return (NULL);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (*dst);
 }

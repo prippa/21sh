@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_static_arr.h                               :+:      :+:    :+:   */
+/*   builtin_static_box.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,22 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_STATIC_ARR_H
-# define BUILTIN_STATIC_ARR_H
+#ifndef BUILTIN_STATIC_BOX_H
+# define BUILTIN_STATIC_BOX_H
 
 # include "builtin.h"
 
-typedef void		(*t_func_cmd)(t_build *b);
-static const		t_func_cmd	g_cmd_func[SH_CMD_SIZE] =
+typedef void		(*t_builtin_func)(t_build *b);
+typedef struct		s_builtin_box
 {
-	sh_cd, sh_echo, sh_env, sh_setenv,
-	sh_unsetenv, sh_exit
-};
+	t_builtin_func	f;
+	char			*s;
+}					t_builtin_box;
 
-static const char	*g_cmd_string[SH_CMD_SIZE] =
+static const t_builtin_box	g_builtin_box[SH_BUILTIN_SIZE] =
 {
-	CD_CMD, ECHO_CMD, ENV_CMD, SETENV_CMD,
-	UNSETENV_CMD, EXIT_CMD
+	{sh_cd, CD_CMD},
+	{sh_echo, ECHO_CMD},
+	{sh_env, ENV_CMD},
+	{sh_setenv, SETENV_CMD},
+	{sh_unsetenv, UNSETENV_CMD},
+	{sh_exit, EXIT_CMD},
 };
 
 #endif

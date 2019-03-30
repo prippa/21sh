@@ -61,7 +61,7 @@ static void		sh_cd_make_move(t_list2 *env_start, t_list2 *env_end,
 	{
 		pwd = sh()->pwd;
 		sh()->pwd = sh_join_path_to_pwd(pwd, path);
-		ft_memdel((void **)&pwd);
+		ft_strdel(&pwd);
 		GET_MEM(MALLOC_ERR, pwd, ft_strdup, sh()->pwd);
 	}
 	else
@@ -70,7 +70,7 @@ static void		sh_cd_make_move(t_list2 *env_start, t_list2 *env_end,
 		GET_MEM(MALLOC_ERR, sh()->pwd, ft_strdup_free, &sh()->pwd, pwd);
 	}
 	env_set(&env_start, &env_end, ENV(PWD_ENV, pwd), true);
-	ft_memdel((void **)&pwd);
+	ft_strdel(&pwd);
 }
 
 static t_bool	sh_cd_by_env(t_list2 *env_start, t_list2 *env_end,
@@ -87,7 +87,7 @@ static t_bool	sh_cd_by_env(t_list2 *env_start, t_list2 *env_end,
 		return (false);
 	GET_MEM(MALLOC_ERR, path, ft_strdup, path);
 	sh_cd_make_move(env_start, env_end, path, slf);
-	ft_memdel((void **)&path);
+	ft_strdel(&path);
 	return (true);
 }
 

@@ -63,7 +63,7 @@ void		rl_sig_handle(int32_t sig)
 		rl_ke_end(&r->ln);
 		sh_sigint_base_reaction();
 		sh_update_prompt(false);
-		ft_memdel((void **)&r->ln.line);
+		ft_strdel(&r->ln.line);
 		rl_init();
 	}
 	if (sig == SIGWINCH)

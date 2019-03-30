@@ -12,7 +12,7 @@
 
 #include <dirent.h>
 #include "syntax_characters.h"
-#include "builtin_static_arr.h"
+#include "builtin_static_box.h"
 #include "environ_manipulation.h"
 #include "messages.h"
 #include "button_keys.h"
@@ -53,7 +53,7 @@ static void		rl_t_read_dir(t_list **m, char **paths, const char *bc)
 				&bin, dit->d_name, ft_strlen(bin), ft_strlen(dit->d_name));
 			if (!access(bin, X_OK) && dit->d_type != DT_DIR)
 				rl_t_gm_push_cmd(m, bc, dit->d_name);
-			ft_memdel((void **)&bin);
+			ft_strdel(&bin);
 		}
 		if ((closedir(dip)) == ERR)
 			sh_fatal_err(CLOSEDIR_FAILED);
@@ -69,8 +69,8 @@ static t_list	*rl_t_get_matches(const char *bc)
 
 	m = NULL;
 	i = -1;
-	while (++i < SH_CMD_SIZE)
-		rl_t_gm_push_cmd(&m, bc, g_cmd_string[i]);
+	while (++i < SH_BUILTIN_SIZE)
+		rl_t_gm_push_cmd(&m, bc, g_builtin_box[i].s);
 	if (!(path_env = env_get_vlu_by_key(sh()->env_start, PATH_ENV)))
 		path_env = CUR_DIR;
 	GET_MEM(MALLOC_ERR, paths, ft_strsplit, path_env, PATH_ENV_SEPARATOR);
@@ -121,6 +121,6 @@ int32_t			rl_ke_tab(t_line *ln)
 		res = tab_process_matches(matches, ft_strlen(base_cmd), ln);
 		ft_lstdel(&matches, ft_lstdel_content);
 	}
-	ft_memdel((void **)&base_cmd);
+	ft_strdel(&base_cmd);
 	return (res);
 }

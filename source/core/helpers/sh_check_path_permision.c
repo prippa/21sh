@@ -64,6 +64,6 @@ t_bool			sh_path_access(const char *path, const char *prefix)
 
 	GET_MEM(MALLOC_ERR, s, ft_strdup, path);
 	res = sh_path_access_loop(s, path, prefix);
-	ft_memdel((void **)&s);
+	ft_strdel(&s);
 	return (res);
 }

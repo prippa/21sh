@@ -25,6 +25,6 @@ char		*ft_strinsert_free(char **dst, const char *src, size_t len)
 	ft_strncpy(*dst, ptr, len);
 	ft_strcpy(*dst + len, src);
 	ft_strcpy(*dst + len + src_len, ptr + len);
-	free(ptr);
+	ft_strdel(&ptr);
 	return (*dst);
 }

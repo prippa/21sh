@@ -35,7 +35,7 @@ int32_t			sh_setenv_one_env(t_list2 **env_start, t_list2 **env_end,
 void			sh_process_cmd(t_build *b, const char *cmd_prefix);
 void			sh_exec(const char *path, t_build *b);
 
-# define SH_CMD_SIZE	6
+# define SH_BUILTIN_SIZE	6
 
 # define CD_CMD			"cd"
 # define ECHO_CMD		"echo"

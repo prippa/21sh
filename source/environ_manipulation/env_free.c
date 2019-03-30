@@ -14,13 +14,13 @@
 
 void		env_del_body(t_env *e)
 {
-	ft_memdel((void **)&e->key);
-	ft_memdel((void **)&e->value);
+	ft_strdel(&e->key);
+	ft_strdel(&e->value);
 }
 
 void		env_del_list(void *content, size_t content_size)
 {
 	(void)content_size;
 	env_del_body((t_env *)content);
-	free(content);
+	ft_memdel(&content);
 }

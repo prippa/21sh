@@ -23,6 +23,6 @@ char	*ft_strsub_free(char **s, uint32_t start, size_t len)
 	if (!(*s = (char *)ft_memalloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	ft_strncpy(*s, tmp + start, len);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (*s);
 }

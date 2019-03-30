@@ -13,17 +13,14 @@
 #include "line_syntax.h"
 #include "syntax_characters.h"
 
-#define LS_CMD_SIZE	4
+#define LS_BOX_SIZE	4
 
-typedef int32_t		(*t_func_cmd)(t_line_syntax *ls, t_line *ln);
-static const		t_func_cmd	g_ls_cmd_f[LS_CMD_SIZE] =
+static const t_ls_box	g_ls_box[LS_BOX_SIZE] =
 {
-	ls_single_q_check, ls_dobule_q_check, ls_backslash_check, ls_semi_check
-};
-
-static const char	g_ls_cmd_c[LS_CMD_SIZE] =
-{
-	SINGLE_QUOTES_C, DOUBLE_QUOTES_C, BACKSLASH_C, SEMICOLON_C
+	{ls_single_q_check, SINGLE_QUOTES_C},
+	{ls_dobule_q_check, DOUBLE_QUOTES_C},
+	{ls_backslash_check, BACKSLASH_C},
+	{ls_semi_check, SEMICOLON_C},
 };
 
 static int32_t		rl_ls_loop(t_line *ln, t_line_syntax *ls)
@@ -36,10 +33,10 @@ static int32_t		rl_ls_loop(t_line *ln, t_line_syntax *ls)
 	while (ln->line[++ls->i])
 	{
 		iter = -1;
-		while (++iter < LS_CMD_SIZE)
-			if (ln->line[ls->i] == g_ls_cmd_c[iter])
+		while (++iter < LS_BOX_SIZE)
+			if (ln->line[ls->i] == g_ls_box[iter].c)
 			{
-				if ((res = g_ls_cmd_f[iter](ls, ln)))
+				if ((res = g_ls_box[iter].f(ls, ln)))
 					return (res);
 				break ;
 			}
