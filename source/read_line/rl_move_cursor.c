@@ -35,12 +35,10 @@ size_t			rl_move_cursor_right(t_line *ln, size_t pc,
 			ln->x = 0;
 		}
 		else
-		{
-			rl_make_tc_magic(t->nd);
 			++ln->x;
-		}
 		++pc;
 	}
+	rl_goto_x(ln->x);
 	return (pc);
 }
 
@@ -55,15 +53,12 @@ size_t			rl_move_cursor_left(t_line *ln, size_t pc,
 		if (ln->x == 0)
 		{
 			rl_make_tc_magic(t->up);
-			rl_goto_x(col - 1);
 			ln->x = col - 1;
 		}
 		else
-		{
-			rl_make_tc_magic(t->le);
 			--ln->x;
-		}
 		--pc;
 	}
+	rl_goto_x(ln->x);
 	return (pc);
 }
