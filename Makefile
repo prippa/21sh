@@ -46,7 +46,6 @@ DIR_KE		:=	$(DIR_RL_SRC)key_events/
 DIR_AC		:=	$(DIR_KE)Tab/
 DIR_AROWS	:=	$(DIR_KE)arrows/
 DIR_CTRL	:=	$(DIR_KE)ctrl/
-DIR_CTRL_R	:=	$(DIR_KE)Ctrl+R/
 
 #-------------------------- Header files ---------------------------------------
 COR_H		:=	$(DIR_COR_INC)shell.h\
@@ -123,7 +122,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_AROWS)rl_ke_ctrl_shift_arrows.c\
 				$(DIR_CTRL)rl_ke_ctrl_d_a_e_l_h.c\
 				$(DIR_CTRL)rl_ke_ctrl_g_u_k.c\
-				$(DIR_CTRL_R)rl_ke_ctrl_r.c
+				$(DIR_CTRL)rl_ke_ctrl_r.c
 
 #-------------------------- Init OBJ, INC --------------------------------------
 OBJ			:=	$(patsubst $(DIR_COR_SRC)%,$(DIR_OBJ)%,\

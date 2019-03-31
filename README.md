@@ -17,12 +17,13 @@ Project from UNIX branch in school 42
 | Ctrl + Shift + Right | ⌃⇧→ | delete the word after the cursor |
 | Ctrl + Shift + Up | ⌃⇧↑ | delete the row in front of the cursor |
 | Ctrl + Shift + Down | ⌃⇧↓ | delete the row after the cursor |
-| Return | ↩ | Confirm line entry |
-| Back Space | ↵ | delete one previous character from current position of cursor |
-| Delete | ⌫ | delete one character from current position of cursor |
+| Return | ⏎ | Confirm line entry |
+| Backspace | ⌫ | delete one previous character from current position of cursor |
+| Delete | ⌦ | delete one character from current position of cursor |
 | Home | ⇱  | move cursor to the beginning of the line |
 | End | ⇲  | move cursor to the end of the line |
-| TAB | ⇥ | Auto compilation |
+| Tab | ⇥ | Auto compilation |
+| Ctrl + r | ⌃r | Search history |
 | Ctrl + a | ⌃a | work same as Home |
 | Ctrl + e | ⌃e | work same as End |
 | Ctrl + u | ⌃u | clear all characters in front the cursor |

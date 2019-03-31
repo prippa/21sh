@@ -55,4 +55,5 @@ void			rl_init(void)
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
 	rl_move_x(&rl()->ln.x, rl()->prompt_size, rl()->w.ws_col);
 	rl_line_cpy(&rl()->prev_ln, &rl()->ln);
+	rl()->mod = M_BASE;
 }

@@ -15,7 +15,9 @@
 
 # include "read_line.h"
 
-# define KE_SIZE				26
+# define SEARCH_PROMPT "(reverse-i-search)`': "
+
+# define KE_SIZE				27
 
 # define KEY_BACK_SPACE			127
 # define KEY_DELETE				2117294875
@@ -75,7 +77,6 @@ int32_t					rl_ke_ctrl_u(t_line *ln);
 int32_t					rl_ke_ctrl_k(t_line *ln);
 int32_t					rl_ke_ctrl_h(t_line *ln);
 int32_t					rl_ke_ctrl_l(t_line *ln);
-
-uint64_t				rl_ke_ctrl_r(t_line *ln);
+int32_t					rl_ke_ctrl_r(t_line *ln);
 
 #endif

@@ -37,17 +37,6 @@ typedef struct		s_history
 	char			*cur_line_buf;
 }					t_history;
 
-typedef struct		s_read_line
-{
-	t_line			ln;
-	t_line			prev_ln;
-	t_history		hs;
-	int32_t			inhibitors_in_use;
-	struct winsize	w;
-	char			prompt[PROMPT_SIZE + 1];
-	size_t			prompt_size;
-}					t_read_line;
-
 typedef int32_t		(*t_func)(t_line *ln);
 typedef struct		s_event
 {
@@ -65,6 +54,24 @@ typedef struct		s_tc
 	char			*cl;
 	char			*u7;
 }					t_tc;
+
+typedef enum		e_mod
+{
+	M_BASE,
+	M_SEARCH
+}					t_mod;
+
+typedef struct		s_read_line
+{
+	t_line			ln;
+	t_line			prev_ln;
+	t_history		hs;
+	int32_t			inhibitors_in_use;
+	struct winsize	w;
+	char			prompt[PROMPT_SIZE + 1];
+	size_t			prompt_size;
+	t_mod			mod;
+}					t_read_line;
 
 t_read_line			*rl(void);
 t_tc				*tc(void);

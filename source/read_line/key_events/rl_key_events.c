@@ -39,6 +39,7 @@ static t_event const	g_ke[KE_SIZE] =
 	{&rl_ke_ctrl_k, KEY_CTRL_K},
 	{&rl_ke_ctrl_h, KEY_CTRL_H},
 	{&rl_ke_ctrl_l, KEY_CTRL_L},
+	{&rl_ke_ctrl_r, KEY_CTRL_R},
 	{&rl_ke_tab, KEY_TAB},
 };
 
@@ -64,11 +65,6 @@ int32_t					rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE])
 	size_t		i;
 
 	ft_memcpy(&key, buf, RL_BUFF_SIZE);
-	if (key == KEY_CTRL_R)
-	{
-		if ((key = rl_ke_ctrl_r(ln)) == OK)
-			return (OK);
-	}
 	i = -1;
 	while (++i < KE_SIZE)
 		if (g_ke[i].key == key)

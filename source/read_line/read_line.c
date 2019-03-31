@@ -29,6 +29,7 @@ static void		rl_read_key(t_line *ln, char buf[RL_BUFF_SIZE])
 	while (true)
 	{
 		rl_read(buf);
+		
 		if (!ln->line)
 		{
 			GET_MEM(MALLOC_ERR, ln->line, ft_strdup, EMPTY_STR);

@@ -21,7 +21,7 @@ static struct s_sig_box	g_sig_box[SIG_SIZE] =
 	{false, SIGWINCH},
 };
 
-void		rl_execute_aside_signals(__sighandler_t sig_h)
+void		rl_execute_aside_signals(sig_t sig_h)
 {
 	uint8_t i;
 
