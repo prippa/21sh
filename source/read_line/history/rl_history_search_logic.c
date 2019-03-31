@@ -26,7 +26,7 @@ static t_bool	rl_hs_crs_new_line(t_line *ln, const char *line,
 		rl_ke_ctrl_g(ln);
 		rl_add_to_line(ln, line, rl()->w.ws_col, true);
 		ln->pc = rl_move_cursor_left(ln, ln->pc,
-			ln->pc - hs()->start, rl()->w.ws_col);
+			ln->pc - ln->l_start - hs()->start, rl()->w.ws_col);
 		hs()->same_line_flag = true;
 	}
 	return (hs()->same_line_flag ? false : true);
@@ -44,7 +44,7 @@ static t_bool	rl_hs_crs_check(const char *line, t_line *ln)
 		if (rl_hs_crs_start_compare(line, hs()->search_str, ss_len))
 		{
 			ln->pc = rl_move_cursor_left(ln, ln->pc,
-				ln->pc - hs()->start, rl()->w.ws_col);
+				ln->pc - ln->l_start - hs()->start, rl()->w.ws_col);
 		}
 		else
 			hs()->same_line_flag = false;
