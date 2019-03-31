@@ -16,10 +16,8 @@
 # include <stdint.h>
 # include <signal.h>
 
-typedef void			(*t_sig_func)(int32_t sig);
 struct					s_sig_box
 {
-	const t_sig_func	func;
 	t_bool				flag;
 	int32_t				sig;
 };
@@ -27,6 +25,6 @@ struct					s_sig_box
 void					rl_init_sig(void);
 void					rl_init_sig_aside(void);
 void					rl_sig_handle(int32_t sig);
-void					rl_execute_aside_signals(void);
+void					rl_execute_aside_signals(__sighandler_t sig_h);
 
 #endif

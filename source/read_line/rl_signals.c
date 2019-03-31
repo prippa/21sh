@@ -17,11 +17,11 @@
 
 static struct s_sig_box	g_sig_box[SIG_SIZE] =
 {
-	{&rl_sig_handle, false, SIGINT},
-	{&rl_sig_handle, false, SIGWINCH},
+	{false, SIGINT},
+	{false, SIGWINCH},
 };
 
-void		rl_execute_aside_signals(void)
+void		rl_execute_aside_signals(__sighandler_t sig_h)
 {
 	uint8_t i;
 
@@ -30,7 +30,7 @@ void		rl_execute_aside_signals(void)
 		if (g_sig_box[i].flag)
 		{
 			g_sig_box[i].flag = false;
-			g_sig_box[i].func(g_sig_box[i].sig);
+			sig_h(g_sig_box[i].sig);
 		}
 }
 

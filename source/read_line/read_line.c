@@ -16,7 +16,7 @@
 
 static void		rl_read(char buf[RL_BUFF_SIZE])
 {
-	rl_execute_aside_signals();
+	rl_execute_aside_signals(&rl_sig_handle);
 	rl_init_sig();
 	ft_bzero(buf, RL_BUFF_SIZE);
 	if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)

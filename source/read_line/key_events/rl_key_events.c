@@ -64,8 +64,11 @@ int32_t					rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE])
 	size_t		i;
 
 	ft_memcpy(&key, buf, RL_BUFF_SIZE);
-	if (key = KEY_CTRL_R)
-		key = rl_ke_ctrl_r(ln);
+	if (key == KEY_CTRL_R)
+	{
+		if ((key = rl_ke_ctrl_r(ln)) == OK)
+			return (OK);
+	}
 	i = -1;
 	while (++i < KE_SIZE)
 		if (g_ke[i].key == key)
