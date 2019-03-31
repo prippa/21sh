@@ -26,15 +26,16 @@ static void		rl_read(char buf[RL_BUFF_SIZE])
 
 static void		rl_read_key(t_line *ln, char buf[RL_BUFF_SIZE])
 {
+	
 	while (true)
 	{
 		rl_read(buf);
-		
-		if (!ln->line)
+		if (rl()->mod == M_SEARCH)
 		{
-			GET_MEM(MALLOC_ERR, ln->line, ft_strdup, EMPTY_STR);
+			if (!rl_history_search(ln, buf))
+				break ;
 		}
-		if (ft_is_str_print(buf))
+		else if (ft_is_str_print(buf))
 			rl_add_to_line(ln, buf, rl()->w.ws_col, true);
 		else
 			break ;

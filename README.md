@@ -23,13 +23,13 @@ Project from UNIX branch in school 42
 | Home | ⇱  | move cursor to the beginning of the line |
 | End | ⇲  | move cursor to the end of the line |
 | Tab | ⇥ | Auto compilation |
-| Ctrl + r | ⌃r | Search history |
-| Ctrl + a | ⌃a | work same as Home |
-| Ctrl + e | ⌃e | work same as End |
-| Ctrl + u | ⌃u | clear all characters in front the cursor |
-| Ctrl + k | ⌃k | clear all characters after the cursor |
-| Ctrl + g | ⌃g | clear all characters in line |
-| Ctrl + h | ⌃h | Undo the last change |
-| Ctrl + l | ⌃l | clear screen |
+| Ctrl + R | ⌃R | Search history |
+| Ctrl + A | ⌃A | work same as Home |
+| Ctrl + E | ⌃E | work same as End |
+| Ctrl + U | ⌃U | clear all characters in front the cursor |
+| Ctrl + K | ⌃K | clear all characters after the cursor |
+| Ctrl + G | ⌃G | clear all characters in line |
+| Ctrl + H | ⌃H | Undo the last change |
+| Ctrl + L | ⌃L | clear screen |
 
 [more info](https://github.com/prippa/21sh/blob/master/21sh.en.pdf)

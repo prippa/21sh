@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "button_keys.h"
+#include "history_search.h"
 #include "read_line_signals.h"
 
 #define SIG_SIZE 2
@@ -61,6 +61,8 @@ void		rl_sig_handle(int32_t sig)
 		sh_sigint_base_reaction();
 		sh_update_prompt(false);
 		ft_strdel(&rl()->ln.line);
+		if (rl()->mod == M_SEARCH)
+			ft_strdel(&hs()->search_str);
 		rl_init();
 	}
 	if (sig == SIGWINCH)

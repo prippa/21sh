@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "button_keys.h"
+#include "history_search.h"
 
 void		rl_history_add(const char *line)
 {

@@ -1,6 +1,6 @@
 #-------------------------- Key Values -----------------------------------------
 NAME		:=	21sh
-CFLAGS		:=	-Wall -Werror -Wextra
+# CFLAGS		:=	-Wall -Werror -Wextra
 CC			:=	gcc
 
 DIR_INC		:=	includes/
@@ -43,6 +43,7 @@ DIR_LPCMD	:=	$(DIR_LNP_SRC)lp_commands/
 # read_line
 DIR_LS		:=	$(DIR_RL_SRC)line_syntax/
 DIR_KE		:=	$(DIR_RL_SRC)key_events/
+DIR_HS		:=	$(DIR_RL_SRC)history/
 DIR_AC		:=	$(DIR_KE)Tab/
 DIR_AROWS	:=	$(DIR_KE)arrows/
 DIR_CTRL	:=	$(DIR_KE)ctrl/
@@ -61,6 +62,7 @@ LNP_H		:=	$(DIR_LNP_INC)line_parser.h
 RL_H		:=	$(DIR_RL_INC)read_line.h\
 				$(DIR_RL_INC)button_keys.h\
 				$(DIR_RL_INC)line_syntax.h\
+				$(DIR_RL_INC)history_search.h\
 				$(DIR_RL_INC)read_line_signals.h
 
 #-------------------------- Source files ---------------------------------------
@@ -108,8 +110,11 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_move_cursor.c\
 				$(DIR_RL_SRC)rl_edit_line.c\
 				$(DIR_RL_SRC)rl_make_tc_magic.c\
-				$(DIR_RL_SRC)rl_history.c\
 				$(DIR_RL_SRC)rl_signals.c\
+				$(DIR_HS)rl_history_search.c\
+				$(DIR_HS)rl_history_manager.c\
+				$(DIR_HS)rl_hs_continue_revers_search.c\
+				$(DIR_HS)rl_hs_new_mask.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\

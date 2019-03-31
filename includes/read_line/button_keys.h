@@ -15,11 +15,9 @@
 
 # include "read_line.h"
 
-# define SEARCH_PROMPT "(reverse-i-search)`': "
-
 # define KE_SIZE				27
 
-# define KEY_BACK_SPACE			127
+# define KEY_BACKSPACE			127
 # define KEY_DELETE				2117294875
 # define KEY_RETURN				10
 # define KEY_HOME				4741915

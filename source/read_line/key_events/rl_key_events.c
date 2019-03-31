@@ -17,7 +17,7 @@ static t_event const	g_ke[KE_SIZE] =
 	{&rl_ke_ctrl_a, KEY_CTRL_A},
 	{&rl_ke_ctrl_e, KEY_CTRL_E},
 	{&rl_ke_delete, KEY_DELETE},
-	{&rl_ke_back_space, KEY_BACK_SPACE},
+	{&rl_ke_back_space, KEY_BACKSPACE},
 	{&rl_ke_home, KEY_HOME},
 	{&rl_ke_end, KEY_END},
 	{&rl_ke_left, KEY_LEFT},

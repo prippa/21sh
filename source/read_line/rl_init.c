@@ -48,6 +48,7 @@ void			rl_init(void)
 	rl_check_if_not_new_line();
 	rl()->hs.curent = NULL;
 	ft_bzero(&rl()->ln, sizeof(t_line));
+	GET_MEM(MALLOC_ERR, rl()->ln.line, ft_strdup, EMPTY_STR);
 	rl()->inhibitors_in_use = false;
 	ft_strcpy(rl()->prompt, sh()->prompt);
 	rl()->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
@@ -55,5 +56,5 @@ void			rl_init(void)
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
 	rl_move_x(&rl()->ln.x, rl()->prompt_size, rl()->w.ws_col);
 	rl_line_cpy(&rl()->prev_ln, &rl()->ln);
-	rl()->mod = M_BASE;
+	rl()->mod = M_DEFAULT;
 }

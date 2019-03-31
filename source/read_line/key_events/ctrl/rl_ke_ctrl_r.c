@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "button_keys.h"
+#include "history_search.h"
 
 int32_t	rl_ke_ctrl_r(t_line *ln)
 {

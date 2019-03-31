@@ -57,7 +57,7 @@ typedef struct		s_tc
 
 typedef enum		e_mod
 {
-	M_BASE,
+	M_DEFAULT,
 	M_SEARCH
 }					t_mod;
 
@@ -77,6 +77,7 @@ t_read_line			*rl(void);
 t_tc				*tc(void);
 void				rl_init(void);
 int32_t				rl_key_events(t_line *ln, const char buf[RL_BUFF_SIZE]);
+t_bool				rl_history_search(t_line *ln, const char buf[RL_BUFF_SIZE]);
 
 void				rl_make_tc_magic(const char *t);
 void				rl_goto_x(uint16_t x);
