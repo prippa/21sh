@@ -1,6 +1,6 @@
 #-------------------------- Key Values -----------------------------------------
 NAME		:=	21sh
-# CFLAGS		:=	-Wall -Werror -Wextra
+CFLAGS		:=	-Wall -Werror -Wextra
 CC			:=	gcc
 
 DIR_INC		:=	includes/
@@ -111,10 +111,9 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_edit_line.c\
 				$(DIR_RL_SRC)rl_make_tc_magic.c\
 				$(DIR_RL_SRC)rl_signals.c\
-				$(DIR_HS)rl_history_search.c\
 				$(DIR_HS)rl_history_manager.c\
-				$(DIR_HS)rl_hs_continue_revers_search.c\
-				$(DIR_HS)rl_hs_new_mask.c\
+				$(DIR_HS)rl_history_search.c\
+				$(DIR_HS)rl_history_search_logic.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\

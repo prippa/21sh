@@ -12,6 +12,13 @@
 
 #include "history_search.h"
 
+t_hs		*hs()
+{
+	static t_hs	hs;
+
+	return (&hs);
+}
+
 void		rl_history_add(const char *line)
 {
 	char		*l;
@@ -37,4 +44,17 @@ void		rl_history_move(const char *line, t_line *ln)
 {
 	rl_ke_ctrl_g(ln);
 	rl_add_to_line(ln, line, rl()->w.ws_col, true);
+}
+
+void		rl_history_init_new_prompt(const char *ss, const char *prompt)
+{
+	char	*new_prompt;
+
+	GET_MEM(MALLOC_ERR, new_prompt, ft_strdup, prompt);
+	GET_MEM(MALLOC_ERR, new_prompt, ft_strinsert_free,
+		&new_prompt, ss,
+		(ft_strchr(new_prompt, '`') + 1) - new_prompt);
+	ft_strcpy(rl()->prompt, new_prompt);
+	rl()->prompt_size = ft_strlen(ss) + ft_strlen(prompt);
+	ft_strdel(&new_prompt);
 }

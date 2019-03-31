@@ -28,18 +28,20 @@ t_tc			*tc(void)
 
 static void		rl_check_if_not_new_line(void)
 {
-	char	buf[42];
-	size_t	i;
+	char	buf[42 + 1];
+	char	*chr;
 
-	write(STDOUT_FILENO, tc()->u7, 4);
-	read(STDIN_FILENO, buf, 42);
-	i = 0;
-	while (buf[i] != ';')
-		++i;
-	if (ft_atoi(&buf[i + 1]) - 1)
+	ft_bzero(buf, 42);
+	write(STDIN_FILENO, tc()->u7, 4);
+	if (read(STDIN_FILENO, buf, 42) == ERR)
+		sh_fatal_err(READ_ERR);
+	if ((chr = ft_strchr(buf, ';')))
 	{
-		ft_dprintf(STDIN_FILENO, "%s%~c", BOLD, CT_BACK, C_WHITE, '%');
-		rl_make_tc_magic(tc()->down);
+		if (ft_atoi(++chr) - 1)
+		{
+			ft_dprintf(STDIN_FILENO, "%s%~c", BOLD, CT_BACK, C_WHITE, '%');
+			rl_make_tc_magic(tc()->down);
+		}
 	}
 }
 

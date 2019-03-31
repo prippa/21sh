@@ -1,12 +1,5 @@
 #include "history_search.h"
 
-t_hs			*hs()
-{
-	static t_hs	hs;
-
-	return (&hs);
-}
-
 static void		rl_hs_new_mask_add(t_line *ln, const char *new_data)
 {
 	if (ft_strlen(new_data) + rl()->prompt_size > PROMPT_SIZE)
@@ -29,12 +22,20 @@ static void		rl_hs_new_mask_del(t_line *ln)
 
 static void		rl_hs_set_default_mod(t_line *ln)
 {
-	rl()->mod = M_DEFAULT;
 	rl_clear_line(ln, rl()->w.ws_col);
-	ft_strcpy(rl()->prompt, sh()->prompt);
-	rl()->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
+	ft_strcpy(rl()->prompt, hs()->reset_prompt);
+	rl()->prompt_size = hs()->reset_prompt_size;
 	rl_redraw_line(ln, rl()->w.ws_col);
 	ft_strdel(&hs()->search_str);
+	rl()->mod = M_DEFAULT;
+}
+
+static void		rl_hs_init(void)
+{
+	if (hs()->search_str)
+		return ;
+	GET_MEM(MALLOC_ERR, hs()->search_str, ft_strdup, EMPTY_STR);
+	hs()->h_curent = rl()->hs.h_end;
 }
 
 t_bool			rl_history_search(t_line *ln, const char buf[RL_BUFF_SIZE])
@@ -42,12 +43,7 @@ t_bool			rl_history_search(t_line *ln, const char buf[RL_BUFF_SIZE])
 	uint64_t key;
 
 	ft_memcpy(&key, buf, RL_BUFF_SIZE);
-	if (!hs()->search_str)
-	{
-		GET_MEM(MALLOC_ERR, hs()->search_str, ft_strdup, EMPTY_STR);
-		hs()->h_curent = rl()->hs.h_end;
-		hs()->h_end = rl()->hs.h_end;
-	}
+	rl_hs_init();
 	if (ft_is_str_print(buf))
 		rl_hs_new_mask_add(ln, buf);
 	else if (key == KEY_CTRL_R)

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdint.h>
 
 char	*ft_strchr(const char *s, int32_t c)
 {
