@@ -38,10 +38,7 @@ static void		rl_check_if_not_new_line(void)
 	if ((chr = ft_strchr(buf, ';')))
 	{
 		if (ft_atoi(++chr) - 1)
-		{
-			ft_dprintf(STDIN_FILENO, "%s%~c", BOLD, CT_BACK, C_WHITE, '%');
-			rl_make_tc_magic(tc()->down);
-		}
+			ft_dprintf(STDIN_FILENO, "%s%~c\n", BOLD, CT_BACK, C_WHITE, '%');
 	}
 }
 
