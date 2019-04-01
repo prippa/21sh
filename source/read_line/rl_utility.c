@@ -29,7 +29,7 @@ void			rl_clear_line(t_line *ln, uint16_t col)
 	t = tc();
 	n = 0;
 	if (col)
-		n = (rl()->prompt_size + ln->pc) / col;
+		n = (rl()->prompt_size + (ln->pc - ln->l_start)) / col;
 	while (n--)
 		rl_make_tc_magic(t->up);
 	rl_make_tc_magic(tc()->cr);
