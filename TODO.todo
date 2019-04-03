@@ -19,9 +19,10 @@ debug str:
 vi, ve, DO, UP
 
 Bonuses:
+	History Search (CTRL+R)
 	Auto Comp
+	Back Skash
 	shell prompt
 	Path Rights
-	Back Skash
 TODO:
 	CMON STOP OPTIMIZATE READ_LINE!!!!!!!!!!!!!!!!!!!!!!
