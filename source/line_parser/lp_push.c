@@ -67,7 +67,10 @@ void		lp_push_arg(t_line_parser *lp)
 		lp_join_to_arg(lp, lp->arg_buf, lp->arg_buf_len);
 	if (lp->arg_len)
 	{
-		GET_MEM(MALLOC_ERR, new_obj, ft_lstnew, lp->arg, 0);
+		// GET_MEM(MALLOC_ERR, new_obj, ft_lstnew, lp->arg, 0);
+		GET_MEM(MALLOC_ERR, new_obj, ft_memalloc, sizeof(t_list));
+		new_obj->content = lp->arg;
+		new_obj->content_size = lp->arg_len;
 		ft_lstadd(&lp->args, new_obj);
 		++lp->args_size;
 		lp->arg = NULL;

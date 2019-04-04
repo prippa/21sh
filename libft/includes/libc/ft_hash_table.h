@@ -25,8 +25,9 @@ typedef struct	s_ht_item
 
 typedef struct	s_hash_table
 {
-	t_ht_item	*items;
-	size_t		items_size;
+	t_ht_item	*item;
+	size_t		item_size;
+	size_t		item_len;
 }				t_hash_table;
 
 #endif
