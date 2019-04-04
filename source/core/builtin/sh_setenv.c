@@ -15,7 +15,7 @@
 #include "builtin.h"
 #include "environ_manipulation.h"
 
-#define SH_SETENV_INVALID_ARG	"setenv: '%s' not a valid identifier"
+#define SH_SETENV_INV_ARG SHELL_NAME ": " "setenv: '%s' not a valid identifier"
 
 static t_bool	sh_setenv_strictly_valid(const char *key)
 {
@@ -60,7 +60,7 @@ void			sh_setenv(t_build *b)
 	{
 		if (sh_setenv_one_env(b->env, *b->args, true))
 		{
-			PRINT_ERR(EXIT_FAILURE, SH_SETENV_INVALID_ARG, *b->args);
+			PRINT_ERR(EXIT_FAILURE, SH_SETENV_INV_ARG, *b->args);
 		}
 		++b->args;
 	}

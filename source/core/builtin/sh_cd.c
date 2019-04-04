@@ -16,7 +16,7 @@
 #include "environ_manipulation.h"
 
 #define CD_DASH_F			"-"
-#define CD					CD_CMD ": "
+#define CD					SHELL_NAME ": " CD_CMD ": "
 #define CD_TO_MANY_ARGS		CD TO_MANY_ARGS
 #define CD_NOT_DIR			CD "'%s': Not a directory"
 #define CD_PERM_DENIED		CD PERM_DENIED
@@ -118,9 +118,11 @@ void			sh_cd(t_build *b)
 	{
 		PRINT_ERR(EXIT_FAILURE, CD_TO_MANY_ARGS, NULL);
 	}
-	else if (!ft_strcmp(*b->args, CD_DASH_F) &&
-		sh_cd_by_env(b->env, OLDPWD_ENV, symb_link_flag))
-		ft_putendl(env_get_vlu_by_key(b->env->start, PWD_ENV));
+	else if (!ft_strcmp(*b->args, CD_DASH_F))
+	{
+		if (sh_cd_by_env(b->env, OLDPWD_ENV, symb_link_flag))
+			ft_putendl(env_get_vlu_by_key(b->env->start, PWD_ENV));
+	}
 	else if (sh_cd_path_valid(*b->args))
 		sh_cd_make_move(b->env, *b->args, symb_link_flag);
 	if (sh()->ok)

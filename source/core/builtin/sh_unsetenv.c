@@ -13,9 +13,10 @@
 #include "shell.h"
 #include "builtin.h"
 #include "environ_manipulation.h"
+#include "messages.h"
 
-#define SH_UNSETENV_USG		"unsetenv: usage: unsetenv [key] ..."
-#define SH_UNSETENV_NO_NAME	"unsetenv: '%s' not found"
+#define SH_UNSETENV_USG	SHELL_NAME ": " "unsetenv: usage: unsetenv [key] ..."
+#define SH_UNSETENV_NO_NAME	SHELL_NAME ": " "unsetenv: '%s' not found"
 
 void	sh_unsetenv(t_build *b)
 {
