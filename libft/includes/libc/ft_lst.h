@@ -50,6 +50,5 @@ void					ft_lstiter(t_list_elem *start, t_iter_elem f);
 t_list					ft_lstmap(t_list_elem *start, t_map_elem f);
 
 void					ft_lstrev(t_list *lst);
-size_t					ft_lstsize(t_list_elem *start);
 
 #endif

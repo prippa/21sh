@@ -61,6 +61,8 @@ char				*sh_join_path_to_pwd(const char *cur_pwd, const char *path);
 void				sh_update_curent_dir_name(void);
 void				sh_update_prompt(t_bool ok);
 void				sh_reset_settings(void);
+void				sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
+						void *content, size_t content_size);
 
 char				*read_line(void);
 
@@ -73,9 +75,5 @@ void				sh_init_sig_base(void);
 void				sh_init_sig_incase(void);
 void				sh_init_sig_default(void);
 
-void				sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
-						void *content, size_t content_size);
-void				sh_lstpush_front(t_list *lst, t_bool make_copy_of_content,
-						void *content, size_t content_size);
 
 #endif

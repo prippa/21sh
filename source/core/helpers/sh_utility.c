@@ -17,11 +17,22 @@
 
 #define SH_ERR		"ERROR: " SHELL_NAME " : %s\n"
 
-t_shell		*sh(void)
+void	sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
+			void *content, size_t content_size)
 {
-	static t_shell sh;
+	t_list_elem *new_obj;
 
-	return (&sh);
+	if (make_copy_of_content)
+	{
+		GET_MEM(MALLOC_ERR, new_obj, ft_lstnew, content, content_size);
+	}
+	else
+	{
+		GET_MEM(MALLOC_ERR, new_obj, ft_memalloc, sizeof(t_list_elem));
+		new_obj->content = content;
+		new_obj->content_size = content_size;
+	}
+	ft_lstpush_back(lst, new_obj);
 }
 
 void		sh_update_curent_dir_name(void)

@@ -29,11 +29,9 @@ void			env_set(t_list *env_list,
 	t_env		new_env_cpy;
 
 	new_env_cpy = env_make_clone_of_body(new_env);
-	if ((obj = env_get_obj_by_key(env_list->start, new_env_cpy.key)))
-	{
-		if (overwrite)
-			env_edit(obj, &new_env_cpy);
-		return ;
-	}
-	sh_lstpush_back(env_list, true, &new_env_cpy, sizeof(t_env));
+	obj = env_get_obj_by_key(env_list->start, new_env_cpy.key);
+	if (obj && overwrite)
+		env_edit(obj, &new_env_cpy);
+	else
+		sh_lstpush_back(env_list, true, &new_env_cpy, sizeof(t_env));
 }

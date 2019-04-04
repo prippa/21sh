@@ -11,27 +11,36 @@
 /* ************************************************************************** */
 
 #include "ft_lst.h"
+		#include <stdio.h>
 
 void	ft_lstpop_front(t_list *lst, t_del_content del)
 {
-	t_list_elem *del_elem;
+	t_list_elem *tmp;
 
-	if (lst->start == lst->end)
-		lst->end = NULL;
-	del_elem = lst->start;
+	if (!lst->start)
+		return ;
+	tmp = lst->start;
 	lst->start = lst->start->next;
-	ft_lstdel_one(&del_elem, del);
+	if (lst->start)
+		lst->start->prev = NULL;
+	else
+		lst->end = NULL;
+	ft_lstdel_one(&tmp, del);
 	--lst->list_size;
 }
 
 void	ft_lstpop_back(t_list *lst, t_del_content del)
 {
-	t_list_elem *del_elem;
+	t_list_elem *tmp;
 
-	if (lst->end == lst->start)
-		lst->start = NULL;
-	del_elem = lst->end;
+	if (!lst->end)
+		return ;
+	tmp = lst->end;
 	lst->end = lst->end->prev;
-	ft_lstdel_one(&del_elem, del);
+	if (lst->end)
+		lst->end->prev = NULL;
+	else
+		lst->end = NULL;
+	ft_lstdel_one(&tmp, del);
 	--lst->list_size;
 }

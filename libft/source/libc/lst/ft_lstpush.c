@@ -14,8 +14,8 @@
 
 void	ft_lstpush_front(t_list *lst, t_list_elem *new_obj)
 {
-	new_obj->next = lst->start;
 	new_obj->prev = NULL;
+	new_obj->next = lst->start;
 	if (lst->start)
 		lst->start->prev = new_obj;
 	else

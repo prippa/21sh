@@ -24,7 +24,7 @@ t_env		env_make_clone_of_body(const t_env *origin)
 
 void		env_make_clone(t_list *dst, t_list_elem *src_start)
 {
-	t_env		e;
+	t_env	e;
 
 	while (src_start)
 	{

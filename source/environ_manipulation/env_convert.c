@@ -25,14 +25,13 @@ static char	*env_convert_to_str(const char *key, const char *value)
 	return (env);
 }
 
-char		**env_convert_to_arr(t_list_elem *start)
+char		**env_convert_to_arr(t_list_elem *start, size_t list_size)
 {
 	t_env	*e;
 	char	**arr;
 	size_t	i;
 
-	GET_MEM(MALLOC_ERR, arr, ft_memalloc,
-		sizeof(char *) * (ft_lstsize(start) + 1));
+	GET_MEM(MALLOC_ERR, arr, ft_memalloc, sizeof(char *) * (list_size + 1));
 	i = -1;
 	while (start)
 	{

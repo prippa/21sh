@@ -13,6 +13,13 @@
 #include "shell.h"
 #include "messages.h"
 
+t_shell		*sh(void)
+{
+	static t_shell sh;
+
+	return (&sh);
+}
+
 void		sh_init(void)
 {
 	sh()->ok = true;
