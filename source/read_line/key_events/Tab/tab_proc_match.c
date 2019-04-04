@@ -78,7 +78,8 @@ static int32_t	rl_t_end_move(const char *postfix, const t_list_elem *m,
 	return (ERR);
 }
 
-int32_t			tab_process_matches(const t_list_elem *m, size_t len, t_line *ln)
+int32_t			tab_process_matches(const t_list_elem *m,
+					size_t len, t_line *ln)
 {
 	char			postfix[FILENAME_MAX + 1];
 	size_t			elem_max_len;

@@ -75,5 +75,4 @@ void				sh_init_sig_base(void);
 void				sh_init_sig_incase(void);
 void				sh_init_sig_default(void);
 
-
 #endif

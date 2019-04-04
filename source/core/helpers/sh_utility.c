@@ -17,8 +17,8 @@
 
 #define SH_ERR		"ERROR: " SHELL_NAME " : %s\n"
 
-void	sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
-			void *content, size_t content_size)
+void		sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
+				void *content, size_t content_size)
 {
 	t_list_elem *new_obj;
 

@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 
-typedef	struct		s_list_elem
+typedef	struct			s_list_elem
 {
 	void				*content;
 	size_t				content_size;
@@ -30,8 +30,8 @@ typedef	struct			s_list
 	size_t				list_size;
 }						t_list;
 
-typedef void (*t_del_content)(void *content, size_t content_size);
-typedef void (*t_iter_elem)(t_list_elem *elem);
+typedef void	(*t_del_content)(void *content, size_t content_size);
+typedef void	(*t_iter_elem)(t_list_elem *elem);
 typedef t_list_elem *(*t_map_elem)(t_list_elem *elem);
 
 t_list_elem				*ft_lstnew(void const *content, size_t content_size);

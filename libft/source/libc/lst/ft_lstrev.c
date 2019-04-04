@@ -30,7 +30,7 @@ static void	ft_lstrev_next(t_list *lst)
 	lst->start = prev;
 }
 
-void	ft_lstrev(t_list *lst)
+void		ft_lstrev(t_list *lst)
 {
 	t_list_elem	*current;
 	t_list_elem	*prev;
