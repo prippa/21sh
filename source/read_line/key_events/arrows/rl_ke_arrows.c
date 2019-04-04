@@ -36,15 +36,16 @@ int32_t	rl_ke_up(t_line *ln)
 {
 	if (!rl()->hs.curent)
 	{
-		if (!rl()->hs.h_end)
+		if (!rl()->hs.history.end)
 			return (ERR);
-		rl()->hs.curent = rl()->hs.h_end;
+		rl()->hs.curent = rl()->hs.history.end;
 		GET_MEM(MALLOC_ERR, rl()->hs.cur_line_buf, ft_strdup_free,
 			&rl()->hs.cur_line_buf, ln->line + ln->l_start);
 		rl_history_move((char *)rl()->hs.curent->content, ln);
 		return (OK);
 	}
-	else if (rl()->hs.h_start && rl()->hs.curent != rl()->hs.h_start)
+	else if (rl()->hs.history.start &&
+		rl()->hs.curent != rl()->hs.history.start)
 	{
 		rl()->hs.curent = rl()->hs.curent->prev;
 		rl_history_move((char *)rl()->hs.curent->content, ln);

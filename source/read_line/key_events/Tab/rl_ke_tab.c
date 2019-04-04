@@ -18,22 +18,18 @@
 #include "button_keys.h"
 #include "line_syntax.h"
 
-static void		rl_t_gm_push_cmd(t_list **m, const char *bc, const char *c)
+static void		rl_t_gm_push_cmd(t_list *m, const char *bc, const char *c)
 {
 	char	*cmd;
-	t_list	*new_obj;
 
 	if (ft_strnequ(bc, c, ft_strlen(bc)))
 	{
 		GET_MEM(MALLOC_ERR, cmd, ft_strdup, c);
+		sh_lstpush_back(m, false, cmd, ft_strlen(cmd));
 	}
-	else
-		return ;
-	GET_MEM(MALLOC_ERR, new_obj, ft_lstnew, cmd, 0);
-	ft_lstadd(m, new_obj);
 }
 
-static void		rl_t_read_dir(t_list **m, char **paths, const char *bc)
+static void		rl_t_read_dir(t_list *m, char **paths, const char *bc)
 {
 	DIR				*dip;
 	struct dirent	*dit;
@@ -61,18 +57,18 @@ static void		rl_t_read_dir(t_list **m, char **paths, const char *bc)
 	}
 }
 
-static t_list	*rl_t_get_matches(const char *bc)
+static t_list	rl_t_get_matches(const char *bc)
 {
 	size_t	i;
-	t_list	*m;
+	t_list	m;
 	char	**paths;
 	char	*path_env;
 
-	m = NULL;
+	ft_bzero(&m, sizeof(t_list));
 	i = -1;
 	while (++i < SH_BUILTIN_SIZE)
 		rl_t_gm_push_cmd(&m, bc, g_builtin_box[i].s);
-	if (!(path_env = env_get_vlu_by_key(sh()->env_start, PATH_ENV)))
+	if (!(path_env = env_get_vlu_by_key(sh()->env.start, PATH_ENV)))
 		path_env = CUR_DIR;
 	GET_MEM(MALLOC_ERR, paths, ft_strsplit, path_env, PATH_ENV_SEPARATOR);
 	rl_t_read_dir(&m, paths, bc);
@@ -108,7 +104,7 @@ static char		*rl_t_get_cmd_from_line(t_line *ln)
 int32_t			rl_ke_tab(t_line *ln)
 {
 	char	*base_cmd;
-	t_list	*matches;
+	t_list	matches;
 	int32_t	res;
 
 	res = ERR;
@@ -116,10 +112,10 @@ int32_t			rl_ke_tab(t_line *ln)
 		return (res);
 	if (!(base_cmd = rl_t_get_cmd_from_line(ln)))
 		return (res);
-	if ((matches = rl_t_get_matches(base_cmd)))
+	matches = rl_t_get_matches(base_cmd);
+	if (matches.start)
 	{
-		ft_lstrev(&matches);
-		res = tab_process_matches(matches, ft_strlen(base_cmd), ln);
+		res = tab_process_matches(matches.start, ft_strlen(base_cmd), ln);
 		ft_lstdel(&matches, &ft_lstdel_content);
 	}
 	ft_strdel(&base_cmd);

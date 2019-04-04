@@ -13,7 +13,7 @@
 #include "environ_manipulation.h"
 #include "shell.h"
 
-static void		env_edit(t_list2 *obj, t_env *env)
+static void		env_edit(t_list_elem *obj, t_env *env)
 {
 	t_env	*edit_env;
 
@@ -22,19 +22,18 @@ static void		env_edit(t_list2 *obj, t_env *env)
 	ft_memcpy(edit_env, env, sizeof(t_env));
 }
 
-void			env_set(t_list2 **env_start, t_list2 **env_end,
+void			env_set(t_list *env_list,
 					const t_env *new_env, t_bool overwrite)
 {
-	t_list2	*obj;
-	t_env	new_env_cpy;
+	t_list_elem	*obj;
+	t_env		new_env_cpy;
 
 	new_env_cpy = env_make_clone_of_body(new_env);
-	if ((obj = env_get_obj_by_key(*env_start, new_env_cpy.key)))
+	if ((obj = env_get_obj_by_key(env_list->start, new_env_cpy.key)))
 	{
 		if (overwrite)
 			env_edit(obj, &new_env_cpy);
 		return ;
 	}
-	GET_MEM(MALLOC_ERR, obj, ft_lst2new, &new_env_cpy, sizeof(t_env));
-	ft_lst2_push_back(env_start, env_end, obj);
+	sh_lstpush_back(env_list, true, &new_env_cpy, sizeof(t_env));
 }

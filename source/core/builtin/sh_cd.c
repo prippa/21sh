@@ -44,17 +44,16 @@ static t_bool	sh_cd_path_valid(const char *path)
 	return (sh()->ok);
 }
 
-static void		sh_cd_make_move(t_list2 *env_start, t_list2 *env_end,
-					const char *path, t_bool slf)
+static void		sh_cd_make_move(t_list *env_list, const char *path, t_bool slf)
 {
 	char *pwd;
 
 	if (sh()->env_exec_flag)
 		return ;
-	if ((pwd = env_get_vlu_by_key(env_start, PWD_ENV)))
-		env_set(&env_start, &env_end, ENV(OLDPWD_ENV, pwd), true);
-	else if (env_get_vlu_by_key(env_start, OLDPWD_ENV))
-		env_unset(&env_start, &env_end, OLDPWD_ENV);
+	if ((pwd = env_get_vlu_by_key(env_list->start, PWD_ENV)))
+		env_set(env_list, ENV(OLDPWD_ENV, pwd), true);
+	else if (env_get_vlu_by_key(env_list->start, OLDPWD_ENV))
+		env_unset(env_list, OLDPWD_ENV);
 	if (chdir(path) == ERR)
 		sh_fatal_err(CHDIR_FAILED);
 	if (!slf)
@@ -69,16 +68,15 @@ static void		sh_cd_make_move(t_list2 *env_start, t_list2 *env_end,
 		GET_MEM(GETCWD_FAILED, pwd, getcwd, NULL, 0);
 		GET_MEM(MALLOC_ERR, sh()->pwd, ft_strdup_free, &sh()->pwd, pwd);
 	}
-	env_set(&env_start, &env_end, ENV(PWD_ENV, pwd), true);
+	env_set(env_list, ENV(PWD_ENV, pwd), true);
 	ft_strdel(&pwd);
 }
 
-static t_bool	sh_cd_by_env(t_list2 *env_start, t_list2 *env_end,
-					const char *env_key, t_bool slf)
+static t_bool	sh_cd_by_env(t_list *env_list, const char *env_key, t_bool slf)
 {
 	char *path;
 
-	if (!(path = env_get_vlu_by_key(env_start, env_key)))
+	if (!(path = env_get_vlu_by_key(env_list->start, env_key)))
 	{
 		PRINT_ERR(EXIT_FAILURE, CD_NO_ENV, env_key);
 		return (false);
@@ -86,7 +84,7 @@ static t_bool	sh_cd_by_env(t_list2 *env_start, t_list2 *env_end,
 	if (!sh_cd_path_valid(path))
 		return (false);
 	GET_MEM(MALLOC_ERR, path, ft_strdup, path);
-	sh_cd_make_move(env_start, env_end, path, slf);
+	sh_cd_make_move(env_list, path, slf);
 	ft_strdel(&path);
 	return (true);
 }
@@ -115,16 +113,16 @@ void			sh_cd(t_build *b)
 
 	symb_link_flag = sh_cd_check_flags(&b->args);
 	if (!*b->args)
-		sh_cd_by_env(*b->env_start, *b->env_end, HOME_ENV, symb_link_flag);
+		sh_cd_by_env(b->env, HOME_ENV, symb_link_flag);
 	else if (*(b->args + 1))
 	{
 		PRINT_ERR(EXIT_FAILURE, CD_TO_MANY_ARGS, NULL);
 	}
 	else if (!ft_strcmp(*b->args, CD_DASH_F) &&
-		sh_cd_by_env(*b->env_start, *b->env_end, OLDPWD_ENV, symb_link_flag))
-		ft_putendl(env_get_vlu_by_key(*b->env_start, PWD_ENV));
+		sh_cd_by_env(b->env, OLDPWD_ENV, symb_link_flag))
+		ft_putendl(env_get_vlu_by_key(b->env->start, PWD_ENV));
 	else if (sh_cd_path_valid(*b->args))
-		sh_cd_make_move(*b->env_start, *b->env_end, *b->args, symb_link_flag);
+		sh_cd_make_move(b->env, *b->args, symb_link_flag);
 	if (sh()->ok)
 		sh_update_curent_dir_name();
 }

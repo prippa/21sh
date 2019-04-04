@@ -123,9 +123,8 @@ LIB_C		:=	$(DIR_MEM)ft_bzero.c\
 				$(DIR_PUT)ft_putstr_fd.c\
 				$(DIR_PUT)ft_putarr.c\
 				$(DIR_PUT)ft_putarr_fd.c\
-				$(DIR_LST)ft_lstadd.c\
+				$(DIR_LST)ft_lstpush.c\
 				$(DIR_LST)ft_lstdel.c\
-				$(DIR_LST)ft_lstdelone.c\
 				$(DIR_LST)ft_lstiter.c\
 				$(DIR_LST)ft_lstmap.c\
 				$(DIR_LST)ft_lstnew.c\

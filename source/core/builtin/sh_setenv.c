@@ -29,7 +29,7 @@ static t_bool	sh_setenv_strictly_valid(const char *key)
 	return (true);
 }
 
-int32_t			sh_setenv_one_env(t_list2 **env_start, t_list2 **env_end,
+int32_t			sh_setenv_one_env(t_list *env_list,
 					const char *env, t_bool strictly_valid_flag)
 {
 	char	*i;
@@ -44,7 +44,7 @@ int32_t			sh_setenv_one_env(t_list2 **env_start, t_list2 **env_end,
 	if (strictly_valid_flag)
 		res = sh_setenv_strictly_valid(e.key);
 	if (!res)
-		env_set(env_start, env_end, &e, true);
+		env_set(env_list, &e, true);
 	env_del_body(&e);
 	return (res);
 }
@@ -53,12 +53,12 @@ void			sh_setenv(t_build *b)
 {
 	if (!*b->args)
 	{
-		env_print(*b->env_start);
+		env_print(b->env->start);
 		return ;
 	}
 	while (*b->args)
 	{
-		if (sh_setenv_one_env(b->env_start, b->env_end, *b->args, true))
+		if (sh_setenv_one_env(b->env, *b->args, true))
 		{
 			PRINT_ERR(EXIT_FAILURE, SH_SETENV_INVALID_ARG, *b->args);
 		}

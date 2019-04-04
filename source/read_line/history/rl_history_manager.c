@@ -12,7 +12,7 @@
 
 #include "history_search.h"
 
-t_hs		*hs()
+t_hs		*hs(void)
 {
 	static t_hs	hs;
 
@@ -23,12 +23,12 @@ void		rl_history_add(const char *line)
 {
 	char		*l;
 	char		*chr;
-	t_list2		*new_obj;
 
 	if (ft_is_str_space(line) || ft_is_str_empty(line) ||
-		(rl()->hs.h_end && ft_strequ((char *)rl()->hs.h_end->content, line)))
+		(rl()->hs.history.end &&
+		ft_strequ((char *)rl()->hs.history.end->content, line)))
 		return ;
-	if ((chr = ft_strchr(line, '\n')))
+	if ((chr = ft_strchr(line, ENDL)))
 	{
 		GET_MEM(MALLOC_ERR, l, ft_strsub, line, 0, chr - line);
 	}
@@ -36,8 +36,7 @@ void		rl_history_add(const char *line)
 	{
 		GET_MEM(MALLOC_ERR, l, ft_strdup, line);
 	}
-	GET_MEM(MALLOC_ERR, new_obj, ft_lst2new, (void *)l, 0);
-	ft_lst2_push_back(&rl()->hs.h_start, &rl()->hs.h_end, new_obj);
+	sh_lstpush_back(&rl()->hs.history, false, l, ft_strlen(l));
 }
 
 void		rl_history_move(const char *line, t_line *ln)
@@ -53,7 +52,7 @@ void		rl_history_init_new_prompt(const char *ss, const char *prompt)
 	GET_MEM(MALLOC_ERR, new_prompt, ft_strdup, prompt);
 	GET_MEM(MALLOC_ERR, new_prompt, ft_strinsert_free,
 		&new_prompt, ss,
-		(ft_strchr(new_prompt, '`') + 1) - new_prompt);
+		(ft_strchr(new_prompt, STOP_CHR) + 1) - new_prompt);
 	ft_strcpy(rl()->prompt, new_prompt);
 	rl()->prompt_size = ft_strlen(ss) + ft_strlen(prompt);
 	ft_strdel(&new_prompt);

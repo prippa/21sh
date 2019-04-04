@@ -22,17 +22,14 @@ t_env		env_make_clone_of_body(const t_env *origin)
 	return (cpy);
 }
 
-void		env_make_clone(t_list2 **dst_start, t_list2 **dst_end,
-				t_list2 *src_start)
+void		env_make_clone(t_list *dst, t_list_elem *src_start)
 {
-	t_list2 *new_obj;
-	t_env	e;
+	t_env		e;
 
 	while (src_start)
 	{
 		e = env_make_clone_of_body(src_start->content);
-		GET_MEM(MALLOC_ERR, new_obj, ft_lst2new, &e, sizeof(t_env));
-		ft_lst2_push_back(dst_start, dst_end, new_obj);
+		sh_lstpush_back(dst, true, &e, sizeof(t_env));
 		src_start = src_start->next;
 	}
 }

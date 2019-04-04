@@ -11,19 +11,21 @@
 /* ************************************************************************** */
 
 #include "ft_lst.h"
+#include "ft_mem.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_list	ft_lstmap(t_list_elem *start, t_map_elem f)
 {
-	t_list *l;
-	t_list *new_obj;
+	t_list		new_list;
+	t_list_elem	*elem;
 
-	new_obj = f(lst);
-	l = new_obj;
-	while (lst->next)
+	ft_bzero(&new_list, sizeof(t_list));
+	new_list.start = f(start);
+	elem = new_list.start;
+	while (start->next)
 	{
-		l->next = f(lst->next);
-		l = l->next;
-		lst = lst->next;
+		elem->next = f(start->next);
+		elem = elem->next;
+		start = start->next;
 	}
-	return (new_obj);
+	return (new_list);
 }

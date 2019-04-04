@@ -79,7 +79,7 @@ void			rl_hs_new_mask(t_line *ln)
 	rl_clear_line(ln, rl()->w.ws_col);
 	rl_history_init_new_prompt(hs()->search_str, SEARCH_PROMPT);
 	rl_redraw_line(ln, rl()->w.ws_col);
-	hs()->h_curent = rl()->hs.h_end;
+	hs()->h_curent = rl()->hs.history.end;
 	hs()->same_line_flag = false;
 	rl_hs_continue_revers_search(ln);
 }

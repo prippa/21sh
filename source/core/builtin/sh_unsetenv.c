@@ -26,7 +26,7 @@ void	sh_unsetenv(t_build *b)
 	}
 	while (*b->args)
 	{
-		if (env_unset(b->env_start, b->env_end, *b->args))
+		if (env_unset(b->env, *b->args))
 		{
 			PRINT_ERR(EXIT_FAILURE, SH_UNSETENV_NO_NAME, *b->args);
 		}

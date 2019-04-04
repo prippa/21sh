@@ -13,7 +13,7 @@
 #include "environ_manipulation.h"
 #include "ft_printf.h"
 
-static void	env_print_f(t_list *elem)
+static void	env_print_f(t_list_elem *elem)
 {
 	t_env *e;
 
@@ -21,7 +21,7 @@ static void	env_print_f(t_list *elem)
 	ft_printf("%s=%s\n", e->key, e->value);
 }
 
-void		env_print(t_list2 *env_start)
+void		env_print(t_list_elem *start)
 {
-	ft_lstiter((t_list *)env_start, env_print_f);
+	ft_lstiter(start, env_print_f);
 }

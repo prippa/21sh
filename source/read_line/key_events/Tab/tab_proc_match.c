@@ -12,7 +12,7 @@
 
 #include "button_keys.h"
 
-static size_t	rl_t_get_max_len(const t_list *m)
+static size_t	rl_t_get_max_len(const t_list_elem *m)
 {
 	size_t	max;
 	size_t	wtf;
@@ -29,7 +29,7 @@ static size_t	rl_t_get_max_len(const t_list *m)
 }
 
 static t_bool	rl_t_compare(const char *cmpr_str,
-					const t_list *iter, size_t len)
+					const t_list_elem *iter, size_t len)
 {
 	while (iter)
 	{
@@ -40,7 +40,7 @@ static t_bool	rl_t_compare(const char *cmpr_str,
 	return (false);
 }
 
-static void		rl_t_draw_matches(const t_list *m, size_t col, size_t max)
+static void		rl_t_draw_matches(const t_list_elem *m, size_t col, size_t max)
 {
 	size_t	n;
 
@@ -59,7 +59,7 @@ static void		rl_t_draw_matches(const t_list *m, size_t col, size_t max)
 	rl_make_tc_magic(tc()->down);
 }
 
-static int32_t	rl_t_end_move(const char *postfix, const t_list *m,
+static int32_t	rl_t_end_move(const char *postfix, const t_list_elem *m,
 					t_line *ln, size_t max)
 {
 	t_line		buf_ln;
@@ -78,7 +78,7 @@ static int32_t	rl_t_end_move(const char *postfix, const t_list *m,
 	return (ERR);
 }
 
-int32_t			tab_process_matches(const t_list *m, size_t len, t_line *ln)
+int32_t			tab_process_matches(const t_list_elem *m, size_t len, t_line *ln)
 {
 	char			postfix[FILENAME_MAX + 1];
 	size_t			elem_max_len;

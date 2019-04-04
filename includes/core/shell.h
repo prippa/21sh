@@ -25,12 +25,11 @@
 
 typedef struct		s_shell
 {
+	t_list			env;
 	struct termios	old_settings;
 	struct termios	new_settings;
 	char			prompt[PROMPT_SIZE + 1];
 	char			curent_path[PATH_MAX + 1];
-	t_list2			*env_start;
-	t_list2			*env_end;
 	char			*line;
 	size_t			i;
 	t_bool			env_exec_flag;
@@ -53,8 +52,10 @@ void				sh_fatal_err(const char *message);
 void				sh_init(void);
 void				sh_init_env(void);
 void				sh_init_term(void);
+
 t_bool				sh_is_dir(const char *path);
 t_bool				sh_is_valid_path(const char *path);
+
 t_bool				sh_path_access(const char *path, const char *prefix);
 char				*sh_join_path_to_pwd(const char *cur_pwd, const char *path);
 void				sh_update_curent_dir_name(void);
@@ -71,5 +72,10 @@ void				sh_sig_handle_incase(int32_t sig);
 void				sh_init_sig_base(void);
 void				sh_init_sig_incase(void);
 void				sh_init_sig_default(void);
+
+void				sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
+						void *content, size_t content_size);
+void				sh_lstpush_front(t_list *lst, t_bool make_copy_of_content,
+						void *content, size_t content_size);
 
 #endif

@@ -22,7 +22,7 @@
 static t_bool	sh_env_check_kv(t_bool i_flag, t_build *nb, t_build *b)
 {
 	if (!i_flag)
-		env_make_clone(nb->env_start, nb->env_end, *b->env_start);
+		env_make_clone(nb->env, b->env->start);
 	while (*b->args)
 	{
 		if (**b->args == KEY_VALUE_SEPARATOR)
@@ -31,7 +31,7 @@ static t_bool	sh_env_check_kv(t_bool i_flag, t_build *nb, t_build *b)
 			return (false);
 		}
 		if (ft_strchr(*b->args, KEY_VALUE_SEPARATOR))
-			sh_setenv_one_env(nb->env_start, nb->env_end, *b->args, false);
+			sh_setenv_one_env(nb->env, *b->args, false);
 		else
 			break ;
 		++b->args;
@@ -58,13 +58,10 @@ static t_bool	sh_env_check_flag(char ***args)
 void			sh_env(t_build *b)
 {
 	t_build	nb;
-	t_list2	*env_start;
-	t_list2	*env_end;
+	t_list	env_list;
 
-	env_start = NULL;
-	env_end = NULL;
-	nb.env_start = &env_start;
-	nb.env_end = &env_end;
+	ft_bzero(&env_list, sizeof(t_list));
+	nb.env = &env_list;
 	sh()->env_exec_flag = true;
 	if (sh_env_check_kv(sh_env_check_flag(&b->args), &nb, b))
 	{
@@ -74,8 +71,8 @@ void			sh_env(t_build *b)
 			sh_process_cmd(&nb, ENV_PREFIX);
 		}
 		else
-			env_print(*nb.env_start);
+			env_print(nb.env->start);
 	}
-	ft_lst2del(nb.env_start, nb.env_end, env_del_list);
+	ft_lstdel(nb.env, env_del_list);
 	sh()->env_exec_flag = false;
 }

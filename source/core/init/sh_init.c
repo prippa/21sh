@@ -15,7 +15,6 @@
 
 void		sh_init(void)
 {
-	ft_bzero(sh(), sizeof(t_shell));
 	sh()->ok = true;
 	GET_MEM(GETCWD_FAILED, sh()->pwd, getcwd, NULL, 0);
 	sh_init_env();

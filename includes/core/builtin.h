@@ -18,8 +18,7 @@
 
 typedef struct	s_builtin
 {
-	t_list2		**env_start;
-	t_list2		**env_end;
+	t_list		*env;
 	char		**args;
 }				t_build;
 
@@ -30,7 +29,7 @@ void			sh_setenv(t_build *b);
 void			sh_unsetenv(t_build *b);
 void			sh_exit(t_build *b);
 
-int32_t			sh_setenv_one_env(t_list2 **env_start, t_list2 **env_end,
+int32_t			sh_setenv_one_env(t_list *env_list,
 					const char *env, t_bool strictly_valid_flag);
 void			sh_process_cmd(t_build *b, const char *cmd_prefix);
 void			sh_exec(const char *path, t_build *b);

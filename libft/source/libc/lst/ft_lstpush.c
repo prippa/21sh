@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_push.c                                      :+:      :+:    :+:   */
+/*   ft_lstpush.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "ft_lst.h"
 
-void	ft_lst_push_front(t_list *lst, t_list_elem *new_obj)
+void	ft_lstpush_front(t_list *lst, t_list_elem *new_obj)
 {
 	new_obj->next = lst->start;
 	new_obj->prev = NULL;
@@ -24,7 +24,7 @@ void	ft_lst_push_front(t_list *lst, t_list_elem *new_obj)
 	++lst->list_size;
 }
 
-void	ft_lst_push_back(t_list *lst, t_list_elem *new_obj)
+void	ft_lstpush_back(t_list *lst, t_list_elem *new_obj)
 {
 	new_obj->next = NULL;
 	new_obj->prev = lst->end;

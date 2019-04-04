@@ -16,15 +16,15 @@
 # include <stdint.h>
 # include <signal.h>
 
-struct					s_sig_box
+struct			s_sig_box
 {
-	t_bool				flag;
-	int32_t				sig;
+	t_bool		flag;
+	int32_t		sig;
 };
 
-void					rl_init_sig(void);
-void					rl_init_sig_aside(void);
-void					rl_sig_handle(int32_t sig);
-void					rl_execute_aside_signals(sig_t sig_h);
+void			rl_init_sig(void);
+void			rl_init_sig_aside(void);
+void			rl_sig_handle(int32_t sig);
+void			rl_execute_aside_signals(sig_t sig_h);
 
 #endif

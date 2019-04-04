@@ -29,7 +29,7 @@ void		sh_update_curent_dir_name(void)
 	char	*home;
 	char	*file;
 
-	if (((home = env_get_vlu_by_key(sh()->env_start, HOME_ENV)) &&
+	if (((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)) &&
 		!ft_strcmp(home, sh()->pwd)))
 		ft_strcpy(sh()->curent_path, (char[2]){ TILDE_C, 0 });
 	else if ((file = ft_strrchr(sh()->pwd, UNIX_PATH_SEPARATOR)))

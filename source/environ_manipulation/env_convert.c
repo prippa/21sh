@@ -25,20 +25,20 @@ static char	*env_convert_to_str(const char *key, const char *value)
 	return (env);
 }
 
-char		**env_convert_to_arr(t_list2 *env_start)
+char		**env_convert_to_arr(t_list_elem *start)
 {
 	t_env	*e;
 	char	**arr;
 	size_t	i;
 
 	GET_MEM(MALLOC_ERR, arr, ft_memalloc,
-		sizeof(char *) * (ft_lstsize((t_list *)env_start) + 1));
+		sizeof(char *) * (ft_lstsize(start) + 1));
 	i = -1;
-	while (env_start)
+	while (start)
 	{
-		e = (t_env *)env_start->content;
+		e = (t_env *)start->content;
 		arr[++i] = env_convert_to_str(e->key, e->value);
-		env_start = env_start->next;
+		start = start->next;
 	}
 	return (arr);
 }

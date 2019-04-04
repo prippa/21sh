@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 17:00:09 by prippa            #+#    #+#             */
-/*   Updated: 2019/03/02 17:00:13 by prippa           ###   ########.fr       */
+/*   Created: 2019/04/04 15:45:57 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/04 15:45:58 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lst.h"
 
-size_t	ft_lstsize(t_list *start)
+size_t	ft_lstsize(t_list_elem *start)
 {
 	size_t size;
 

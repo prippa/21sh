@@ -51,7 +51,7 @@ void			sh_exec(const char *path, t_build *b)
 		PRINT_ERR(EXIT_FAILURE, SH_PERM_DENIED, path);
 		return ;
 	}
-	env = env_convert_to_arr(*b->env_start);
+	env = env_convert_to_arr(b->env->start);
 	sh_do_magic(path, b->args, env);
 	ft_arrdel(&env);
 }

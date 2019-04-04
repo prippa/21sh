@@ -12,14 +12,14 @@
 
 #include "ft_lst.h"
 
-void	ft_lstrev(t_list **lst)
+static void	ft_lstrev_next(t_list *lst)
 {
-	t_list *prev;
-	t_list *current;
-	t_list *next;
+	t_list_elem *prev;
+	t_list_elem *current;
+	t_list_elem *next;
 
 	prev = NULL;
-	current = *lst;
+	current = lst->start;
 	while (current)
 	{
 		next = current->next;
@@ -27,17 +27,17 @@ void	ft_lstrev(t_list **lst)
 		prev = current;
 		current = next;
 	}
-	*lst = prev;
+	lst->start = prev;
 }
 
-void	ft_lst2rev(t_list2 **start, t_list2 **end)
+void	ft_lstrev(t_list *lst)
 {
-	t_list2 *current;
-	t_list2 *prev;
-	t_list2 *next;
+	t_list_elem	*current;
+	t_list_elem	*prev;
+	t_list_elem	*next;
 
 	prev = NULL;
-	current = *end;
+	current = lst->end;
 	while (current)
 	{
 		next = current->prev;
@@ -45,6 +45,6 @@ void	ft_lst2rev(t_list2 **start, t_list2 **end)
 		prev = current;
 		current = next;
 	}
-	*end = prev;
-	ft_lstrev((t_list **)start);
+	lst->end = prev;
+	ft_lstrev_next(lst);
 }

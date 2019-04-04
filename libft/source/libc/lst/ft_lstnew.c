@@ -13,7 +13,7 @@
 #include "ft_lst.h"
 #include "ft_mem.h"
 
-t_list_elem	*ft_lst_new(void const *content, size_t content_size)
+t_list_elem	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list_elem	*new_obj;
 	void		*data;

@@ -12,12 +12,12 @@
 
 #include "environ_manipulation.h"
 
-int32_t		env_unset(t_list2 **env_start, t_list2 **env_end, const char *key)
+int32_t		env_unset(t_list *env_list, const char *key)
 {
-	t_list2		*obj;
+	t_list_elem	*obj;
 
-	if (!(obj = env_get_obj_by_key(*env_start, key)))
+	if (!(obj = env_get_obj_by_key(env_list->start, key)))
 		return (ERR);
-	ft_lst2del_by_obj(env_start, env_end, obj, env_del_list);
+	ft_lstdel_by_obj(env_list, obj, env_del_list);
 	return (0);
 }

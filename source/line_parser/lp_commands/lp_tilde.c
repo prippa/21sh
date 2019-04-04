@@ -41,7 +41,7 @@ void			lp_tilde(t_line_parser *lp)
 	if (lp_tilde_valid_prev(sh()->line, sh()->i - 1) &&
 		lp_tilde_valid_next(sh()->line, sh()->i + 1))
 	{
-		if ((home = env_get_vlu_by_key(sh()->env_start, HOME_ENV)))
+		if ((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)))
 			lp_write_to_arg_buf_str(lp, home, ft_strlen(home));
 	}
 	else

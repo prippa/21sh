@@ -17,18 +17,18 @@
 
 static char	**lp_get_command(t_line_parser *lp)
 {
-	size_t	i;
-	char	**args;
-	t_list	*args_lst;
+	size_t		i;
+	char		**args;
+	t_list_elem	*start;
 
 	GET_MEM(MALLOC_ERR, args, ft_memalloc,
-		sizeof(char *) * (lp->args_size + 1));
-	args_lst = lp->args;
+		sizeof(char *) * (lp->args_list.list_size + 1));
+	start = lp->args_list.start;
 	i = -1;
-	while (args_lst)
+	while (start)
 	{
-		args[++i] = (char *)args_lst->content;
-		args_lst = args_lst->next;
+		args[++i] = (char *)start->content;
+		start = start->next;
 	}
 	return (args);
 }
@@ -37,10 +37,9 @@ static void	lp_run_command(char **args)
 {
 	t_build	b;
 
-	b.env_start = &sh()->env_start;
-	b.env_end = &sh()->env_end;
+	b.env = &sh()->env;
 	b.args = args;
-	env_set(b.env_start, b.env_end, ENV(PREV_CMD_ENV, *b.args), true);
+	env_set(b.env, ENV(PREV_CMD_ENV, *b.args), true);
 	sh_process_cmd(&b, SHELL_NAME ": ");
 }
 
@@ -49,30 +48,21 @@ void		lp_push_command(t_line_parser *lp)
 	char	**args;
 
 	lp_push_arg(lp);
-	if (!lp->args)
+	if (!lp->args_list.start)
 		return ;
-	ft_lstrev(&lp->args);
 	args = lp_get_command(lp);
 	lp_run_command(args);
 	ft_arrdel(&args);
-	ft_lstdel(&lp->args, NULL);
-	lp->args_size = 0;
+	ft_lstdel(&lp->args_list, NULL);
 }
 
 void		lp_push_arg(t_line_parser *lp)
 {
-	t_list *new_obj;
-
 	if (lp->arg_buf_len)
 		lp_join_to_arg(lp, lp->arg_buf, lp->arg_buf_len);
 	if (lp->arg_len)
 	{
-		// GET_MEM(MALLOC_ERR, new_obj, ft_lstnew, lp->arg, 0);
-		GET_MEM(MALLOC_ERR, new_obj, ft_memalloc, sizeof(t_list));
-		new_obj->content = lp->arg;
-		new_obj->content_size = lp->arg_len;
-		ft_lstadd(&lp->args, new_obj);
-		++lp->args_size;
+		sh_lstpush_back(&lp->args_list, false, lp->arg, lp->arg_len);
 		lp->arg = NULL;
 		*lp->arg_buf = 0;
 		lp->arg_len = 0;

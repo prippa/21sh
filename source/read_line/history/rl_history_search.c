@@ -35,7 +35,7 @@ static void		rl_hs_init(void)
 	if (hs()->search_str)
 		return ;
 	GET_MEM(MALLOC_ERR, hs()->search_str, ft_strdup, EMPTY_STR);
-	hs()->h_curent = rl()->hs.h_end;
+	hs()->h_curent = rl()->hs.history.end;
 }
 
 t_bool			rl_history_search(t_line *ln, const char buf[RL_BUFF_SIZE])

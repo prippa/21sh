@@ -31,9 +31,8 @@ typedef struct		s_line
 
 typedef struct		s_history
 {
-	t_list2			*h_start;
-	t_list2			*h_end;
-	t_list2			*curent;
+	t_list			history;
+	t_list_elem		*curent;
 	char			*cur_line_buf;
 }					t_history;
 

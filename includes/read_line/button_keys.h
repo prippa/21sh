@@ -53,7 +53,7 @@ int32_t					rl_ke_return(t_line *ln);
 int32_t					rl_ke_home(t_line *ln);
 int32_t					rl_ke_end(t_line *ln);
 int32_t					rl_ke_tab(t_line *ln);
-int32_t					tab_process_matches(const t_list *m,
+int32_t					tab_process_matches(const t_list_elem *m,
 							size_t len, t_line *ln);
 int32_t					rl_ke_left(t_line *ln);
 int32_t					rl_ke_right(t_line *ln);
