@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hash_table.h                                    :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/03 17:52:59 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/03 17:53:03 by prippa           ###   ########.fr       */
+/*   Created: 2017/11/08 13:38:38 by prippa            #+#    #+#             */
+/*   Updated: 2017/11/08 13:38:40 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_HASH_TABLE_H
-# define FT_HASH_TABLE_H
+#include "ft_list.h"
 
-# include <stddef.h>
-
-typedef struct	s_ht_item
+void	ft_lstiter(t_list_elem *start, t_iter_elem f)
 {
-	void		*key;
-	void		*value;
-	size_t		key_size;
-	size_t		value_size;
-}				t_ht_item;
-
-typedef struct	s_hash_table
-{
-	t_ht_item	*item;
-	size_t		item_size;
-	size_t		item_len;
-}				t_hash_table;
-
-#endif
+	while (start)
+	{
+		f(start);
+		start = start->next;
+	}
+}

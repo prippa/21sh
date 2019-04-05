@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lst.h"
+#include "ft_list.h"
 #include "ft_mem.h"
 
 void	ft_lstdel_one(t_list_elem **elem, t_del_content del)

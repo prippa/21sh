@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lst.h"
+#include "ft_list.h"
 
 void	ft_lstpop_front(t_list *lst, t_del_content del)
 {

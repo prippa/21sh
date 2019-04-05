@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lst.h"
+#include "ft_list.h"
 
 static void	ft_lstrev_next(t_list *lst)
 {

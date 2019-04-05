@@ -21,6 +21,5 @@
 # include "ft_arr.h"
 # include "ft_other.h"
 # include "ft_put.h"
-# include "ft_lst.h"
 
 #endif

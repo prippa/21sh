@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lst.h"
+#include "ft_list.h"
 #include "ft_mem.h"
 
 t_list_elem	*ft_lstnew(void const *content, size_t content_size)

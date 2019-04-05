@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lst.h"
+#include "ft_list.h"
 #include "ft_mem.h"
 
 t_list	ft_lstmap(t_list_elem *start, t_map_elem f)
