@@ -33,6 +33,9 @@ typedef struct	s_point
 	int32_t		y;
 }				t_point;
 
+typedef void	(*t_fatal_exit_func)(const char *message);
+static t_fatal_exit_func g_fef;
+
 # define ABS(x) (((x) < 0) ? -(x) : (x))
 
 # define MAX(a, b) ((a) > (b) ? (a) : (b))

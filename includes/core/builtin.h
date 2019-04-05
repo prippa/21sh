@@ -13,7 +13,7 @@
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
-# include "ft_lst.h"
+# include "ft_list.h"
 # include "ft_def.h"
 
 typedef struct	s_builtin

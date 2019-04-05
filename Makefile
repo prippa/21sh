@@ -15,8 +15,10 @@ RL			:=	read_line/
 ENV			:=	environ_manipulation/
 
 DIR_LIB		:=	libft/
-DIR_LIB_INC	:=	$(DIR_LIB)includes/libc/ $(DIR_LIB)includes/printf/\
-				$(DIR_LIB)includes/get_next_line/
+DIR_LIB_INC	:=	$(DIR_LIB)$(DIR_INC)libc/\
+				$(DIR_LIB)$(DIR_INC)printf/\
+				$(DIR_LIB)$(DIR_INC)get_next_line/\
+				$(DIR_LIB)$(DIR_INC)containers/
 LIBFT		:=	$(DIR_LIB)libft.a
 
 #-------------------------- Paths ----------------------------------------------

@@ -14,6 +14,7 @@
 # define ENVIRON_MANIPULATION_H
 
 # include "libft.h"
+# include "ft_list.h"
 
 typedef struct	s_env
 {

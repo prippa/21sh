@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "ft_printf.h"
+# include "ft_list.h"
 # include <stdio.h>
 # include <termios.h>
 

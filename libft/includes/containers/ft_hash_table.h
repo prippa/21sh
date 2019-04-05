@@ -14,6 +14,7 @@
 # define FT_HASH_TABLE_H
 
 # include <stddef.h>
+# include <stdint.h>
 
 typedef struct		s_ht_item
 {
@@ -30,6 +31,8 @@ typedef struct		s_hash_table
 	size_t			item_len;
 }					t_hash_table;
 
-t_hash_table		tf_htinit(size_t size);
+int32_t				ft_htinit(t_hash_table *ht, size_t init_size);
+int32_t				ft_htinset(t_hash_table *ht, t_ht_item *item);
+
 
 #endif

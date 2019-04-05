@@ -11,12 +11,14 @@
 /* ************************************************************************** */
 
 #include "ft_mem.h"
+#include "ft_def.h"
+#include "ft_other.h"
 
 void	*ft_memalloc(size_t size)
 {
 	void *new_obj;
 
 	if (!(new_obj = malloc(size)))
-		return (NULL);
+		ft_fatal_err_exit(MALLOC_ERR);
 	return (ft_memset(new_obj, 0, size));
 }
