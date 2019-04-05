@@ -44,7 +44,6 @@ LIB_H		:=	$(DIR_LIB_INC)libft.h\
 				$(DIR_LIB_INC)ft_is.h\
 				$(DIR_LIB_INC)ft_to.h\
 				$(DIR_LIB_INC)ft_put.h\
-				$(DIR_LIB_INC)ft_lst.h\
 				$(DIR_LIB_INC)ft_arr.h\
 				$(DIR_LIB_INC)ft_other.h
 
