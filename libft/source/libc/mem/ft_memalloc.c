@@ -14,16 +14,13 @@
 #include "ft_def.h"
 #include "ft_other.h"
 
+t_fatal_exit_func g_fef = &ft_perror_exit;
+
 void	*ft_memalloc(size_t size)
 {
 	void *new_obj;
 
 	if (!(new_obj = malloc(size)))
-	{
-		if (g_fef)
-			g_fef(MALLOC_ERR);
-		else
-			ft_perror_exit(MALLOC_ERR);
-	}
+		g_fef(MALLOC_ERR);
 	return (ft_memset(new_obj, 0, size));
 }

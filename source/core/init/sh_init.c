@@ -13,8 +13,6 @@
 #include "shell.h"
 #include "messages.h"
 
-t_fatal_exit_func g_fef;
-
 t_shell		*sh(void)
 {
 	static t_shell sh;
