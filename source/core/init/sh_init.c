@@ -13,6 +13,8 @@
 #include "shell.h"
 #include "messages.h"
 
+t_fatal_exit_func g_fef;
+
 t_shell		*sh(void)
 {
 	static t_shell sh;
@@ -22,12 +24,12 @@ t_shell		*sh(void)
 
 void		sh_init(void)
 {
+	sh_init_term();
 	g_fef = &sh_fatal_err;
-	sh()->ok = true;
 	GET_MEM(GETCWD_FAILED, sh()->pwd, getcwd, NULL, 0);
 	sh_init_env();
-	sh_init_term();
 	sh_update_curent_dir_name();
+	sh()->ok = true;
 	sh_update_prompt(true);
 	sh_init_sig_base();
 }

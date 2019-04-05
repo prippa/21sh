@@ -1,6 +1,6 @@
 #-------------------------- Key Values -----------------------------------------
 NAME		:=	21sh
-CFLAGS		:=	-Wall -Werror -Wextra
+# CFLAGS		:=	-Wall -Werror -Wextra
 CC			:=	gcc
 
 DIR_INC		:=	includes/
