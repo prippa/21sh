@@ -83,8 +83,7 @@ char		*ft_get_c(t_printf *fpf)
 	}
 	else
 	{
-		if (!(str = (char *)ft_memalloc(sizeof(char) * 2)))
-			return (NULL);
+		str = (char *)ft_memalloc(sizeof(char) * 2);
 		str[0] = (char)va_arg(fpf->args, int);
 	}
 	return (str);
@@ -111,8 +110,6 @@ void		fpf_get_type(t_printf *fpf)
 	}
 	else
 		return ;
-	if (!fpf->str)
-		ft_perror_exit(MALLOC_ERR);
 	fpf->type = *fpf->format;
 	++fpf->format;
 }

@@ -27,16 +27,15 @@ static void	sh_move(char **pwd, const char *dir)
 		{
 			if (!(len = ft_strrchr(*pwd, UNIX_PATH_SEPARATOR) - *pwd))
 				++len;
-			GET_MEM(MALLOC_ERR, *pwd, ft_strsub_free, pwd, 0, len);
+			ft_strsub_free(pwd, 0, len);
 		}
 	}
 	else
 	{
 		if (!root_dir)
-			GET_MEM(MALLOC_ERR, *pwd, ft_strjoin_free,
-			pwd, (char[2]){UNIX_PATH_SEPARATOR, 0}, ft_strlen(*pwd), 1);
-		GET_MEM(MALLOC_ERR, *pwd, ft_strjoin_free,
-			pwd, dir, ft_strlen(*pwd), ft_strlen(dir));
+			ft_strjoin_free(pwd, (char[2]){UNIX_PATH_SEPARATOR, 0},
+				ft_strlen(*pwd), 1);
+		ft_strjoin_free(pwd, dir, ft_strlen(*pwd), ft_strlen(dir));
 	}
 }
 
@@ -47,17 +46,15 @@ char		*sh_join_path_to_pwd(const char *cur_pwd, const char *path)
 	size_t	len;
 
 	if (*path != UNIX_PATH_SEPARATOR)
-	{
-		GET_MEM(MALLOC_ERR, pwd, ft_strdup, cur_pwd);
-	}
+		pwd = ft_strdup(cur_pwd);
 	else
-		GET_MEM(MALLOC_ERR, pwd, ft_strdup, (char[2]){UNIX_PATH_SEPARATOR, 0});
+		pwd = ft_strdup((char[2]){UNIX_PATH_SEPARATOR, 0});
 	len = 0;
 	while (true)
 	{
 		if (*path == UNIX_PATH_SEPARATOR || !*path)
 		{
-			GET_MEM(MALLOC_ERR, dir, ft_strsub, path - len, 0, len);
+			dir = ft_strsub(path - len, 0, len);
 			sh_move(&pwd, dir);
 			ft_strdel(&dir);
 			len = -1;

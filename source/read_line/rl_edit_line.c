@@ -19,7 +19,7 @@ void		rl_del_from_line(t_line *ln, size_t end,
 
 	if (end > ln->l_end)
 		end = ln->l_end;
-	GET_MEM(MALLOC_ERR, ln->line, ft_strcut_free, &ln->line, ln->pc, end);
+	ft_strcut_free(&ln->line, ln->pc, end);
 	ln->l_end -= (end - ln->pc);
 	if (print_to_term)
 	{
@@ -40,7 +40,7 @@ void		rl_add_to_line(t_line *ln, const char *src,
 	if (!src)
 		return ;
 	src_len = ft_strlen(src);
-	GET_MEM(MALLOC_ERR, ln->line, ft_strinsert_free, &ln->line, src, ln->pc);
+	ft_strinsert_free(&ln->line, src, ln->pc);
 	ln->l_end += src_len;
 	ln->pc += src_len;
 	if (print_to_term)
@@ -63,7 +63,5 @@ void		rl_line_cpy(t_line *dst, t_line *src)
 	rl_line_del(dst);
 	ft_memcpy(dst, src, sizeof(t_line));
 	if (src->line)
-	{
-		GET_MEM(MALLOC_ERR, dst->line, ft_strdup, src->line);
-	}
+		dst->line = ft_strdup(src->line);
 }

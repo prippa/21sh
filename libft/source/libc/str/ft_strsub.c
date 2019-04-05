@@ -19,7 +19,6 @@ char	*ft_strsub(char const *s, uint32_t start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (!(new_obj = (char *)ft_memalloc(sizeof(char) * (len + 1))))
-		return (NULL);
+	new_obj = (char *)ft_memalloc(sizeof(char) * (len + 1));
 	return (ft_strncpy(new_obj, s + start, len));
 }

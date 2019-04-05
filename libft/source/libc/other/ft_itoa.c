@@ -21,8 +21,7 @@ char	*ft_itoa(int32_t n)
 	uint16_t	size;
 
 	size = ft_nbrlen(n) + (n < 0 ? 1 : 0);
-	if (!(new_obj = (char *)ft_memalloc(sizeof(char) * (size + 1))))
-		return (NULL);
+	new_obj = (char *)ft_memalloc(sizeof(char) * (size + 1));
 	new_obj[0] = (n < 0 ? '-' : '0');
 	while (n)
 	{
@@ -38,8 +37,7 @@ char	*ft_itoa_max(intmax_t n)
 	uint16_t	size;
 
 	size = ft_nbrlen(n) + (n < 0 ? 1 : 0);
-	if (!(new_obj = (char *)ft_memalloc(sizeof(char) * (size + 1))))
-		return (NULL);
+	new_obj = (char *)ft_memalloc(sizeof(char) * (size + 1));
 	new_obj[0] = (n < 0 ? '-' : '0');
 	while (n)
 	{

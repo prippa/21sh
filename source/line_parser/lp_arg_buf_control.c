@@ -17,10 +17,7 @@ static void	sh_double_join(t_line_parser *lp, const char *src, size_t len)
 	char *buf_plus_s;
 
 	if (lp->arg_buf_len)
-	{
-		GET_MEM(MALLOC_ERR, buf_plus_s, ft_strnjoin,
-			lp->arg_buf, src, lp->arg_buf_len, len);
-	}
+		buf_plus_s = ft_strnjoin(lp->arg_buf, src, lp->arg_buf_len, len);
 	else
 		buf_plus_s = (char *)src;
 	lp_join_to_arg(lp, buf_plus_s, lp->arg_buf_len + len);
@@ -46,8 +43,6 @@ void		lp_join_to_arg(t_line_parser *lp, const char *src, size_t len)
 		ft_strjoin_free(&lp->arg, src, lp->arg_len, len);
 	else
 		lp->arg = ft_strsub(src, 0, len);
-	if (!lp->arg)
-		sh_fatal_err(MALLOC_ERR);
 	lp->arg_len += len;
 }
 

@@ -20,8 +20,7 @@ char	*ft_strsub_free(char **s, uint32_t start, size_t len)
 	if (!s || !*s)
 		return (NULL);
 	tmp = *s;
-	if (!(*s = (char *)ft_memalloc(sizeof(char) * (len + 1))))
-		return (NULL);
+	*s = (char *)ft_memalloc(sizeof(char) * (len + 1));
 	ft_strncpy(*s, tmp + start, len);
 	ft_strdel(&tmp);
 	return (*s);

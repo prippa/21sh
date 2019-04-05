@@ -11,13 +11,10 @@
 /* ************************************************************************** */
 
 #include "ft_put.h"
-#include "ft_def.h"
 #include <stdlib.h>
 
 void	ft_fatal_err_exit(const char *message)
 {
-	if (g_fef)
-		g_fef(message);
 	ft_putendl_fd(message, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }

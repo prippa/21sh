@@ -21,8 +21,7 @@ static char	**lp_get_command(t_line_parser *lp)
 	char		**args;
 	t_list_elem	*start;
 
-	GET_MEM(MALLOC_ERR, args, ft_memalloc,
-		sizeof(char *) * (lp->args_list.list_size + 1));
+	args = (char **)ft_memalloc(sizeof(char *) * (lp->args_list.list_size + 1));
 	start = lp->args_list.start;
 	i = -1;
 	while (start)

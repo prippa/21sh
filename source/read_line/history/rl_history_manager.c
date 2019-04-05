@@ -29,13 +29,9 @@ void		rl_history_add(const char *line)
 		ft_strequ((char *)rl()->hs.history.end->content, line)))
 		return ;
 	if ((chr = ft_strchr(line, ENDL)))
-	{
-		GET_MEM(MALLOC_ERR, l, ft_strsub, line, 0, chr - line);
-	}
+		l = ft_strsub(line, 0, chr - line);
 	else
-	{
-		GET_MEM(MALLOC_ERR, l, ft_strdup, line);
-	}
+		l = ft_strdup(line);
 	sh_lstpush_back(&rl()->hs.history, false, l, ft_strlen(l));
 }
 
@@ -49,9 +45,8 @@ void		rl_history_init_new_prompt(const char *ss, const char *prompt)
 {
 	char	*new_prompt;
 
-	GET_MEM(MALLOC_ERR, new_prompt, ft_strdup, prompt);
-	GET_MEM(MALLOC_ERR, new_prompt, ft_strinsert_free,
-		&new_prompt, ss,
+	new_prompt = ft_strdup(prompt);
+	ft_strinsert_free(&new_prompt, ss,
 		(ft_strchr(new_prompt, STOP_CHR) + 1) - new_prompt);
 	ft_strcpy(rl()->prompt, new_prompt);
 	rl()->prompt_size = ft_strlen(ss) + ft_strlen(prompt);

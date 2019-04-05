@@ -48,8 +48,6 @@ t_shell				*sh(void);
 
 void				sh_fatal_err(const char *message);
 
-# define GET_MEM(m, v, f, a ...) if (!(v = f(a))) sh_fatal_err(m)
-
 void				sh_init(void);
 void				sh_init_env(void);
 void				sh_init_term(void);

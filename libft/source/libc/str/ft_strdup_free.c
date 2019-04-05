@@ -18,8 +18,7 @@ char	*ft_strdup_free(char **dst, const char *src)
 	char *tmp;
 
 	tmp = *dst;
-	if (!(*dst = ft_strdup(src)))
-		return (NULL);
+	*dst = ft_strdup(src);
 	ft_strdel(&tmp);
 	return (*dst);
 }

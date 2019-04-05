@@ -19,6 +19,11 @@ void	*ft_memalloc(size_t size)
 	void *new_obj;
 
 	if (!(new_obj = malloc(size)))
-		ft_fatal_err_exit(MALLOC_ERR);
+	{
+		if (g_fef)
+			g_fef(MALLOC_ERR);
+		else
+			ft_perror_exit(MALLOC_ERR);
+	}
 	return (ft_memset(new_obj, 0, size));
 }

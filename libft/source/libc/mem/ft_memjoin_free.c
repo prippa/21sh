@@ -18,8 +18,7 @@ void	*ft_memjoin_free(void **dst, const void *src,
 	void *tmp;
 
 	tmp = *dst;
-	if (!(*dst = (void *)ft_memalloc(sizeof(void) * (dstsize + srcsize))))
-		return (NULL);
+	*dst = ft_memalloc(sizeof(void) * (dstsize + srcsize));
 	ft_memcpy(*dst, tmp, dstsize);
 	ft_memcpy(*dst + dstsize, src, srcsize);
 	ft_memdel(&tmp);

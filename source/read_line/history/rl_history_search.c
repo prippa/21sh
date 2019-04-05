@@ -16,8 +16,7 @@ static void		rl_hs_new_mask_add(t_line *ln, const char *new_data)
 {
 	if (ft_strlen(new_data) + rl()->prompt_size > PROMPT_SIZE)
 		return ;
-	GET_MEM(MALLOC_ERR, hs()->search_str, ft_strjoin_free,
-		&hs()->search_str, new_data,
+	ft_strjoin_free(&hs()->search_str, new_data,
 		ft_strlen(hs()->search_str), ft_strlen(new_data));
 	rl_hs_new_mask(ln);
 }
@@ -26,8 +25,7 @@ static void		rl_hs_new_mask_del(t_line *ln)
 {
 	if (!ft_is_str_empty(hs()->search_str))
 	{
-		GET_MEM(MALLOC_ERR, hs()->search_str, ft_strsub_free,
-			&hs()->search_str, 0, ft_strlen(hs()->search_str) - 1);
+		ft_strsub_free(&hs()->search_str, 0, ft_strlen(hs()->search_str) - 1);
 		rl_hs_new_mask(ln);
 	}
 }
@@ -46,7 +44,7 @@ static void		rl_hs_init(void)
 {
 	if (hs()->search_str)
 		return ;
-	GET_MEM(MALLOC_ERR, hs()->search_str, ft_strdup, EMPTY_STR);
+	hs()->search_str = ft_strdup(EMPTY_STR);
 	hs()->h_curent = rl()->hs.history.end;
 }
 

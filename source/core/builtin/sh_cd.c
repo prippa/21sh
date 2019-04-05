@@ -61,12 +61,13 @@ static void		sh_cd_make_move(t_list *env_list, const char *path, t_bool slf)
 		pwd = sh()->pwd;
 		sh()->pwd = sh_join_path_to_pwd(pwd, path);
 		ft_strdel(&pwd);
-		GET_MEM(MALLOC_ERR, pwd, ft_strdup, sh()->pwd);
+		pwd = ft_strdup(sh()->pwd);
 	}
 	else
 	{
-		GET_MEM(GETCWD_FAILED, pwd, getcwd, NULL, 0);
-		GET_MEM(MALLOC_ERR, sh()->pwd, ft_strdup_free, &sh()->pwd, pwd);
+		if (!(pwd = getcwd(NULL, 0)))
+			sh_fatal_err(GETCWD_FAILED);
+		ft_strdup_free(&sh()->pwd, pwd);
 	}
 	env_set(env_list, ENV(PWD_ENV, pwd), true);
 	ft_strdel(&pwd);
@@ -83,7 +84,7 @@ static t_bool	sh_cd_by_env(t_list *env_list, const char *env_key, t_bool slf)
 	}
 	if (!sh_cd_path_valid(path))
 		return (false);
-	GET_MEM(MALLOC_ERR, path, ft_strdup, path);
+	path = ft_strdup(path);
 	sh_cd_make_move(env_list, path, slf);
 	ft_strdel(&path);
 	return (true);

@@ -24,7 +24,7 @@ static void		rl_t_gm_push_cmd(t_list *m, const char *bc, const char *c)
 
 	if (ft_strnequ(bc, c, ft_strlen(bc)))
 	{
-		GET_MEM(MALLOC_ERR, cmd, ft_strdup, c);
+		cmd = ft_strdup(c);
 		sh_lstpush_back(m, false, cmd, ft_strlen(cmd));
 	}
 }
@@ -44,10 +44,9 @@ static void		rl_t_read_dir(t_list *m, char **paths, const char *bc)
 			sh_fatal_err(OPENDIR_FAILED);
 		while ((dit = readdir(dip)))
 		{
-			GET_MEM(MALLOC_ERR, bin, ft_strjoin,
-				*paths, (char[2]){UNIX_PATH_SEPARATOR, 0});
-			GET_MEM(MALLOC_ERR, bin, ft_strjoin_free,
-				&bin, dit->d_name, ft_strlen(bin), ft_strlen(dit->d_name));
+			bin = ft_strjoin(*paths, (char[2]){UNIX_PATH_SEPARATOR, 0});
+			ft_strjoin_free(&bin, dit->d_name,
+				ft_strlen(bin), ft_strlen(dit->d_name));
 			if (!access(bin, X_OK) && dit->d_type != DT_DIR)
 				rl_t_gm_push_cmd(m, bc, dit->d_name);
 			ft_strdel(&bin);
@@ -70,7 +69,7 @@ static t_list	rl_t_get_matches(const char *bc)
 		rl_t_gm_push_cmd(&m, bc, g_builtin_box[i].s);
 	if (!(path_env = env_get_vlu_by_key(sh()->env.start, PATH_ENV)))
 		path_env = CUR_DIR;
-	GET_MEM(MALLOC_ERR, paths, ft_strsplit, path_env, PATH_ENV_SEPARATOR);
+	paths = ft_strsplit(path_env, PATH_ENV_SEPARATOR);
 	rl_t_read_dir(&m, paths, bc);
 	ft_arrdel(&paths);
 	return (m);
@@ -97,7 +96,7 @@ static char		*rl_t_get_cmd_from_line(t_line *ln)
 		if (!space_flag)
 			++len;
 	}
-	GET_MEM(MALLOC_ERR, cmd, ft_strsub, ln->line, ln->pc - len, len);
+	cmd = ft_strsub(ln->line, ln->pc - len, len);
 	return (cmd);
 }
 

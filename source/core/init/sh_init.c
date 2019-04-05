@@ -24,9 +24,10 @@ t_shell		*sh(void)
 
 void		sh_init(void)
 {
-	sh_init_term();
 	g_fef = &sh_fatal_err;
-	GET_MEM(GETCWD_FAILED, sh()->pwd, getcwd, NULL, 0);
+	sh_init_term();
+	if (!(sh()->pwd = getcwd(NULL, 0)))
+		sh_fatal_err(GETCWD_FAILED);
 	sh_init_env();
 	sh_update_curent_dir_name();
 	sh()->ok = true;

@@ -21,14 +21,12 @@ t_list_elem	*ft_lstnew(void const *content, size_t content_size)
 	data = NULL;
 	if (content)
 	{
-		if (!(data = ft_memalloc(content_size)))
-			return (NULL);
+		data = ft_memalloc(content_size);
 		ft_memcpy(data, content, content_size);
 	}
 	else
 		content_size = 0;
-	if (!(new_obj = (t_list_elem *)ft_memalloc(sizeof(t_list_elem))))
-		return (NULL);
+	new_obj = (t_list_elem *)ft_memalloc(sizeof(t_list_elem));
 	new_obj->content = data;
 	new_obj->content_size = content_size;
 	return (new_obj);

@@ -19,8 +19,7 @@ char	*ft_strjoin_free(char **dst, const char *src,
 	char *tmp;
 
 	tmp = *dst;
-	if (!(*dst = (char *)ft_memalloc(sizeof(char) * (dstsize + srcsize + 1))))
-		return (NULL);
+	*dst = (char *)ft_memalloc(sizeof(char) * (dstsize + srcsize + 1));
 	ft_strncpy(*dst, tmp, dstsize);
 	ft_strncpy(*dst + dstsize, src, srcsize);
 	ft_strdel(&tmp);

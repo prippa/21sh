@@ -63,8 +63,6 @@ char		*ft_sprintf(const char *format, ...)
 		s = ft_strsub(fpf.buf, 0, fpf.buflen);
 	else
 		s = ft_strdup(EMPTY_STR);
-	if (!s)
-		ft_perror_exit(MALLOC_ERR);
 	va_end(fpf.args);
 	return (s);
 }

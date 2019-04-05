@@ -37,8 +37,7 @@ static t_bool		sh_check_path(const char *path, t_build *b)
 	char	*full_path;
 	int32_t	res;
 
-	GET_MEM(MALLOC_ERR, full_path, ft_strnew,
-		ft_strlen(path) + ft_strlen(*b->args) + 1);
+	full_path = ft_strnew(ft_strlen(path) + ft_strlen(*b->args) + 1);
 	ft_strcpy(full_path, path);
 	ft_strcat(full_path, (char[2]){ UNIX_PATH_SEPARATOR, 0 });
 	ft_strcat(full_path, *b->args);
@@ -57,7 +56,7 @@ static t_bool		sh_env_path_cmd_search(t_build *b)
 
 	if ((path_value = env_get_vlu_by_key(sh()->env.start, PATH_ENV)))
 	{
-		GET_MEM(MALLOC_ERR, paths, ft_strsplit, path_value, PATH_ENV_SEPARATOR);
+		paths = ft_strsplit(path_value, PATH_ENV_SEPARATOR);
 		i = -1;
 		while (paths[++i])
 			if (sh_check_path(paths[i], b))

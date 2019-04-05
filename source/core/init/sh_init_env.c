@@ -21,7 +21,7 @@ static void	sh_set_shell_lvl(t_build *b)
 
 	if ((value = env_get_vlu_by_key(b->env->start, SHELL_LVL_ENV)))
 	{
-		GET_MEM(MALLOC_ERR, value, ft_itoa_max, ft_atoi_max(value) + 1);
+		value = ft_itoa_max(ft_atoi_max(value) + 1);
 		env_set(b->env, ENV(SHELL_LVL_ENV, value), true);
 		ft_strdel(&value);
 	}
@@ -31,14 +31,8 @@ static void	sh_set_shell_lvl(t_build *b)
 
 static void	sh_set_pwd(t_build *b)
 {
-	char *value;
-
-	if (!(value = env_get_vlu_by_key(b->env->start, PWD_ENV)))
-	{
-		GET_MEM(GETCWD_FAILED, value, getcwd, NULL, 0);
-		env_set(b->env, ENV(PWD_ENV, value), true);
-		ft_strdel(&value);
-	}
+	if (!env_get_vlu_by_key(b->env->start, PWD_ENV))
+		env_set(b->env, ENV(PWD_ENV, sh()->pwd), true);
 }
 
 static void	sh_set_path(t_build *b)

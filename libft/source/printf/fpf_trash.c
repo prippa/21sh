@@ -17,8 +17,7 @@
 
 void	fpf_init_random_char(t_printf *fpf)
 {
-	if (!(fpf->str = (char *)ft_memalloc(sizeof(char) * 2)))
-		ft_perror_exit(MALLOC_ERR);
+	fpf->str = (char *)ft_memalloc(sizeof(char) * 2);
 	fpf->str[0] = *fpf->format;
 	fpf->type = 'c';
 	++fpf->format;

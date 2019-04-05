@@ -17,8 +17,7 @@ void	*ft_memjoin(const void *dst, const void *src,
 {
 	void *new_obj;
 
-	if (!(new_obj = (void *)ft_memalloc(sizeof(void) * (dstsize + srcsize))))
-		return (NULL);
+	new_obj = ft_memalloc(sizeof(void) * (dstsize + srcsize));
 	ft_memcpy(new_obj, dst, dstsize);
 	ft_memcpy(new_obj + dstsize, src, srcsize);
 	return (new_obj);

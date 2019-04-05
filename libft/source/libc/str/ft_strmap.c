@@ -20,8 +20,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 
 	if (!s || !f)
 		return (NULL);
-	if (!(new_obj = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s) + 1))))
-		return (NULL);
+	new_obj = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s) + 1));
 	tmp = new_obj;
 	while (*s)
 		*tmp++ = f(*s++);

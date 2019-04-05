@@ -16,7 +16,6 @@ char	*ft_strnew(size_t size)
 {
 	char *new_obj;
 
-	if (!(new_obj = (char*)ft_memalloc(sizeof(char) * (size + 1))))
-		return (NULL);
+	new_obj = (char*)ft_memalloc(sizeof(char) * (size + 1));
 	return (new_obj);
 }

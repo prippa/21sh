@@ -20,8 +20,7 @@ char		*ft_strinsert_free(char **dst, const char *src, size_t len)
 
 	ptr = *dst;
 	src_len = ft_strlen(src);
-	if (!(*dst = (char *)ft_memalloc(ft_strlen(*dst) + src_len + 1)))
-		return (NULL);
+	*dst = (char *)ft_memalloc(ft_strlen(*dst) + src_len + 1);
 	ft_strncpy(*dst, ptr, len);
 	ft_strcpy(*dst + len, src);
 	ft_strcpy(*dst + len + src_len, ptr + len);

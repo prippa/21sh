@@ -18,8 +18,7 @@ char	*ft_strcut_free(char **dst, size_t start, size_t end)
 	char	*tmp;
 
 	tmp = *dst;
-	if (!(*dst = ft_memalloc((ft_strlen(*dst) - (end - start)) + 1)))
-		return (NULL);
+	*dst = (char *)ft_memalloc((ft_strlen(*dst) - (end - start)) + 1);
 	ft_strncpy(*dst, tmp, start);
 	ft_strcpy(*dst + start, tmp + end);
 	ft_strdel(&tmp);

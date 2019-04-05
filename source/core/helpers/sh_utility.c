@@ -23,12 +23,10 @@ void		sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
 	t_list_elem *new_obj;
 
 	if (make_copy_of_content)
-	{
-		GET_MEM(MALLOC_ERR, new_obj, ft_lstnew, content, content_size);
-	}
+		new_obj = ft_lstnew(content, content_size);
 	else
 	{
-		GET_MEM(MALLOC_ERR, new_obj, ft_memalloc, sizeof(t_list_elem));
+		new_obj = ft_memalloc(sizeof(t_list_elem));
 		new_obj->content = content;
 		new_obj->content_size = content_size;
 	}
@@ -42,7 +40,7 @@ void		sh_update_curent_dir_name(void)
 
 	if (((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)) &&
 		!ft_strcmp(home, sh()->pwd)))
-		ft_strcpy(sh()->curent_path, (char[2]){ TILDE_C, 0 });
+			ft_strcpy(sh()->curent_path, (char[2]){ TILDE_C, 0 });
 	else if ((file = ft_strrchr(sh()->pwd, UNIX_PATH_SEPARATOR)))
 	{
 		if (*(file + 1))

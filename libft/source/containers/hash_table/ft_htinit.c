@@ -14,11 +14,8 @@
 #include "ft_mem.h"
 #include "ft_def.h"
 
-int32_t		ft_htinit(t_hash_table *ht, size_t init_size)
+void		ft_htinit(t_hash_table *ht, size_t init_size)
 {
 	ft_bzero(ht, sizeof(t_hash_table));
-	if (!(ht->item = ft_memalloc(sizeof(t_ht_item) * init_size)))
-		return (ERR);
-	
-	return (OK);
+	ht->item = ft_memalloc(sizeof(t_ht_item) * init_size);
 }

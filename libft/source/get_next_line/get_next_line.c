@@ -28,8 +28,7 @@ static int32_t	gnl_sub_line(t_gnl *file, char **line)
 	start = (uint32_t)file->i;
 	while (file->s[file->i] && file->s[file->i] != ENDL)
 		++file->i;
-	if (!(*line = ft_strsub(file->s, start, file->i - start)))
-		return (ERR);
+	*line = ft_strsub(file->s, start, file->i - start);
 	if (file->s[file->i])
 		++file->i;
 	return (1);
@@ -39,12 +38,10 @@ static int32_t	gnl_remainder(t_gnl *file)
 {
 	if (!file->s)
 	{
-		if (!(file->s = ft_strdup("")))
-			return (ERR);
+		file->s = ft_strdup(EMPTY_STR);
 		return (1);
 	}
-	if (!(file->s = ft_strdup_free(&file->s, &file->s[file->i])))
-		return (ERR);
+	ft_strdup_free(&file->s, &file->s[file->i]);
 	file->i = 0;
 	return (1);
 }
@@ -57,8 +54,7 @@ static int32_t	gnl_read_file(t_gnl *file, char **line)
 	while ((ret = read(file->fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = 0;
-		if (!(ft_strjoin_free(&file->s, buf, ft_strlen(file->s), ret)))
-			return (ERR);
+		ft_strjoin_free(&file->s, buf, ft_strlen(file->s), ret);
 		if (ft_strchr(buf, ENDL))
 			break ;
 	}
@@ -78,8 +74,7 @@ static t_gnl	*gnl_add_or_get_file(t_gnl **g, int32_t fd)
 			return (file);
 		file = file->next;
 	}
-	if (!(file = (t_gnl *)ft_memalloc(sizeof(t_gnl))))
-		return (NULL);
+	file = (t_gnl *)ft_memalloc(sizeof(t_gnl));
 	file->fd = fd;
 	file->next = *g;
 	*g = file;

@@ -20,8 +20,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (!s || !f)
 		return (NULL);
-	if (!(new_obj = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s) + 1))))
-		return (NULL);
+	new_obj = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s) + 1));
 	i = -1;
 	while (s[++i])
 		new_obj[i] = f(i, s[i]);

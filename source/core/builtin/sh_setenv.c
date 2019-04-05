@@ -39,8 +39,8 @@ int32_t			sh_setenv_one_env(t_list *env_list,
 	res = false;
 	if (!(i = ft_strchr(env, KEY_VALUE_SEPARATOR)))
 		return (ERR);
-	GET_MEM(MALLOC_ERR, e.key, ft_strsub, env, 0, i - env);
-	GET_MEM(MALLOC_ERR, e.value, ft_strdup, &env[(i - env) + 1]);
+	e.key = ft_strsub(env, 0, i - env);
+	e.value = ft_strdup(&env[(i - env) + 1]);
 	if (strictly_valid_flag)
 		res = sh_setenv_strictly_valid(e.key);
 	if (!res)

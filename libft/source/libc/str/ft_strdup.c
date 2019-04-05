@@ -17,7 +17,6 @@ char	*ft_strdup(const char *s1)
 {
 	char		*new_obj;
 
-	if (!(new_obj = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s1) + 1))))
-		return (NULL);
+	new_obj = (char *)ft_memalloc(sizeof(char) * (ft_strlen(s1) + 1));
 	return (ft_strcpy(new_obj, s1));
 }

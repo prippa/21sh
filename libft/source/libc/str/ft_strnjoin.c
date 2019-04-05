@@ -18,8 +18,7 @@ char	*ft_strnjoin(char const *s1, char const *s2,
 {
 	char	*new_obj;
 
-	if (!(new_obj = (char *)ft_memalloc(sizeof(char) * (s1len + s2len + 1))))
-		return (NULL);
+	new_obj = (char *)ft_memalloc(sizeof(char) * (s1len + s2len + 1));
 	ft_strncpy(new_obj, s1, s1len);
 	ft_strncpy(new_obj + s1len, s2, s2len);
 	return (new_obj);
