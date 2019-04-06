@@ -17,5 +17,6 @@
 void		ft_htinit(t_hash_table *ht, size_t init_size)
 {
 	ft_bzero(ht, sizeof(t_hash_table));
-	ht->item = ft_memalloc(sizeof(t_ht_item) * init_size);
+	ht->arr = ft_memalloc(sizeof(t_ht_elem) * init_size);
+	ht->ht_size = init_size;
 }

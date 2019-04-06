@@ -12,7 +12,7 @@
 
 #include "ft_list.h"
 
-void	ft_lstpop_front(t_list *lst, t_del_content del)
+void	ft_lstpop_front(t_list *lst)
 {
 	t_list_elem *tmp;
 
@@ -24,11 +24,11 @@ void	ft_lstpop_front(t_list *lst, t_del_content del)
 		lst->start->prev = NULL;
 	else
 		lst->end = NULL;
-	ft_lstdel_one(&tmp, del);
+	ft_lstdel_one(&tmp, lst->del);
 	--lst->list_size;
 }
 
-void	ft_lstpop_back(t_list *lst, t_del_content del)
+void	ft_lstpop_back(t_list *lst)
 {
 	t_list_elem *tmp;
 
@@ -40,6 +40,6 @@ void	ft_lstpop_back(t_list *lst, t_del_content del)
 		lst->end->prev = NULL;
 	else
 		lst->end = NULL;
-	ft_lstdel_one(&tmp, del);
+	ft_lstdel_one(&tmp, lst->del);
 	--lst->list_size;
 }

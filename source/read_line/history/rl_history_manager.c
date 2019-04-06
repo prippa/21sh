@@ -32,7 +32,7 @@ void		rl_history_add(const char *line)
 		l = ft_strsub(line, 0, chr - line);
 	else
 		l = ft_strdup(line);
-	sh_lstpush_back(&rl()->hs.history, false, l, ft_strlen(l));
+	ft_lstpush_back(&rl()->hs.history, ft_lstnew_ref(l, ft_strlen(l)));
 }
 
 void		rl_history_move(const char *line, t_line *ln)

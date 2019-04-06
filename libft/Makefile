@@ -150,7 +150,8 @@ CNT_C		:=	$(DIR_LST)ft_lstpush.c\
 				$(DIR_LST)ft_lstnew.c\
 				$(DIR_LST)ft_lstpop.c\
 				$(DIR_LST)ft_lstrev.c\
-				$(DIR_HASH)ft_htinit.c
+				$(DIR_HASH)ft_htinit.c\
+				$(DIR_HASH)ft_hthash.c
 
 GNL_C		:=	$(DIR_GNL_SRC)get_next_line.c
 

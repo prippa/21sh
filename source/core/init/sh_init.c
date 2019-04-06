@@ -12,6 +12,7 @@
 
 #include "shell.h"
 #include "messages.h"
+#include "environ_manipulation.h"
 
 t_shell		*sh(void)
 {
@@ -23,6 +24,7 @@ t_shell		*sh(void)
 void		sh_init(void)
 {
 	g_fef = &sh_fatal_err;
+	sh()->env.del = &env_del_list;
 	sh_init_term();
 	if (!(sh()->pwd = getcwd(NULL, 0)))
 		sh_fatal_err(GETCWD_FAILED);

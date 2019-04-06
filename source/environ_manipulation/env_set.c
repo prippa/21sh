@@ -33,5 +33,5 @@ void			env_set(t_list *env_list,
 	if (obj && overwrite)
 		env_edit(obj, &new_env_cpy);
 	else
-		sh_lstpush_back(env_list, true, &new_env_cpy, sizeof(t_env));
+		ft_lstpush_back(env_list, ft_lstnew(&new_env_cpy, sizeof(t_env)));
 }

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_unset.c                                        :+:      :+:    :+:   */
+/*   ft_hthash.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 13:54:46 by prippa            #+#    #+#             */
-/*   Updated: 2019/03/02 13:54:47 by prippa           ###   ########.fr       */
+/*   Created: 2019/04/06 11:44:00 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/06 11:44:07 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "environ_manipulation.h"
+#include "ft_hash_table.h"
 
-int32_t		env_unset(t_list *env_list, const char *key)
+size_t		ft_hthash(const void *key, size_t key_size, size_t ht_size)
 {
-	t_list_elem	*obj;
+	uint8_t	*ptr;
+	size_t	hash;
+	size_t	len;
+	size_t	i;
 
-	if (!(obj = env_get_obj_by_key(env_list->start, key)))
-		return (ERR);
-	ft_lstdel_by_obj(env_list, obj);
-	return (0);
+	ptr = (uint8_t *)key;
+	hash = HT_MASK;
+	len = key_size >> 1;
+	i = -1;
+	while (++i < len)
+		hash ^= (i << 4 ^ ptr[i] << 8 ^ ptr[i]);
+	return (hash % ht_size);
 }

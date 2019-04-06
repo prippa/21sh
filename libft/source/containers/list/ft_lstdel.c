@@ -13,7 +13,7 @@
 #include "ft_list.h"
 #include "ft_mem.h"
 
-void	ft_lstdel_one(t_list_elem **elem, t_del_content del)
+void	ft_lstdel_one(t_list_elem **elem, t_lst_del del)
 {
 	if (!*elem)
 		return ;
@@ -23,13 +23,13 @@ void	ft_lstdel_one(t_list_elem **elem, t_del_content del)
 	*elem = NULL;
 }
 
-void	ft_lstdel(t_list *lst, t_del_content del)
+void	ft_lstdel(t_list *lst)
 {
 	while (lst->start)
-		ft_lstpop_front(lst, del);
+		ft_lstpop_front(lst);
 }
 
-void	ft_lstdel_by_obj(t_list *lst, t_list_elem *obj, t_del_content del)
+void	ft_lstdel_by_obj(t_list *lst, t_list_elem *obj)
 {
 	if (!obj)
 		return ;
@@ -51,7 +51,7 @@ void	ft_lstdel_by_obj(t_list *lst, t_list_elem *obj, t_del_content del)
 		obj->prev->next = obj->next;
 		obj->next->prev = obj->prev;
 	}
-	ft_lstdel_one(&obj, del);
+	ft_lstdel_one(&obj, lst->del);
 	--lst->list_size;
 }
 

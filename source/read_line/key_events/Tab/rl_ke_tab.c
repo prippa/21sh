@@ -25,7 +25,7 @@ static void		rl_t_gm_push_cmd(t_list *m, const char *bc, const char *c)
 	if (ft_strnequ(bc, c, ft_strlen(bc)))
 	{
 		cmd = ft_strdup(c);
-		sh_lstpush_back(m, false, cmd, ft_strlen(cmd));
+		ft_lstpush_back(m, ft_lstnew_ref(cmd, ft_strlen(cmd)));
 	}
 }
 
@@ -64,6 +64,7 @@ static t_list	rl_t_get_matches(const char *bc)
 	char	*path_env;
 
 	ft_bzero(&m, sizeof(t_list));
+	m.del = &ft_lstdel_content;
 	i = -1;
 	while (++i < SH_BUILTIN_SIZE)
 		rl_t_gm_push_cmd(&m, bc, g_builtin_box[i].s);
@@ -115,7 +116,7 @@ int32_t			rl_ke_tab(t_line *ln)
 	if (matches.start)
 	{
 		res = tab_process_matches(matches.start, ft_strlen(base_cmd), ln);
-		ft_lstdel(&matches, &ft_lstdel_content);
+		ft_lstdel(&matches);
 	}
 	ft_strdel(&base_cmd);
 	return (res);

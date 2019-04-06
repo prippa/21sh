@@ -17,22 +17,6 @@
 
 #define SH_ERR		"ERROR: " SHELL_NAME " : %s\n"
 
-void		sh_lstpush_back(t_list *lst, t_bool make_copy_of_content,
-				void *content, size_t content_size)
-{
-	t_list_elem *new_obj;
-
-	if (make_copy_of_content)
-		new_obj = ft_lstnew(content, content_size);
-	else
-	{
-		new_obj = ft_memalloc(sizeof(t_list_elem));
-		new_obj->content = content;
-		new_obj->content_size = content_size;
-	}
-	ft_lstpush_back(lst, new_obj);
-}
-
 void		sh_update_curent_dir_name(void)
 {
 	char	*home;
