@@ -89,7 +89,7 @@ void	ft_htinsert_logic(t_hash_table *ht,
 		return ;
 	if (!ht->ht_size)
 	{
-		ft_htinit(ht, HT_ELEM_SPACE);
+		ft_htinit(ht, (size_t)HT_ELEM_SPACE);
 		ft_ht_make_insert_op(ht, elem, ref);
 		return ;
 	}
