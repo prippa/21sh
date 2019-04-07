@@ -50,8 +50,8 @@ void					ft_lstdel_one(t_list_elem **elem, t_lst_del f);
 void					ft_lstdel_content(void *content, size_t content_size);
 void					ft_lstdel_by_obj(t_list *lst, t_list_elem *obj);
 
-void					ft_lstiter(t_list_elem *start, t_iter_elem f);
-t_list					ft_lstmap(t_list_elem *start, t_map_elem f);
+void					ft_lstiter(t_list *lst, t_iter_elem f);
+t_list					ft_lstmap(t_list *lst, t_map_elem f);
 
 void					ft_lstrev(t_list *lst);
 

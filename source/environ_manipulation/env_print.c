@@ -21,7 +21,7 @@ static void	env_print_f(t_list_elem *elem)
 	ft_printf("%s=%s\n", e->key, e->value);
 }
 
-void		env_print(t_list_elem *start)
+void		env_print(t_list *env_lst)
 {
-	ft_lstiter(start, env_print_f);
+	ft_lstiter(env_lst, env_print_f);
 }

@@ -12,8 +12,11 @@
 
 #include "ft_list.h"
 
-void	ft_lstiter(t_list_elem *start, t_iter_elem f)
+void	ft_lstiter(t_list *lst, t_iter_elem f)
 {
+	t_list_elem *start;
+
+	start = lst->start;
 	while (start)
 	{
 		f(start);

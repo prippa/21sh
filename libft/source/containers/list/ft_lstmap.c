@@ -13,11 +13,13 @@
 #include "ft_list.h"
 #include "ft_mem.h"
 
-t_list	ft_lstmap(t_list_elem *start, t_map_elem f)
+t_list	ft_lstmap(t_list *lst, t_map_elem f)
 {
 	t_list		new_list;
 	t_list_elem	*elem;
+	t_list_elem	*start;
 
+	start = lst->start;
 	ft_bzero(&new_list, sizeof(t_list));
 	new_list.start = f(start);
 	elem = new_list.start;

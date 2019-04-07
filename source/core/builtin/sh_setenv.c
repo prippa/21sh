@@ -53,7 +53,7 @@ void			sh_setenv(t_build *b)
 {
 	if (!*b->args)
 	{
-		env_print(b->env->start);
+		env_print(b->env);
 		return ;
 	}
 	while (*b->args)

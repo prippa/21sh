@@ -73,7 +73,7 @@ void			sh_env(t_build *b)
 			sh_process_cmd(&nb, ENV_PREFIX);
 		}
 		else
-			env_print(nb.env->start);
+			env_print(nb.env);
 	}
 	ft_lstdel(nb.env);
 	sh()->env_exec_flag = false;
