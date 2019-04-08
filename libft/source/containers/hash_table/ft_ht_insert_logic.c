@@ -45,55 +45,36 @@ static void	ft_ht_insert_move(t_ht_elem *dst,
 	}
 }
 
-static void	ft_ht_make_insert_op(t_hash_table *ht,
-				const t_ht_elem *elem, t_bool ref)
+static void	ft_ht_make_insert_or_replace_op(t_hash_table *ht,
+				const t_ht_elem *elem, t_bool ref, uint32_t hash)
 {
-	size_t	hash;
-
-	hash = ft_hthash(elem->key, elem->key_size, ht->ht_size);
 	while (true)
 	{
 		if (!ht->arr[hash].key)
 		{
 			ft_ht_insert_move(&ht->arr[hash], elem, ref);
-			break ;
+			return ;
 		}
 		if (ht->arr[hash].key_size == elem->key_size &&
-			ft_memcmp(ht->arr[hash].key, elem->key, elem->key_size))
+			!ft_memcmp(ht->arr[hash].key, elem->key, elem->key_size))
 		{
-			ht->del_value(ht->arr[hash].value, ht->arr[hash].value_size);
+			if (ht->del_value)
+				ht->del_value(ht->arr[hash].value, ht->arr[hash].value_size);
 			ft_ht_new_value(&ht->arr[hash], elem, ref);
-			break ;
+			return ;
 		}
-		hash = ((hash + 1) % ht->ht_size);
+		hash = ((hash + 1) % (uint32_t)ht->ht_size);
 	}
 }
 
-static void	ft_ht_increase_arr_size(t_hash_table *ht)
-{
-	t_ht_elem	*new_arr;
-	size_t		new_ht_size;
-
-	new_ht_size = ht->ht_size << 1;
-	new_arr = ft_memalloc(sizeof(t_ht_elem) * new_ht_size);
-	ft_memcpy(new_arr, ht->arr, sizeof(t_ht_elem) * ht->ht_size);
-	ft_memdel((void **)&ht->arr);
-	ht->arr = new_arr;
-	ht->ht_size = new_ht_size;
-}
-
-void	ft_htinsert_logic(t_hash_table *ht,
+void	ft_ht_insert_logic(t_hash_table *ht,
 			const t_ht_elem *elem, t_bool ref)
 {
 	if (!elem || !elem->key)
 		return ;
-	if (!ht->ht_size)
-	{
-		ft_htinit(ht, (size_t)HT_ELEM_SPACE);
-		ft_ht_make_insert_op(ht, elem, ref);
-		return ;
-	}
-	if (ht->size * HT_ELEM_SPACE + 1 > ht->ht_size)
+	ft_ht_make_insert_or_replace_op(ht, elem, ref,
+		ft_ht_hash(elem->key, elem->key_size, ht->ht_size));
+	++ht->size;
+	if (ht->size * HT_ELEM_SPACE > ht->ht_size)
 		ft_ht_increase_arr_size(ht);
-	ft_ht_make_insert_op(ht, elem, ref);
 }

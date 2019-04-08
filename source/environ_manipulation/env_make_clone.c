@@ -29,7 +29,7 @@ void		env_make_clone(t_list *dst, t_list_elem *src_start)
 	while (src_start)
 	{
 		e = env_make_clone_of_body(src_start->content);
-		ft_lstpush_back(dst, ft_lstnew(&e, sizeof(t_env)));
+		LST_PUSH_BACK(dst, &e, sizeof(t_env));
 		src_start = src_start->next;
 	}
 }

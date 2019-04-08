@@ -61,7 +61,7 @@ void		lp_push_arg(t_line_parser *lp)
 		lp_join_to_arg(lp, lp->arg_buf, lp->arg_buf_len);
 	if (lp->arg_len)
 	{
-		ft_lstpush_back(&lp->args_list, ft_lstnew_ref(lp->arg, lp->arg_len));
+		LST_PUSH_BACK_REF(&lp->args_list, lp->arg, lp->arg_len);
 		lp->arg = NULL;
 		*lp->arg_buf = 0;
 		lp->arg_len = 0;

@@ -25,7 +25,7 @@ static void		rl_t_gm_push_cmd(t_list *m, const char *bc, const char *c)
 	if (ft_strnequ(bc, c, ft_strlen(bc)))
 	{
 		cmd = ft_strdup(c);
-		ft_lstpush_back(m, ft_lstnew_ref(cmd, ft_strlen(cmd)));
+		LST_PUSH_BACK_REF(m, cmd, ft_strlen(cmd));
 	}
 }
 
@@ -63,8 +63,7 @@ static t_list	rl_t_get_matches(const char *bc)
 	char	**paths;
 	char	*path_env;
 
-	ft_bzero(&m, sizeof(t_list));
-	m.del = &ft_lstdel_content;
+	ft_lstinit(&m, &ft_cnt_delptr);
 	i = -1;
 	while (++i < SH_BUILTIN_SIZE)
 		rl_t_gm_push_cmd(&m, bc, g_builtin_box[i].s);

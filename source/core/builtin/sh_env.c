@@ -60,10 +60,8 @@ void			sh_env(t_build *b)
 	t_build	nb;
 	t_list	env_list;
 
-	ft_bzero(&nb, sizeof(t_build));
-	ft_bzero(&env_list, sizeof(t_list));
+	ft_lstinit(&env_list, &env_del_list);
 	nb.env = &env_list;
-	nb.env->del = &env_del_list;
 	sh()->env_exec_flag = true;
 	if (sh_env_check_kv(sh_env_check_flag(&b->args), &nb, b))
 	{

@@ -49,7 +49,8 @@ LIB_H		:=	$(DIR_LIB_INC)libft.h\
 
 CNT_H		:=	$(DIR_CNT_INC)ft_containers.h\
 				$(DIR_CNT_INC)ft_list.h\
-				$(DIR_CNT_INC)ft_hash_table.h
+				$(DIR_CNT_INC)ft_hash_table.h\
+				$(DIR_CNT_INC)ft_cnt_general.h
 
 GNL_H		:=	$(DIR_GNL_INC)get_next_line.h
 
@@ -143,18 +144,24 @@ LIB_C		:=	$(DIR_MEM)ft_bzero.c\
 				$(DIR_OTHER)ft_get_left_word.c\
 				$(DIR_OTHER)ft_get_right_word.c
 
-CNT_C		:=	$(DIR_LST)ft_lstpush.c\
+CNT_C		:=	$(DIR_CNT_SRC)ft_delptr.c\
+				$(DIR_LST)ft_lstinit.c\
+				$(DIR_LST)ft_lstpush.c\
 				$(DIR_LST)ft_lstdel.c\
 				$(DIR_LST)ft_lstiter.c\
 				$(DIR_LST)ft_lstmap.c\
 				$(DIR_LST)ft_lstnew.c\
 				$(DIR_LST)ft_lstpop.c\
 				$(DIR_LST)ft_lstrev.c\
+				$(DIR_HASH)ft_ht_hash.c\
+				$(DIR_HASH)ft_ht_insert_logic.c\
+				$(DIR_HASH)ft_ht_incr_decr_arr_size.c\
 				$(DIR_HASH)ft_htinit.c\
-				$(DIR_HASH)ft_hthash.c\
 				$(DIR_HASH)ft_htinsert.c\
-				$(DIR_HASH)ft_htinsert_logic.c\
-				$(DIR_HASH)ft_htiter.c
+				$(DIR_HASH)ft_htiter.c\
+				$(DIR_HASH)ft_htdel.c\
+				$(DIR_HASH)ft_htget.c\
+				$(DIR_HASH)ft_htremove.c
 
 GNL_C		:=	$(DIR_GNL_SRC)get_next_line.c
 

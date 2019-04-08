@@ -14,19 +14,17 @@
 # define FT_HASH_TABLE_H
 
 # include "ft_def.h"
-# include <stddef.h>
+# include "ft_cnt_general.h"
 
 # define HT_MASK 0xbabe
 # define HT_ELEM_SPACE 2.5
 
-typedef struct s_ht_item	t_ht_elem;
+typedef struct s_ht_elem	t_ht_elem;
 typedef struct s_hash_table	t_hash_table;
 
-typedef void	(*t_ht_del_key)(void *key, size_t key_size);
-typedef void	(*t_ht_del_value)(void *value, size_t value_size);
 typedef void	(*t_ht_iter_f)(t_ht_elem *elem);
 
-struct				s_ht_item
+struct				s_ht_elem
 {
 	void			*key;
 	void			*value;
@@ -37,25 +35,39 @@ struct				s_ht_item
 struct				s_hash_table
 {
 	t_ht_elem		*arr;
-	size_t			size;
-	size_t			ht_size;
-	t_ht_del_key	del_key;
-	t_ht_del_value	del_value;
+	uint32_t		size;
+	double			ht_size;
+	t_delptr		del_key;
+	t_delptr		del_value;
 };
 
-# define HT_ELEM_BLOCK {.key = k, .value = v, .key_size = ks, .value_size = vs}
-# define HT_ELEM(k, v, ks, vs) &(t_ht_elem)HT_ELEM_BLOCK
-
-void				ft_htinit(t_hash_table *ht, size_t init_size);
-size_t				ft_hthash(const void *key, size_t key_size, size_t ht_size);
+void				ft_htinit(t_hash_table *ht, double init_size,
+						t_delptr del_key, t_delptr del_value);
+uint32_t			ft_ht_hash(const void *key, size_t key_size,
+						uint32_t ht_size);
 
 void				ft_htinsert(t_hash_table *ht, const t_ht_elem *elem);
 void				ft_htinsert_ref(t_hash_table *ht, const t_ht_elem *elem);
-void				ft_htinsert_logic(t_hash_table *ht,
+void				ft_ht_insert_logic(t_hash_table *ht,
 						const t_ht_elem *elem, t_bool ref);
+
+void				ft_htremove(t_hash_table *ht,
+						const void *key, size_t key_size);
+
+t_ht_elem			*ft_htget(t_hash_table *ht,
+						const void *key, size_t key_size);
+
+void				ft_ht_increase_arr_size(t_hash_table *ht);
+void				ft_ht_decrease_arr_size(t_hash_table *ht);
 
 void				ft_htiter_all(t_hash_table *ht, t_ht_iter_f f);
 void				ft_htiter_exist(t_hash_table *ht, t_ht_iter_f f);
 
+void				ft_htdel(t_hash_table *ht);
+
+# define HTE(k,v,ks,vs) {.key = k, .value = v, .key_size = ks, .value_size = vs}
+# define HT_ELEM(k,v,ks,vs) &(t_ht_elem)HTE(k,v,ks,vs)
+# define HT_INSERT(h,k,v,ks,vs) ft_htinsert(h, HT_ELEM(k,v,ks,vs))
+# define HT_INSERT_REF(h,k,v,ks,vs) ft_htinsert_ref(h, HT_ELEM(k,v,ks,vs))
 
 #endif

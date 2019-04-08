@@ -13,7 +13,7 @@
 #include "ft_list.h"
 #include "ft_mem.h"
 
-void	ft_lstdel_one(t_list_elem **elem, t_lst_del del)
+void	ft_lstdel_one(t_list_elem **elem, t_delptr del)
 {
 	if (!*elem)
 		return ;
@@ -53,10 +53,4 @@ void	ft_lstdel_by_obj(t_list *lst, t_list_elem *obj)
 	}
 	ft_lstdel_one(&obj, lst->del);
 	--lst->list_size;
-}
-
-void	ft_lstdel_content(void *content, size_t content_size)
-{
-	(void)content_size;
-	ft_memdel(&content);
 }

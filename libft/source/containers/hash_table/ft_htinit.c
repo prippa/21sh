@@ -14,9 +14,14 @@
 #include "ft_mem.h"
 #include "ft_def.h"
 
-void		ft_htinit(t_hash_table *ht, size_t init_size)
+void		ft_htinit(t_hash_table *ht, double init_size,
+				t_delptr del_key, t_delptr del_value)
 {
+	if (!init_size)
+		init_size = HT_ELEM_SPACE;
 	ft_bzero(ht, sizeof(t_hash_table));
 	ht->arr = ft_memalloc(sizeof(t_ht_elem) * init_size);
 	ht->ht_size = init_size;
+	ht->del_key = del_key;
+	ht->del_value = del_value;
 }

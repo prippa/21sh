@@ -14,10 +14,10 @@
 
 void		ft_htinsert(t_hash_table *ht, const t_ht_elem *elem)
 {
-	ft_htinsert_logic(ht, elem, false);
+	ft_ht_insert_logic(ht, elem, false);
 }
 
 void		ft_htinsert_ref(t_hash_table *ht, const t_ht_elem *elem)
 {
-	ft_htinsert_logic(ht, elem, true);
+	ft_ht_insert_logic(ht, elem, true);
 }
