@@ -14,5 +14,5 @@ void	ft_htremove(t_hash_table *ht, const void *key, size_t key_size)
 	ft_bzero(elem, sizeof(t_ht_elem));
 	--ht->size;
 	if (ht->size * HT_ELEM_SPACE - 1 < ht->ht_size / 2)
-		ft_ht_decrease_arr_size(ht);
+		ft_ht_change_arr_size(ht, false);
 }

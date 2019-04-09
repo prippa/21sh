@@ -44,7 +44,7 @@ static void	ft_ht_insert_move(t_ht_elem *dst,
 		ft_ht_new_value(dst, src, ref);
 	}
 }
-
+#include <stdio.h>
 static void	ft_ht_make_insert_or_replace_op(t_hash_table *ht,
 				const t_ht_elem *elem, t_bool ref, uint32_t hash)
 {
@@ -53,7 +53,8 @@ static void	ft_ht_make_insert_or_replace_op(t_hash_table *ht,
 		if (!ht->arr[hash].key)
 		{
 			ft_ht_insert_move(&ht->arr[hash], elem, ref);
-			return ;
+			++ht->size;
+			break ;
 		}
 		if (ht->arr[hash].key_size == elem->key_size &&
 			!ft_memcmp(ht->arr[hash].key, elem->key, elem->key_size))
@@ -61,10 +62,12 @@ static void	ft_ht_make_insert_or_replace_op(t_hash_table *ht,
 			if (ht->del_value)
 				ht->del_value(ht->arr[hash].value, ht->arr[hash].value_size);
 			ft_ht_new_value(&ht->arr[hash], elem, ref);
-			return ;
+			break ;
 		}
+		printf("[%u]  ", hash);
 		hash = ((hash + 1) % (uint32_t)ht->ht_size);
 	}
+	printf("\n");
 }
 
 void	ft_ht_insert_logic(t_hash_table *ht,
@@ -74,7 +77,6 @@ void	ft_ht_insert_logic(t_hash_table *ht,
 		return ;
 	ft_ht_make_insert_or_replace_op(ht, elem, ref,
 		ft_ht_hash(elem->key, elem->key_size, ht->ht_size));
-	++ht->size;
 	if (ht->size * HT_ELEM_SPACE > ht->ht_size)
-		ft_ht_increase_arr_size(ht);
+		ft_ht_change_arr_size(ht, true);
 }

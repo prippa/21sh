@@ -52,7 +52,7 @@ void		lp_push_command(t_line_parser *lp)
 	args = lp_get_command(lp);
 	lp_run_command(args);
 	ft_arrdel(&args);
-	ft_lstdel(&lp->args_list);
+	LST_DEL(&lp->args_list);
 }
 
 void		lp_push_arg(t_line_parser *lp)

@@ -13,28 +13,17 @@ static void	ft_ht_cpy(t_hash_table *ht, t_ht_elem *src, uint32_t ht_size)
 	}
 }
 
-void		ft_ht_increase_arr_size(t_hash_table *ht)
+void		ft_ht_change_arr_size(t_hash_table *ht, t_bool incr)
 {
 	t_ht_elem	*old_arr;
 	double		old_size;
 
 	old_arr = ht->arr;
 	old_size = ht->ht_size;
-	ht->ht_size = ht->ht_size * 2;
-	ht->arr = ft_memalloc(sizeof(t_ht_elem) * ht->ht_size);
-	ht->size = 0;
-	ft_ht_cpy(ht, old_arr, old_size);
-	ft_memdel((void **)&old_arr);
-}
-
-void		ft_ht_decrease_arr_size(t_hash_table *ht)
-{
-	t_ht_elem	*old_arr;
-	double		old_size;
-
-	old_arr = ht->arr;
-	old_size = ht->ht_size;
-	ht->ht_size = ht->ht_size / 2;
+	if (incr)
+		ht->ht_size = ht->ht_size * 2;
+	else
+		ht->ht_size = ht->ht_size / 2;
 	ht->arr = ft_memalloc(sizeof(t_ht_elem) * ht->ht_size);
 	ht->size = 0;
 	ft_ht_cpy(ht, old_arr, old_size);

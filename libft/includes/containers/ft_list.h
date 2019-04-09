@@ -56,12 +56,19 @@ t_list					ft_lstmap(t_list *lst, t_map_elem f);
 
 void					ft_lstrev(t_list *lst);
 
-# define LST_NEW(c, cs) ft_lstnew(c, cs)
-# define LST_NEW_REF(c, cs) ft_lstnew_ref(c, cs)
+# define LST_INIT(l,d) ft_lstinit(l, d)
+
+# define LST_NEW(c,cs) ft_lstnew(c, cs)
+# define LST_NEW_REF(c,cs) ft_lstnew_ref(c, cs)
 
 # define LST_PUSH_BACK(l,c,cs) ft_lstpush_back(l, LST_NEW(c, cs))
 # define LST_PUSH_BACK_REF(l,c,cs) ft_lstpush_back(l, LST_NEW_REF(c, cs))
 # define LST_PUSH_FRONT(l,c,cs) ft_lstpush_front(l, LST_NEW(c, cs))
 # define LST_PUSH_FRONT_REF(l,c,cs) ft_lstpush_front(l, LST_NEW_REF(c, cs))
+
+# define LST_POP_BACK(l) ft_lstpop_back(l)
+# define LST_POP_FRONT(l) ft_lstpop_front(l)
+
+# define LST_DEL(l) ft_lstdel(l)
 
 #endif

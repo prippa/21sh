@@ -46,6 +46,7 @@ void		sh_init_env(void)
 	extern char	**environ;
 	t_build		b;
 
+	LST_INIT(&sh()->env, &env_del_list);
 	b.env = &sh()->env;
 	b.args = environ;
 	sh_setenv(&b);

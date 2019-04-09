@@ -63,7 +63,7 @@ static t_list	rl_t_get_matches(const char *bc)
 	char	**paths;
 	char	*path_env;
 
-	ft_lstinit(&m, &ft_cnt_delptr);
+	LST_INIT(&m, &ft_cnt_delptr);
 	i = -1;
 	while (++i < SH_BUILTIN_SIZE)
 		rl_t_gm_push_cmd(&m, bc, g_builtin_box[i].s);
@@ -115,7 +115,7 @@ int32_t			rl_ke_tab(t_line *ln)
 	if (matches.start)
 	{
 		res = tab_process_matches(matches.start, ft_strlen(base_cmd), ln);
-		ft_lstdel(&matches);
+		LST_DEL(&matches);
 	}
 	ft_strdel(&base_cmd);
 	return (res);
