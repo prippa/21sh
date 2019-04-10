@@ -17,7 +17,77 @@
 
 #define SH_CMD_NOT_FOUND	"%s: command not found"
 
-static t_bool		sh_base_cmd_search(t_build *b)
+static t_bool		sh_check_path(const char *path, size_t path_len, t_build *b)
+{
+	char	*full_path;
+	int32_t	res;
+
+	full_path = ft_strnew(path_len + ft_strlen(*b->args) + 1);
+	ft_strncpy(full_path, path, path_len);
+	ft_strcpy(full_path + path_len, (char[2]){ UNIX_PATH_SEPARATOR, 0 });
+	ft_strcpy(full_path + path_len + 1, *b->args);
+	if ((res = access(full_path, F_OK)) == OK &&
+		(res = sh_is_dir(full_path)) == OK)
+		sh_exec(full_path, b);
+	ft_strdel(&full_path);
+	return (res ? false : true);
+}
+
+static t_bool		sh_exec_by_bin_env_path(t_build *b)
+{
+	char	*path_value;
+	char	**paths;
+	size_t	i;
+
+	if ((path_value = env_get_vlu_by_key(b->env->start, PATH_ENV)))
+	{
+		paths = ft_strsplit(path_value, PATH_ENV_SEPARATOR);
+		i = -1;
+		while (paths[++i])
+			if (sh_check_path(paths[i], ft_strlen(paths[i]), b))
+			{
+				ft_arrdel(&paths);
+				return (true);
+			}
+		ft_arrdel(&paths);
+	}
+	return (false);
+}
+
+static t_bool		sh_exec_by_bin(t_build *b)
+{
+	t_ht_elem *bin;
+
+	if (sh()->env_exec_flag && env_get_vlu_by_key(b->env->start, PATH_ENV))
+		return (sh_exec_by_bin_env_path(b));
+	bin = HT_GET(&sh()->bin_path, *b->args, ft_strlen(*b->args));
+	if (bin)
+		return (sh_check_path(bin->value, bin->value_size, b));
+	return (false);
+}
+
+static t_bool		sh_exec_by_full_path(t_build *b, const char *cmd_prefix)
+{
+	char *value;
+
+	if ((!ft_strchr(*b->args, UNIX_PATH_SEPARATOR) &&
+		(value = env_get_vlu_by_key(b->env->start, PATH_ENV)) &&
+		ft_strcmp(value, EMPTY_STR)) || (sh()->env_exec_flag &&
+		!env_get_vlu_by_key(b->env->start, PATH_ENV)))
+		return (false);
+	if (!sh_path_access(*b->args, cmd_prefix))
+	{
+		if (sh_is_dir(*b->args))
+		{
+			PRINT_ERR(EXIT_FAILURE, SH_IS_A_DIR, *b->args);
+		}
+		else
+			sh_exec(*b->args, b);
+	}
+	return (true);
+}
+
+static t_bool		sh_exec_by_builtin(t_build *b)
 {
 	size_t	i;
 
@@ -32,69 +102,12 @@ static t_bool		sh_base_cmd_search(t_build *b)
 	return (false);
 }
 
-static t_bool		sh_check_path(const char *path, t_build *b)
-{
-	char	*full_path;
-	int32_t	res;
-
-	full_path = ft_strnew(ft_strlen(path) + ft_strlen(*b->args) + 1);
-	ft_strcpy(full_path, path);
-	ft_strcat(full_path, (char[2]){ UNIX_PATH_SEPARATOR, 0 });
-	ft_strcat(full_path, *b->args);
-	if (!(res = access(full_path, F_OK)) &&
-		!(res = sh_is_dir(full_path)))
-		sh_exec(full_path, b);
-	ft_strdel(&full_path);
-	return (res ? false : true);
-}
-
-static t_bool		sh_env_path_cmd_search(t_build *b)
-{
-	char	*path_value;
-	char	**paths;
-	size_t	i;
-
-	if ((path_value = env_get_vlu_by_key(sh()->env.start, PATH_ENV)))
-	{
-		paths = ft_strsplit(path_value, PATH_ENV_SEPARATOR);
-		i = -1;
-		while (paths[++i])
-			if (sh_check_path(paths[i], b))
-			{
-				ft_arrdel(&paths);
-				return (true);
-			}
-		ft_arrdel(&paths);
-	}
-	return (false);
-}
-
-static t_bool		sh_full_path_cmd_search(t_build *b, const char *cmd_prefix)
-{
-	char *value;
-
-	if (!ft_strchr(*b->args, UNIX_PATH_SEPARATOR) &&
-		(value = env_get_vlu_by_key(sh()->env.start, PATH_ENV)) &&
-		ft_strcmp(value, EMPTY_STR))
-		return (false);
-	if (!sh_path_access(*b->args, cmd_prefix))
-	{
-		if (sh_is_dir(*b->args))
-		{
-			PRINT_ERR(EXIT_FAILURE, SH_IS_A_DIR, *b->args);
-		}
-		else
-			sh_exec(*b->args, b);
-	}
-	return (true);
-}
-
 void				sh_process_cmd(t_build *b, const char *cmd_prefix)
 {
 	ft_to_str_lower(b->args);
-	if (!sh_base_cmd_search(b) &&
-		!sh_full_path_cmd_search(b, cmd_prefix) &&
-		!sh_env_path_cmd_search(b))
+	if (!sh_exec_by_builtin(b) &&
+		!sh_exec_by_full_path(b, cmd_prefix) &&
+		!sh_exec_by_bin(b))
 	{
 		ft_putstr_fd(cmd_prefix, STDERR_FILENO);
 		PRINT_ERR(EXIT_FAILURE, SH_CMD_NOT_FOUND, *b->args);

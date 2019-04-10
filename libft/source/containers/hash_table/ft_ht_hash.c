@@ -19,9 +19,9 @@ uint32_t	ft_ht_hash(const void *key, size_t key_size, uint32_t ht_size)
 	uint32_t		i;
 
 	ptr = (const uint8_t *)key;
-	hash = HT_MASK;
+	hash = 0;
 	i = -1;
 	while (++i < key_size)
-		hash ^= (i << 4 ^ ptr[i] << 8 ^ ptr[i]);
+		hash = HT_MASK * hash + ptr[i];
 	return (hash % ht_size);
 }

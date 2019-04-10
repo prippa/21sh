@@ -1,6 +1,15 @@
 # 21sh
 Project from UNIX branch in school 42
 
+## Project 21sh continuation of the project minishell
+### New in 21sh project
+
+[✕] Pipes '|'
+[✕] The 4 following redirections '<', '>', '<<' et '>>'
+[✕] File descriptor aggregation
+[✓] Implementation of Hash Table for binary files
+[✓] Professional line editing features using termcap library
+
 ## Hotkey list for line editing:
 
 | Key |  | Details |

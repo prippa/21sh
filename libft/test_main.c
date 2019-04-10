@@ -36,22 +36,51 @@ void print_ht(t_ht_elem *elem)
 	ft_printf("---------------\n");
 }
 
+void print_lst(t_list_elem *elem)
+{
+	printf("i - %u\n", *(uint32_t *)elem->content);
+}
+
+t_bool if_in(t_list_elem *start, uint32_t n)
+{
+	while (start)
+	{
+		if (n == *(uint32_t *)start->content)
+			return (true);
+		start = start->next;
+	}
+	return (false);
+}
+
 int main2(void)
 {
 	t_hash_table	ht;
-	size_t			i;
+	uint32_t		i;
+	uint32_t		n;
+	t_list			l;
+	t_list			hs;
 
+	LST_INIT(&l, &ft_cnt_delptr);
+	LST_INIT(&hs, &ft_cnt_delptr);
 	srand(time(NULL));
-	ft_htinit(&ht, 67.5, &ft_cnt_delptr, &ft_cnt_delptr);
+	ft_htinit(&ht, 100, &ft_cnt_delptr, &ft_cnt_delptr);
 	printf("\n$$$$$$$$$$$$$$$$$$$$$$%f$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n", ht.ht_size);
-	printf("\n$$$$$$$$$$$$$$$$$$$$$$%u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n", ht.size);
 	i = -1;
-	while (++i < ITER_SIZE)
+	while (++i < 27)
 	{
-		HT_INSERT(&ht, (size_t[]){rand() % 27342}, NULL, sizeof(size_t), 0);
+		n = ft_ht_hash((size_t[]){rand() % 783442654}, 8, 67);
+		if (if_in(hs.start, n))
+			LST_PUSH_BACK(&l, &i, 4);
+		printf("i: %u (hash - [%u])\n", i, n);
+		LST_PUSH_BACK(&hs, &n, 4);
+		// HT_INSERT(&ht, (size_t[]){rand() % 783442654}, NULL, sizeof(size_t), 0);
 	}
-	printf("\n$$$$$$$$$$$$$$$$$$$$$$%f$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n", ht.ht_size);
-	printf("\n$$$$$$$$$$$$$$$$$$$$$$%u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n", ht.size);
+	printf("\n");
+	ft_lstiter(&l, &print_lst);
+	printf("\n");
+	// printf("\nht_size - $%f$\n", ht.ht_size);
+	// printf("\nsize - $%u$\n", ht.size);
+	// printf("\ncoalitions - $%u$\n", ht.coalitions);
 	// t_ht_elem *e;
 	// i = -1;
 	// while (++i < ITER_SIZE)
@@ -60,7 +89,7 @@ int main2(void)
 	// 	printf("\n");
 	// }
 	// ft_htiter_all(&ht, &print_ht);
-	printf("\n===================================\n");
+	// printf("\n===================================\n");
 	// ft_htiter_exist(&ht, &print_ht);
 	// ft_htinsert(&ht, HT_ELEM((int[]){44124}, STR5, sizeof(int32_t), ft_strlen(STR5)));
 	// ft_htinsert(&ht, HT_ELEM((int[]){812347}, STR2, sizeof(int32_t), ft_strlen(STR2)));
@@ -97,7 +126,9 @@ int main2(void)
 	// ft_htremove(&ht, (int[]){43}, 4);
 	// ft_htiter_exist(&ht, &print_ht);
 	// printf("\n$$$$$$$$$$$$$$$$$$$$$$%f$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n", ht.ht_size);
-	ft_htdel(&ht);
+	HT_DEL(&ht);
+	LST_DEL(&l);
+	LST_DEL(&hs);
 	return (0);
 }
 

@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "ft_printf.h"
 # include "ft_list.h"
+# include "ft_hash_table.h"
 # include <stdio.h>
 # include <termios.h>
 
@@ -27,6 +28,7 @@
 typedef struct		s_shell
 {
 	t_list			env;
+	t_hash_table	bin_path;
 	struct termios	old_settings;
 	struct termios	new_settings;
 	char			prompt[PROMPT_SIZE + 1];

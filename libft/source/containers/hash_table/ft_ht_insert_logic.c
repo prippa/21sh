@@ -44,7 +44,7 @@ static void	ft_ht_insert_move(t_ht_elem *dst,
 		ft_ht_new_value(dst, src, ref);
 	}
 }
-#include <stdio.h>
+
 static void	ft_ht_make_insert_or_replace_op(t_hash_table *ht,
 				const t_ht_elem *elem, t_bool ref, uint32_t hash)
 {
@@ -64,10 +64,8 @@ static void	ft_ht_make_insert_or_replace_op(t_hash_table *ht,
 			ft_ht_new_value(&ht->arr[hash], elem, ref);
 			break ;
 		}
-		printf("[%u]  ", hash);
 		hash = ((hash + 1) % (uint32_t)ht->ht_size);
 	}
-	printf("\n");
 }
 
 void	ft_ht_insert_logic(t_hash_table *ht,

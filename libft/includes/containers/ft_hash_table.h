@@ -16,7 +16,7 @@
 # include "ft_def.h"
 # include "ft_cnt_general.h"
 
-# define HT_MASK 2
+# define HT_MASK 777
 # define HT_ELEM_SPACE 2.5
 
 typedef struct s_ht_elem	t_ht_elem;

@@ -1,29 +1,13 @@
 debug str:
 	echo 321; blah blah; ls;ls -1;ls -lah;            echo 123
-/*
-**	le	->	cursor go one character left
-**	nd	->	cursor go one character right
-**	do	->	cursor go one line down
-**	up	->	cursor go one line up
-**	dc	->	delete one character //unused
-**	im	->	enter insert mode //unused
-**	ei	->	exit insert mode //unused
-**	sc	->	save cursor position //unused
-**	rc	->	restore cursor position //unused
-**	cd	->	clear the line from the cursor until the end of screen
-**	cr	->	cursor go to the beginning of the line
-**	ch	->	string to position the cursor at column c in the same line.
-**	cl	->	clear the screen
-*/
-
-vi, ve, DO, UP
 
 Bonuses:
-	History Search (CTRL+R)
+	PATH rights
 	Auto Comp
-	Back Skash
-	shell prompt
-	Path Rights
+	HashTable
+	History Search (CTRL+R)
+	------------------------
+	Back Skash '\'
+	other ReadLine sings
 TODO:
-	MALLOC REVOLUTION!!!
-	HASH table!
+	Pipe and Rediractions

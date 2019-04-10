@@ -39,6 +39,9 @@ DIR_HLP		:=	$(DIR_COR_SRC)helpers/
 DIR_INI		:=	$(DIR_COR_SRC)init/
 DIR_SIG		:=	$(DIR_COR_SRC)signal/
 
+#environ_manipulation
+DIR_ENV_EVS	:=	$(DIR_ENV_SRC)env_events/
+
 # line_parser
 DIR_LPCMD	:=	$(DIR_LNP_SRC)lp_commands/
 
@@ -93,7 +96,9 @@ ENV_C		:=	$(DIR_ENV_SRC)env_convert.c\
 				$(DIR_ENV_SRC)env_print.c\
 				$(DIR_ENV_SRC)env_set.c\
 				$(DIR_ENV_SRC)env_unset.c\
-				$(DIR_ENV_SRC)env_make_clone.c
+				$(DIR_ENV_SRC)env_make_clone.c\
+				$(DIR_ENV_EVS)env_events.c\
+				$(DIR_ENV_EVS)env_new_path.c
 
 LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LNP_SRC)lp_arg_buf_control.c\
