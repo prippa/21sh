@@ -47,7 +47,9 @@
 # define KEY_CTRL_L				12
 # define KEY_CTRL_R				18
 
-int32_t					rl_ke_back_space(t_line *ln);
+typedef int32_t			(*t_ke_event)(t_line *ln);
+
+int32_t					rl_ke_backspace(t_line *ln);
 int32_t					rl_ke_delete(t_line *ln);
 int32_t					rl_ke_return(t_line *ln);
 int32_t					rl_ke_home(t_line *ln);

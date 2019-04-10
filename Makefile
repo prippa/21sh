@@ -75,6 +75,7 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_INI)sh_init.c\
 				$(DIR_INI)sh_init_env.c\
 				$(DIR_INI)sh_init_term.c\
+				$(DIR_INI)sh_init_readline.c\
 				$(DIR_SIG)sh_init_sig.c\
 				$(DIR_SIG)sh_sig_handle.c\
 				$(DIR_BLT)sh_cd.c\

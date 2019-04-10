@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
-#include "environ_manipulation.h"
 
 t_shell		*sh(void)
 {
@@ -25,10 +23,8 @@ void		sh_init(void)
 {
 	g_fef = &sh_fatal_err;
 	sh_init_term();
-	if (!(sh()->pwd = getcwd(NULL, 0)))
-		sh_fatal_err(GETCWD_FAILED);
 	sh_init_env();
-	sh_update_curent_dir_name();
+	sh_init_readline();
 	sh()->ok = true;
 	sh_update_prompt(true);
 	sh_init_sig_base();

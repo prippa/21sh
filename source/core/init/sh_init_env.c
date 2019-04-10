@@ -46,6 +46,8 @@ void		sh_init_env(void)
 	extern char	**environ;
 	t_build		b;
 
+	if (!(sh()->pwd = getcwd(NULL, 0)))
+		sh_fatal_err(GETCWD_FAILED);
 	LST_INIT(&sh()->env, &env_del_list);
 	b.env = &sh()->env;
 	b.args = environ;

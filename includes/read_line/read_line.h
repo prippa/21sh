@@ -36,13 +36,6 @@ typedef struct		s_history
 	char			*cur_line_buf;
 }					t_history;
 
-typedef int32_t		(*t_func)(t_line *ln);
-typedef struct		s_event
-{
-	t_func			f;
-	uint64_t		key;
-}					t_event;
-
 typedef struct		s_tc
 {
 	char			*ch;
@@ -62,6 +55,7 @@ typedef enum		e_mod
 
 typedef struct		s_read_line
 {
+	t_hash_table	button_keys;
 	t_line			ln;
 	t_line			prev_ln;
 	t_history		hs;

@@ -12,7 +12,7 @@
 
 #include "button_keys.h"
 
-int32_t	rl_ke_back_space(t_line *ln)
+int32_t	rl_ke_backspace(t_line *ln)
 {
 	if (ln->pc > ln->l_start)
 	{
