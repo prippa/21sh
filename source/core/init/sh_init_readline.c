@@ -48,6 +48,31 @@ static void	rl_init_base_events(t_hash_table *h)
 	rl_new_event(h, KEY_CTRL_D, &rl_ke_ctrl_d);
 }
 
+/*
+** ch - position the cursor at column c in the same line it is on.
+** up - move cursor up by one row
+** do - move cursor down by one row
+** cr - move cursor to the beginning of the row
+** cd - clear the line the cursor is on, and all the lines below it,
+**      down to the bottom of the screen.
+** cl - clear the entire screen and position the cursor at the upper left corner
+** u7 - cursor position request (equiv. to VT100/ANSI/ECMA-48 DSR 6)
+*/
+
+static void	sh_init_termcaps(void)
+{
+	t_tc *t;
+
+	t = tc();
+	t->ch = tgetstr("ch", NULL);
+	t->up = tgetstr("up", NULL);
+	t->down = tgetstr("do", NULL);
+	t->cr = tgetstr("cr", NULL);
+	t->cd = tgetstr("cd", NULL);
+	t->cl = tgetstr("cl", NULL);
+	t->u7 = tgetstr("u7", NULL);
+}
+
 void		sh_init_readline(void)
 {
 	t_hash_table *h;
@@ -56,4 +81,5 @@ void		sh_init_readline(void)
 	HT_INIT(h, KE_SIZE * HT_ELEM_SPACE, &ft_cnt_delptr, NULL);
 	rl_init_base_events(h);
 	rl_init_bonus_events(h);
+	sh_init_termcaps();
 }

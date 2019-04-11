@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_line.h"
-#include <fcntl.h>
+#include "shell.h"
 #include <term.h>
 #include "messages.h"
 
@@ -19,31 +18,6 @@
 #define NO_TERM "Specify a terminal type with 'setenv TERM <yourtype>'."
 #define NO_ACCESS_TO_DB "Could not access the termcap data base."
 #define NO_SUCH_ENTRY "Terminal type `%s' is not defined."
-
-/*
-** ch - position the cursor at column c in the same line it is on.
-** up - move cursor up by one row
-** do - move cursor down by one row
-** cr - move cursor to the beginning of the row
-** cd - clear the line the cursor is on, and all the lines below it,
-**      down to the bottom of the screen.
-** cl - clear the entire screen and position the cursor at the upper left corner
-** u7 - cursor position request (equiv. to VT100/ANSI/ECMA-48 DSR 6)
-*/
-
-static void	sh_init_termcaps(void)
-{
-	t_tc *t;
-
-	t = tc();
-	t->ch = tgetstr("ch", NULL);
-	t->up = tgetstr("up", NULL);
-	t->down = tgetstr("do", NULL);
-	t->cr = tgetstr("cr", NULL);
-	t->cd = tgetstr("cd", NULL);
-	t->cl = tgetstr("cl", NULL);
-	t->u7 = tgetstr("u7", NULL);
-}
 
 static void	sh_init_new_settings(void)
 {
@@ -68,5 +42,4 @@ void		sh_init_term(void)
 	else if (res == 0)
 		ft_fatal_err_exit(MSG(NO_SUCH_ENTRY, term_type));
 	sh_init_new_settings();
-	sh_init_termcaps();
 }

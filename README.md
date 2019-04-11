@@ -4,11 +4,11 @@ Project from UNIX branch in school 42
 ## Project 21sh is the continuation of the project [minishell](https://github.com/prippa/minishell)
 ### New in 21sh project
 
-[✕] Pipes **'|'**
+[✕] Pipes '**|**'
 
-[✕] The 4 following redirections **'<', '>', '<<' et '>>'**
+[✕] The 4 following redirections '**<**', '**>**', '**<<**' and '**>>**'
 
-[✕] File descriptor aggregation
+[✕] File descriptor aggregation '**<&**' and '**>&**'
 
 [✓] Implementation of **Hash Table** for binary files
 
