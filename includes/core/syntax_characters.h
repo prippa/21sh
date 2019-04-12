@@ -22,4 +22,9 @@
 # define BACKSLASH_C		'\\'
 # define TILDE_C			'~'
 
+# define PIPE_C				'|'
+# define REDIRECT_IN_C		'<'
+# define REDIRECT_OUT_C		'>'
+# define FDA_C				'&'
+
 #endif
