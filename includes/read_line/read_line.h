@@ -19,6 +19,7 @@
 
 # define RL_BUFF_SIZE 8
 # define RL_BREAK 1
+# define HISTORY_FILE_NAME ".21sh_history"
 
 typedef struct		s_line
 {
@@ -34,6 +35,7 @@ typedef struct		s_history
 	t_list			history;
 	t_list_elem		*curent;
 	char			*cur_line_buf;
+	int32_t			hs_fd;
 }					t_history;
 
 typedef struct		s_tc

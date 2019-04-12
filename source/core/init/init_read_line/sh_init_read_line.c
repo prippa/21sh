@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sh_init_read_line.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/12 15:07:05 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/12 15:07:07 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "button_keys.h"
 
 #define KS sizeof(uint64_t)
@@ -30,8 +42,12 @@ static void	rl_init_bonus_events(t_hash_table *h)
 	rl_new_event(h, KEY_CTRL_SHIFT_DOWN, &rl_ke_ctrl_shift_down);
 }
 
-static void	rl_init_base_events(t_hash_table *h)
+static void	rl_init_events(void)
 {
+	t_hash_table *h;
+
+	h = &rl()->button_keys;
+	HT_INIT(h, KE_SIZE * HT_ELEM_SPACE, &ft_cnt_delptr, NULL);
 	rl_new_event(h, KEY_BACKSPACE, &rl_ke_backspace);
 	rl_new_event(h, KEY_DELETE, &rl_ke_delete);
 	rl_new_event(h, KEY_RETURN, &rl_ke_return);
@@ -46,6 +62,7 @@ static void	rl_init_base_events(t_hash_table *h)
 	rl_new_event(h, KEY_CTRL_UP, &rl_ke_ctrl_up);
 	rl_new_event(h, KEY_CTRL_DOWN, &rl_ke_ctrl_down);
 	rl_new_event(h, KEY_CTRL_D, &rl_ke_ctrl_d);
+	rl_init_bonus_events(h);
 }
 
 /*
@@ -59,7 +76,7 @@ static void	rl_init_base_events(t_hash_table *h)
 ** u7 - cursor position request (equiv. to VT100/ANSI/ECMA-48 DSR 6)
 */
 
-static void	sh_init_termcaps(void)
+static void	rl_init_termcaps(void)
 {
 	t_tc *t;
 
@@ -73,13 +90,9 @@ static void	sh_init_termcaps(void)
 	t->u7 = tgetstr("u7", NULL);
 }
 
-void		sh_init_readline(void)
+void		sh_init_read_line(void)
 {
-	t_hash_table *h;
-
-	h = &rl()->button_keys;
-	HT_INIT(h, KE_SIZE * HT_ELEM_SPACE, &ft_cnt_delptr, NULL);
-	rl_init_base_events(h);
-	rl_init_bonus_events(h);
-	sh_init_termcaps();
+	rl_init_events();
+	rl_init_termcaps();
+	sh_init_rl_histiry();
 }

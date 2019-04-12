@@ -53,7 +53,8 @@ void				sh_fatal_err(const char *message);
 void				sh_init(void);
 void				sh_init_env(void);
 void				sh_init_term(void);
-void				sh_init_readline(void);
+void				sh_init_read_line(void);
+void				sh_init_rl_histiry(void);
 
 t_bool				sh_is_dir(const char *path);
 t_bool				sh_is_valid_path(const char *path);

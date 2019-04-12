@@ -37,6 +37,7 @@ DIR_BLT		:=	$(DIR_COR_SRC)builtin/
 DIR_EXC		:=	$(DIR_COR_SRC)exec/
 DIR_HLP		:=	$(DIR_COR_SRC)helpers/
 DIR_INI		:=	$(DIR_COR_SRC)init/
+DIR_INI_RL	:=	$(DIR_INI)init_read_line/
 DIR_SIG		:=	$(DIR_COR_SRC)signal/
 
 #environ_manipulation
@@ -75,7 +76,8 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_INI)sh_init.c\
 				$(DIR_INI)sh_init_env.c\
 				$(DIR_INI)sh_init_term.c\
-				$(DIR_INI)sh_init_readline.c\
+				$(DIR_INI_RL)sh_init_rl_history.c\
+				$(DIR_INI_RL)sh_init_read_line.c\
 				$(DIR_SIG)sh_init_sig.c\
 				$(DIR_SIG)sh_sig_handle.c\
 				$(DIR_BLT)sh_cd.c\

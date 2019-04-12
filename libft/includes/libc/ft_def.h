@@ -14,12 +14,19 @@
 # define FT_DEF_H
 
 # include <stdint.h>
+# include <fcntl.h>
 
 # define ERR			-1
 # define OK				0
 # define MALLOC_ERR		"malloc() failed"
 # define OPEN_ERR		"open() failed"
 # define READ_ERR		"read() failed"
+# define WRITE_ERR		"write() failed"
+
+# define OPEN_REWRITE_FLAGS		(O_CREAT | O_WRONLY | O_TRUNC)
+# define OPEN_APPEND_FLAGS		(O_CREAT | O_WRONLY | O_APPEND)
+# define OPEN_RDWR_APPEND_FLAGS	(O_CREAT | O_RDWR | O_APPEND)
+# define OPEN_CREATE_RW_RIGHTS	(S_IWUSR | S_IRUSR)
 
 # define EMPTY_STR		""
 # define ENDL			'\n'

@@ -23,6 +23,8 @@ void		rl_history_add(const char *line)
 {
 	char		*l;
 	char		*chr;
+	size_t		l_len;
+	char		*msg;
 
 	if (ft_is_str_space(line) || ft_is_str_empty(line) ||
 		(rl()->hs.history.end &&
@@ -32,7 +34,12 @@ void		rl_history_add(const char *line)
 		l = ft_strsub(line, 0, chr - line);
 	else
 		l = ft_strdup(line);
-	LST_PUSH_BACK_REF(&rl()->hs.history, l, ft_strlen(l));
+	l_len = ft_strlen(l);
+	LST_PUSH_BACK_REF(&rl()->hs.history, l, l_len);
+	msg = MSG("%s\n", l);
+	if (write(rl()->hs.hs_fd, msg, l_len + 1) == ERR)
+		sh_fatal_err(WRITE_ERR);
+	ft_strdel(&msg);
 }
 
 void		rl_history_move(const char *line, t_line *ln)

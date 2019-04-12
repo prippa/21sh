@@ -24,7 +24,7 @@ void		sh_init(void)
 	g_fef = &sh_fatal_err;
 	sh_init_term();
 	sh_init_env();
-	sh_init_readline();
+	sh_init_read_line();
 	sh()->ok = true;
 	sh_update_prompt(true);
 	sh_init_sig_base();
