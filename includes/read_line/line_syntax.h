@@ -54,6 +54,11 @@ int32_t				ls_dobule_q_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_single_q_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_semi_check(t_line_syntax *ls, t_line *ln);
 
+int32_t				ls_rap_pipe(t_line_syntax *ls, t_line *ln);
+int32_t				ls_rap_redir_in(t_line_syntax *ls, t_line *ln);
+int32_t				ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
+int32_t				ls_rap_fda(t_line_syntax *ls, t_line *ln);
+
 void				rl_ls_syntax_err(t_syntax_err serr);
 void				rl_ls_new_prompt(t_line *ln, t_bool new_line_f,
 						t_inhibitors inh);
