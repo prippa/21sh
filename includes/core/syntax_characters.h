@@ -26,5 +26,6 @@
 # define REDIRECT_IN_C		'<'
 # define REDIRECT_OUT_C		'>'
 # define FDA_C				'&'
+# define OFF_C				'-'
 
 #endif

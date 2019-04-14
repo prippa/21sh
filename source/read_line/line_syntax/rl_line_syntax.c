@@ -29,10 +29,10 @@ static const t_ls_box	g_ls_rap_box[LS_RAP_BOX_SIZE] =
 	{ls_single_q_check, SINGLE_QUOTES_C},
 	{ls_dobule_q_check, DOUBLE_QUOTES_C},
 	{ls_backslash_check, BACKSLASH_C},
+	{ls_semi_check, SEMICOLON_C},
 	{ls_rap_pipe, PIPE_C},
 	{ls_rap_redir_in, REDIRECT_IN_C},
 	{ls_rap_redir_out, REDIRECT_OUT_C},
-	{ls_rap_fda, FDA_C},
 };
 
 static int32_t	rl_ls_loop(t_line *ln, t_line_syntax *ls)
@@ -69,16 +69,16 @@ static int32_t	rl_ls_rap_loop(t_line *ln, t_line_syntax *ls)
 	while (ln->line[++ls->i])
 	{
 		iter = -1;
-		while (++iter < LS_BOX_SIZE)
+		while (++iter < LS_RAP_BOX_SIZE)
 			if (ln->line[ls->i] == g_ls_rap_box[iter].c)
 			{
 				if ((res = g_ls_rap_box[iter].f(ls, ln)))
 					return (res);
 				break ;
 			}
-		// if (ls->i != SIZE_MAX && !ft_isspace(ln->line[ls->i]) &&
-		// 	ln->line[ls->i] != SEMICOLON_C)
-		// 	ls->semi_flag = true;
+		if (ls->i != SIZE_MAX && !ft_isspace(ln->line[ls->i]) &&
+			ln->line[ls->i] != SEMICOLON_C)
+			ls->semi_flag = true;
 	}
 	return (res);
 }
@@ -87,7 +87,8 @@ t_bool			rl_line_syntax_redir_and_pipes(t_line *ln, t_line_syntax *ls)
 {
 	int32_t	res;
 
-	res = rl_ls_rap_loop(ln, &ls);
+	ls->semi_flag = false;
+	res = rl_ls_rap_loop(ln, ls);
 	if (res == LS_OK || res == LS_SYNTAX_ERR)
 		return (true);
 	return (false);
@@ -100,7 +101,7 @@ t_bool			rl_line_syntax(t_line *ln)
 
 	ft_bzero(&ls, sizeof(t_line_syntax));
 	res = rl_ls_loop(ln, &ls);
-	if (res = LS_SYNTAX_ERR)
+	if (res == LS_SYNTAX_ERR)
 		return (true);
 	if (res == LS_OK)
 		return (rl_line_syntax_redir_and_pipes(ln, &ls));

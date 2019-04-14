@@ -7,6 +7,8 @@ Bonuses:
 	HashTable
 	History Search (CTRL+R)
 	------------------------
+	env -i
+	cd -P
 	Back Skash '\'
 	other ReadLine sings
 TODO:

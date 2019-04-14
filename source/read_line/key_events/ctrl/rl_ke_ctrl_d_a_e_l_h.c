@@ -22,7 +22,7 @@ int32_t	rl_ke_ctrl_d(t_line *ln)
 		rl()->inhibitors_in_use != LS_SLASH &&
 		ln->l_start == ln->l_end)
 	{
-		rl_ls_syntax_err(LS_WTF_EOF);
+		rl_ls_syntax_err_wtf_eof();
 		return (RL_BREAK);
 	}
 	return (ERR);

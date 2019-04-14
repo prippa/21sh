@@ -126,7 +126,9 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_HS)rl_history_search_logic.c\
 				$(DIR_LS)rl_line_syntax.c\
 				$(DIR_LS)rl_ls_commands.c\
+				$(DIR_LS)rl_ls_rap_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\
+				$(DIR_LS)rl_ls_new_prompt.c\
 				$(DIR_KE)rl_key_events.c\
 				$(DIR_KE)rl_basic_keys.c\
 				$(DIR_AC)rl_ke_tab.c\

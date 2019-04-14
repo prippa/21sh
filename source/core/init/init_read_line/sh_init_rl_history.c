@@ -32,7 +32,7 @@ static char	*sh_get_path(const char *home)
 	size_t	home_len;
 
 	home_len = ft_strlen(home);
-	path = ft_memalloc(home_len + 1 + ft_strlen(HISTORY_FILE_NAME));
+	path = ft_memalloc(home_len + 1 + ft_strlen(HISTORY_FILE_NAME) + 1);
 	ft_strcpy(path, home);
 	ft_strcpy(path + home_len, (char[2]){ UNIX_PATH_SEPARATOR, 0 });
 	ft_strcpy(path + home_len + 1, HISTORY_FILE_NAME);

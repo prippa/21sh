@@ -77,9 +77,9 @@ int32_t	ls_semi_check(t_line_syntax *ls, t_line *ln)
 	{
 		if (ln->line[ls->i + 1] == SEMICOLON_C || (ls->i &&
 			ln->line[ls->i - 1] == SEMICOLON_C))
-			rl_ls_syntax_err(LS_SEMIX2);
+			rl_ls_syntax_err_wtf_token((char[3]){SEMICOLON_C, SEMICOLON_C, 0});
 		else
-			rl_ls_syntax_err(LS_SEMIX1);
+			rl_ls_syntax_err_wtf_token((char[2]){SEMICOLON_C, 0});
 		return (LS_SYNTAX_ERR);
 	}
 	ls->semi_flag = false;

@@ -35,18 +35,12 @@ enum
 	LS_NEW_PROMPT
 };
 
-typedef enum		e_syntax_err
-{
-	LS_SEMIX1 = -3,
-	LS_SEMIX2,
-	LS_WTF_EOF
-}					t_syntax_err;
-
 typedef enum		e_inhibitors
 {
 	LS_Q = 1,
 	LS_DQ,
-	LS_SLASH
+	LS_SLASH,
+	LS_PIPE
 }					t_inhibitors;
 
 int32_t				ls_backslash_check(t_line_syntax *ls, t_line *ln);
@@ -57,9 +51,9 @@ int32_t				ls_semi_check(t_line_syntax *ls, t_line *ln);
 int32_t				ls_rap_pipe(t_line_syntax *ls, t_line *ln);
 int32_t				ls_rap_redir_in(t_line_syntax *ls, t_line *ln);
 int32_t				ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
-int32_t				ls_rap_fda(t_line_syntax *ls, t_line *ln);
 
-void				rl_ls_syntax_err(t_syntax_err serr);
+void				rl_ls_syntax_err_wtf_eof(void);
+void				rl_ls_syntax_err_wtf_token(const char *token);
 void				rl_ls_new_prompt(t_line *ln, t_bool new_line_f,
 						t_inhibitors inh);
 
