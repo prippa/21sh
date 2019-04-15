@@ -15,25 +15,12 @@
 
 # include "read_line.h"
 
-typedef struct		s_line_syntax
-{
-	t_bool			semi_flag;
-	size_t			i;
-}					t_line_syntax;
-
-typedef int32_t		(*t_func_check)(t_line_syntax *ls, t_line *ln);
-typedef struct		s_ls_box
-{
-	t_func_check	f;
-	char			c;
-}					t_ls_box;
-
-enum
+typedef enum		e_lexer_status
 {
 	LS_SYNTAX_ERR = -1,
 	LS_OK,
 	LS_NEW_PROMPT
-};
+}					t_lexer_status;
 
 typedef enum		e_inhibitors
 {
@@ -43,18 +30,32 @@ typedef enum		e_inhibitors
 	LS_PIPE
 }					t_inhibitors;
 
-int32_t				ls_backslash_check(t_line_syntax *ls, t_line *ln);
-int32_t				ls_dobule_q_check(t_line_syntax *ls, t_line *ln);
-int32_t				ls_single_q_check(t_line_syntax *ls, t_line *ln);
-int32_t				ls_semi_check(t_line_syntax *ls, t_line *ln);
+typedef struct		s_line_syntax
+{
+	t_bool			semi_flag;
+	size_t			i;
+}					t_line_syntax;
 
-int32_t				ls_rap_pipe(t_line_syntax *ls, t_line *ln);
-int32_t				ls_rap_redir_in(t_line_syntax *ls, t_line *ln);
-int32_t				ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
+typedef t_lexer_status	(*t_func_check)(t_line_syntax *ls, t_line *ln);
+typedef struct		s_ls_box
+{
+	t_func_check	f;
+	char			c;
+}					t_ls_box;
+
+t_lexer_status		ls_backslash_check(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_dobule_q_check(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_single_q_check(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_semi_check(t_line_syntax *ls, t_line *ln);
+
+t_lexer_status		ls_rap_pipe(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_rap_redir_in(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
 
 void				rl_ls_syntax_err_wtf_eof(void);
 void				rl_ls_syntax_err_wtf_token(const char *token);
 void				rl_ls_new_prompt(t_line *ln, t_bool new_line_f,
 						t_inhibitors inh);
+t_lexer_status		rl_ls_init_heredoc(t_line_syntax *ls, t_line *ln);
 
 #endif

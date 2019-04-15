@@ -16,7 +16,7 @@
 #include "builtin.h"
 #include "button_keys.h"
 
-int32_t	ls_backslash_check(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 {
 	ls->semi_flag = true;
 	if (!ln->line[++ls->i])
@@ -30,7 +30,7 @@ int32_t	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 	return (LS_OK);
 }
 
-int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 {
 	t_bool new_line_f;
 
@@ -57,7 +57,7 @@ int32_t	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
 	}
 }
 
-int32_t	ls_single_q_check(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_single_q_check(t_line_syntax *ls, t_line *ln)
 {
 	while (true)
 	{
@@ -71,7 +71,7 @@ int32_t	ls_single_q_check(t_line_syntax *ls, t_line *ln)
 	}
 }
 
-int32_t	ls_semi_check(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_semi_check(t_line_syntax *ls, t_line *ln)
 {
 	if (!ls->semi_flag)
 	{

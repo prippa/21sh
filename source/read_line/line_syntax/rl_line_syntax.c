@@ -35,9 +35,9 @@ static const t_ls_box	g_ls_rap_box[LS_RAP_BOX_SIZE] =
 	{ls_rap_redir_out, REDIRECT_OUT_C},
 };
 
-static int32_t	rl_ls_loop(t_line *ln, t_line_syntax *ls)
+static t_lexer_status	rl_ls_loop(t_line *ln, t_line_syntax *ls)
 {
-	int32_t			res;
+	t_lexer_status	res;
 	uint8_t			iter;
 
 	res = LS_OK;
@@ -59,13 +59,13 @@ static int32_t	rl_ls_loop(t_line *ln, t_line_syntax *ls)
 	return (res);
 }
 
-static int32_t	rl_ls_rap_loop(t_line *ln, t_line_syntax *ls)
+static t_lexer_status	rl_ls_rap_loop(t_line *ln, t_line_syntax *ls)
 {
-	int32_t			res;
+	t_lexer_status	res;
 	uint8_t			iter;
 
 	res = LS_OK;
-	ls->i = -1;
+	ls->i = rl()->m_syntax_2_iter - 1;
 	while (ln->line[++ls->i])
 	{
 		iter = -1;
@@ -85,7 +85,7 @@ static int32_t	rl_ls_rap_loop(t_line *ln, t_line_syntax *ls)
 
 t_bool			rl_line_syntax_redir_and_pipes(t_line *ln, t_line_syntax *ls)
 {
-	int32_t	res;
+	t_lexer_status	res;
 
 	ls->semi_flag = false;
 	res = rl_ls_rap_loop(ln, ls);
@@ -97,13 +97,20 @@ t_bool			rl_line_syntax_redir_and_pipes(t_line *ln, t_line_syntax *ls)
 t_bool			rl_line_syntax(t_line *ln)
 {
 	t_line_syntax	ls;
-	int32_t			res;
+	t_lexer_status	res;
 
 	ft_bzero(&ls, sizeof(t_line_syntax));
+	if (rl()->mod == M_SYNTAX_2)
+		return (rl_line_syntax_redir_and_pipes(ln, &ls));
 	res = rl_ls_loop(ln, &ls);
 	if (res == LS_SYNTAX_ERR)
 		return (true);
 	if (res == LS_OK)
+	{
+		rl()->mod = M_SYNTAX_2;
+		rl()->m_syntax_2_iter = 0;
 		return (rl_line_syntax_redir_and_pipes(ln, &ls));
+		return (true);
+	}
 	return (false);
 }

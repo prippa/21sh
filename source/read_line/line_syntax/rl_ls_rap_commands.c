@@ -13,7 +13,7 @@
 #include "line_syntax.h"
 #include "syntax_characters.h"
 
-int32_t	ls_rap_word(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_check_word(t_line_syntax *ls, t_line *ln)
 {
 	while (ln->line[ls->i])
 	{
@@ -24,18 +24,15 @@ int32_t	ls_rap_word(t_line_syntax *ls, t_line *ln)
 			ln->line[ls->i] == OFF_C)
 			return (LS_OK);
 		if (!ft_isspace(ln->line[ls->i]))
-		{
-			rl_ls_syntax_err_wtf_token((char[2]){ln->line[ls->i], 0});
 			return (LS_SYNTAX_ERR);
-		}
 		++ls->i;
 	}
 	return (LS_NEW_PROMPT);
 }
 
-int32_t	ls_rap_pipe(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_rap_pipe(t_line_syntax *ls, t_line *ln)
 {
-	int32_t	res;
+	t_lexer_status	res;
 
 	++ls->i;
 	if (!ls->semi_flag)
@@ -43,40 +40,51 @@ int32_t	ls_rap_pipe(t_line_syntax *ls, t_line *ln)
 		rl_ls_syntax_err_wtf_token((char[2]){PIPE_C, 0});
 		return (LS_SYNTAX_ERR);
 	}
-	if ((res = ls_rap_word(ls, ln)) == LS_NEW_PROMPT)
-	{
+	res = ls_check_word(ls, ln);
+	if (res == LS_NEW_PROMPT)
 		rl_ls_new_prompt(ln, false, LS_PIPE);
-		return (LS_NEW_PROMPT);
-	}
+	else if (res == LS_SYNTAX_ERR)
+		rl_ls_syntax_err_wtf_token((char[2]){ln->line[ls->i], 0});
 	return (res);
 }
 
-int32_t	ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
+static void		ls_rap_err_filter(t_lexer_status status,
+							const char *line, size_t i)
 {
-	int32_t	res;
+	if (status == LS_NEW_PROMPT)
+		rl_ls_syntax_err_wtf_token("newline");
+	else if (status == LS_SYNTAX_ERR)
+		rl_ls_syntax_err_wtf_token((char[2]){line[i], 0});
+}
 
+t_lexer_status	ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
+{
+	t_lexer_status	status;
+	t_bool			heredoc;
+
+	heredoc = false;
 	++ls->i;
 	if (ln->line[ls->i] == REDIRECT_IN_C || ln->line[ls->i] == FDA_C)
-		++ls->i;
-	if ((res = ls_rap_word(ls, ln)) == LS_NEW_PROMPT)
 	{
-		rl_ls_syntax_err_wtf_token("newline");
-		return (LS_SYNTAX_ERR);
+		if (ln->line[ls->i] == REDIRECT_IN_C)
+			heredoc = true;
+		++ls->i;
 	}
-	return (res);
+	status = ls_check_word(ls, ln);
+	ls_rap_err_filter(status, ln->line, ls->i);
+	if (heredoc && status == LS_OK)
+		return (rl_ls_init_heredoc(ls, ln));
+	return (status ? LS_SYNTAX_ERR : status);
 }
 
-int32_t	ls_rap_redir_out(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_rap_redir_out(t_line_syntax *ls, t_line *ln)
 {
-	int32_t	res;
+	t_lexer_status status;
 
 	++ls->i;
 	if (ln->line[ls->i] == REDIRECT_OUT_C || ln->line[ls->i] == FDA_C)
 		++ls->i;
-	if ((res = ls_rap_word(ls, ln)) == LS_NEW_PROMPT)
-	{
-		rl_ls_syntax_err_wtf_token("newline");
-		return (LS_SYNTAX_ERR);
-	}
-	return (res);
+	status = ls_check_word(ls, ln);
+	ls_rap_err_filter(status, ln->line, ls->i);
+	return (status ? LS_SYNTAX_ERR : status);
 }
