@@ -57,4 +57,5 @@ void			rl_init(void)
 	rl_line_cpy(&rl()->prev_ln, &rl()->ln);
 	rl()->mod = M_DEFAULT;
 	LST_DEL(&rl()->heredoc);
+	ft_strdel(&rl()->heredoc_delimiter);
 }

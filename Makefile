@@ -57,6 +57,7 @@ DIR_CTRL	:=	$(DIR_KE)ctrl/
 #-------------------------- Header files ---------------------------------------
 COR_H		:=	$(DIR_COR_INC)shell.h\
 				$(DIR_COR_INC)syntax_characters.h\
+				$(DIR_COR_INC)tokens.h\
 				$(DIR_COR_INC)builtin_static_box.h\
 				$(DIR_COR_INC)builtin.h\
 				$(DIR_COR_INC)messages.h
@@ -129,7 +130,8 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_LS)rl_ls_rap_commands.c\
 				$(DIR_LS)rl_ls_handle_err.c\
 				$(DIR_LS)rl_ls_new_prompt.c\
-				$(DIR_LS)rl_ls_init_heredoc.c\
+				$(DIR_LS)rl_ls_valid_word.c\
+				$(DIR_LS)rl_ls_get_word.c\
 				$(DIR_KE)rl_key_events.c\
 				$(DIR_KE)rl_basic_keys.c\
 				$(DIR_AC)rl_ke_tab.c\

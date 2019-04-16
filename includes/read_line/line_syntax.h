@@ -54,8 +54,9 @@ t_lexer_status		ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
 
 void				rl_ls_syntax_err_wtf_eof(void);
 void				rl_ls_syntax_err_wtf_token(const char *token);
+t_lexer_status		ls_check_word(t_line_syntax *ls, t_line *ln);
+char				*ls_get_word(t_line_syntax *ls, t_line *ln);
 void				rl_ls_new_prompt(t_line *ln, t_bool new_line_f,
 						t_inhibitors inh);
-t_lexer_status		rl_ls_init_heredoc(t_line_syntax *ls, t_line *ln);
 
 #endif
