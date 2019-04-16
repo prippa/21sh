@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "button_keys.h"
+#include "heredoc.h"
 
 int32_t	rl_ke_backspace(t_line *ln)
 {
@@ -38,6 +39,8 @@ int32_t	rl_ke_return(t_line *ln)
 	rl_ke_end(ln);
 	if (ln->x)
 		rl_make_tc_magic(tc()->down);
+	if (rl()->mod == M_HEREDOC && hd_continue(ln))
+		return (OK);
 	if (rl_line_syntax(ln))
 	{
 		rl_history_add(ln->line);

@@ -70,7 +70,8 @@ RL_H		:=	$(DIR_RL_INC)read_line.h\
 				$(DIR_RL_INC)button_keys.h\
 				$(DIR_RL_INC)line_syntax.h\
 				$(DIR_RL_INC)history_search.h\
-				$(DIR_RL_INC)read_line_signals.h
+				$(DIR_RL_INC)read_line_signals.h\
+				$(DIR_RL_INC)heredoc.h
 
 #-------------------------- Source files ---------------------------------------
 COR_C		:=	$(DIR_COR_SRC)main.c\
@@ -132,6 +133,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_LS)rl_ls_new_prompt.c\
 				$(DIR_LS)rl_ls_valid_word.c\
 				$(DIR_LS)rl_ls_get_word.c\
+				$(DIR_LS)rl_ls_heredoc.c\
 				$(DIR_KE)rl_key_events.c\
 				$(DIR_KE)rl_basic_keys.c\
 				$(DIR_AC)rl_ke_tab.c\

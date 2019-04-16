@@ -1,1 +1,23 @@
-prippa$
+ls: cannot access 'as': No such file or directory
+ls: cannot access 'asd': No such file or directory
+ls: cannot access 'as': No such file or directory
+ls: cannot access 'd': No such file or directory
+.:
+1
+1ls
+2
+21sh
+21sh.en.pdf
+2ls
+author
+includes
+libft
+Makefile
+object
+pipe_example.c
+README.md
+rediractions_example.c
+source
+test_main.c
+test.txt
+TODO.todo

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "button_keys.h"
+#include "heredoc.h"
 
 #define KS sizeof(uint64_t)
 #define VS sizeof(t_ke_event)
@@ -95,5 +96,5 @@ void		sh_init_read_line(void)
 	rl_init_events();
 	rl_init_termcaps();
 	sh_init_rl_histiry();
-	LST_INIT(&rl()->heredoc, &ft_cnt_delptr);
+	LST_INIT(&hd()->heredoc, &ft_cnt_delptr);
 }

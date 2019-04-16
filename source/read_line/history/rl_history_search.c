@@ -37,7 +37,7 @@ static void		rl_hs_set_default_mod(t_line *ln)
 	rl()->prompt_size = hs()->reset_prompt_size;
 	rl_redraw_line(ln, rl()->w.ws_col);
 	ft_strdel(&hs()->search_str);
-	rl()->mod = M_DEFAULT;
+	rl()->mod = hs()->reset_mod;
 }
 
 static void		rl_hs_init(void)

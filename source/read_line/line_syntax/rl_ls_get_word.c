@@ -67,7 +67,7 @@ char		*ls_get_word(t_line_syntax *ls, t_line *ln)
 
 	word = ft_strdup(EMPTY_STR);
 	word_size = 0;
-	while (ln->line[ls->i])
+	while (ln->line[++ls->i])
 	{
 		if (is_token(ln->line[ls->i]) || ft_isspace(ln->line[ls->i]))
 			break ;
@@ -82,7 +82,6 @@ char		*ls_get_word(t_line_syntax *ls, t_line *ln)
 			ft_strjoin_free(&word, &ln->line[ls->i], word_size, 1);
 			++word_size;
 		}
-		++ls->i;
 	}
 	return (word);
 }

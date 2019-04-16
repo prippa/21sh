@@ -27,7 +27,8 @@ typedef enum		e_inhibitors
 	LS_Q = 1,
 	LS_DQ,
 	LS_SLASH,
-	LS_PIPE
+	LS_PIPE,
+	LS_HEREDOC
 }					t_inhibitors;
 
 typedef struct		s_line_syntax
@@ -55,6 +56,7 @@ t_lexer_status		ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
 void				rl_ls_syntax_err_wtf_eof(void);
 void				rl_ls_syntax_err_wtf_token(const char *token);
 t_lexer_status		ls_check_word(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_check_word_for_pipe(t_line_syntax *ls, t_line *ln);
 char				*ls_get_word(t_line_syntax *ls, t_line *ln);
 void				rl_ls_new_prompt(t_line *ln, t_bool new_line_f,
 						t_inhibitors inh);

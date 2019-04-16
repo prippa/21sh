@@ -27,6 +27,7 @@ typedef struct		s_hs
 	size_t			start;
 	char			reset_prompt[PROMPT_SIZE + 1];
 	size_t			reset_prompt_size;
+	t_mod			reset_mod;
 }					t_hs;
 
 t_hs				*hs(void);

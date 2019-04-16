@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "read_line.h"
+#include "heredoc.h"
 
 t_read_line		*rl(void)
 {
@@ -56,6 +57,7 @@ void			rl_init(void)
 	rl_move_x(&rl()->ln.x, rl()->prompt_size, rl()->w.ws_col);
 	rl_line_cpy(&rl()->prev_ln, &rl()->ln);
 	rl()->mod = M_DEFAULT;
-	LST_DEL(&rl()->heredoc);
-	ft_strdel(&rl()->heredoc_delimiter);
+	LST_DEL(&hd()->heredoc);
+	ft_strdel(&hd()->heredoc_delimiter);
+	ft_bzero(&hd()->syntax_2, sizeof(t_line_syntax));
 }

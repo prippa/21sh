@@ -5,7 +5,8 @@ static const char	*g_new_prompts[] =
 	"quote> ",
 	"dquote> ",
 	"> ",
-	"pipe> "
+	"pipe> ",
+	"heredoc> "
 };
 
 static void	rl_ls_update_line(t_line *ln, t_bool new_line_f,

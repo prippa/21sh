@@ -12,28 +12,28 @@
 
 #include "line_syntax.h"
 #include "syntax_characters.h"
+#include "heredoc.h"
 
 t_lexer_status			ls_rap_pipe(t_line_syntax *ls, t_line *ln)
 {
 	t_lexer_status	res;
+	size_t			save_pos;
 
+	save_pos = ls->i;
 	++ls->i;
 	if (!ls->semi_flag)
 	{
 		rl_ls_syntax_err_wtf_token((char[2]){PIPE_C, 0});
 		return (LS_SYNTAX_ERR);
 	}
-	res = ls_check_word(ls, ln);
+	ls->semi_flag = true;
+	res = ls_check_word_for_pipe(ls, ln);
 	if (res == LS_NEW_PROMPT)
+	{
+		ls->i = save_pos;
 		rl_ls_new_prompt(ln, false, LS_PIPE);
+	}
 	return (res);
-}
-
-static t_lexer_status	rl_ls_init_heredoc(t_line_syntax *ls, t_line *ln)
-{
-	rl()->heredoc_delimiter = ls_get_word(ls, ln);
-	ft_printf("[%s]\n", rl()->heredoc_delimiter);
-	return (0);
 }
 
 t_lexer_status			ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
@@ -41,6 +41,7 @@ t_lexer_status			ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
 	t_lexer_status	status;
 	t_bool			heredoc;
 
+	ls->semi_flag = true;
 	heredoc = false;
 	++ls->i;
 	if (ln->line[ls->i] == REDIRECT_IN_C || ln->line[ls->i] == FDA_C)
@@ -53,7 +54,7 @@ t_lexer_status			ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
 	if (status == LS_NEW_PROMPT)
 		rl_ls_syntax_err_wtf_token("newline");
 	if (heredoc && status == LS_OK)
-		return (rl_ls_init_heredoc(ls, ln));
+		return (hd_init(ls, ln));
 	return (status ? LS_SYNTAX_ERR : status);
 }
 
@@ -61,6 +62,7 @@ t_lexer_status			ls_rap_redir_out(t_line_syntax *ls, t_line *ln)
 {
 	t_lexer_status status;
 
+	ls->semi_flag = true;
 	++ls->i;
 	if (ln->line[ls->i] == REDIRECT_OUT_C || ln->line[ls->i] == FDA_C)
 		++ls->i;

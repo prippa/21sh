@@ -53,7 +53,8 @@ typedef enum		e_mod
 {
 	M_DEFAULT,
 	M_SEARCH,
-	M_SYNTAX_2
+	M_SYNTAX_2,
+	M_HEREDOC
 }					t_mod;
 
 typedef struct		s_read_line
@@ -67,9 +68,6 @@ typedef struct		s_read_line
 	char			prompt[PROMPT_SIZE + 1];
 	size_t			prompt_size;
 	t_mod			mod;
-	t_list			heredoc;
-	char			*heredoc_delimiter;
-	size_t			m_syntax_2_iter;
 }					t_read_line;
 
 t_read_line			*rl(void);

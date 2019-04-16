@@ -12,6 +12,7 @@
 
 #include "line_syntax.h"
 #include "syntax_characters.h"
+#include "heredoc.h"
 
 #define LS_BOX_SIZE	4
 #define LS_RAP_BOX_SIZE 7
@@ -65,7 +66,7 @@ static t_lexer_status	rl_ls_rap_loop(t_line *ln, t_line_syntax *ls)
 	uint8_t			iter;
 
 	res = LS_OK;
-	ls->i = rl()->m_syntax_2_iter - 1;
+	--ls->i;
 	while (ln->line[++ls->i])
 	{
 		iter = -1;
@@ -87,7 +88,6 @@ t_bool			rl_line_syntax_redir_and_pipes(t_line *ln, t_line_syntax *ls)
 {
 	t_lexer_status	res;
 
-	ls->semi_flag = false;
 	res = rl_ls_rap_loop(ln, ls);
 	if (res == LS_OK || res == LS_SYNTAX_ERR)
 		return (true);
@@ -99,18 +99,16 @@ t_bool			rl_line_syntax(t_line *ln)
 	t_line_syntax	ls;
 	t_lexer_status	res;
 
-	ft_bzero(&ls, sizeof(t_line_syntax));
 	if (rl()->mod == M_SYNTAX_2)
-		return (rl_line_syntax_redir_and_pipes(ln, &ls));
+		return (rl_line_syntax_redir_and_pipes(ln, &hd()->syntax_2));
+	ft_bzero(&ls, sizeof(t_line_syntax));
 	res = rl_ls_loop(ln, &ls);
 	if (res == LS_SYNTAX_ERR)
 		return (true);
 	if (res == LS_OK)
 	{
 		rl()->mod = M_SYNTAX_2;
-		rl()->m_syntax_2_iter = 0;
-		return (rl_line_syntax_redir_and_pipes(ln, &ls));
-		return (true);
+		return (rl_line_syntax_redir_and_pipes(ln, &hd()->syntax_2));
 	}
 	return (false);
 }
