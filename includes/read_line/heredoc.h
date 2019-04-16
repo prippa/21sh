@@ -14,7 +14,7 @@ typedef struct		s_heredoc
 
 t_heredoc			*hd(void);
 t_lexer_status		hd_init(t_line_syntax *ls, t_line *ln);
-void				hd_close(t_line *ln);
 t_bool				hd_continue(t_line *ln);
+void				hd_close(t_line *ln);
 
 #endif

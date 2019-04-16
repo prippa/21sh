@@ -1,6 +1,6 @@
-#include <stdlib.h> 
-#include <unistd.h> 
-#include <stdio.h> 
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 #include <fcntl.h>
 
 # define REWRITE_FLAGS	(O_CREAT | O_WRONLY | O_TRUNC)
@@ -13,10 +13,11 @@ int main(int argc, char **argv)
 	int file_desc;
 
 	if (argc > 1)
-    	file_desc = open(FILE_NAME, REWRITE_FLAGS, RW_RIGHTS);
+		file_desc = open(FILE_NAME, REWRITE_FLAGS, RW_RIGHTS);
 	else
 		file_desc = open(FILE_NAME, APPEND_FLAGS, RW_RIGHTS);
-    dup2(file_desc, 1);
+	dup2(file_desc, 1);
+	dup2(1, file_desc);
 	system("ls");
 	return (0);
 }
