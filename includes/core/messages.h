@@ -42,6 +42,8 @@
 # define TCSETATTR_FAILED	"tcsetattr() failed"
 # define OPENDIR_FAILED		"opendir() failed"
 # define CLOSEDIR_FAILED	"closedir() failed"
+# define DUP_FAILED			"dup() failed"
+# define DUP2_FAILED		"dup2() failed"
 
 # define PERM_DENIED		"'%s': Permission denied"
 # define NO_FILE_OR_DIR		"'%s': No such file or directory"

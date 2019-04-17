@@ -15,15 +15,15 @@
 
 void	lp_single_quotes(t_line_parser *lp)
 {
-	char	*start;
-	size_t	len;
+	const char	*start;
+	size_t		len;
 
 	len = 0;
-	start = &sh()->line[++sh()->i];
-	while (sh()->line[sh()->i] != SINGLE_QUOTES_C)
+	start = &lp->line[++lp->i];
+	while (lp->line[lp->i] != SINGLE_QUOTES_C)
 	{
 		++len;
-		++sh()->i;
+		++lp->i;
 	}
 	if (len)
 		lp_write_to_arg_buf_str(lp, start, len);

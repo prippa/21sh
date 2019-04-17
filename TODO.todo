@@ -10,6 +10,7 @@ Bonuses:
 	env -i
 	cd -P
 	Back Skash '\'
+	history file in user folder
 	other ReadLine sings
 TODO:
 	Pipe and Rediractions

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
+#include "messages.h"
 
 t_shell		*sh(void)
 {
@@ -25,6 +26,7 @@ void		sh_init(void)
 	sh_init_term();
 	sh_init_env();
 	sh_init_read_line();
+	sh_init_line_parser();
 	sh()->ok = true;
 	sh_update_prompt(true);
 	sh_init_sig_base();

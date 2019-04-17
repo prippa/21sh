@@ -13,36 +13,18 @@
 #include "line_parser.h"
 #include "syntax_characters.h"
 
-#define LP_BASE_SIZE	8
-
-static const char	g_base_c[LP_BASE_SIZE] =
-{
-	SPACE_C, TAB_C, DOLLAR_C, SEMICOLON_C,
-	SINGLE_QUOTES_C, DOUBLE_QUOTES_C, BACKSLASH_C, TILDE_C
-};
-
-static const		t_func_cmd	g_base_f[LP_BASE_SIZE] =
-{
-	lp_space, lp_space, lp_dollar, lp_semicolon,
-	lp_single_quotes, lp_double_quotes, lp_backslash, lp_tilde
-};
-
 static void			lp_loop(t_line_parser *lp)
 {
-	uint8_t i;
+	t_ht_elem *elem;
 
-	sh()->i = -1;
-	while (sh()->line[++sh()->i])
+	lp->i = -1;
+	while (lp->line[++lp->i])
 	{
-		i = -1;
-		while (++i < LP_BASE_SIZE)
-			if (sh()->line[sh()->i] == g_base_c[i])
-			{
-				g_base_f[i](lp);
-				break ;
-			}
-		if (i == LP_BASE_SIZE)
-			lp_write_to_arg_buf_char(lp, sh()->line[sh()->i]);
+		elem = HT_GET(&sh()->pars_manager, &lp->line[lp->i], sizeof(char));
+		if (elem)
+			((t_func_cmd)elem->value)(lp);
+		else
+			lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
 	}
 	lp_push_command(lp);
 }
@@ -52,5 +34,7 @@ void				line_parser(void)
 	t_line_parser lp;
 
 	ft_bzero(&lp, sizeof(t_line_parser));
+	lp.line = sh()->line;
+	LST_INIT(&lp.cmds, &ft_cnt_delptr);
 	lp_loop(&lp);
 }

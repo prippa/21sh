@@ -38,12 +38,12 @@ void			lp_tilde(t_line_parser *lp)
 {
 	char	*home;
 
-	if (lp_tilde_valid_prev(sh()->line, sh()->i - 1) &&
-		lp_tilde_valid_next(sh()->line, sh()->i + 1))
+	if (lp_tilde_valid_prev(lp->line, lp->i - 1) &&
+		lp_tilde_valid_next(lp->line, lp->i + 1))
 	{
 		if ((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)))
 			lp_write_to_arg_buf_str(lp, home, ft_strlen(home));
 	}
 	else
-		lp_write_to_arg_buf_char(lp, sh()->line[sh()->i]);
+		lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
 }

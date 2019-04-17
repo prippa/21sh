@@ -29,6 +29,7 @@ typedef struct		s_shell
 {
 	t_list			env;
 	t_hash_table	bin_path;
+	t_hash_table	pars_manager;
 	struct termios	old_settings;
 	struct termios	new_settings;
 	char			prompt[PROMPT_SIZE + 1];
@@ -55,6 +56,7 @@ void				sh_init_env(void);
 void				sh_init_term(void);
 void				sh_init_read_line(void);
 void				sh_init_rl_histiry(void);
+void				sh_init_line_parser(void);
 
 t_bool				sh_is_dir(const char *path);
 t_bool				sh_is_valid_path(const char *path);

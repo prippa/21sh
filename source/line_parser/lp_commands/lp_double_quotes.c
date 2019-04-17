@@ -24,12 +24,12 @@ static t_bool		lp_dqb_adaptation(char c)
 
 static void			lp_double_quotes_backslash(t_line_parser *lp)
 {
-	if (lp_dqb_adaptation(sh()->line[sh()->i + 1]))
+	if (lp_dqb_adaptation(lp->line[lp->i + 1]))
 		lp_backslash(lp);
 	else
 	{
-		lp_write_to_arg_buf_str(lp, &sh()->line[sh()->i], 2);
-		++sh()->i;
+		lp_write_to_arg_buf_str(lp, &lp->line[lp->i], 2);
+		++lp->i;
 	}
 }
 
@@ -49,16 +49,16 @@ void				lp_double_quotes(t_line_parser *lp)
 {
 	uint8_t	i;
 
-	while (sh()->line[++sh()->i] != DOUBLE_QUOTES_C)
+	while (lp->line[++lp->i] != DOUBLE_QUOTES_C)
 	{
 		i = -1;
 		while (++i < LP_DOUBLE_QUOTES_SIZE)
-			if (sh()->line[sh()->i] == g_double_q_c[i])
+			if (lp->line[lp->i] == g_double_q_c[i])
 			{
 				g_double_q_f[i](lp);
 				break ;
 			}
 		if (i == LP_DOUBLE_QUOTES_SIZE)
-			lp_write_to_arg_buf_char(lp, sh()->line[sh()->i]);
+			lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
 	}
 }

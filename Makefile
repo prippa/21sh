@@ -37,7 +37,6 @@ DIR_BLT		:=	$(DIR_COR_SRC)builtin/
 DIR_EXC		:=	$(DIR_COR_SRC)exec/
 DIR_HLP		:=	$(DIR_COR_SRC)helpers/
 DIR_INI		:=	$(DIR_COR_SRC)init/
-DIR_INI_RL	:=	$(DIR_INI)init_read_line/
 DIR_SIG		:=	$(DIR_COR_SRC)signal/
 
 #environ_manipulation
@@ -45,6 +44,8 @@ DIR_ENV_EVS	:=	$(DIR_ENV_SRC)env_events/
 
 # line_parser
 DIR_LPCMD	:=	$(DIR_LNP_SRC)lp_commands/
+DIR_RDR		:=	$(DIR_LPCMD)redirect/
+DIR_PIPE	:=	$(DIR_LPCMD)pipe/
 
 # read_line
 DIR_LS		:=	$(DIR_RL_SRC)line_syntax/
@@ -53,6 +54,10 @@ DIR_HS		:=	$(DIR_RL_SRC)history/
 DIR_AC		:=	$(DIR_KE)Tab/
 DIR_AROWS	:=	$(DIR_KE)arrows/
 DIR_CTRL	:=	$(DIR_KE)ctrl/
+
+# init
+DIR_INI_RL	:=	$(DIR_INI)init_read_line/
+DIR_INI_LP	:=	$(DIR_INI)init_line_parser/
 
 #-------------------------- Header files ---------------------------------------
 COR_H		:=	$(DIR_COR_INC)shell.h\
@@ -80,6 +85,7 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_INI)sh_init_term.c\
 				$(DIR_INI_RL)sh_init_rl_history.c\
 				$(DIR_INI_RL)sh_init_read_line.c\
+				$(DIR_INI_LP)init_line_parser.c\
 				$(DIR_SIG)sh_init_sig.c\
 				$(DIR_SIG)sh_sig_handle.c\
 				$(DIR_BLT)sh_cd.c\
@@ -114,7 +120,10 @@ LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LPCMD)lp_double_quotes.c\
 				$(DIR_LPCMD)lp_space.c\
 				$(DIR_LPCMD)lp_semicolon.c\
-				$(DIR_LPCMD)lp_tilde.c
+				$(DIR_LPCMD)lp_tilde.c\
+				$(DIR_RDR)lp_redirect_in.c\
+				$(DIR_RDR)lp_redirect_out.c\
+				$(DIR_PIPE)lp_pipe.c
 
 RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_init.c\

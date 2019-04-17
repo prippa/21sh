@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lp_backslash.c                                     :+:      :+:    :+:   */
+/*   lp_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/11 12:55:38 by prippa            #+#    #+#             */
-/*   Updated: 2019/02/11 12:55:40 by prippa           ###   ########.fr       */
+/*   Created: 2019/04/17 14:07:42 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/17 14:07:44 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "line_parser.h"
 
-void	lp_backslash(t_line_parser *lp)
+void			lp_pipe(t_line_parser *lp)
 {
-	lp_write_to_arg_buf_char(lp, lp->line[++lp->i]);
+	
 }
