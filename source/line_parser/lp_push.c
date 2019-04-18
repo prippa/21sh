@@ -49,9 +49,13 @@ void		lp_push_command(t_line_parser *lp)
 	lp_push_arg(lp);
 	if (!lp->args_list.start)
 		return ;
-	args = lp_get_command(lp);
-	lp_run_command(args);
-	ft_arrdel(&args);
+	if (sh()->ok)
+	{
+		args = lp_get_command(lp);
+		lp_run_command(args);
+		free(args);
+		lp_reset_fd(sh()->fd);
+	}
 	LST_DEL(&lp->args_list);
 }
 

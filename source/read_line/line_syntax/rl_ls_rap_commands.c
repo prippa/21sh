@@ -54,7 +54,10 @@ t_lexer_status			ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
 	if (status == LS_NEW_PROMPT)
 		rl_ls_syntax_err_wtf_token("newline");
 	if (heredoc && status == LS_OK)
+	{
+		++ls->i;
 		return (hd_init(ls, ln));
+	}
 	return (status ? LS_SYNTAX_ERR : status);
 }
 

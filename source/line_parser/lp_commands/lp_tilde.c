@@ -46,4 +46,5 @@ void			lp_tilde(t_line_parser *lp)
 	}
 	else
 		lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
+	++lp->i;
 }

@@ -13,18 +13,29 @@
 #include "line_parser.h"
 #include "syntax_characters.h"
 
+static t_bool		lp_special_cases(t_line_parser *lp)
+{
+	if (ft_isdigit(lp->line[lp->i]) &&
+		(!lp->i || lp->line[lp->i - 1] == SPACE_C))
+		return (lp_check_rediraction(lp));
+	return (false);
+}
+
 static void			lp_loop(t_line_parser *lp)
 {
 	t_ht_elem *elem;
 
-	lp->i = -1;
-	while (lp->line[++lp->i])
+	lp->i = 0;
+	while (lp->line[lp->i])
 	{
 		elem = HT_GET(&sh()->pars_manager, &lp->line[lp->i], sizeof(char));
 		if (elem)
 			((t_func_cmd)elem->value)(lp);
-		else
+		else if (!lp_special_cases(lp))
+		{
 			lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
+			++lp->i;
+		}
 	}
 	lp_push_command(lp);
 }
@@ -35,6 +46,6 @@ void				line_parser(void)
 
 	ft_bzero(&lp, sizeof(t_line_parser));
 	lp.line = sh()->line;
-	LST_INIT(&lp.cmds, &ft_cnt_delptr);
+	LST_INIT(&lp.args_list, &ft_cnt_delptr);
 	lp_loop(&lp);
 }

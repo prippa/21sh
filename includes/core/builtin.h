@@ -20,7 +20,6 @@ typedef struct	s_builtin
 {
 	t_list		*env;
 	char		**args;
-	int32_t		fd[BASE_FD_SIZE];
 }				t_build;
 
 void			sh_cd(t_build *b);

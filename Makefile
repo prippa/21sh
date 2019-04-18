@@ -99,7 +99,8 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_HLP)sh_check_path_permision.c\
 				$(DIR_HLP)sh_utility.c\
 				$(DIR_HLP)sh_is.c\
-				$(DIR_HLP)sh_join_path_to_pwd.c
+				$(DIR_HLP)sh_join_path_to_pwd.c\
+				$(DIR_HLP)sh_get_word.c
 
 ENV_C		:=	$(DIR_ENV_SRC)env_convert.c\
 				$(DIR_ENV_SRC)env_free.c\
@@ -114,6 +115,7 @@ ENV_C		:=	$(DIR_ENV_SRC)env_convert.c\
 LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LNP_SRC)lp_arg_buf_control.c\
 				$(DIR_LNP_SRC)lp_push.c\
+				$(DIR_LNP_SRC)lp_utility.c\
 				$(DIR_LPCMD)lp_dollar.c\
 				$(DIR_LPCMD)lp_backslash.c\
 				$(DIR_LPCMD)lp_single_quotes.c\
@@ -123,6 +125,8 @@ LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LPCMD)lp_tilde.c\
 				$(DIR_RDR)lp_redirect_in.c\
 				$(DIR_RDR)lp_redirect_out.c\
+				$(DIR_RDR)lp_check_redirection.c\
+				$(DIR_RDR)lp_rdr_utility.c\
 				$(DIR_PIPE)lp_pipe.c
 
 RL_C		:=	$(DIR_RL_SRC)read_line.c\
@@ -141,7 +145,6 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_LS)rl_ls_handle_err.c\
 				$(DIR_LS)rl_ls_new_prompt.c\
 				$(DIR_LS)rl_ls_valid_word.c\
-				$(DIR_LS)rl_ls_get_word.c\
 				$(DIR_LS)rl_ls_heredoc.c\
 				$(DIR_KE)rl_key_events.c\
 				$(DIR_KE)rl_basic_keys.c\

@@ -27,4 +27,5 @@ void	lp_single_quotes(t_line_parser *lp)
 	}
 	if (len)
 		lp_write_to_arg_buf_str(lp, start, len);
+	++lp->i;
 }

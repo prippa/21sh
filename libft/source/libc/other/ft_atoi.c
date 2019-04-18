@@ -33,7 +33,7 @@ int32_t		ft_atoi(const char *str)
 	return (sign ? -res : res);
 }
 
-intmax_t	ft_atoi_max(char *str)
+intmax_t	ft_atoi_max(const char *str)
 {
 	t_bool		sign;
 	intmax_t	res;

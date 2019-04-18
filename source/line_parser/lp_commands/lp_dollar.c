@@ -28,18 +28,19 @@ void		lp_dollar(t_line_parser *lp)
 	const char	*s;
 	size_t		len;
 
-	if (!ft_isalnum_in_case(lp->line[lp->i + 1]))
+	if (!ft_isalnum_in_case(lp->line[++lp->i]))
 	{
-		lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
+		lp_write_to_arg_buf_char(lp, lp->line[lp->i - 1]);
 		return ;
 	}
-	s = &lp->line[++lp->i];
+	s = &lp->line[lp->i];
 	if (ft_isalpha_in_case(lp->line[lp->i]))
 	{
 		len = 1;
 		while (ft_isalnum_in_case(lp->line[++lp->i]))
 			++len;
 		lp_dollar_write(lp, s, len);
-		--lp->i;
 	}
+	else
+		++lp->i;
 }

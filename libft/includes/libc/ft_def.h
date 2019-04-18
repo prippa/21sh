@@ -27,7 +27,6 @@
 # define OPEN_APPEND_FLAGS		(O_CREAT | O_WRONLY | O_APPEND)
 # define OPEN_RDWR_APPEND_FLAGS	(O_CREAT | O_RDWR | O_APPEND)
 # define OPEN_CREATE_RW_RIGHTS	(S_IWUSR | S_IRUSR)
-# define BASE_FD_SIZE	3
 
 # define EMPTY_STR		""
 # define ENDL			'\n'

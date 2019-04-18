@@ -40,6 +40,7 @@ typedef struct		s_shell
 	t_bool			ok;
 	int32_t			exec_code;
 	char			*pwd;
+	int32_t			fd[3];
 }					t_shell;
 
 t_shell				*sh(void);
@@ -77,5 +78,7 @@ void				sh_sig_handle_incase(int32_t sig);
 void				sh_init_sig_base(void);
 void				sh_init_sig_incase(void);
 void				sh_init_sig_default(void);
+
+char				*sh_get_word(size_t *i, const char *line);
 
 #endif

@@ -9,7 +9,7 @@ t_heredoc		*hd(void)
 
 t_lexer_status	hd_init(t_line_syntax *ls, t_line *ln)
 {
-	hd()->heredoc_delimiter = ls_get_word(ls, ln);
+	hd()->heredoc_delimiter = sh_get_word(&ls->i, ln->line);
 	hd()->end = ln->l_end + 1;
 	hd()->start = ln->l_start;
 	rl_ls_new_prompt(ln, true, LS_HEREDOC);

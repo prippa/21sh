@@ -61,4 +61,5 @@ void				lp_double_quotes(t_line_parser *lp)
 		if (i == LP_DOUBLE_QUOTES_SIZE)
 			lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
 	}
+	++lp->i;
 }
