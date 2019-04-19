@@ -56,7 +56,7 @@ int				main2(void)
 	char	*cm2[] = {"cat", "-e", NULL};
 	char	*cm3[] = {"head", "-4", NULL};
 	char	*cm4[] = {"wc", "-l", NULL};
-	char	**cmds[] = {cm1, cm2, cm3, NULL};
+	char	**cmds[] = {cm1, cm2, NULL};
 	char	*paths[] = {"/bin/ls", "/bin/cat", "/usr/bin/head", "/usr/bin/wc", NULL};
 	int32_t	fd[2];
 	char	buf[10000];
@@ -72,6 +72,6 @@ int				main2(void)
 int				main(void)
 {
 	main2();
-	system("leaks -q pipe");
+	system("leaks -q a.out");
 	return (0);
 }

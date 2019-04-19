@@ -20,7 +20,7 @@
 typedef struct	s_redirect
 {
 	int32_t		fd;
-	t_bool		append_flag;
+	t_bool		mod_flag;
 	t_bool		fda_flag;
 	char		*word;
 }				t_redirect;
@@ -34,6 +34,8 @@ typedef struct	s_line_parser
 	size_t		arg_buf_len;
 	char		*arg;
 	size_t		arg_len;
+	int32_t		pipe_prev_stdin_fd;
+	t_bool		pipe_flag;
 }				t_line_parser;
 
 void			lp_reset_fd(int32_t fd[3]);
@@ -60,8 +62,11 @@ void			lp_redirect_out(t_line_parser *lp);
 void			lp_pipe(t_line_parser *lp);
 
 t_bool			lp_check_rediraction(t_line_parser *lp);
-int32_t			lp_rdr_get_file_desc(t_line_parser *lp);
-t_bool			lp_rdr_valid_word(const char *word, t_bool fda_flag);
-void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp);
+t_bool			lp_rdr_valid_word(const char *word,
+					t_bool fda_flag, int32_t file_perm);
+void			lp_init_rdr(t_redirect *rdr,
+					t_line_parser *lp, int32_t base_fd);
+void			lp_rdr_redirect_desc(t_redirect *rdr);
+void			lp_rdr_init_flags(t_line_parser *lp, t_redirect *rdr, char c);
 
 #endif

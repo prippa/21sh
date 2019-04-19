@@ -171,9 +171,9 @@ INC			:=	$(addprefix -I, $(DIR_LIB_INC) $(DIR_COR_INC) $(DIR_LNP_INC)\
 				$(DIR_RL_INC) $(DIR_ENV_INC))
 
 #-------------------------- Make -----------------------------------------------
-all: $(LIBFT) $(DIR_OBJ) $(NAME)
+all: lib $(DIR_OBJ) $(NAME)
 
-$(LIBFT):
+lib:
 	@make -C $(DIR_LIB)
 
 $(DIR_OBJ):
