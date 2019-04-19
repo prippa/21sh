@@ -34,8 +34,9 @@ typedef struct	s_line_parser
 	size_t		arg_buf_len;
 	char		*arg;
 	size_t		arg_len;
-	int32_t		pipe_prev_stdin_fd;
+	int32_t		fd_in;
 	t_bool		pipe_flag;
+	t_bool		busy_in;
 }				t_line_parser;
 
 void			lp_reset_fd(int32_t fd[3]);

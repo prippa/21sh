@@ -58,6 +58,7 @@ void		lp_redirect_in(t_line_parser *lp)
 {
 	t_redirect rdr;
 
+	lp->busy_in = true;
 	lp_init_rdr(&rdr, lp, STDIN_FILENO);
 	lp_rdr_init_flags(lp, &rdr, REDIRECT_IN_C);
 	rdr.word = sh_get_word(&lp->i, lp->line);

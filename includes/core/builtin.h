@@ -33,6 +33,7 @@ int32_t			sh_setenv_one_env(t_list *env_list,
 					const char *env, t_bool strictly_valid_flag);
 void			sh_process_cmd(t_build *b, const char *cmd_prefix);
 void			sh_exec(const char *path, t_build *b);
+t_bool			sh_check_path(const char *path, size_t path_len, t_build *b);
 
 # define SH_BUILTIN_SIZE	6
 

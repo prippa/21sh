@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lp_rdr_utility.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 18:16:41 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/19 18:16:43 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "line_parser.h"
 #include "syntax_characters.h"
 #include "messages.h"
@@ -34,7 +46,8 @@ void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp, int32_t base_fd)
 		rdr->fd = ERR;
 }
 
-t_bool			lp_rdr_valid_word(const char *word, t_bool fda_flag, int32_t file_perm)
+t_bool			lp_rdr_valid_word(const char *word,
+					t_bool fda_flag, int32_t file_perm)
 {
 	char	*dir;
 

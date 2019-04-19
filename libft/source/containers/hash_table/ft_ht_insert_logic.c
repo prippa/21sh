@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ht_insert_logic.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 18:00:29 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/19 18:02:19 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_hash_table.h"
 #include "ft_mem.h"
 
@@ -68,8 +80,8 @@ static void	ft_ht_make_insert_or_replace_op(t_hash_table *ht,
 	}
 }
 
-void	ft_ht_insert_logic(t_hash_table *ht,
-			const t_ht_elem *elem, t_bool ref)
+void		ft_ht_insert_logic(t_hash_table *ht,
+				const t_ht_elem *elem, t_bool ref)
 {
 	if (!elem || !elem->key)
 		return ;

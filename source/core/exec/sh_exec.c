@@ -16,7 +16,7 @@
 #include "builtin.h"
 #include <sys/wait.h>
 
-static void		sh_do_magic(const char *path, char **args, char **env)
+static void	sh_do_magic(const char *path, char **args, char **env)
 {
 	pid_t	father;
 
@@ -37,12 +37,12 @@ static void		sh_do_magic(const char *path, char **args, char **env)
 	{
 		sh_init_sig_default();
 		execve(path, args, env);
-		exit(EXIT_FAILURE);
+		sh_fatal_err(EXECVE_FAILED);
 	}
 	sh_init_sig_base();
 }
 
-void			sh_exec(const char *path, t_build *b)
+void		sh_exec(const char *path, t_build *b)
 {
 	char		**env;
 

@@ -42,6 +42,16 @@ static void	lp_run_command(char **args)
 	sh_process_cmd(&b, SHELL_NAME ": ");
 }
 
+static void	sh_reset_fd(int32_t fd[3])
+{
+	if (dup2(fd[STDIN_FILENO], STDIN_FILENO) == ERR)
+		sh_fatal_err(DUP2_FAILED);
+	if (dup2(fd[STDOUT_FILENO], STDOUT_FILENO) == ERR)
+		sh_fatal_err(DUP2_FAILED);
+	if (dup2(fd[STDERR_FILENO], STDERR_FILENO) == ERR)
+		sh_fatal_err(DUP2_FAILED);
+}
+
 void		lp_push_command(t_line_parser *lp)
 {
 	char	**args;
@@ -54,7 +64,15 @@ void		lp_push_command(t_line_parser *lp)
 		args = lp_get_command(lp);
 		lp_run_command(args);
 		free(args);
-		lp_reset_fd(sh()->fd);
+	}
+	sh_reset_fd(sh()->fd);
+	lp->busy_in = false;
+	if (lp->pipe_flag)
+	{
+		if (dup2(lp->fd_in, STDIN_FILENO))
+			sh_fatal_err(DUP2_FAILED);
+		close(lp->fd_in);
+		lp->pipe_flag = false;
 	}
 	LST_DEL(&lp->args_list);
 }

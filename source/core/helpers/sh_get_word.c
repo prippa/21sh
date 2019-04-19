@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sh_get_word.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/19 18:09:05 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/19 18:09:06 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell.h"
 #include "tokens.h"
 
-static t_bool sh_is_token(char c)
+static t_bool	sh_is_token(char c)
 {
 	uint8_t	i;
 
@@ -12,7 +24,7 @@ static t_bool sh_is_token(char c)
 	return (false);
 }
 
-static void	sh_gw_sq_valid(size_t *i, const char *line,
+static void		sh_gw_sq_valid(size_t *i, const char *line,
 				char **word, size_t *word_size)
 {
 	const char	*start;
@@ -34,14 +46,14 @@ static void	sh_gw_sq_valid(size_t *i, const char *line,
 	}
 }
 
-static void	sh_gw_bs_valid(size_t *i, const char *line,
+static void		sh_gw_bs_valid(size_t *i, const char *line,
 				char **word, size_t *word_size)
 {
 	ft_strjoin_free(word, &line[++*i], *word_size, 1);
 	*word_size += 1;
 }
 
-static void	sh_gw_dq_valid(size_t *i, const char *line,
+static void		sh_gw_dq_valid(size_t *i, const char *line,
 				char **word, size_t *word_size)
 {
 	++*i;
@@ -60,7 +72,7 @@ static void	sh_gw_dq_valid(size_t *i, const char *line,
 	}
 }
 
-char		*sh_get_word(size_t *i, const char *line)
+char			*sh_get_word(size_t *i, const char *line)
 {
 	char	*word;
 	size_t	word_size;

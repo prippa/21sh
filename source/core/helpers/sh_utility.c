@@ -14,8 +14,25 @@
 #include "messages.h"
 #include "syntax_characters.h"
 #include "environ_manipulation.h"
+#include "builtin.h"
 
 #define SH_ERR		"ERROR: " SHELL_NAME " : %s\n"
+
+t_bool		sh_check_path(const char *path, size_t path_len, t_build *b)
+{
+	char	*full_path;
+	int32_t	res;
+
+	full_path = ft_strnew(path_len + ft_strlen(*b->args) + 1);
+	ft_strncpy(full_path, path, path_len);
+	ft_strcpy(full_path + path_len, (char[2]){ UNIX_PATH_SEPARATOR, 0 });
+	ft_strcpy(full_path + path_len + 1, *b->args);
+	if ((res = access(full_path, F_OK)) == OK &&
+		(res = sh_is_dir(full_path)) == OK)
+		sh_exec(full_path, b);
+	ft_strdel(&full_path);
+	return (res ? false : true);
+}
 
 void		sh_update_curent_dir_name(void)
 {
@@ -24,7 +41,7 @@ void		sh_update_curent_dir_name(void)
 
 	if (((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)) &&
 		!ft_strcmp(home, sh()->pwd)))
-			ft_strcpy(sh()->curent_path, (char[2]){ TILDE_C, 0 });
+		ft_strcpy(sh()->curent_path, (char[2]){ TILDE_C, 0 });
 	else if ((file = ft_strrchr(sh()->pwd, UNIX_PATH_SEPARATOR)))
 	{
 		if (*(file + 1))

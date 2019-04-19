@@ -17,22 +17,6 @@
 
 #define SH_CMD_NOT_FOUND	"%s: command not found"
 
-static t_bool		sh_check_path(const char *path, size_t path_len, t_build *b)
-{
-	char	*full_path;
-	int32_t	res;
-
-	full_path = ft_strnew(path_len + ft_strlen(*b->args) + 1);
-	ft_strncpy(full_path, path, path_len);
-	ft_strcpy(full_path + path_len, (char[2]){ UNIX_PATH_SEPARATOR, 0 });
-	ft_strcpy(full_path + path_len + 1, *b->args);
-	if ((res = access(full_path, F_OK)) == OK &&
-		(res = sh_is_dir(full_path)) == OK)
-		sh_exec(full_path, b);
-	ft_strdel(&full_path);
-	return (res ? false : true);
-}
-
 static t_bool		sh_exec_by_bin_env_path(t_build *b)
 {
 	char	*path_value;

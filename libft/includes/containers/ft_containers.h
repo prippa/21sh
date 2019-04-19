@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_CONTEINERS_H
-# define FT_CONTEINERS_H
+#ifndef FT_CONTAINERS_H
+# define FT_CONTAINERS_H
 
 # include "ft_list.h"
 # include "ft_hash_table.h"

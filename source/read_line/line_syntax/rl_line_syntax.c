@@ -84,7 +84,8 @@ static t_lexer_status	rl_ls_rap_loop(t_line *ln, t_line_syntax *ls)
 	return (res);
 }
 
-t_bool			rl_line_syntax_redir_and_pipes(t_line *ln, t_line_syntax *ls)
+t_bool					rl_line_syntax_redir_and_pipes(t_line *ln,
+							t_line_syntax *ls)
 {
 	t_lexer_status	res;
 
@@ -94,7 +95,7 @@ t_bool			rl_line_syntax_redir_and_pipes(t_line *ln, t_line_syntax *ls)
 	return (false);
 }
 
-t_bool			rl_line_syntax(t_line *ln)
+t_bool					rl_line_syntax(t_line *ln)
 {
 	t_line_syntax	ls;
 	t_lexer_status	res;

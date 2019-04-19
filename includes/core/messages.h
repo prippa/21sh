@@ -39,6 +39,7 @@
 # define WAIT_FAILED		"wait() failed"
 # define STAT_FAILED		"stat() failed"
 # define LSTAT_FAILED		"lstat() failed"
+# define EXECVE_FAILED		"execve() failed"
 # define TCGETATTR_FAILED	"tcgetattr() failed"
 # define TCSETATTR_FAILED	"tcsetattr() failed"
 # define OPENDIR_FAILED		"opendir() failed"
