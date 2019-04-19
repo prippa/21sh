@@ -21,7 +21,7 @@ typedef struct	s_redirect
 {
 	int32_t		fd;
 	t_bool		append_flag;
-	t_bool		desc_flag;
+	t_bool		fda_flag;
 	char		*word;
 }				t_redirect;
 
@@ -61,8 +61,7 @@ void			lp_pipe(t_line_parser *lp);
 
 t_bool			lp_check_rediraction(t_line_parser *lp);
 int32_t			lp_rdr_get_file_desc(t_line_parser *lp);
-t_bool			lp_is_not_global_fd(int32_t fd, int32_t global_fd[3]);
-t_bool			lp_rdr_valid_word(const char *word);
-t_redirect		lp_init_rdr(t_redirect *rdr, t_line_parser *lp);
+t_bool			lp_rdr_valid_word(const char *word, t_bool fda_flag);
+void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp);
 
 #endif
