@@ -12,62 +12,62 @@
 
 #include "line_parser.h"
 
-static void	sh_double_join(t_line_parser *lp, const char *src, size_t len)
+static void	lp_double_join(t_command *cmd, const char *src, size_t len)
 {
 	char *buf_plus_s;
 
-	if (lp->arg_buf_len)
-		buf_plus_s = ft_strnjoin(lp->arg_buf, src, lp->arg_buf_len, len);
+	if (cmd->arg_buf_len)
+		buf_plus_s = ft_strnjoin(cmd->arg_buf, src, cmd->arg_buf_len, len);
 	else
 		buf_plus_s = (char *)src;
-	lp_join_to_arg(lp, buf_plus_s, lp->arg_buf_len + len);
-	if (lp->arg_buf_len)
+	lp_join_to_arg(cmd, buf_plus_s, cmd->arg_buf_len + len);
+	if (cmd->arg_buf_len)
 		ft_strdel(&buf_plus_s);
-	lp->arg_buf_len = 0;
-	*lp->arg_buf = 0;
+	cmd->arg_buf_len = 0;
+	*cmd->arg_buf = 0;
 }
 
-static void	sh_join_cpy(t_line_parser *lp, const char *src, size_t len)
+static void	lp_join_cpy(t_command *cmd, const char *src, size_t len)
 {
-	lp_join_to_arg(lp, lp->arg_buf, lp->arg_buf_len);
-	ft_strncpy(lp->arg_buf, src, len);
-	lp->arg_buf_len = len;
-	lp->arg_buf[lp->arg_buf_len] = 0;
+	lp_join_to_arg(cmd, cmd->arg_buf, cmd->arg_buf_len);
+	ft_strncpy(cmd->arg_buf, src, len);
+	cmd->arg_buf_len = len;
+	cmd->arg_buf[cmd->arg_buf_len] = 0;
 }
 
-void		lp_join_to_arg(t_line_parser *lp, const char *src, size_t len)
+void		lp_join_to_arg(t_command *cmd, const char *src, size_t len)
 {
 	if (!len)
 		return ;
-	if (lp->arg)
-		ft_strjoin_free(&lp->arg, src, lp->arg_len, len);
+	if (cmd->arg)
+		ft_strjoin_free(&cmd->arg, src, cmd->arg_len, len);
 	else
-		lp->arg = ft_strsub(src, 0, len);
-	lp->arg_len += len;
+		cmd->arg = ft_strsub(src, 0, len);
+	cmd->arg_len += len;
 }
 
-void		lp_write_to_arg_buf_char(t_line_parser *lp, char c)
+void		lp_write_to_arg_buf_char(t_command *cmd, char c)
 {
-	if (lp->arg_buf_len + 1 > ARG_BUF_SIZE)
-		sh_join_cpy(lp, &c, 1);
+	if (cmd->arg_buf_len + 1 > ARG_BUF_SIZE)
+		lp_join_cpy(cmd, &c, 1);
 	else
 	{
-		lp->arg_buf[lp->arg_buf_len] = c;
-		++lp->arg_buf_len;
+		cmd->arg_buf[cmd->arg_buf_len] = c;
+		++cmd->arg_buf_len;
 	}
 }
 
-void		lp_write_to_arg_buf_str(t_line_parser *lp,
+void		lp_write_to_arg_buf_str(t_command *cmd,
 				const char *src, size_t len)
 {
 	if (len > ARG_BUF_SIZE)
-		sh_double_join(lp, src, len);
-	else if (lp->arg_buf_len + len > ARG_BUF_SIZE)
-		sh_join_cpy(lp, src, len);
+		lp_double_join(cmd, src, len);
+	else if (cmd->arg_buf_len + len > ARG_BUF_SIZE)
+		lp_join_cpy(cmd, src, len);
 	else
 	{
-		ft_strncpy(lp->arg_buf + lp->arg_buf_len, src, len);
-		lp->arg_buf_len += len;
-		lp->arg_buf[lp->arg_buf_len] = 0;
+		ft_strncpy(cmd->arg_buf + cmd->arg_buf_len, src, len);
+		cmd->arg_buf_len += len;
+		cmd->arg_buf[cmd->arg_buf_len] = 0;
 	}
 }

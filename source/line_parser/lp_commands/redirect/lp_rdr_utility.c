@@ -15,7 +15,7 @@
 #include "messages.h"
 
 #define BAD_DESC	SHELL_NAME ": %zd: Bad file descriptor"
-#define DESC_MAX	1023
+#define DESC_MAX	2
 
 static int32_t	lp_rdr_get_file_desc(t_line_parser *lp)
 {

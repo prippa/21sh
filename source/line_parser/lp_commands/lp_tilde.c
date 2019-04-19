@@ -42,9 +42,9 @@ void			lp_tilde(t_line_parser *lp)
 		lp_tilde_valid_next(lp->line, lp->i + 1))
 	{
 		if ((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)))
-			lp_write_to_arg_buf_str(lp, home, ft_strlen(home));
+			lp_write_to_arg_buf_str(&lp->cmd, home, ft_strlen(home));
 	}
 	else
-		lp_write_to_arg_buf_char(lp, lp->line[lp->i]);
+		lp_write_to_arg_buf_char(&lp->cmd, lp->line[lp->i]);
 	++lp->i;
 }

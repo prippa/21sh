@@ -19,7 +19,7 @@ static void	lp_dollar_write(t_line_parser *lp, const char *s, size_t len)
 
 	key = ft_strsub(s, 0, len);
 	if ((s = env_get_vlu_by_key(sh()->env.start, key)))
-		lp_write_to_arg_buf_str(lp, s, ft_strlen(s));
+		lp_write_to_arg_buf_str(&lp->cmd, s, ft_strlen(s));
 	ft_strdel(&key);
 }
 

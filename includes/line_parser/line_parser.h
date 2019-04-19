@@ -25,26 +25,31 @@ typedef struct	s_redirect
 	char		*word;
 }				t_redirect;
 
-typedef struct	s_line_parser
+typedef struct	s_command
 {
-	const char	*line;
-	size_t		i;
 	t_list		args_list;
 	char		arg_buf[ARG_BUF_SIZE + 1];
 	size_t		arg_buf_len;
 	char		*arg;
 	size_t		arg_len;
-	int32_t		fd_in;
-	t_bool		pipe_flag;
-	t_bool		busy_in;
+	int32_t		fd[3];
+}				t_command;
+
+typedef struct	s_line_parser
+{
+	const char	*line;
+	size_t		i;
+	t_list		cmds;
+	t_command	cmd;
 }				t_line_parser;
 
-void			lp_reset_fd(int32_t fd[3]);
+void			lp_del_commands_list(void *content, size_t content_size);
+void			lp_init_commnd(t_command *cmd);
 
-void			lp_join_to_arg(t_line_parser *lp, const char *src, size_t len);
-void			lp_write_to_arg_buf_str(t_line_parser *lp,
+void			lp_join_to_arg(t_command *cmd, const char *src, size_t len);
+void			lp_write_to_arg_buf_str(t_command *cmd,
 					const char *src, size_t len);
-void			lp_write_to_arg_buf_char(t_line_parser *lp, char c);
+void			lp_write_to_arg_buf_char(t_command *cmd, char c);
 
 void			lp_push_arg(t_line_parser *lp);
 void			lp_push_command(t_line_parser *lp);
