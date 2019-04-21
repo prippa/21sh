@@ -114,7 +114,6 @@ ENV_C		:=	$(DIR_ENV_SRC)env_convert.c\
 
 LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LNP_SRC)lp_arg_buf_control.c\
-				$(DIR_LNP_SRC)lp_push.c\
 				$(DIR_LNP_SRC)lp_utility.c\
 				$(DIR_LPCMD)lp_dollar.c\
 				$(DIR_LPCMD)lp_backslash.c\

@@ -28,19 +28,13 @@
 static t_bool	sh_cd_path_valid(const char *path)
 {
 	if (sh_is_valid_path(path))
-	{
-		PRINT_ERR(EXIT_FAILURE, CD_FILENAME_TO_LONG, path);
-	}
+		sh_print_err(EXIT_FAILURE, MSG(CD_FILENAME_TO_LONG, path));
 	else if (sh_path_access(path, CD))
 		return (sh()->ok);
 	else if (!sh_is_dir(path))
-	{
-		PRINT_ERR(EXIT_FAILURE, CD_NOT_DIR, path);
-	}
+		sh_print_err(EXIT_FAILURE, MSG(CD_NOT_DIR, path));
 	else if (access(path, X_OK) == ERR)
-	{
-		PRINT_ERR(EXIT_FAILURE, CD_PERM_DENIED, path);
-	}
+		sh_print_err(EXIT_FAILURE, MSG(CD_PERM_DENIED, path));
 	return (sh()->ok);
 }
 
@@ -79,7 +73,7 @@ static t_bool	sh_cd_by_env(t_list *env_list, const char *env_key, t_bool slf)
 
 	if (!(path = env_get_vlu_by_key(env_list->start, env_key)))
 	{
-		PRINT_ERR(EXIT_FAILURE, CD_NO_ENV, env_key);
+		sh_print_err(EXIT_FAILURE, MSG(CD_NO_ENV, env_key));
 		return (false);
 	}
 	if (!sh_cd_path_valid(path))
@@ -116,9 +110,7 @@ void			sh_cd(t_build *b)
 	if (!*b->args)
 		sh_cd_by_env(b->env, HOME_ENV, symb_link_flag);
 	else if (*(b->args + 1))
-	{
-		PRINT_ERR(EXIT_FAILURE, CD_TO_MANY_ARGS, NULL);
-	}
+		sh_print_err(EXIT_FAILURE, MSG(CD_TO_MANY_ARGS, NULL));
 	else if (!ft_strcmp(*b->args, CD_DASH_F))
 	{
 		if (sh_cd_by_env(b->env, OLDPWD_ENV, symb_link_flag))

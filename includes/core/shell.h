@@ -45,12 +45,8 @@ typedef struct		s_shell
 
 t_shell				*sh(void);
 
-# define PE_P(f, a ...) ft_dprintf(STDERR_FILENO, f, a)
-# define PE_NL ft_putendl_fd(EMPTY_STR, STDERR_FILENO)
-# define PE_SE(ec) sh()->exec_code = ec; sh()->ok = false
-# define PRINT_ERR(ec, f, a ...) PE_P(f, a); PE_NL; PE_SE(ec)
-
 void				sh_fatal_err(const char *message);
+void				sh_print_err(int32_t err_code, char *message);
 
 void				sh_init(void);
 void				sh_init_env(void);
@@ -60,6 +56,7 @@ void				sh_init_rl_histiry(void);
 void				sh_init_line_parser(void);
 
 t_bool				sh_is_dir(const char *path);
+t_bool				sh_is_opened_fd(int32_t fd);
 t_bool				sh_is_valid_path(const char *path);
 
 t_bool				sh_path_access(const char *path, const char *prefix);

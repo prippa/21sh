@@ -23,12 +23,12 @@ static t_bool	sh_path_access_check(char *s, size_t i,
 	if (access(s, F_OK))
 	{
 		ft_putstr_fd(prefix, STDERR_FILENO);
-		PRINT_ERR(EXIT_FAILURE, NO_FILE_OR_DIR, path);
+		sh_print_err(EXIT_FAILURE, MSG(NO_FILE_OR_DIR, path));
 	}
 	else if (access(s, X_OK))
 	{
 		ft_putstr_fd(prefix, STDERR_FILENO);
-		PRINT_ERR(EXIT_FAILURE, PERM_DENIED, path);
+		sh_print_err(EXIT_FAILURE, MSG(PERM_DENIED, path));
 	}
 	else
 		res = false;
@@ -51,7 +51,7 @@ static t_bool	sh_path_access_loop(char *s, const char *path,
 	if (access(s, F_OK))
 	{
 		ft_putstr_fd(prefix, STDERR_FILENO);
-		PRINT_ERR(EXIT_FAILURE, NO_FILE_OR_DIR, s);
+		sh_print_err(EXIT_FAILURE, MSG(NO_FILE_OR_DIR, s));
 		return (true);
 	}
 	return (false);

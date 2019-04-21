@@ -59,9 +59,7 @@ void			sh_setenv(t_build *b)
 	while (*b->args)
 	{
 		if (sh_setenv_one_env(b->env, *b->args, true))
-		{
-			PRINT_ERR(EXIT_FAILURE, SH_SETENV_INV_ARG, *b->args);
-		}
+			sh_print_err(EXIT_FAILURE, MSG(SH_SETENV_INV_ARG, *b->args));
 		++b->args;
 	}
 }

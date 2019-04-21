@@ -48,7 +48,7 @@ void		sh_exec(const char *path, t_build *b)
 
 	if (access(path, X_OK) == ERR)
 	{
-		PRINT_ERR(EXIT_FAILURE, SH_PERM_DENIED, path);
+		sh_print_err(EXIT_FAILURE, MSG(SH_PERM_DENIED, path));
 		return ;
 	}
 	env = env_convert_to_arr(b->env->start, b->env->list_size);

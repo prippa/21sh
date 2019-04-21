@@ -63,3 +63,11 @@ void		sh_fatal_err(const char *message)
 	sh_reset_settings();
 	exit(EXIT_FAILURE);
 }
+
+void		sh_print_err(int32_t err_code, char *message)
+{
+	ft_putendl_fd(message, STDERR_FILENO);
+	sh()->exec_code = err_code;
+	sh()->ok = false;
+	ft_strdel(&message);
+}

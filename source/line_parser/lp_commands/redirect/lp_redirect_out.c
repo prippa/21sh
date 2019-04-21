@@ -24,13 +24,7 @@ static void	lp_redirect_out_open_file(t_redirect *rdr)
 		file_desc = open(rdr->word, OPEN_REWRITE_FLAGS, OPEN_CREATE_RW_RIGHTS);
 	if (file_desc == ERR)
 		sh_fatal_err(OPEN_ERR);
-	if (rdr->fd != ERR)
-	{
-		if (dup2(file_desc, rdr->fd) == ERR)
-			sh_fatal_err(DUP2_FAILED);
-	}
-	else
-		close(file_desc);
+	dup2(file_desc, rdr->fd);
 }
 
 void		lp_redirect_out(t_line_parser *lp)
@@ -40,11 +34,11 @@ void		lp_redirect_out(t_line_parser *lp)
 	lp_init_rdr(&rdr, lp, STDOUT_FILENO);
 	lp_rdr_init_flags(lp, &rdr, REDIRECT_OUT_C);
 	rdr.word = sh_get_word(&lp->i, lp->line);
-	if (lp_rdr_valid_word(rdr.word, rdr.fda_flag, W_OK | R_OK))
+	lp->cmd.cbe = lp_rdr_valid_word(rdr.word, rdr.fda_flag, W_OK | R_OK);
+	if (lp->cmd.cbe)
 	{
-		if (rdr.fda_flag &&
-			(ft_is_str_digit(rdr.word) || ft_strequ(rdr.word, CLOSE_FD)))
-			lp_rdr_redirect_desc(&rdr);
+		if (rdr.fda_flag)
+			lp->cmd.cbe = lp_rdr_redirect_desc(&rdr);
 		else
 			lp_redirect_out_open_file(&rdr);
 	}

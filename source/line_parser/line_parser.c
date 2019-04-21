@@ -37,7 +37,7 @@ static void		lp_loop(t_line_parser *lp)
 			++lp->i;
 		}
 	}
-	lp_push_command(lp);
+	lp_semicolon(lp);
 }
 
 void			line_parser(void)
@@ -45,8 +45,8 @@ void			line_parser(void)
 	t_line_parser lp;
 
 	ft_bzero(&lp, sizeof(t_line_parser));
+	LST_INIT(&lp.cmds, &lp_del_commands_list);
 	lp.line = sh()->line;
-	LST_INIT(&lp.cmd, &lp_del_commands_list);
 	lp_init_commnd(&lp.cmd);
 	lp_loop(&lp);
 }

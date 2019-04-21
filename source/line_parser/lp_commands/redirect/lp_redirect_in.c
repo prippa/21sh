@@ -30,7 +30,7 @@ static void	lp_rdr_base_redirect_in(t_redirect *rdr, int32_t file_desc[2])
 {
 	if (access(rdr->word, F_OK))
 	{
-		PRINT_ERR(EXIT_FAILURE, SHELL_NAME ": " NO_FILE_OR_DIR, rdr->word);
+		sh_print_err(EXIT_FAILURE, MSG(SHELL_NAME ": " NO_FILE_OR_DIR, rdr->word));
 		return ;
 	}
 	if ((file_desc[STDIN_FILENO] = open(rdr->word, O_RDONLY)) == ERR)
@@ -63,8 +63,7 @@ void		lp_redirect_in(t_line_parser *lp)
 	rdr.word = sh_get_word(&lp->i, lp->line);
 	if (lp_rdr_valid_word(rdr.word, rdr.fda_flag, R_OK))
 	{
-		if (rdr.fda_flag &&
-			(ft_is_str_digit(rdr.word) || ft_strequ(rdr.word, CLOSE_FD)))
+		if (rdr.fda_flag)
 			lp_rdr_redirect_desc(&rdr);
 		else
 			lp_redirect_in_open_file(&rdr);

@@ -23,6 +23,15 @@ t_bool		sh_is_dir(const char *path)
 	return (S_ISDIR(sb.st_mode));
 }
 
+t_bool		sh_is_opened_fd(int32_t fd)
+{
+	struct stat sb;
+
+	if (fstat(fd, &sb) == ERR)
+		return (false);
+	return (true);
+}
+
 t_bool		sh_is_valid_path(const char *path)
 {
 	uint16_t	i;

@@ -62,9 +62,7 @@ static t_bool		sh_exec_by_full_path(t_build *b, const char *cmd_prefix)
 	if (!sh_path_access(*b->args, cmd_prefix))
 	{
 		if (sh_is_dir(*b->args))
-		{
-			PRINT_ERR(EXIT_FAILURE, SH_IS_A_DIR, *b->args);
-		}
+			sh_print_err(EXIT_FAILURE, MSG(SH_IS_A_DIR, *b->args));
 		else
 			sh_exec(*b->args, b);
 	}
@@ -94,6 +92,6 @@ void				sh_process_cmd(t_build *b, const char *cmd_prefix)
 		!sh_exec_by_bin(b))
 	{
 		ft_putstr_fd(cmd_prefix, STDERR_FILENO);
-		PRINT_ERR(EXIT_FAILURE, SH_CMD_NOT_FOUND, *b->args);
+		sh_print_err(EXIT_FAILURE, MSG(SH_CMD_NOT_FOUND, *b->args));
 	}
 }

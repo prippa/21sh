@@ -22,15 +22,13 @@ void	sh_unsetenv(t_build *b)
 {
 	if (!*b->args)
 	{
-		PRINT_ERR(EXIT_FAILURE, SH_UNSETENV_USG, NULL);
+		sh_print_err(EXIT_FAILURE, MSG(SH_UNSETENV_USG, NULL));
 		return ;
 	}
 	while (*b->args)
 	{
 		if (env_unset(b->env, *b->args))
-		{
-			PRINT_ERR(EXIT_FAILURE, SH_UNSETENV_NO_NAME, *b->args);
-		}
+			sh_print_err(EXIT_FAILURE, MSG(SH_UNSETENV_NO_NAME, *b->args));
 		++b->args;
 	}
 }

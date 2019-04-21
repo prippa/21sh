@@ -22,12 +22,12 @@ static int32_t	sh_exit_get_arg_value(char **args)
 {
 	if (*(args + 1))
 	{
-		PRINT_ERR(EXIT_FAILURE, EXIT_TMA, NULL);
+		sh_print_err(EXIT_FAILURE, MSG(EXIT_TMA, NULL));
 		return (ERR);
 	}
 	if (!ft_is_str_digit(*args))
 	{
-		PRINT_ERR(EXIT_FAILURE, EXIT_NAR, *args);
+		sh_print_err(EXIT_FAILURE, MSG(EXIT_NAR, *args));
 		return (EXIT_FAILURE);
 	}
 	return (ft_atoi(*args));

@@ -26,11 +26,11 @@ static const char	g_wtf_eof_matching_characters[] =
 
 void		rl_ls_syntax_err_wtf_eof(void)
 {
-	PRINT_ERR(EXIT_FAILURE, WTF_EOF,
-		g_wtf_eof_matching_characters[rl()->inhibitors_in_use - 1]);
+	sh_print_err(EXIT_FAILURE, MSG(WTF_EOF,
+		g_wtf_eof_matching_characters[rl()->inhibitors_in_use - 1]));
 }
 
 void		rl_ls_syntax_err_wtf_token(const char *token)
 {
-	PRINT_ERR(EXIT_FAILURE, WTF_TOKEN, token);
+	sh_print_err(EXIT_FAILURE, MSG(WTF_TOKEN, token));
 }

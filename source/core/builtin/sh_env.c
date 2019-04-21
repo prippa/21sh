@@ -27,7 +27,7 @@ static t_bool	sh_env_check_kv(t_bool i_flag, t_build *nb, t_build *b)
 	{
 		if (**b->args == KEY_VALUE_SEPARATOR)
 		{
-			PRINT_ERR(EXIT_FAILURE, ENV_INVALID_ARG, *b->args);
+			sh_print_err(EXIT_FAILURE, MSG(ENV_INVALID_ARG, *b->args));
 			return (false);
 		}
 		if (ft_strchr(*b->args, KEY_VALUE_SEPARATOR))
