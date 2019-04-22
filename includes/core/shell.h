@@ -40,7 +40,6 @@ typedef struct		s_shell
 	t_bool			ok;
 	int32_t			exec_code;
 	char			*pwd;
-	int32_t			fd[3];
 }					t_shell;
 
 t_shell				*sh(void);
@@ -56,7 +55,6 @@ void				sh_init_rl_histiry(void);
 void				sh_init_line_parser(void);
 
 t_bool				sh_is_dir(const char *path);
-t_bool				sh_is_opened_fd(int32_t fd);
 t_bool				sh_is_valid_path(const char *path);
 
 t_bool				sh_path_access(const char *path, const char *prefix);

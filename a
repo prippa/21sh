@@ -1,18 +1,2 @@
-21sh
-21sh.en.pdf
-a
-a.out
-author
-b
-c
-includes
-libft
-Makefile
-object
-pipe_example.c
-README.md
-rediractions_example.c
-source
-test_main.c
-test.txt
-TODO.todo
+ls: wtf: No such file or directory
+-rw-r--r--  1 prippa  staff  0 Apr 22 23:41 a

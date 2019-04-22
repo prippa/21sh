@@ -58,12 +58,10 @@ static void	lp_set_fd(int32_t fd[3])
 	}
 }
 
-void		lp_exec_command(t_list_elem *elem)
+void		lp_exec_command(t_command *cmd)
 {
-	t_command	*cmd;
 	char		**args;
 
-	cmd = (t_command *)elem->content;
 	if (!cmd->args_list.list_size || !cmd->cbe)
 		return ;
 	lp_set_fd(cmd->fd);
@@ -74,9 +72,26 @@ void		lp_exec_command(t_list_elem *elem)
 
 void		lp_semicolon(t_line_parser *lp)
 {
+	int32_t		reset_fd[3];
+	t_list_elem	*start;
+
 	lp_add_cmd(lp);
-	ft_lstiter(&lp->cmds, &lp_exec_command);
+	reset_fd[STDIN_FILENO] = dup(STDIN_FILENO);
+	reset_fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
+	reset_fd[STDERR_FILENO] = dup(STDERR_FILENO);
+	if (reset_fd[STDIN_FILENO] == ERR || reset_fd[STDOUT_FILENO] == ERR ||
+		reset_fd[STDERR_FILENO] == ERR)
+		sh_fatal_err(DUP_FAILED);
+	start = lp->cmds.start;
+	while (start)
+	{
+		lp_exec_command(start->content);
+		lp_reset_fd(reset_fd);
+		start = start->next;
+	}
+	close(reset_fd[STDIN_FILENO]);
+	close(reset_fd[STDOUT_FILENO]);
+	close(reset_fd[STDERR_FILENO]);
 	LST_DEL(&lp->cmds);
-	lp_reset_fd(sh()->fd);
 	++lp->i;
 }

@@ -56,17 +56,17 @@ static void	lp_redirect_in_open_file(t_redirect *rdr)
 
 void		lp_redirect_in(t_line_parser *lp)
 {
-	t_redirect rdr;
+	// t_redirect rdr;
 
-	lp_init_rdr(&rdr, lp, STDIN_FILENO);
-	lp_rdr_init_flags(lp, &rdr, REDIRECT_IN_C);
-	rdr.word = sh_get_word(&lp->i, lp->line);
-	if (lp_rdr_valid_word(rdr.word, rdr.fda_flag, R_OK))
-	{
-		if (rdr.fda_flag)
-			lp_rdr_redirect_desc(&rdr);
-		else
-			lp_redirect_in_open_file(&rdr);
-	}
-	ft_strdel(&rdr.word);
+	// lp_init_rdr(&rdr, lp, STDIN_FILENO);
+	// lp_rdr_init_flags(lp, &rdr, REDIRECT_IN_C);
+	// rdr.word = sh_get_word(&lp->i, lp->line);
+	// if (lp_rdr_valid_word(rdr.word, rdr.fda_flag, R_OK))
+	// {
+	// 	if (rdr.fda_flag)
+	// 		lp_rdr_redirect_desc(&rdr);
+	// 	else
+	// 		lp_redirect_in_open_file(&rdr);
+	// }
+	// ft_strdel(&rdr.word);
 }

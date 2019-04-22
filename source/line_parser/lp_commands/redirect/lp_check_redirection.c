@@ -24,7 +24,7 @@ t_bool		lp_check_rediraction(t_line_parser *lp)
 	if (lp->line[i] == REDIRECT_IN_C || lp->line[i] == REDIRECT_OUT_C)
 	{
 		n = ft_atoi_max(&lp->line[lp->i]);
-		if (n > INT32_MAX)
+		if (ft_nbrlen(n) > ft_nbrlen(INT32_MAX) || n > INT32_MAX)
 			return (false);
 		if (lp->line[i] == REDIRECT_IN_C)
 			lp_redirect_in(lp);

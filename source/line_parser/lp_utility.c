@@ -7,6 +7,7 @@ void		lp_del_commands_list(void *content, size_t content_size)
 
 	cmd = (t_command *)content;
 	LST_DEL(&cmd->args_list);
+	LST_DEL(&cmd->fd_list);
 	ft_memdel(&content);
 }
 
@@ -14,7 +15,7 @@ void		lp_init_commnd(t_command *cmd)
 {
 	ft_bzero(cmd, sizeof(t_command));
 	LST_INIT(&cmd->args_list, &ft_cnt_delptr);
-	cmd->cbe = true;
+	LST_INIT(&cmd->fd_list, &ft_cnt_delptr);
 }
 
 void		lp_reset_fd(int32_t	fd[3])
@@ -29,13 +30,13 @@ void		lp_reset_fd(int32_t	fd[3])
 
 void		lp_add_cmd(t_line_parser *lp)
 {
-	lp_add_arg(&lp->cmd);
-	lp->cmd.fd[STDIN_FILENO] = dup(STDIN_FILENO);
-	lp->cmd.fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
-	lp->cmd.fd[STDERR_FILENO] = dup(STDERR_FILENO);
-	LST_PUSH_BACK(&lp->cmds, &lp->cmd, sizeof(t_command));
-	lp_init_commnd(&lp->cmd);
-	lp_reset_fd(sh()->fd);
+	// lp_add_arg(&lp->cmd);
+	// lp->cmd.fd[STDIN_FILENO] = dup(STDIN_FILENO);
+	// lp->cmd.fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
+	// lp->cmd.fd[STDERR_FILENO] = dup(STDERR_FILENO);
+	// LST_PUSH_BACK(&lp->cmds, &lp->cmd, sizeof(t_command));
+	// lp_init_commnd(&lp->cmd);
+	// lp_reset_fd(sh()->fd);
 }
 
 void		lp_add_arg(t_command *cmd)

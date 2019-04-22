@@ -20,17 +20,6 @@ t_shell		*sh(void)
 	return (&sh);
 }
 
-static void	sh_init_fd(void)
-{
-	sh()->fd[STDIN_FILENO] = dup(STDIN_FILENO);
-	sh()->fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
-	sh()->fd[STDERR_FILENO] = dup(STDERR_FILENO);
-	if (sh()->fd[STDIN_FILENO] == ERR ||
-		sh()->fd[STDOUT_FILENO] == ERR ||
-		sh()->fd[STDERR_FILENO] == ERR)
-		sh_fatal_err(DUP_FAILED);
-}
-
 void		sh_init(void)
 {
 	g_fef = &sh_fatal_err;
@@ -38,7 +27,6 @@ void		sh_init(void)
 	sh_init_env();
 	sh_init_read_line();
 	sh_init_line_parser();
-	sh_init_fd();
 	sh()->ok = true;
 	sh_update_prompt(true);
 	sh_init_sig_base();

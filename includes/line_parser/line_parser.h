@@ -25,15 +25,22 @@ typedef struct	s_redirect
 	char		*word;
 }				t_redirect;
 
+typedef struct	s_dup2_fd
+{
+	int32_t		fildes;
+	int32_t		fildes2;
+}				t_dup2_fd;
+# define FD(fd, fd2) &(t_dup2_fd){.fildes = fd, .fildes2 = fd2}
+
 typedef struct	s_command
 {
+	char		*error;
+	t_list		fd_list;
 	t_list		args_list;
 	char		arg_buf[ARG_BUF_SIZE + 1];
 	size_t		arg_buf_len;
 	char		*arg;
 	size_t		arg_len;
-	int32_t		fd[3];
-	t_bool		cbe;
 }				t_command;
 
 typedef struct	s_line_parser
@@ -70,11 +77,11 @@ void			lp_redirect_out(t_line_parser *lp);
 void			lp_pipe(t_line_parser *lp);
 
 t_bool			lp_check_rediraction(t_line_parser *lp);
-t_bool			lp_rdr_valid_word(const char *word,
-					t_bool fda_flag, int32_t file_perm);
+void			lp_rdr_valid_word(const char *word,
+					t_bool fda_flag, int32_t file_perm, t_command *cmd);
 void			lp_init_rdr(t_redirect *rdr,
 					t_line_parser *lp, int32_t base_fd);
-t_bool			lp_rdr_redirect_desc(t_redirect *rdr);
+void			lp_rdr_redirect_desc(t_redirect *rdr, t_command *cmd);
 void			lp_rdr_init_flags(t_line_parser *lp, t_redirect *rdr, char c);
 
 #endif
