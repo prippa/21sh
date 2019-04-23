@@ -15,7 +15,7 @@
 #include "messages.h"
 #include "heredoc.h"
 
-static void	lp_rdr_heredoc(t_redirect *rdr, int32_t file_desc[2])
+static void	lp_rdr_heredoc(int32_t file_desc[2])
 {
 	if (pipe(file_desc) == ERR)
 		sh_fatal_err(PIPE_FAILED);
@@ -26,47 +26,45 @@ static void	lp_rdr_heredoc(t_redirect *rdr, int32_t file_desc[2])
 	close(file_desc[STDOUT_FILENO]);
 }
 
-static void	lp_rdr_base_redirect_in(t_redirect *rdr, int32_t file_desc[2])
+static void	lp_rdr_base_redirect_in(t_redirect *rdr, int32_t file_desc[2],
+				t_command *cmd)
 {
 	if (access(rdr->word, F_OK))
 	{
-		sh_print_err(EXIT_FAILURE, MSG(SHELL_NAME ": " NO_FILE_OR_DIR, rdr->word));
+		cmd->error = MSG(SHELL_NAME ": " NO_FILE_OR_DIR, rdr->word);
 		return ;
 	}
 	if ((file_desc[STDIN_FILENO] = open(rdr->word, O_RDONLY)) == ERR)
 		sh_fatal_err(OPEN_ERR);
 }
 
-static void	lp_redirect_in_open_file(t_redirect *rdr)
+static void	lp_redirect_in_open_file(t_redirect *rdr, t_command *cmd)
 {
 	int32_t	file_desc[2];
 
 	if (rdr->mod_flag)
-		lp_rdr_heredoc(rdr, file_desc);
+		lp_rdr_heredoc(file_desc);
 	else
-		lp_rdr_base_redirect_in(rdr, file_desc);
-	if (rdr->fd != ERR)
-	{
-		if (dup2(file_desc[STDIN_FILENO], rdr->fd) == ERR)
-			sh_fatal_err(DUP2_FAILED);
-	}
-	else
-		close(file_desc[STDIN_FILENO]);
+		lp_rdr_base_redirect_in(rdr, file_desc, cmd);
+	if (!cmd->error)
+		LST_PUSH_BACK(&cmd->fd_list,
+			(FD(file_desc[STDIN_FILENO], rdr->fd)), sizeof(t_dup2_fd));
 }
 
 void		lp_redirect_in(t_line_parser *lp)
 {
-	// t_redirect rdr;
+	t_redirect rdr;
 
-	// lp_init_rdr(&rdr, lp, STDIN_FILENO);
-	// lp_rdr_init_flags(lp, &rdr, REDIRECT_IN_C);
-	// rdr.word = sh_get_word(&lp->i, lp->line);
-	// if (lp_rdr_valid_word(rdr.word, rdr.fda_flag, R_OK))
-	// {
-	// 	if (rdr.fda_flag)
-	// 		lp_rdr_redirect_desc(&rdr);
-	// 	else
-	// 		lp_redirect_in_open_file(&rdr);
-	// }
-	// ft_strdel(&rdr.word);
+	lp_init_rdr(&rdr, lp, STDIN_FILENO);
+	lp_rdr_init_flags(lp, &rdr, REDIRECT_IN_C);
+	rdr.word = sh_get_word(&lp->i, lp->line);
+	lp_rdr_valid_word(rdr.word, R_OK, &lp->cmd);
+	if (!lp->cmd.error)
+	{
+		if (rdr.fda_flag)
+			lp_rdr_redirect_desc(&rdr, &lp->cmd);
+		else
+			lp_redirect_in_open_file(&rdr, &lp->cmd);
+	}
+	ft_strdel(&rdr.word);
 }

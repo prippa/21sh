@@ -15,6 +15,6 @@
 
 void		lp_pipe(t_line_parser *lp)
 {
-	
+	lp_add_cmd(lp);
 	++lp->i;
 }

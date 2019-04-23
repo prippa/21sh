@@ -41,15 +41,17 @@ static char	*sh_get_path(const char *home)
 
 void		sh_init_rl_histiry(void)
 {
-	char	*str;
+	int32_t	fd;
+	char	*tmp;
 
 	LST_INIT(&rl()->hs.history, &ft_cnt_delptr);
-	if (!(str = getenv(HOME_ENV)))
+	if (!(tmp = getenv(HOME_ENV)))
 		return ;
-	str = sh_get_path(str);
-	if ((rl()->hs.hs_fd =
-		open(str, OPEN_RDWR_APPEND_FLAGS, OPEN_CREATE_RW_RIGHTS)) == ERR)
+	rl()->hs.path_to_hs_file = sh_get_path(tmp);
+	if ((fd = open(rl()->hs.path_to_hs_file,
+		OPEN_RDWR_APPEND_FLAGS,
+		OPEN_CREATE_RW_RIGHTS)) == ERR)
 		sh_fatal_err(OPEN_ERR);
-	ft_strdel(&str);
-	sh_read_file(rl()->hs.hs_fd);
+	sh_read_file(fd);
+	close(fd);
 }

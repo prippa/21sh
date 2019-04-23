@@ -28,6 +28,7 @@ void		sh_init(void)
 	sh_init_read_line();
 	sh_init_line_parser();
 	sh()->ok = true;
+	sh_update_curent_dir_name();
 	sh_update_prompt(true);
 	sh_init_sig_base();
 }

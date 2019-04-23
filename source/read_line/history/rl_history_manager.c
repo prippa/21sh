@@ -19,12 +19,29 @@ t_hs		*hs(void)
 	return (&hs);
 }
 
+static void	rl_history_push_and_write(char *l)
+{
+	size_t		l_len;
+	char		*msg;
+	int32_t		fd;
+
+	l_len = ft_strlen(l);
+	if (rl()->hs.path_to_hs_file)
+	{
+		fd = open(rl()->hs.path_to_hs_file, OPEN_RDWR_APPEND_FLAGS,
+			OPEN_CREATE_RW_RIGHTS);
+		msg = MSG("%s\n", l);
+		write(fd, msg, l_len + 1);
+		ft_strdel(&msg);
+		close(fd); 
+	}
+	LST_PUSH_BACK_REF(&rl()->hs.history, l, l_len);
+}
+
 void		rl_history_add(const char *line)
 {
 	char		*l;
 	char		*chr;
-	size_t		l_len;
-	char		*msg;
 
 	if (ft_is_str_space(line) || ft_is_str_empty(line) ||
 		(rl()->hs.history.end &&
@@ -34,12 +51,7 @@ void		rl_history_add(const char *line)
 		l = ft_strsub(line, 0, chr - line);
 	else
 		l = ft_strdup(line);
-	l_len = ft_strlen(l);
-	LST_PUSH_BACK_REF(&rl()->hs.history, l, l_len);
-	msg = MSG("%s\n", l);
-	if (write(rl()->hs.hs_fd, msg, l_len + 1) == ERR)
-		sh_fatal_err(WRITE_ERR);
-	ft_strdel(&msg);
+	rl_history_push_and_write(l);
 }
 
 void		rl_history_move(const char *line, t_line *ln)

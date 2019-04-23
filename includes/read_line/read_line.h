@@ -35,7 +35,7 @@ typedef struct		s_history
 	t_list			history;
 	t_list_elem		*curent;
 	char			*cur_line_buf;
-	int32_t			hs_fd;
+	char			*path_to_hs_file;
 }					t_history;
 
 typedef struct		s_tc

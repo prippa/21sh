@@ -1,6 +1,6 @@
 #-------------------------- Key Values -----------------------------------------
 NAME		:=	21sh
-# CFLAGS		:=	-Wall -Werror -Wextra
+CFLAGS		:=	-Wall -Werror -Wextra
 CC			:=	gcc
 
 DIR_INC		:=	includes/
@@ -45,7 +45,6 @@ DIR_ENV_EVS	:=	$(DIR_ENV_SRC)env_events/
 # line_parser
 DIR_LPCMD	:=	$(DIR_LNP_SRC)lp_commands/
 DIR_RDR		:=	$(DIR_LPCMD)redirect/
-DIR_PIPE	:=	$(DIR_LPCMD)pipe/
 
 # read_line
 DIR_LS		:=	$(DIR_RL_SRC)line_syntax/
@@ -114,7 +113,7 @@ ENV_C		:=	$(DIR_ENV_SRC)env_convert.c\
 
 LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LNP_SRC)lp_arg_buf_control.c\
-				$(DIR_LNP_SRC)lp_utility.c\
+				$(DIR_LNP_SRC)lp_cmd_manipulation.c\
 				$(DIR_LPCMD)lp_dollar.c\
 				$(DIR_LPCMD)lp_backslash.c\
 				$(DIR_LPCMD)lp_single_quotes.c\
@@ -122,11 +121,12 @@ LNP_C		:=	$(DIR_LNP_SRC)line_parser.c\
 				$(DIR_LPCMD)lp_space.c\
 				$(DIR_LPCMD)lp_semicolon.c\
 				$(DIR_LPCMD)lp_tilde.c\
+				$(DIR_LPCMD)lp_pipe.c\
 				$(DIR_RDR)lp_redirect_in.c\
 				$(DIR_RDR)lp_redirect_out.c\
 				$(DIR_RDR)lp_check_redirection.c\
 				$(DIR_RDR)lp_rdr_utility.c\
-				$(DIR_PIPE)lp_pipe.c
+				$(DIR_RDR)lp_fd_manipulations.c\
 
 RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_RL_SRC)rl_init.c\

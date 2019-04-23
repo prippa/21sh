@@ -12,86 +12,84 @@
 
 #include "line_parser.h"
 #include "messages.h"
-#include "builtin.h"
-#include "environ_manipulation.h"
 
-static char	**lp_get_command(t_command *cmd)
+static void	lp_set_fd(int32_t reset_fd[3], t_list *fd_list)
 {
-	size_t		i;
-	char		**args;
 	t_list_elem	*start;
+	t_dup2_fd	*fd;
 
-	args = (char **)ft_memalloc(
-		sizeof(char *) * (cmd->args_list.list_size + 1));
-	start = cmd->args_list.start;
-	i = -1;
+	start = fd_list->start;
 	while (start)
 	{
-		args[++i] = (char *)start->content;
+		fd = (t_dup2_fd *)start->content;
+		if (lp_is_valid_fd(reset_fd, fd->fildes2))
+		{
+			if (fd->fildes == ERR)
+				close(fd->fildes2);
+			else if (dup2(fd->fildes, fd->fildes2) == ERR)
+			{
+				sh_print_err(EXIT_FAILURE, MSG(BAD_DESC_N, fd->fildes));
+				return ;
+			}
+		}
 		start = start->next;
 	}
-	return (args);
 }
 
-static void	lp_run_command(char **args)
-{
-	t_build	b;
-
-	b.env = &sh()->env;
-	b.args = args;
-	env_set(b.env, ENV(PREV_CMD_ENV, *b.args), true);
-	sh_process_cmd(&b, SHELL_NAME ": ");
-}
-
-static void	lp_set_fd(int32_t fd[3])
-{
-	int8_t	i;
-
-	i = STDIN_FILENO;
-	while (i <= STDERR_FILENO)
-	{
-		if (fd[i] == ERR)
-			close(i);
-		else
-			dup2(fd[i], i);
-		++i;
-	}
-}
-
-void		lp_exec_command(t_command *cmd)
+static void	lp_exec_command(int32_t reset_fd[3], t_command *cmd)
 {
 	char		**args;
 
-	if (!cmd->args_list.list_size || !cmd->cbe)
-		return ;
-	lp_set_fd(cmd->fd);
-	args = lp_get_command(cmd);
-	lp_run_command(args);
-	free(args);
+	lp_set_fd(reset_fd, &cmd->fd_list);
+	if (cmd->error)
+	{
+		sh_print_err(EXIT_FAILURE, cmd->error);
+		cmd->error = NULL;
+	}
+	else if (cmd->args_list.list_size)
+	{
+		args = lp_get_command(cmd);
+		lp_run_command(args);
+		free(args);
+	}
+	lp_close_fd_list(reset_fd, &cmd->fd_list);
+}
+
+static void	lp_semicolon_loop(int32_t reset_fd[3], t_line_parser *lp)
+{
+	t_list_elem	*start;
+	int32_t		fd_in;
+	int32_t		p[2];
+
+	start = lp->cmds.start;
+	fd_in = STDIN_FILENO;
+	while (start)
+	{
+		if (dup2(fd_in, STDIN_FILENO) == ERR)
+			sh_fatal_err(DUP2_FAILED);
+		if (pipe(p) == ERR)
+			sh_fatal_err(PIPE_FAILED);
+		if (start->next)
+		{
+			if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
+				sh_fatal_err(DUP2_FAILED);
+			close(p[STDOUT_FILENO]);
+		}
+		lp_exec_command(reset_fd, start->content);
+		lp_reset_fd(reset_fd);
+		fd_in = p[STDIN_FILENO];
+		start = start->next;
+	}
 }
 
 void		lp_semicolon(t_line_parser *lp)
 {
 	int32_t		reset_fd[3];
-	t_list_elem	*start;
 
 	lp_add_cmd(lp);
-	reset_fd[STDIN_FILENO] = dup(STDIN_FILENO);
-	reset_fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
-	reset_fd[STDERR_FILENO] = dup(STDERR_FILENO);
-	if (reset_fd[STDIN_FILENO] == ERR || reset_fd[STDOUT_FILENO] == ERR ||
-		reset_fd[STDERR_FILENO] == ERR)
-		sh_fatal_err(DUP_FAILED);
-	start = lp->cmds.start;
-	while (start)
-	{
-		lp_exec_command(start->content);
-		lp_reset_fd(reset_fd);
-		start = start->next;
-	}
-	close(reset_fd[STDIN_FILENO]);
-	close(reset_fd[STDOUT_FILENO]);
-	close(reset_fd[STDERR_FILENO]);
+	lp_clone_std_fd(reset_fd);
+	lp_semicolon_loop(reset_fd, lp);
+	lp_close_fd(reset_fd);
 	LST_DEL(&lp->cmds);
 	++lp->i;
 }

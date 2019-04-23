@@ -56,5 +56,7 @@
 # define SH_PERM_DENIED 	SHELL_NAME ": " PERM_DENIED
 # define SH_NO_FILE_OR_DIR	SHELL_NAME ": " NO_FILE_OR_DIR
 # define SH_IS_A_DIR		SHELL_NAME ": " IS_A_DIR
+# define BAD_DESC			SHELL_NAME ": %s: Bad file descriptor"
+# define BAD_DESC_N			SHELL_NAME ": %d: Bad file descriptor"
 
 #endif

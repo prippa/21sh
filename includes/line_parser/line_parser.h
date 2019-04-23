@@ -56,12 +56,13 @@ void			lp_join_to_arg(t_command *cmd, const char *src, size_t len);
 void			lp_write_to_arg_buf_str(t_command *cmd,
 					const char *src, size_t len);
 void			lp_write_to_arg_buf_char(t_command *cmd, char c);
+void			lp_add_arg(t_command *cmd);
 
 void			lp_del_commands_list(void *content, size_t content_size);
 void			lp_init_commnd(t_command *cmd);
-void			lp_add_arg(t_command *cmd);
 void			lp_add_cmd(t_line_parser *lp);
-void			lp_reset_fd(int32_t	fd[3]);
+char			**lp_get_command(t_command *cmd);
+void			lp_run_command(char **args);
 
 typedef void	(*t_func_cmd)(t_line_parser *lp);
 void			lp_dollar(t_line_parser *lp);
@@ -78,10 +79,16 @@ void			lp_pipe(t_line_parser *lp);
 
 t_bool			lp_check_rediraction(t_line_parser *lp);
 void			lp_rdr_valid_word(const char *word,
-					t_bool fda_flag, int32_t file_perm, t_command *cmd);
+					int32_t file_perm, t_command *cmd);
 void			lp_init_rdr(t_redirect *rdr,
 					t_line_parser *lp, int32_t base_fd);
 void			lp_rdr_redirect_desc(t_redirect *rdr, t_command *cmd);
 void			lp_rdr_init_flags(t_line_parser *lp, t_redirect *rdr, char c);
+
+void			lp_reset_fd(int32_t	fd[3]);
+void			lp_clone_std_fd(int32_t clone_fd[3]);
+void			lp_close_fd_list(int32_t reset_fd[3], t_list *fd);
+void			lp_close_fd(int32_t fd[3]);
+t_bool			lp_is_valid_fd(int32_t fds[3], int32_t fd);
 
 #endif

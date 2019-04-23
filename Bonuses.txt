@@ -1,16 +1,9 @@
-debug str:
-	echo 321; blah blah; ls;ls -1;ls -lah;            echo 123
-
 Bonuses:
 	PATH rights
 	Auto Comp
 	HashTable
 	History Search (CTRL+R)
 	------------------------
-	env -i
-	cd -P
 	Back Skash '\'
 	history file in user folder
 	other ReadLine sings
-TODO:
-	Pipe and Rediractions

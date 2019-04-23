@@ -14,7 +14,6 @@
 #include "syntax_characters.h"
 #include "messages.h"
 
-#define BAD_DESC	SHELL_NAME ": %s: Bad file descriptor"
 #define BAD_REDIR	SHELL_NAME ": %s: ambiguous redirect"
 
 static void		lp_rdr_init_error(t_command *cmd, char *error)
@@ -44,11 +43,12 @@ void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp, int32_t base_fd)
 			ft_strdel(&n_str);
 		}
 		lp->i += n_len;
+		rdr->fd = n;
 	}
 }
 
 void			lp_rdr_valid_word(const char *word,
-					t_bool fda_flag, int32_t file_perm, t_command *cmd)
+					int32_t file_perm, t_command *cmd)
 {
 	char	*dir;
 
