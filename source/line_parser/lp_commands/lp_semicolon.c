@@ -13,7 +13,7 @@
 #include "line_parser.h"
 #include "messages.h"
 
-static void	lp_set_fd(int32_t reset_fd[3], t_command *cmd)
+static void	lp_set_fd(t_command *cmd)
 {
 	t_list_elem	*start;
 	t_dup2_fd	*fd;
@@ -22,25 +22,52 @@ static void	lp_set_fd(int32_t reset_fd[3], t_command *cmd)
 	while (start)
 	{
 		fd = (t_dup2_fd *)start->content;
-		if (lp_is_valid_fd(reset_fd, fd->fildes2))
+		if (!lp_is_valid_fd(fd->fildes2))
 		{
-			if (fd->fildes == ERR)
-				close(fd->fildes2);
-			else if (dup2(fd->fildes, fd->fildes2) == ERR)
-			{
-				cmd->error = MSG(BAD_DESC_N, fd->fildes);
-				return ;
-			}
+			cmd->error = MSG(BAD_DESC_N, fd->fildes2);
+			return ;
+		}
+		if (fd->fildes == ERR)
+			close(fd->fildes2);
+		else if (!lp_is_valid_fd(fd->fildes) ||
+			dup2(fd->fildes, fd->fildes2) == ERR)
+		{
+			cmd->error = MSG(BAD_DESC_N, fd->fildes);
+			return ;
 		}
 		start = start->next;
 	}
 }
 
-static void	lp_exec_command(int32_t reset_fd[3], t_command *cmd)
+static void	lp_init_pipe(int32_t *fd_in, t_bool next)
+{
+	int32_t	p[2];
+
+	if (isatty(STDIN_FILENO))
+	{
+		if (dup2(*fd_in, STDIN_FILENO) == ERR)
+			sh_fatal_err(DUP2_FAILED);
+	}
+	if (pipe(p) == ERR)
+		sh_fatal_err(PIPE_FAILED);
+	if (next && isatty(STDOUT_FILENO))
+	{
+		if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
+			sh_fatal_err(DUP2_FAILED);
+	}
+	if (dup2(p[STDIN_FILENO], TERM_PIPE) == ERR)
+		sh_fatal_err(DUP2_FAILED);
+	close(p[STDIN_FILENO]);
+	close(p[STDOUT_FILENO]);
+	*fd_in = TERM_PIPE;
+}
+
+static void	lp_exec_command(t_command *cmd, int32_t *fd_in, t_bool next)
 {
 	char		**args;
 
-	lp_set_fd(reset_fd, cmd);
+	lp_set_fd(cmd);
+	lp_init_pipe(fd_in, next);
 	if (cmd->error)
 	{
 		sh_print_err(EXIT_FAILURE, cmd->error);
@@ -52,34 +79,20 @@ static void	lp_exec_command(int32_t reset_fd[3], t_command *cmd)
 		lp_run_command(args);
 		free(args);
 	}
-	lp_close_fd_list(reset_fd, &cmd->fd_list);
+	lp_close_fd_list(&cmd->fd_list);
 }
 
-static void	lp_semicolon_loop(int32_t reset_fd[3], t_line_parser *lp)
+static void	lp_semicolon_loop(t_line_parser *lp)
 {
 	t_list_elem	*start;
 	int32_t		fd_in;
-	int32_t		p[2];
 
 	start = lp->cmds.start;
 	fd_in = STDIN_FILENO;
 	while (start)
 	{
-		if (dup2(fd_in, STDIN_FILENO) == ERR)
-			sh_fatal_err(DUP2_FAILED);
-		if (pipe(p) == ERR)
-			sh_fatal_err(PIPE_FAILED);
-		if (start->next)
-		{
-			if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
-				sh_fatal_err(DUP2_FAILED);
-		}
-		else
-			close(p[STDIN_FILENO]);
-		close(p[STDOUT_FILENO]);
-		lp_exec_command(reset_fd, start->content);
-		lp_reset_fd(reset_fd);
-		fd_in = p[STDIN_FILENO];
+		lp_exec_command(start->content, &fd_in, (start->next ? true : false));
+		lp_reset_fd();
 		start = start->next;
 	}
 }
@@ -87,7 +100,7 @@ static void	lp_semicolon_loop(int32_t reset_fd[3], t_line_parser *lp)
 void		lp_semicolon(t_line_parser *lp)
 {
 	lp_add_cmd(lp);
-	lp_semicolon_loop(sh()->std_fd, lp);
+	lp_semicolon_loop(lp);
 	LST_DEL(&lp->cmds);
 	++lp->i;
 }

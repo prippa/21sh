@@ -85,8 +85,8 @@ void			lp_init_rdr(t_redirect *rdr,
 void			lp_rdr_redirect_desc(t_redirect *rdr, t_command *cmd);
 void			lp_rdr_init_flags(t_line_parser *lp, t_redirect *rdr, char c);
 
-void			lp_reset_fd(int32_t	fd[3]);
-void			lp_close_fd_list(int32_t reset_fd[3], t_list *fd);
-t_bool			lp_is_valid_fd(int32_t fds[3], int32_t fd);
+void			lp_reset_fd(void);
+void			lp_close_fd_list(t_list *fd);
+t_bool			lp_is_valid_fd(int32_t fd);
 
 #endif
