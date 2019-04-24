@@ -29,7 +29,7 @@ static void			lp_double_quotes_backslash(t_line_parser *lp)
 	else
 	{
 		lp_write_to_arg_buf_str(&lp->cmd, &lp->line[lp->i], 2);
-		++lp->i;
+		lp->i += 2;
 	}
 }
 
