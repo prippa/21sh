@@ -46,4 +46,6 @@ void		sh_init(void)
 	sh_update_prompt(true);
 	sh_init_sig_base();
 	LST_INIT(&sh()->pids, &ft_cnt_delptr);
+	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->new_settings)) == ERR)
+		sh_fatal_err(TCSETATTR_FAILED);
 }

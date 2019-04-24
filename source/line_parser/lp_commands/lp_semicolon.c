@@ -89,7 +89,7 @@ static void	lp_wait(t_list *pids)
 	while (end)
 	{
 		if (end->next)
-			kill(*(pid_t *)end->content, SIGTTIN);
+			kill(*(pid_t *)end->content, SIGQUIT);
 		else
 		{
 			if (waitpid(*(pid_t *)end->content, &sh()->exec_code, 0) == ERR)

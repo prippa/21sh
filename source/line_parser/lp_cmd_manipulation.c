@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lp_cmd_manipulation.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/24 11:53:14 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/24 11:53:16 by prippa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "line_parser.h"
 #include "builtin.h"
 #include "messages.h"
@@ -22,7 +34,7 @@ void	lp_init_commnd(t_command *cmd)
 	LST_INIT(&cmd->fd_list, &ft_cnt_delptr);
 }
 
-void		lp_add_cmd(t_line_parser *lp)
+void	lp_add_cmd(t_line_parser *lp)
 {
 	lp_add_arg(&lp->cmd);
 	LST_PUSH_BACK(&lp->cmds, &lp->cmd, sizeof(t_command));

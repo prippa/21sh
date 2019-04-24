@@ -33,7 +33,7 @@ static void	rl_history_push_and_write(char *l)
 		msg = MSG("%s\n", l);
 		write(fd, msg, l_len + 1);
 		ft_strdel(&msg);
-		close(fd); 
+		close(fd);
 	}
 	LST_PUSH_BACK_REF(&rl()->hs.history, l, l_len);
 }

@@ -51,7 +51,6 @@ typedef struct	s_line_parser
 	t_command	cmd;
 }				t_line_parser;
 
-
 void			lp_join_to_arg(t_command *cmd, const char *src, size_t len);
 void			lp_write_to_arg_buf_str(t_command *cmd,
 					const char *src, size_t len);
