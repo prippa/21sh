@@ -12,7 +12,7 @@
 
 #include "line_parser.h"
 #include "messages.h"
-#include <sys/signal.h>
+#include <signal.h>
 #include <sys/wait.h>
 
 static void	lp_set_fd(t_command *cmd)
