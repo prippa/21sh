@@ -24,6 +24,7 @@
 # define PROMPT_ADS			5
 # define PROMPT_COLORS_SIZE	100
 # define PROMPT_SIZE		FILENAME_MAX + PROMPT_ADS + PROMPT_COLORS_SIZE
+enum {TERM_STDIN = 100, TERM_STDOUT, TERM_STDERR};
 
 typedef struct		s_shell
 {
@@ -40,6 +41,7 @@ typedef struct		s_shell
 	t_bool			ok;
 	int32_t			exec_code;
 	char			*pwd;
+	int32_t			std_fd[3];
 }					t_shell;
 
 t_shell				*sh(void);

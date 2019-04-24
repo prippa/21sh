@@ -13,12 +13,12 @@
 #include "line_parser.h"
 #include "messages.h"
 
-static void	lp_set_fd(int32_t reset_fd[3], t_list *fd_list)
+static void	lp_set_fd(int32_t reset_fd[3], t_command *cmd)
 {
 	t_list_elem	*start;
 	t_dup2_fd	*fd;
 
-	start = fd_list->start;
+	start = cmd->fd_list.start;
 	while (start)
 	{
 		fd = (t_dup2_fd *)start->content;
@@ -28,7 +28,7 @@ static void	lp_set_fd(int32_t reset_fd[3], t_list *fd_list)
 				close(fd->fildes2);
 			else if (dup2(fd->fildes, fd->fildes2) == ERR)
 			{
-				sh_print_err(EXIT_FAILURE, MSG(BAD_DESC_N, fd->fildes));
+				cmd->error = MSG(BAD_DESC_N, fd->fildes);
 				return ;
 			}
 		}
@@ -40,7 +40,7 @@ static void	lp_exec_command(int32_t reset_fd[3], t_command *cmd)
 {
 	char		**args;
 
-	lp_set_fd(reset_fd, &cmd->fd_list);
+	lp_set_fd(reset_fd, cmd);
 	if (cmd->error)
 	{
 		sh_print_err(EXIT_FAILURE, cmd->error);
@@ -73,8 +73,10 @@ static void	lp_semicolon_loop(int32_t reset_fd[3], t_line_parser *lp)
 		{
 			if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
 				sh_fatal_err(DUP2_FAILED);
-			close(p[STDOUT_FILENO]);
 		}
+		else
+			close(p[STDIN_FILENO]);
+		close(p[STDOUT_FILENO]);
 		lp_exec_command(reset_fd, start->content);
 		lp_reset_fd(reset_fd);
 		fd_in = p[STDIN_FILENO];
@@ -84,12 +86,8 @@ static void	lp_semicolon_loop(int32_t reset_fd[3], t_line_parser *lp)
 
 void		lp_semicolon(t_line_parser *lp)
 {
-	int32_t		reset_fd[3];
-
 	lp_add_cmd(lp);
-	lp_clone_std_fd(reset_fd);
-	lp_semicolon_loop(reset_fd, lp);
-	lp_close_fd(reset_fd);
+	lp_semicolon_loop(sh()->std_fd, lp);
 	LST_DEL(&lp->cmds);
 	++lp->i;
 }

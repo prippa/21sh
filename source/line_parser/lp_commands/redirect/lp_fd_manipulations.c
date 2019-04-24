@@ -11,16 +11,6 @@ void	lp_reset_fd(int32_t	fd[3])
 		sh_fatal_err(DUP2_FAILED);
 }
 
-void	lp_clone_std_fd(int32_t clone_fd[3])
-{
-	clone_fd[STDIN_FILENO] = dup(STDIN_FILENO);
-	clone_fd[STDOUT_FILENO] = dup(STDOUT_FILENO);
-	clone_fd[STDERR_FILENO] = dup(STDERR_FILENO);
-	if (clone_fd[STDIN_FILENO] == ERR || clone_fd[STDOUT_FILENO] == ERR ||
-		clone_fd[STDERR_FILENO] == ERR)
-		sh_fatal_err(DUP_FAILED);
-}
-
 void	lp_close_fd_list(int32_t reset_fd[3], t_list *fd)
 {
 	t_list_elem *start;
@@ -36,13 +26,6 @@ void	lp_close_fd_list(int32_t reset_fd[3], t_list *fd)
 			close(fds->fildes2);
 		start = start->next;
 	}
-}
-
-void	lp_close_fd(int32_t fd[3])
-{
-	close(fd[STDIN_FILENO]);
-	close(fd[STDOUT_FILENO]);
-	close(fd[STDERR_FILENO]);
 }
 
 t_bool	lp_is_valid_fd(int32_t fds[3], int32_t fd)
