@@ -37,7 +37,6 @@ typedef struct		s_shell
 	char			prompt[PROMPT_SIZE + 1];
 	char			curent_path[PATH_MAX + 1];
 	char			*line;
-	size_t			i;
 	t_bool			env_exec_flag;
 	t_bool			ok;
 	int32_t			exec_code;
