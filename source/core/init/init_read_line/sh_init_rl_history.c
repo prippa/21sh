@@ -19,7 +19,6 @@ static void	sh_read_file(int32_t fd)
 	char		*line;
 	int32_t		gnl_res;
 
-	gnl_res = 0;
 	while ((gnl_res = get_next_line(fd, &line)) > 0)
 		LST_PUSH_BACK_REF(&rl()->hs.history, line, ft_strlen(line));
 	if (gnl_res == ERR)

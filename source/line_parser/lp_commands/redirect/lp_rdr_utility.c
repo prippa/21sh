@@ -43,7 +43,7 @@ void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp, int32_t base_fd)
 			ft_strdel(&n_str);
 		}
 		lp->i += n_len;
-		rdr->fd = n;
+		rdr->fd = (int32_t)n;
 	}
 }
 

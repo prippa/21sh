@@ -15,7 +15,6 @@
 
 #define KS sizeof(uint64_t)
 #define VS sizeof(t_ke_event)
-#define KE(k) (uint64_t[]){k}
 
 static void	rl_new_event(t_hash_table *h, uint64_t k, t_ke_event value)
 {

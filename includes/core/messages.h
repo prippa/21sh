@@ -38,13 +38,11 @@
 # define FORK_FAILED		"fork() failed"
 # define WAIT_FAILED		"wait() failed"
 # define STAT_FAILED		"stat() failed"
-# define LSTAT_FAILED		"lstat() failed"
 # define EXECVE_FAILED		"execve() failed"
 # define TCGETATTR_FAILED	"tcgetattr() failed"
 # define TCSETATTR_FAILED	"tcsetattr() failed"
 # define OPENDIR_FAILED		"opendir() failed"
 # define CLOSEDIR_FAILED	"closedir() failed"
-# define DUP_FAILED			"dup() failed"
 # define DUP2_FAILED		"dup2() failed"
 # define PIPE_FAILED		"pipe() failed"
 
@@ -54,7 +52,6 @@
 # define TO_MANY_ARGS		"Too many arguments"
 
 # define SH_PERM_DENIED 	SHELL_NAME ": " PERM_DENIED
-# define SH_NO_FILE_OR_DIR	SHELL_NAME ": " NO_FILE_OR_DIR
 # define SH_IS_A_DIR		SHELL_NAME ": " IS_A_DIR
 # define BAD_DESC			SHELL_NAME ": %s: Bad file descriptor"
 # define BAD_DESC_N			SHELL_NAME ": %d: Bad file descriptor"

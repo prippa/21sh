@@ -14,7 +14,7 @@
 
 static int32_t	rl_print_key(int32_t n)
 {
-	return (write(STDIN_FILENO, &n, 1));
+	return ((int32_t)write(STDIN_FILENO, &n, 1));
 }
 
 void			rl_make_tc_magic(const char *t)
