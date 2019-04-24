@@ -24,8 +24,7 @@ void		sh_sig_handle_base(int32_t sig)
 	if (sig == SIGINT)
 	{
 		sh_sigint_base_reaction();
-		sh_update_prompt(false);
-		ft_putstr_fd(sh()->prompt, STDIN_FILENO);
+		sh()->ok = false;
 	}
 }
 
