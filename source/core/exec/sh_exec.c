@@ -14,7 +14,6 @@
 #include "messages.h"
 #include "environ_manipulation.h"
 #include "builtin.h"
-#include <sys/wait.h>
 
 static void	sh_do_magic(const char *path, char **args, char **env)
 {
@@ -23,16 +22,6 @@ static void	sh_do_magic(const char *path, char **args, char **env)
 	sh_init_sig_incase();
 	if ((father = fork()) == ERR)
 		sh_fatal_err(FORK_FAILED);
-	if (father)
-	{
-		if (wait(&sh()->exec_code) == ERR)
-			sh_fatal_err(WAIT_FAILED);
-		if (WIFEXITED(sh()->exec_code) && sh()->exec_code)
-		{
-			sh()->exec_code = WEXITSTATUS(sh()->exec_code);
-			sh()->ok = false;
-		}
-	}
 	if (!father)
 	{
 		sh_init_sig_default();
@@ -40,6 +29,7 @@ static void	sh_do_magic(const char *path, char **args, char **env)
 		sh_fatal_err(EXECVE_FAILED);
 	}
 	sh_init_sig_base();
+	LST_PUSH_BACK(&sh()->pids, &father, sizeof(pid_t));
 }
 
 void		sh_exec(const char *path, t_build *b)

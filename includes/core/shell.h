@@ -42,6 +42,7 @@ typedef struct		s_shell
 	int32_t			exec_code;
 	char			*pwd;
 	int32_t			std_fd[3];
+	t_list			pids;
 }					t_shell;
 
 t_shell				*sh(void);

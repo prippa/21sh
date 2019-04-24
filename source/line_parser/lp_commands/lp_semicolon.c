@@ -12,6 +12,8 @@
 
 #include "line_parser.h"
 #include "messages.h"
+#include <sys/signal.h>
+#include <sys/wait.h>
 
 static void	lp_set_fd(t_command *cmd)
 {
@@ -43,14 +45,11 @@ static void	lp_init_pipe(int32_t *fd_in, t_bool next)
 {
 	int32_t	p[2];
 
-	if (isatty(STDIN_FILENO))
-	{
-		if (dup2(*fd_in, STDIN_FILENO) == ERR)
-			sh_fatal_err(DUP2_FAILED);
-	}
+	if (dup2(*fd_in, STDIN_FILENO) == ERR)
+		sh_fatal_err(DUP2_FAILED);
 	if (pipe(p) == ERR)
 		sh_fatal_err(PIPE_FAILED);
-	if (next && isatty(STDOUT_FILENO))
+	if (next)
 	{
 		if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
 			sh_fatal_err(DUP2_FAILED);
@@ -66,8 +65,8 @@ static void	lp_exec_command(t_command *cmd, int32_t *fd_in, t_bool next)
 {
 	char		**args;
 
-	lp_set_fd(cmd);
 	lp_init_pipe(fd_in, next);
+	lp_set_fd(cmd);
 	if (cmd->error)
 	{
 		sh_print_err(EXIT_FAILURE, cmd->error);
@@ -82,11 +81,35 @@ static void	lp_exec_command(t_command *cmd, int32_t *fd_in, t_bool next)
 	lp_close_fd_list(&cmd->fd_list);
 }
 
-static void	lp_semicolon_loop(t_line_parser *lp)
+static void	lp_wait(t_list *pids)
+{
+	t_list_elem	*end;
+
+	end = pids->end;
+	while (end)
+	{
+		if (end->next)
+			kill(*(pid_t *)end->content, SIGTTIN);
+		else
+		{
+			if (waitpid(*(pid_t *)end->content, &sh()->exec_code, 0) == ERR)
+				sh_fatal_err(WAIT_FAILED);
+			if (WIFEXITED(sh()->exec_code) && sh()->exec_code)
+			{
+				sh()->exec_code = WEXITSTATUS(sh()->exec_code);
+				sh()->ok = false;
+			}
+		}
+		end = end->prev;
+	}
+}
+
+void		lp_semicolon(t_line_parser *lp)
 {
 	t_list_elem	*start;
 	int32_t		fd_in;
 
+	lp_add_cmd(lp);
 	start = lp->cmds.start;
 	fd_in = STDIN_FILENO;
 	while (start)
@@ -95,12 +118,8 @@ static void	lp_semicolon_loop(t_line_parser *lp)
 		lp_reset_fd();
 		start = start->next;
 	}
-}
-
-void		lp_semicolon(t_line_parser *lp)
-{
-	lp_add_cmd(lp);
-	lp_semicolon_loop(lp);
+	lp_wait(&sh()->pids);
 	LST_DEL(&lp->cmds);
+	LST_DEL(&sh()->pids);
 	++lp->i;
 }
