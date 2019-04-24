@@ -16,13 +16,6 @@
 
 #define BAD_REDIR	SHELL_NAME ": %s: ambiguous redirect"
 
-static void		lp_rdr_init_error(t_command *cmd, char *error)
-{
-	if (cmd->error)
-		return ;
-	cmd->error = error;
-}
-
 void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp, int32_t base_fd)
 {
 	intmax_t	n;
@@ -36,10 +29,10 @@ void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp, int32_t base_fd)
 	{
 		n = ft_atoi_max(&lp->line[lp->i]);
 		n_len = ft_nbrlen(n);
-		if (n_len > ft_nbrlen(INT32_MAX) || n > INT32_MAX)
+		if (!lp->cmd.error && (n_len > ft_nbrlen(INT32_MAX) || n > INT32_MAX))
 		{
 			n_str = ft_strsub(&lp->line[lp->i], 0, n_len);
-			lp_rdr_init_error(&lp->cmd, MSG(BAD_DESC, n_str));
+			lp->cmd.error = MSG(BAD_DESC, n_str);
 			ft_strdel(&n_str);
 		}
 		lp->i += n_len;
@@ -47,25 +40,34 @@ void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp, int32_t base_fd)
 	}
 }
 
-void			lp_rdr_valid_word(const char *word,
-					int32_t file_perm, t_command *cmd)
+static t_bool	lp_rdr_check_path(char **error_str, const char *word)
 {
 	char	*dir;
 
-	if (cmd->error)
-		return ;
-	if (ft_strequ(word, EMPTY_STR))
-		lp_rdr_init_error(cmd, MSG(SHELL_NAME ": " NO_FILE_OR_DIR, word));
-	else if ((dir = ft_strrchr(word, UNIX_PATH_SEPARATOR)))
+	if ((dir = ft_strrchr(word, UNIX_PATH_SEPARATOR)))
 	{
 		dir = ft_strsub(word, 0, dir - word);
 		if (access(dir, F_OK))
-			lp_rdr_init_error(cmd, MSG(SHELL_NAME ": " NO_FILE_OR_DIR, word));
-		else if (access(dir, W_OK | R_OK | X_OK) ||
-			(!access(word, F_OK) && access(word, file_perm)))
-			lp_rdr_init_error(cmd, MSG(SHELL_NAME ": " PERM_DENIED, word));
+			*error_str = MSG(SHELL_NAME ": " NO_FILE_OR_DIR, word);
+		else if (access(dir, W_OK | R_OK | X_OK))
+			*error_str = MSG(SHELL_NAME ": " PERM_DENIED, word);
 		ft_strdel(&dir);
 	}
+	return (*error_str ? true : false);
+}
+
+t_bool			lp_rdr_check_word_permision(const char *word,
+					int32_t file_perm, t_command *cmd)
+{
+	if (cmd->error)
+		return (true);
+	else if (ft_strequ(word, EMPTY_STR))
+		cmd->error = MSG(SHELL_NAME ": " NO_FILE_OR_DIR, word);
+	else if (lp_rdr_check_path(&cmd->error, word))
+		return (true);
+	else if (!access(word, F_OK) && access(word, file_perm))
+		cmd->error = MSG(SHELL_NAME ": " PERM_DENIED, word);
+	return (cmd->error ? true : false);
 }
 
 void			lp_rdr_redirect_desc(t_redirect *rdr, t_command *cmd)
@@ -75,12 +77,12 @@ void			lp_rdr_redirect_desc(t_redirect *rdr, t_command *cmd)
 	if (ft_strequ(rdr->word, CLOSE_FD))
 		LST_PUSH_BACK(&cmd->fd_list, (FD(-1, rdr->fd)), sizeof(t_dup2_fd));
 	else if (!ft_is_str_digit(rdr->word))
-		lp_rdr_init_error(cmd, MSG(BAD_REDIR, rdr->word));
+		cmd->error = MSG(BAD_REDIR, rdr->word);
 	else
 	{
 		n = ft_atoi_max(rdr->word);
 		if (ft_nbrlen(n) > ft_nbrlen(INT32_MAX) || n > INT32_MAX)
-			lp_rdr_init_error(cmd, MSG(BAD_DESC, rdr->word));
+			cmd->error = MSG(BAD_DESC, rdr->word);
 		else
 			LST_PUSH_BACK(&cmd->fd_list, (FD(n, rdr->fd)), sizeof(t_dup2_fd));
 	}

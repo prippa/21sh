@@ -34,8 +34,7 @@ void		lp_redirect_out(t_line_parser *lp)
 	lp_init_rdr(&rdr, lp, STDOUT_FILENO);
 	lp_rdr_init_flags(lp, &rdr, REDIRECT_OUT_C);
 	rdr.word = sh_get_word(&lp->i, lp->line);
-	lp_rdr_valid_word(rdr.word, W_OK | R_OK, &lp->cmd);
-	if (!lp->cmd.error)
+	if (lp_rdr_check_word_permision(rdr.word, W_OK | R_OK, &lp->cmd) == OK)
 	{
 		if (rdr.fda_flag)
 			lp_rdr_redirect_desc(&rdr, &lp->cmd);
