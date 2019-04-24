@@ -49,7 +49,8 @@ void				lp_double_quotes(t_line_parser *lp)
 {
 	uint8_t	i;
 
-	while (lp->line[++lp->i] != DOUBLE_QUOTES_C)
+	++lp->i;
+	while (lp->line[lp->i] != DOUBLE_QUOTES_C)
 	{
 		i = -1;
 		while (++i < LP_DOUBLE_QUOTES_SIZE)
@@ -59,7 +60,10 @@ void				lp_double_quotes(t_line_parser *lp)
 				break ;
 			}
 		if (i == LP_DOUBLE_QUOTES_SIZE)
+		{
 			lp_write_to_arg_buf_char(&lp->cmd, lp->line[lp->i]);
+			++lp->i;
+		}
 	}
 	++lp->i;
 }
