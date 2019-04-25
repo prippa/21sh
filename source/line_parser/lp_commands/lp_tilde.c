@@ -12,7 +12,7 @@
 
 #include "line_parser.h"
 #include "syntax_characters.h"
-#include "messages.h"
+#include "info.h"
 #include "environ_manipulation.h"
 
 static t_bool	lp_tilde_valid_prev(const char *line, size_t i)

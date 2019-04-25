@@ -12,9 +12,9 @@
 
 #include "line_parser.h"
 #include "syntax_characters.h"
-#include "messages.h"
+#include "info.h"
 
-#define BAD_REDIR	SHELL_NAME ": %s: ambiguous redirect"
+#define BAD_REDIR SHELL_NAME ": %s: ambiguous redirect"
 
 void			lp_init_rdr(t_redirect *rdr, t_line_parser *lp, int32_t base_fd)
 {

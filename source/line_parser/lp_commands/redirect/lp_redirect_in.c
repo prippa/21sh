@@ -12,7 +12,7 @@
 
 #include "line_parser.h"
 #include "syntax_characters.h"
-#include "messages.h"
+#include "info.h"
 #include "heredoc.h"
 
 static void	lp_rdr_heredoc(int32_t file_desc[2])

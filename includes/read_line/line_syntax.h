@@ -54,6 +54,7 @@ t_lexer_status		ls_rap_redir_in(t_line_syntax *ls, t_line *ln);
 t_lexer_status		ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
 
 void				rl_ls_syntax_err_wtf_eof(void);
+void				rl_ls_syntax_err_wtf_eof_for_quote(void);
 void				rl_ls_syntax_err_wtf_token(const char *token);
 t_lexer_status		ls_check_word(t_line_syntax *ls, t_line *ln);
 t_lexer_status		ls_check_word_for_pipe(t_line_syntax *ls, t_line *ln);

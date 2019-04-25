@@ -12,7 +12,7 @@
 
 #include "shell.h"
 #include <term.h>
-#include "messages.h"
+#include "info.h"
 #include "environ_manipulation.h"
 
 #define NOT_A_TERM "Not a terminal."

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 #include "builtin.h"
 
 #define EXIT_NAR	SHELL_NAME ": " EXIT_CMD ": %s: numeric argument required"

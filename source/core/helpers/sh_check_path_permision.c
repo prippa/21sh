@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 
 static t_bool	sh_path_access_check(char *s, size_t i,
 					const char *path, const char *prefix)

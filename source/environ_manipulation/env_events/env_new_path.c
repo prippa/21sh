@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 #include <dirent.h>
 
 static void	env_np_list_folder(char *dir)

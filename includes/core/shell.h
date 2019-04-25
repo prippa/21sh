@@ -41,7 +41,7 @@ typedef struct		s_shell
 	t_bool			ok;
 	int32_t			exec_code;
 	char			*pwd;
-	size_t			pid_len;
+	size_t			childs_count;
 }					t_shell;
 
 t_shell				*sh(void);
@@ -73,7 +73,6 @@ void				sh_sigint_base_reaction(void);
 void				sh_sig_handle_base(int32_t sig);
 void				sh_sig_handle_incase(int32_t sig);
 void				sh_init_sig_base(void);
-void				sh_init_sig_incase(void);
 void				sh_init_sig_default(void);
 
 char				*sh_get_word(size_t *i, const char *line);

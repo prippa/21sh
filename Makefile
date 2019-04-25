@@ -64,7 +64,7 @@ COR_H		:=	$(DIR_COR_INC)shell.h\
 				$(DIR_COR_INC)tokens.h\
 				$(DIR_COR_INC)builtin_static_box.h\
 				$(DIR_COR_INC)builtin.h\
-				$(DIR_COR_INC)messages.h
+				$(DIR_COR_INC)info.h
 
 ENV_H		:=	$(DIR_ENV_INC)environ_manipulation.h
 

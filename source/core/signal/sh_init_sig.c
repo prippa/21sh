@@ -16,14 +16,14 @@
 void		sh_init_sig_base(void)
 {
 	signal(SIGINT, sh_sig_handle_base);
-}
-
-void		sh_init_sig_incase(void)
-{
-	signal(SIGINT, sh_sig_handle_incase);
+	signal(SIGWINCH, SIG_DFL);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
 }
 
 void		sh_init_sig_default(void)
 {
 	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	signal(SIGTSTP, SIG_IGN);
 }

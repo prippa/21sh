@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   messages.h                                         :+:      :+:    :+:   */
+/*   info.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MESSAGES_H
-# define MESSAGES_H
+#ifndef INFO_H
+# define INFO_H
 
 # define SHELL_NAME		"21sh"
+# define TERM_TYPE		"xterm-256color"
 
 # define KEY_VALUE_SEPARATOR	'='
 # define UNIX_PATH_SEPARATOR	'/'
@@ -33,7 +34,6 @@
 # define TERM_ENV		"TERM"
 
 # define DEFAULT_BIN_PATH	"/bin"
-# define DEFAULT_TERM_MOD	"xterm-256color"
 
 # define CHDIR_FAILED		"chdir() failed"
 # define GETCWD_FAILED		"getcwd() failed"

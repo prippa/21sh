@@ -12,7 +12,7 @@
 
 #include "line_parser.h"
 #include "builtin.h"
-#include "messages.h"
+#include "info.h"
 #include "environ_manipulation.h"
 
 void	lp_del_commands_list(void *content, size_t content_size)

@@ -41,5 +41,5 @@ void		rl_ls_new_prompt(t_line *ln, t_bool new_line_f, t_inhibitors inh)
 {
 	rl_ls_update_line(ln, new_line_f, g_new_prompts[inh - 1],
 			ft_strlen(g_new_prompts[inh - 1]));
-	rl()->inhibitors_in_use = inh;
+	rl()->inh = inh;
 }

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 #include "environ_manipulation.h"
 #include "builtin.h"
 
@@ -27,7 +27,6 @@ static void	sh_do_magic(const char *path, char **args, char **env)
 {
 	pid_t	father;
 
-	sh_init_sig_incase();
 	if ((father = fork()) == ERR)
 		g_fef(FORK_FAILED);
 	if (!father)
@@ -37,8 +36,7 @@ static void	sh_do_magic(const char *path, char **args, char **env)
 		execve(path, args, env);
 		exit(EXIT_FAILURE);
 	}
-	sh_init_sig_base();
-	++sh()->pid_len;
+	++sh()->childs_count;
 }
 
 void		sh_exec(const char *path, t_build *b)

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 #include "builtin_static_box.h"
 #include "environ_manipulation.h"
 
@@ -52,12 +52,13 @@ static t_bool		sh_exec_by_bin(t_build *b)
 
 static t_bool		sh_exec_by_full_path(t_build *b, const char *cmd_prefix)
 {
-	char *value;
+	char	*value;
+	t_bool	ups;
 
-	if ((!ft_strchr(*b->args, UNIX_PATH_SEPARATOR) &&
-		(value = env_get_vlu_by_key(b->env->start, PATH_ENV)) &&
-		ft_strcmp(value, EMPTY_STR)) || (sh()->env_exec_flag &&
-		!env_get_vlu_by_key(b->env->start, PATH_ENV)))
+	ups = (ft_strchr(*b->args, UNIX_PATH_SEPARATOR) ? true : false);
+	value = env_get_vlu_by_key(b->env->start, PATH_ENV);
+	if ((!ups && value && ft_strcmp(value, EMPTY_STR)) ||
+		(!ups && !value && sh()->env_exec_flag))
 		return (false);
 	if (!sh_path_access(*b->args, cmd_prefix))
 	{

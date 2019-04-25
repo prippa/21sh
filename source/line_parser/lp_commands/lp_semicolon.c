@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "line_parser.h"
-#include "messages.h"
+#include "info.h"
 #include <signal.h>
 #include <sys/wait.h>
 
@@ -37,31 +37,10 @@ static void	lp_set_fd(t_command *cmd)
 	}
 }
 
-static void	lp_init_pipe(int32_t *fd_in, t_bool next)
-{
-	int32_t	p[2];
-
-	if (dup2(*fd_in, STDIN_FILENO) == ERR)
-		g_fef(DUP2_FAILED);
-	if (pipe(p) == ERR)
-		g_fef(PIPE_FAILED);
-	if (next)
-	{
-		if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
-			g_fef(DUP2_FAILED);
-	}
-	if (dup2(p[STDIN_FILENO], TERM_PIPE) == ERR)
-		g_fef(DUP2_FAILED);
-	close(p[STDIN_FILENO]);
-	close(p[STDOUT_FILENO]);
-	*fd_in = TERM_PIPE;
-}
-
-static void	lp_exec_command(t_command *cmd, int32_t *fd_in, t_bool next)
+static void	lp_exec_command(t_command *cmd)
 {
 	char		**args;
 
-	lp_init_pipe(fd_in, next);
 	lp_set_fd(cmd);
 	if (cmd->error)
 	{
@@ -77,9 +56,30 @@ static void	lp_exec_command(t_command *cmd, int32_t *fd_in, t_bool next)
 	lp_close_fd_list(&cmd->fd_list);
 }
 
+static void	lp_init_pipe(t_bool next)
+{
+	int32_t	p[2];
+
+	if (dup2(TERM_PIPE, STDIN_FILENO) == ERR)
+		g_fef(DUP2_FAILED);
+	if (pipe(p) == ERR)
+		g_fef(PIPE_FAILED);
+	if (next)
+	{
+		if (dup2(p[STDIN_FILENO], TERM_PIPE) == ERR)
+			g_fef(DUP2_FAILED);
+		if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
+			g_fef(DUP2_FAILED);
+	}
+	else
+		close(TERM_PIPE);
+	close(p[STDIN_FILENO]);
+	close(p[STDOUT_FILENO]);
+}
+
 static void	lp_wait(void)
 {
-	while (sh()->pid_len--)
+	while (sh()->childs_count--)
 	{
 		if (wait(&sh()->exec_code) == ERR)
 			g_fef(WAIT_FAILED);
@@ -89,20 +89,21 @@ static void	lp_wait(void)
 			sh()->ok = false;
 		}
 	}
-	sh()->pid_len = 0;
+	sh()->childs_count = 0;
 }
 
 void		lp_semicolon(t_line_parser *lp)
 {
 	t_list_elem	*start;
-	int32_t		fd_in;
 
 	lp_add_cmd(lp);
 	start = lp->cmds.start;
-	fd_in = STDIN_FILENO;
+	if (dup2(STDIN_FILENO, TERM_PIPE) == ERR)
+		g_fef(PIPE_FAILED);
 	while (start)
 	{
-		lp_exec_command(start->content, &fd_in, (start->next ? true : false));
+		lp_init_pipe(start->next ? true : false);
+		lp_exec_command(start->content);
 		lp_reset_fd();
 		start = start->next;
 	}

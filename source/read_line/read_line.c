@@ -12,7 +12,7 @@
 
 #include "read_line.h"
 #include "read_line_signals.h"
-#include "messages.h"
+#include "info.h"
 
 static void		rl_read(char buf[RL_BUFF_SIZE])
 {

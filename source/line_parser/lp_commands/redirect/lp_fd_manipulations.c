@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "line_parser.h"
-#include "messages.h"
+#include "info.h"
 
 void	lp_reset_fd(void)
 {

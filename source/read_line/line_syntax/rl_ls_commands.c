@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "line_syntax.h"
-#include "messages.h"
+#include "info.h"
 #include "syntax_characters.h"
 #include "builtin.h"
 #include "button_keys.h"

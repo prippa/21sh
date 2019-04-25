@@ -12,7 +12,7 @@
 
 #include "shell.h"
 #include "environ_manipulation.h"
-#include "messages.h"
+#include "info.h"
 
 static char	*env_convert_to_str(const char *key, const char *value)
 {

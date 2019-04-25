@@ -11,13 +11,13 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 #include "builtin.h"
 #include "environ_manipulation.h"
 
 static void	sh_set_shell_lvl(t_build *b)
 {
-	char		*value;
+	char	*value;
 
 	if ((value = env_get_vlu_by_key(b->env->start, SHELL_LVL_ENV)))
 	{
@@ -41,12 +41,6 @@ static void	sh_set_path(t_build *b)
 		env_set(b->env, ENV(PATH_ENV, DEFAULT_BIN_PATH), true);
 }
 
-static void	sh_set_term(t_build *b)
-{
-	if (!env_get_vlu_by_key(b->env->start, TERM_ENV))
-		env_set(b->env, ENV(TERM_ENV, DEFAULT_TERM_MOD), true);
-}
-
 void		sh_init_env(void)
 {
 	extern char	**environ;
@@ -59,8 +53,8 @@ void		sh_init_env(void)
 	b.args = environ;
 	sh_setenv(&b);
 	env_set(b.env, ENV(SHELL_ENV, SHELL_NAME), true);
+	env_set(b.env, ENV(TERM_ENV, TERM_TYPE), true);
 	sh_set_pwd(&b);
 	sh_set_shell_lvl(&b);
 	sh_set_path(&b);
-	sh_set_term(&b);
 }

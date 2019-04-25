@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 #include "syntax_characters.h"
 #include "environ_manipulation.h"
 #include "builtin.h"

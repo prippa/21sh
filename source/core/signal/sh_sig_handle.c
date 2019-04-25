@@ -27,12 +27,3 @@ void		sh_sig_handle_base(int32_t sig)
 		sh()->ok = false;
 	}
 }
-
-void		sh_sig_handle_incase(int32_t sig)
-{
-	if (sig == SIGINT)
-	{
-		sh_sigint_base_reaction();
-		sh()->ok = false;
-	}
-}

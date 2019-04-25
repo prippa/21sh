@@ -13,7 +13,7 @@
 #include "shell.h"
 #include "builtin.h"
 #include "environ_manipulation.h"
-#include "messages.h"
+#include "info.h"
 
 #define ENV_I_F				"-i"
 #define ENV_PREFIX			ENV_CMD ": "

@@ -49,7 +49,7 @@ void			rl_init(void)
 	rl()->hs.curent = NULL;
 	ft_bzero(&rl()->ln, sizeof(t_line));
 	rl()->ln.line = ft_strdup(EMPTY_STR);
-	rl()->inhibitors_in_use = false;
+	rl()->inh = false;
 	ft_strcpy(rl()->prompt, sh()->prompt);
 	rl()->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
 	ft_putstr_fd(rl()->prompt, STDIN_FILENO);

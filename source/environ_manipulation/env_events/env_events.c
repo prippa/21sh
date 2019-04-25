@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "environ_manipulation.h"
-#include "messages.h"
+#include "info.h"
 #include "shell.h"
 
 void	env_check_global_event(const t_env *e)

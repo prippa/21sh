@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "shell.h"
-#include "messages.h"
+#include "info.h"
 #include <sys/stat.h>
 
 t_bool		sh_is_dir(const char *path)

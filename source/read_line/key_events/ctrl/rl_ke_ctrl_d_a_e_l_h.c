@@ -13,15 +13,21 @@
 #include "button_keys.h"
 #include "line_syntax.h"
 #include "builtin.h"
+#include "heredoc.h"
 
 int32_t	rl_ke_ctrl_d(t_line *ln)
 {
 	if (ft_is_str_empty(ln->line))
 		sh_exit(NULL);
-	else if (rl()->inhibitors_in_use &&
-		rl()->inhibitors_in_use != LS_SLASH &&
-		ln->l_start == ln->l_end)
+	if (rl()->inh && ln->l_start == ln->l_end)
 	{
+		if (rl()->inh == LS_HEREDOC)
+		{
+			hd_close(ln);
+			return (rl_ke_return(ln));
+		}
+		else if (rl()->inh == LS_Q || rl()->inh == LS_DQ)
+			rl_ls_syntax_err_wtf_eof_for_quote();
 		rl_ls_syntax_err_wtf_eof();
 		return (RL_BREAK);
 	}

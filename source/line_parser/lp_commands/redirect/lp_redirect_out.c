@@ -12,7 +12,7 @@
 
 #include "line_parser.h"
 #include "syntax_characters.h"
-#include "messages.h"
+#include "info.h"
 
 static void	lp_redirect_out_open_file(t_redirect *rdr, t_command *cmd)
 {

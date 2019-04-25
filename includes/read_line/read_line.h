@@ -63,7 +63,7 @@ typedef struct		s_read_line
 	t_line			ln;
 	t_line			prev_ln;
 	t_history		hs;
-	int32_t			inhibitors_in_use;
+	int32_t			inh;
 	struct winsize	w;
 	char			prompt[PROMPT_SIZE + 1];
 	size_t			prompt_size;

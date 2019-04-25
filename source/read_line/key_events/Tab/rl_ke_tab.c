@@ -14,7 +14,7 @@
 #include "syntax_characters.h"
 #include "builtin_static_box.h"
 #include "environ_manipulation.h"
-#include "messages.h"
+#include "info.h"
 #include "button_keys.h"
 #include "line_syntax.h"
 
@@ -107,7 +107,7 @@ int32_t			rl_ke_tab(t_line *ln)
 	int32_t	res;
 
 	res = ERR;
-	if (rl()->inhibitors_in_use && rl()->inhibitors_in_use < LS_SLASH)
+	if (rl()->inh && rl()->inh < LS_SLASH)
 		return (res);
 	if (!(base_cmd = rl_t_get_cmd_from_line(ln)))
 		return (res);

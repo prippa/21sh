@@ -13,7 +13,7 @@
 #include "shell.h"
 #include "builtin.h"
 #include "environ_manipulation.h"
-#include "messages.h"
+#include "info.h"
 
 #define SH_UNSETENV_USG	SHELL_NAME ": " "unsetenv: usage: unsetenv [key] ..."
 #define SH_UNSETENV_NO_NAME	SHELL_NAME ": " "unsetenv: '%s' not found"
