@@ -84,15 +84,15 @@ static t_gnl	*gnl_add_or_get_file(t_gnl **g, int32_t fd)
 int32_t			get_next_line(int32_t const fd, char **line)
 {
 	static t_gnl	*g;
-	t_gnl			*curent;
+	t_gnl			*current;
 
 	if (fd < 0 || !line || read(fd, NULL, 0) == ERR)
 		return (ERR);
-	if (!(curent = gnl_add_or_get_file(&g, fd)))
+	if (!(current = gnl_add_or_get_file(&g, fd)))
 		return (ERR);
-	if (curent->s && ft_strchr(&curent->s[curent->i], ENDL))
-		return (gnl_sub_line(curent, line));
-	if ((gnl_remainder(curent)) == ERR)
+	if (current->s && ft_strchr(&current->s[current->i], ENDL))
+		return (gnl_sub_line(current, line));
+	if ((gnl_remainder(current)) == ERR)
 		return (ERR);
-	return (gnl_read_file(curent, line));
+	return (gnl_read_file(current, line));
 }

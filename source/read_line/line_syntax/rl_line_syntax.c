@@ -20,7 +20,7 @@
 static const t_ls_box	g_ls_box[LS_BOX_SIZE] =
 {
 	{ls_single_q_check, SINGLE_QUOTES_C},
-	{ls_dobule_q_check, DOUBLE_QUOTES_C},
+	{ls_double_q_check, DOUBLE_QUOTES_C},
 	{ls_backslash_check, BACKSLASH_C},
 	{ls_semi_check, SEMICOLON_C},
 };
@@ -28,12 +28,12 @@ static const t_ls_box	g_ls_box[LS_BOX_SIZE] =
 static const t_ls_box	g_ls_rap_box[LS_RAP_BOX_SIZE] =
 {
 	{ls_single_q_check, SINGLE_QUOTES_C},
-	{ls_dobule_q_check, DOUBLE_QUOTES_C},
+	{ls_double_q_check, DOUBLE_QUOTES_C},
 	{ls_backslash_check, BACKSLASH_C},
 	{ls_semi_check, SEMICOLON_C},
 	{ls_rap_pipe, PIPE_C},
-	{ls_rap_redir_in, REDIRECT_IN_C},
-	{ls_rap_redir_out, REDIRECT_OUT_C},
+	{ls_rap_redirect_in, REDIRECT_IN_C},
+	{ls_rap_redirect_out, REDIRECT_OUT_C},
 };
 
 static t_lexer_status	rl_ls_loop(t_line *ln, t_line_syntax *ls)

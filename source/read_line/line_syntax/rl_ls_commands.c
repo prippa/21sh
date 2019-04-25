@@ -30,7 +30,7 @@ t_lexer_status	ls_backslash_check(t_line_syntax *ls, t_line *ln)
 	return (LS_OK);
 }
 
-t_lexer_status	ls_dobule_q_check(t_line_syntax *ls, t_line *ln)
+t_lexer_status	ls_double_q_check(t_line_syntax *ls, t_line *ln)
 {
 	t_bool new_line_f;
 

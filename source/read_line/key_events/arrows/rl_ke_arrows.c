@@ -34,20 +34,20 @@ int32_t	rl_ke_right(t_line *ln)
 
 int32_t	rl_ke_up(t_line *ln)
 {
-	if (!rl()->hs.curent)
+	if (!rl()->hs.current)
 	{
 		if (!rl()->hs.history.end)
 			return (ERR);
-		rl()->hs.curent = rl()->hs.history.end;
+		rl()->hs.current = rl()->hs.history.end;
 		ft_strdup_free(&rl()->hs.cur_line_buf, ln->line + ln->l_start);
-		rl_history_move((char *)rl()->hs.curent->content, ln);
+		rl_history_move((char *)rl()->hs.current->content, ln);
 		return (OK);
 	}
 	else if (rl()->hs.history.start &&
-		rl()->hs.curent != rl()->hs.history.start)
+		rl()->hs.current != rl()->hs.history.start)
 	{
-		rl()->hs.curent = rl()->hs.curent->prev;
-		rl_history_move((char *)rl()->hs.curent->content, ln);
+		rl()->hs.current = rl()->hs.current->prev;
+		rl_history_move((char *)rl()->hs.current->content, ln);
 		return (OK);
 	}
 	return (ERR);
@@ -55,13 +55,13 @@ int32_t	rl_ke_up(t_line *ln)
 
 int32_t	rl_ke_down(t_line *ln)
 {
-	if (rl()->hs.curent)
+	if (rl()->hs.current)
 	{
-		if (!rl()->hs.curent->next)
+		if (!rl()->hs.current->next)
 			rl_history_move(rl()->hs.cur_line_buf, ln);
 		else
-			rl_history_move((char *)rl()->hs.curent->next->content, ln);
-		rl()->hs.curent = rl()->hs.curent->next;
+			rl_history_move((char *)rl()->hs.current->next->content, ln);
+		rl()->hs.current = rl()->hs.current->next;
 		return (OK);
 	}
 	return (ERR);

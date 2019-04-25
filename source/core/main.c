@@ -27,7 +27,7 @@ void		sh_update_prompt(t_bool ok)
 	ft_strcat(sh()->prompt, COLOR_RESET);
 	ft_strcat(sh()->prompt, BOLD);
 	ft_strcat(sh()->prompt, YELLOW);
-	ft_strcat(sh()->prompt, sh()->curent_path);
+	ft_strcat(sh()->prompt, sh()->current_path);
 	ft_strcat(sh()->prompt, COLOR_RESET);
 	ft_strcat(sh()->prompt, BOLD);
 	ft_strcat(sh()->prompt, MAGENTA);

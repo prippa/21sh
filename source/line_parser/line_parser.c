@@ -17,7 +17,7 @@ static t_bool	lp_special_cases(t_line_parser *lp)
 {
 	if (ft_isdigit(lp->line[lp->i]) &&
 		(!lp->i || lp->line[lp->i - 1] == SPACE_C))
-		return (lp_check_rediraction(lp));
+		return (lp_check_redirection(lp));
 	return (false);
 }
 
@@ -47,6 +47,6 @@ void			line_parser(void)
 	ft_bzero(&lp, sizeof(t_line_parser));
 	LST_INIT(&lp.cmds, &lp_del_commands_list);
 	lp.line = sh()->line;
-	lp_init_commnd(&lp.cmd);
+	lp_init_command(&lp.cmd);
 	lp_loop(&lp);
 }

@@ -36,7 +36,7 @@ t_lexer_status			ls_rap_pipe(t_line_syntax *ls, t_line *ln)
 	return (res);
 }
 
-t_lexer_status			ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
+t_lexer_status			ls_rap_redirect_in(t_line_syntax *ls, t_line *ln)
 {
 	t_lexer_status	status;
 	t_bool			heredoc;
@@ -61,7 +61,7 @@ t_lexer_status			ls_rap_redir_in(t_line_syntax *ls, t_line *ln)
 	return (status ? LS_SYNTAX_ERR : status);
 }
 
-t_lexer_status			ls_rap_redir_out(t_line_syntax *ls, t_line *ln)
+t_lexer_status			ls_rap_redirect_out(t_line_syntax *ls, t_line *ln)
 {
 	t_lexer_status status;
 

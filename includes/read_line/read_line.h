@@ -33,7 +33,7 @@ typedef struct		s_line
 typedef struct		s_history
 {
 	t_list			history;
-	t_list_elem		*curent;
+	t_list_elem		*current;
 	char			*cur_line_buf;
 	char			*path_to_hs_file;
 }					t_history;

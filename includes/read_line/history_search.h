@@ -22,7 +22,7 @@
 typedef struct		s_hs
 {
 	char			*search_str;
-	t_list_elem		*h_curent;
+	t_list_elem		*h_current;
 	t_bool			same_line_flag;
 	size_t			start;
 	char			reset_prompt[PROMPT_SIZE + 1];

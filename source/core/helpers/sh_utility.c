@@ -34,22 +34,22 @@ t_bool		sh_check_path(const char *path, size_t path_len, t_build *b)
 	return (res ? false : true);
 }
 
-void		sh_update_curent_dir_name(void)
+void		sh_update_current_dir_name(void)
 {
 	char	*home;
 	char	*file;
 
 	if (((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)) &&
 		!ft_strcmp(home, sh()->pwd)))
-		ft_strcpy(sh()->curent_path, (char[2]){ TILDE_C, 0 });
+		ft_strcpy(sh()->current_path, (char[2]){ TILDE_C, 0 });
 	else if ((file = ft_strrchr(sh()->pwd, UNIX_PATH_SEPARATOR)))
 	{
 		if (*(file + 1))
 			++file;
-		ft_strcpy(sh()->curent_path, file);
+		ft_strcpy(sh()->current_path, file);
 	}
 	else
-		ft_strcpy(sh()->curent_path, sh()->pwd);
+		ft_strcpy(sh()->current_path, sh()->pwd);
 }
 
 void		sh_reset_settings(void)

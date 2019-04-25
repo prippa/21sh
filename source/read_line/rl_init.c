@@ -46,12 +46,12 @@ static void		rl_check_if_not_new_line(void)
 void			rl_init(void)
 {
 	rl_check_if_not_new_line();
-	rl()->hs.curent = NULL;
+	rl()->hs.current = NULL;
 	ft_bzero(&rl()->ln, sizeof(t_line));
 	rl()->ln.line = ft_strdup(EMPTY_STR);
 	rl()->inh = false;
 	ft_strcpy(rl()->prompt, sh()->prompt);
-	rl()->prompt_size = PROMPT_ADS + ft_strlen(sh()->curent_path);
+	rl()->prompt_size = PROMPT_ADS + ft_strlen(sh()->current_path);
 	ft_putstr_fd(rl()->prompt, STDIN_FILENO);
 	ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);
 	rl_move_x(&rl()->ln.x, rl()->prompt_size, rl()->w.ws_col);

@@ -70,15 +70,15 @@ void			rl_hs_continue_revers_search(t_line *ln)
 {
 	if (*hs()->search_str)
 	{
-		while (hs()->h_curent)
+		while (hs()->h_current)
 		{
-			if (rl_hs_crs_check((char *)hs()->h_curent->content, ln))
-				hs()->h_curent = hs()->h_curent->prev;
+			if (rl_hs_crs_check((char *)hs()->h_current->content, ln))
+				hs()->h_current = hs()->h_current->prev;
 			else
 				break ;
 		}
 	}
-	if (!hs()->h_curent || !*hs()->search_str)
+	if (!hs()->h_current || !*hs()->search_str)
 	{
 		rl_clear_line(ln, rl()->w.ws_col);
 		rl_history_init_new_prompt(hs()->search_str, FAIL_SEARCH_PROMPT);
@@ -91,7 +91,7 @@ void			rl_hs_new_mask(t_line *ln)
 	rl_clear_line(ln, rl()->w.ws_col);
 	rl_history_init_new_prompt(hs()->search_str, SEARCH_PROMPT);
 	rl_redraw_line(ln, rl()->w.ws_col);
-	hs()->h_curent = rl()->hs.history.end;
+	hs()->h_current = rl()->hs.history.end;
 	hs()->same_line_flag = false;
 	rl_hs_continue_revers_search(ln);
 }

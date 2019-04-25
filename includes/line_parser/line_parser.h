@@ -58,7 +58,7 @@ void			lp_write_to_arg_buf_char(t_command *cmd, char c);
 void			lp_add_arg(t_command *cmd);
 
 void			lp_del_commands_list(void *content, size_t content_size);
-void			lp_init_commnd(t_command *cmd);
+void			lp_init_command(t_command *cmd);
 void			lp_add_cmd(t_line_parser *lp);
 char			**lp_get_command(t_command *cmd);
 void			lp_run_command(char **args);
@@ -76,8 +76,8 @@ void			lp_redirect_in(t_line_parser *lp);
 void			lp_redirect_out(t_line_parser *lp);
 void			lp_pipe(t_line_parser *lp);
 
-t_bool			lp_check_rediraction(t_line_parser *lp);
-t_bool			lp_rdr_check_word_permision(const char *word,
+t_bool			lp_check_redirection(t_line_parser *lp);
+t_bool			lp_rdr_check_word_permission(const char *word,
 					int32_t file_perm, t_command *cmd);
 void			lp_init_rdr(t_redirect *rdr,
 					t_line_parser *lp, int32_t base_fd);

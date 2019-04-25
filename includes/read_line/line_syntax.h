@@ -45,13 +45,13 @@ typedef struct		s_ls_box
 }					t_ls_box;
 
 t_lexer_status		ls_backslash_check(t_line_syntax *ls, t_line *ln);
-t_lexer_status		ls_dobule_q_check(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_double_q_check(t_line_syntax *ls, t_line *ln);
 t_lexer_status		ls_single_q_check(t_line_syntax *ls, t_line *ln);
 t_lexer_status		ls_semi_check(t_line_syntax *ls, t_line *ln);
 
 t_lexer_status		ls_rap_pipe(t_line_syntax *ls, t_line *ln);
-t_lexer_status		ls_rap_redir_in(t_line_syntax *ls, t_line *ln);
-t_lexer_status		ls_rap_redir_out(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_rap_redirect_in(t_line_syntax *ls, t_line *ln);
+t_lexer_status		ls_rap_redirect_out(t_line_syntax *ls, t_line *ln);
 
 void				rl_ls_syntax_err_wtf_eof(void);
 void				rl_ls_syntax_err_wtf_eof_for_quote(void);

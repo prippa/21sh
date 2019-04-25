@@ -35,7 +35,7 @@ typedef struct		s_shell
 	struct termios	old_settings;
 	struct termios	new_settings;
 	char			prompt[PROMPT_SIZE + 1];
-	char			curent_path[PATH_MAX + 1];
+	char			current_path[PATH_MAX + 1];
 	char			*line;
 	t_bool			env_exec_flag;
 	t_bool			ok;
@@ -53,7 +53,7 @@ void				sh_init(void);
 void				sh_init_env(void);
 void				sh_init_term(void);
 void				sh_init_read_line(void);
-void				sh_init_rl_histiry(void);
+void				sh_init_rl_history(void);
 void				sh_init_line_parser(void);
 
 t_bool				sh_is_dir(const char *path);
@@ -61,7 +61,7 @@ t_bool				sh_is_valid_path(const char *path);
 
 t_bool				sh_path_access(const char *path, const char *prefix);
 char				*sh_join_path_to_pwd(const char *cur_pwd, const char *path);
-void				sh_update_curent_dir_name(void);
+void				sh_update_current_dir_name(void);
 void				sh_update_prompt(t_bool ok);
 void				sh_reset_settings(void);
 

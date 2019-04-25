@@ -34,7 +34,7 @@ static void	rl_ls_update_line(t_line *ln, t_bool new_line_f,
 	ln->x = 0;
 	rl_move_x(&ln->x, np_size, rl()->w.ws_col);
 	rl_line_cpy(&rl()->prev_ln, &rl()->ln);
-	rl()->hs.curent = NULL;
+	rl()->hs.current = NULL;
 }
 
 void		rl_ls_new_prompt(t_line *ln, t_bool new_line_f, t_inhibitors inh)

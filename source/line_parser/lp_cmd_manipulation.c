@@ -27,7 +27,7 @@ void	lp_del_commands_list(void *content, size_t content_size)
 	ft_memdel(&content);
 }
 
-void	lp_init_commnd(t_command *cmd)
+void	lp_init_command(t_command *cmd)
 {
 	ft_bzero(cmd, sizeof(t_command));
 	LST_INIT(&cmd->args_list, &ft_cnt_delptr);
@@ -38,7 +38,7 @@ void	lp_add_cmd(t_line_parser *lp)
 {
 	lp_add_arg(&lp->cmd);
 	LST_PUSH_BACK(&lp->cmds, &lp->cmd, sizeof(t_command));
-	lp_init_commnd(&lp->cmd);
+	lp_init_command(&lp->cmd);
 }
 
 char	**lp_get_command(t_command *cmd)

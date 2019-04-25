@@ -56,7 +56,7 @@ static t_bool	lp_rdr_check_path(char **error_str, const char *word)
 	return (*error_str ? true : false);
 }
 
-t_bool			lp_rdr_check_word_permision(const char *word,
+t_bool			lp_rdr_check_word_permission(const char *word,
 					int32_t file_perm, t_command *cmd)
 {
 	if (cmd->error)

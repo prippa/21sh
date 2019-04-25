@@ -94,6 +94,6 @@ void		sh_init_read_line(void)
 {
 	rl_init_events();
 	rl_init_termcaps();
-	sh_init_rl_histiry();
+	sh_init_rl_history();
 	LST_INIT(&hd()->heredoc, &ft_cnt_delptr);
 }

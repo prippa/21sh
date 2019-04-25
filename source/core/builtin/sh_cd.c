@@ -119,5 +119,5 @@ void			sh_cd(t_build *b)
 	else if (sh_cd_path_valid(*b->args))
 		sh_cd_make_move(b->env, *b->args, symb_link_flag);
 	if (sh()->ok)
-		sh_update_curent_dir_name();
+		sh_update_current_dir_name();
 }

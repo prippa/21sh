@@ -21,5 +21,5 @@ void	env_check_global_event(const t_env *e)
 	if (ft_strequ(e->key, PATH_ENV))
 		env_new_path(e->value);
 	if (ft_strequ(e->key, HOME_ENV))
-		sh_update_curent_dir_name();
+		sh_update_current_dir_name();
 }

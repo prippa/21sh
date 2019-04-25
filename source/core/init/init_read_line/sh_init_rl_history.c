@@ -38,7 +38,7 @@ static char	*sh_get_path(const char *home)
 	return (path);
 }
 
-void		sh_init_rl_histiry(void)
+void		sh_init_rl_history(void)
 {
 	int32_t	fd;
 	char	*tmp;

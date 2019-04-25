@@ -13,7 +13,7 @@
 #include "line_parser.h"
 #include "syntax_characters.h"
 
-t_bool		lp_check_rediraction(t_line_parser *lp)
+t_bool		lp_check_redirection(t_line_parser *lp)
 {
 	size_t		i;
 	intmax_t	n;
