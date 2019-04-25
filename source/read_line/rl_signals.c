@@ -58,14 +58,14 @@ void		rl_sig_handle(int32_t sig)
 	if (sig == SIGINT)
 	{
 		rl_ke_end(&rl()->ln);
-		sh_sigint_base_reaction();
+		sh_sigint_reaction();
 		sh_update_prompt(false);
 		ft_strdel(&rl()->ln.line);
 		if (rl()->mod == M_SEARCH)
 			ft_strdel(&hs()->search_str);
 		rl_init();
 	}
-	if (sig == SIGWINCH)
+	else if (sig == SIGWINCH)
 	{
 		rl_clear_line(&rl()->ln, rl()->w.ws_col);
 		ioctl(STDIN_FILENO, TIOCGWINSZ, &rl()->w);

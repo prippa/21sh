@@ -23,7 +23,7 @@ t_shell		*sh(void)
 void		sh_init(void)
 {
 	g_fef = &ft_fatal_err_exit;
-	sh_init_sig_base();
+	sh_init_signals();
 	sh_init_env();
 	sh_init_term();
 	g_fef = &sh_fatal_err;

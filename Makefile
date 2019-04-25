@@ -85,8 +85,7 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_INI_RL)sh_init_rl_history.c\
 				$(DIR_INI_RL)sh_init_read_line.c\
 				$(DIR_INI_LP)init_line_parser.c\
-				$(DIR_SIG)sh_init_sig.c\
-				$(DIR_SIG)sh_sig_handle.c\
+				$(DIR_SIG)sh_signals.c\
 				$(DIR_BLT)sh_cd.c\
 				$(DIR_BLT)sh_exit.c\
 				$(DIR_BLT)sh_echo.c\

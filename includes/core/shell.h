@@ -69,11 +69,9 @@ char				*read_line(void);
 
 void				line_parser(void);
 
-void				sh_sigint_base_reaction(void);
-void				sh_sig_handle_base(int32_t sig);
-void				sh_sig_handle_incase(int32_t sig);
-void				sh_init_sig_base(void);
-void				sh_init_sig_default(void);
+void				sh_sigint_reaction(void);
+void				sh_init_signals(void);
+void				sh_reset_signals(void);
 
 char				*sh_get_word(size_t *i, const char *line);
 

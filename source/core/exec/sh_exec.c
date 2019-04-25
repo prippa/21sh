@@ -31,7 +31,7 @@ static void	sh_do_magic(const char *path, char **args, char **env)
 		g_fef(FORK_FAILED);
 	if (!father)
 	{
-		sh_init_sig_default();
+		sh_reset_signals();
 		sh_close_backup_descriptors();
 		execve(path, args, env);
 		exit(EXIT_FAILURE);

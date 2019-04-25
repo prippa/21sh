@@ -62,6 +62,6 @@ char			*read_line(void)
 	rl_loop(&rl()->ln);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->old_settings)) == ERR)
 		g_fef(TCSETATTR_FAILED);
-	sh_init_sig_base();
+	sh_init_signals();
 	return (rl()->ln.line);
 }
