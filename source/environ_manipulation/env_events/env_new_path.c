@@ -20,13 +20,13 @@ static void	env_np_list_folder(char *dir)
 	struct dirent	*dit;
 
 	if (!(dip = opendir(dir)))
-		sh_fatal_err(OPENDIR_FAILED);
+		g_fef(OPENDIR_FAILED);
 	while ((dit = readdir(dip)))
 		if (dit->d_type != DT_DIR)
 			HT_INSERT(&sh()->bin_path, dit->d_name, dir,
 				ft_strlen(dit->d_name), ft_strlen(dir));
 	if ((closedir(dip)) == ERR)
-		sh_fatal_err(CLOSEDIR_FAILED);
+		g_fef(CLOSEDIR_FAILED);
 }
 
 void		env_new_path(const char *paths_str)

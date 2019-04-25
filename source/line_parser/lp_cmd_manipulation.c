@@ -65,6 +65,6 @@ void	lp_run_command(char **args)
 
 	b.env = &sh()->env;
 	b.args = args;
-	env_set(b.env, ENV(PREV_CMD_ENV, *b.args), true);
+	env_set(b.env, ENV(LAST_ARG_ENV, b.args[ft_arrlen(b.args) - 1]), true);
 	sh_process_cmd(&b, SHELL_NAME ": ");
 }

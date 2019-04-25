@@ -1,6 +1,0 @@
-TERM=xterm-256color
-is a folder '<' token
-cat 21sh | cat | cat | cat 2> /dev/urandom | base64 | shasum -a 256
-close fds in child process
-waidpid zomdie
-WUNTRACED

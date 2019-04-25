@@ -18,7 +18,7 @@
 static void	lp_rdr_heredoc(int32_t file_desc[2])
 {
 	if (pipe(file_desc) == ERR)
-		sh_fatal_err(PIPE_FAILED);
+		g_fef(PIPE_FAILED);
 	write(file_desc[STDOUT_FILENO],
 		hd()->heredoc.start->content,
 		hd()->heredoc.start->content_size);
@@ -35,7 +35,7 @@ static void	lp_rdr_base_redirect_in(t_redirect *rdr, int32_t file_desc[2],
 		return ;
 	}
 	if ((file_desc[STDIN_FILENO] = open(rdr->word, O_RDONLY)) == ERR)
-		sh_fatal_err(OPEN_ERR);
+		g_fef(OPEN_ERR);
 }
 
 static void	lp_redirect_in_open_file(t_redirect *rdr, t_command *cmd)
@@ -58,7 +58,7 @@ void		lp_redirect_in(t_line_parser *lp)
 	lp_init_rdr(&rdr, lp, STDIN_FILENO);
 	lp_rdr_init_flags(lp, &rdr, REDIRECT_IN_C);
 	rdr.word = sh_get_word(&lp->i, lp->line);
-	if (lp_rdr_check_word_permision(rdr.word, W_OK | R_OK, &lp->cmd) == OK)
+	if (lp_rdr_check_word_permision(rdr.word, R_OK, &lp->cmd) == OK)
 	{
 		if (rdr.fda_flag)
 			lp_rdr_redirect_desc(&rdr, &lp->cmd);

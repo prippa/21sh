@@ -41,13 +41,19 @@ static void	sh_set_path(t_build *b)
 		env_set(b->env, ENV(PATH_ENV, DEFAULT_BIN_PATH), true);
 }
 
+static void	sh_set_term(t_build *b)
+{
+	if (!env_get_vlu_by_key(b->env->start, TERM_ENV))
+		env_set(b->env, ENV(TERM_ENV, DEFAULT_TERM_MOD), true);
+}
+
 void		sh_init_env(void)
 {
 	extern char	**environ;
 	t_build		b;
 
 	if (!(sh()->pwd = getcwd(NULL, 0)))
-		sh_fatal_err(GETCWD_FAILED);
+		g_fef(GETCWD_FAILED);
 	LST_INIT(&sh()->env, &env_del_list);
 	b.env = &sh()->env;
 	b.args = environ;
@@ -56,4 +62,5 @@ void		sh_init_env(void)
 	sh_set_pwd(&b);
 	sh_set_shell_lvl(&b);
 	sh_set_path(&b);
+	sh_set_term(&b);
 }

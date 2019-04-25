@@ -25,18 +25,14 @@ static void	lp_set_fd(t_command *cmd)
 	{
 		fd = (t_dup2_fd *)start->content;
 		if (!lp_is_valid_fd(fd->fildes2))
-		{
 			cmd->error = MSG(BAD_DESC_N, fd->fildes2);
-			return ;
-		}
-		if (fd->fildes == ERR)
+		else if (fd->fildes == ERR)
 			close(fd->fildes2);
 		else if (!lp_is_valid_fd(fd->fildes) ||
 			dup2(fd->fildes, fd->fildes2) == ERR)
-		{
 			cmd->error = MSG(BAD_DESC_N, fd->fildes);
+		if (cmd->error)
 			return ;
-		}
 		start = start->next;
 	}
 }
@@ -46,16 +42,16 @@ static void	lp_init_pipe(int32_t *fd_in, t_bool next)
 	int32_t	p[2];
 
 	if (dup2(*fd_in, STDIN_FILENO) == ERR)
-		sh_fatal_err(DUP2_FAILED);
+		g_fef(DUP2_FAILED);
 	if (pipe(p) == ERR)
-		sh_fatal_err(PIPE_FAILED);
+		g_fef(PIPE_FAILED);
 	if (next)
 	{
 		if (dup2(p[STDOUT_FILENO], STDOUT_FILENO) == ERR)
-			sh_fatal_err(DUP2_FAILED);
+			g_fef(DUP2_FAILED);
 	}
 	if (dup2(p[STDIN_FILENO], TERM_PIPE) == ERR)
-		sh_fatal_err(DUP2_FAILED);
+		g_fef(DUP2_FAILED);
 	close(p[STDIN_FILENO]);
 	close(p[STDOUT_FILENO]);
 	*fd_in = TERM_PIPE;
@@ -81,27 +77,19 @@ static void	lp_exec_command(t_command *cmd, int32_t *fd_in, t_bool next)
 	lp_close_fd_list(&cmd->fd_list);
 }
 
-static void	lp_wait(t_list *pids)
+static void	lp_wait(void)
 {
-	t_list_elem	*end;
-
-	end = pids->end;
-	while (end)
+	while (sh()->pid_len--)
 	{
-		if (end->next)
-			kill(*(pid_t *)end->content, SIGPIPE);
-		else
+		if (wait(&sh()->exec_code) == ERR)
+			g_fef(WAIT_FAILED);
+		if (WIFEXITED(sh()->exec_code) && sh()->exec_code)
 		{
-			if (waitpid(*(pid_t *)end->content, &sh()->exec_code, 0) == ERR)
-				sh_fatal_err(WAIT_FAILED);
-			if (WIFEXITED(sh()->exec_code) && sh()->exec_code)
-			{
-				sh()->exec_code = WEXITSTATUS(sh()->exec_code);
-				sh()->ok = false;
-			}
+			sh()->exec_code = WEXITSTATUS(sh()->exec_code);
+			sh()->ok = false;
 		}
-		end = end->prev;
 	}
+	sh()->pid_len = 0;
 }
 
 void		lp_semicolon(t_line_parser *lp)
@@ -118,8 +106,7 @@ void		lp_semicolon(t_line_parser *lp)
 		lp_reset_fd();
 		start = start->next;
 	}
-	lp_wait(&sh()->pids);
+	lp_wait();
 	LST_DEL(&lp->cmds);
-	LST_DEL(&sh()->pids);
 	++lp->i;
 }

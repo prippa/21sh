@@ -28,10 +28,12 @@
 # define OLDPWD_ENV		"OLDPWD"
 # define PATH_ENV		"PATH"
 # define SHELL_ENV		"SHELL"
-# define PREV_CMD_ENV	"_"
+# define LAST_ARG_ENV	"_"
 # define SHELL_LVL_ENV	"SHLVL"
+# define TERM_ENV		"TERM"
 
 # define DEFAULT_BIN_PATH	"/bin"
+# define DEFAULT_TERM_MOD	"xterm-256color"
 
 # define CHDIR_FAILED		"chdir() failed"
 # define GETCWD_FAILED		"getcwd() failed"

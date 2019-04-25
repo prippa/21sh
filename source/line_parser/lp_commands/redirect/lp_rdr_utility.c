@@ -46,10 +46,10 @@ static t_bool	lp_rdr_check_path(char **error_str, const char *word)
 
 	if ((dir = ft_strrchr(word, UNIX_PATH_SEPARATOR)))
 	{
-		dir = ft_strsub(word, 0, dir - word);
+		dir = ft_strsub(word, 0, dir - word + 1);
 		if (access(dir, F_OK))
 			*error_str = MSG(SHELL_NAME ": " NO_FILE_OR_DIR, word);
-		else if (access(dir, W_OK | R_OK | X_OK))
+		else if (access(dir, R_OK))
 			*error_str = MSG(SHELL_NAME ": " PERM_DENIED, word);
 		ft_strdel(&dir);
 	}

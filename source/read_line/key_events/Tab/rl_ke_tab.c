@@ -41,7 +41,7 @@ static void		rl_t_read_dir(t_list *m, char **paths, const char *bc)
 		if (access(*paths, F_OK) || access(*paths, X_OK))
 			continue ;
 		if (!(dip = opendir(*paths)))
-			sh_fatal_err(OPENDIR_FAILED);
+			g_fef(OPENDIR_FAILED);
 		while ((dit = readdir(dip)))
 		{
 			bin = ft_strjoin(*paths, (char[2]){UNIX_PATH_SEPARATOR, 0});
@@ -52,7 +52,7 @@ static void		rl_t_read_dir(t_list *m, char **paths, const char *bc)
 			ft_strdel(&bin);
 		}
 		if ((closedir(dip)) == ERR)
-			sh_fatal_err(CLOSEDIR_FAILED);
+			g_fef(CLOSEDIR_FAILED);
 	}
 }
 

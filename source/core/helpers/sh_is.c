@@ -19,7 +19,7 @@ t_bool		sh_is_dir(const char *path)
 	struct stat	sb;
 
 	if ((stat(path, &sb)) == ERR)
-		sh_fatal_err(STAT_FAILED);
+		g_fef(STAT_FAILED);
 	return (S_ISDIR(sb.st_mode));
 }
 

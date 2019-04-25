@@ -15,21 +15,30 @@
 #include "environ_manipulation.h"
 #include "builtin.h"
 
+static void	sh_close_backup_descriptors(void)
+{
+	close(TERM_STDIN);
+	close(TERM_STDOUT);
+	close(TERM_STDERR);
+	close(TERM_PIPE);
+}
+
 static void	sh_do_magic(const char *path, char **args, char **env)
 {
 	pid_t	father;
 
 	sh_init_sig_incase();
 	if ((father = fork()) == ERR)
-		sh_fatal_err(FORK_FAILED);
+		g_fef(FORK_FAILED);
 	if (!father)
 	{
 		sh_init_sig_default();
+		sh_close_backup_descriptors();
 		execve(path, args, env);
-		sh_fatal_err(EXECVE_FAILED);
+		exit(EXIT_FAILURE);
 	}
 	sh_init_sig_base();
-	LST_PUSH_BACK(&sh()->pids, &father, sizeof(pid_t));
+	++sh()->pid_len;
 }
 
 void		sh_exec(const char *path, t_build *b)

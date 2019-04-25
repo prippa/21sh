@@ -20,32 +20,16 @@ t_shell		*sh(void)
 	return (&sh);
 }
 
-static void	sh_init_std_fd(void)
-{
-	if (dup2(STDIN_FILENO, TERM_STDIN) == ERR)
-		sh_fatal_err(DUP2_FAILED);
-	if (dup2(STDOUT_FILENO, TERM_STDOUT) == ERR)
-		sh_fatal_err(DUP2_FAILED);
-	if (dup2(STDERR_FILENO, TERM_STDERR) == ERR)
-		sh_fatal_err(DUP2_FAILED);
-	sh()->std_fd[STDIN_FILENO] = TERM_STDIN;
-	sh()->std_fd[STDOUT_FILENO] = TERM_STDOUT;
-	sh()->std_fd[STDERR_FILENO] = TERM_STDERR;
-}
-
 void		sh_init(void)
 {
-	g_fef = &sh_fatal_err;
-	sh_init_term();
+	g_fef = &ft_fatal_err_exit;
+	sh_init_sig_base();
 	sh_init_env();
+	sh_init_term();
+	g_fef = &sh_fatal_err;
 	sh_init_read_line();
 	sh_init_line_parser();
-	sh_init_std_fd();
 	sh()->ok = true;
 	sh_update_curent_dir_name();
 	sh_update_prompt(true);
-	sh_init_sig_base();
-	LST_INIT(&sh()->pids, &ft_cnt_delptr);
-	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->new_settings)) == ERR)
-		sh_fatal_err(TCSETATTR_FAILED);
 }

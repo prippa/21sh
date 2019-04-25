@@ -23,7 +23,7 @@ static void	lp_redirect_out_open_file(t_redirect *rdr, t_command *cmd)
 	else
 		file_desc = open(rdr->word, OPEN_REWRITE_FLAGS, OPEN_CREATE_RW_RIGHTS);
 	if (file_desc == ERR)
-		sh_fatal_err(OPEN_ERR);
+		g_fef(OPEN_ERR);
 	LST_PUSH_BACK(&cmd->fd_list, (FD(file_desc, rdr->fd)), sizeof(t_dup2_fd));
 }
 

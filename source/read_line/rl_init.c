@@ -35,7 +35,7 @@ static void		rl_check_if_not_new_line(void)
 	ft_bzero(buf, 42);
 	write(STDIN_FILENO, tc()->u7, 4);
 	if (read(STDIN_FILENO, buf, 42) == ERR)
-		sh_fatal_err(READ_ERR);
+		g_fef(READ_ERR);
 	if ((chr = ft_strchr(buf, ';')))
 	{
 		if (ft_atoi(++chr) - 1)

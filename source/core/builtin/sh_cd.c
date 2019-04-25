@@ -49,7 +49,7 @@ static void		sh_cd_make_move(t_list *env_list, const char *path, t_bool slf)
 	else if (env_get_vlu_by_key(env_list->start, OLDPWD_ENV))
 		env_unset(env_list, OLDPWD_ENV);
 	if (chdir(path) == ERR)
-		sh_fatal_err(CHDIR_FAILED);
+		g_fef(CHDIR_FAILED);
 	if (!slf)
 	{
 		pwd = sh()->pwd;
@@ -60,7 +60,7 @@ static void		sh_cd_make_move(t_list *env_list, const char *path, t_bool slf)
 	else
 	{
 		if (!(pwd = getcwd(NULL, 0)))
-			sh_fatal_err(GETCWD_FAILED);
+			g_fef(GETCWD_FAILED);
 		ft_strdup_free(&sh()->pwd, pwd);
 	}
 	env_set(env_list, ENV(PWD_ENV, pwd), true);

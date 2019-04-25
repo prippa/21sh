@@ -20,7 +20,7 @@ static void		rl_read(char buf[RL_BUFF_SIZE])
 	rl_init_sig();
 	ft_bzero(buf, RL_BUFF_SIZE);
 	if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)
-		sh_fatal_err(READ_ERR);
+		g_fef(READ_ERR);
 	rl_init_sig_aside();
 }
 
@@ -57,11 +57,11 @@ static void		rl_loop(t_line *ln)
 char			*read_line(void)
 {
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->new_settings)) == ERR)
-		sh_fatal_err(TCSETATTR_FAILED);
+		g_fef(TCSETATTR_FAILED);
 	rl_init();
 	rl_loop(&rl()->ln);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &sh()->old_settings)) == ERR)
-		sh_fatal_err(TCSETATTR_FAILED);
+		g_fef(TCSETATTR_FAILED);
 	sh_init_sig_base();
 	return (rl()->ln.line);
 }
