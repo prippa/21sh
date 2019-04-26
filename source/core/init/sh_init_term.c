@@ -26,7 +26,7 @@ static void	sh_init_new_settings(void)
 		g_fef(TCGETATTR_FAILED);
 	if ((tcgetattr(STDIN_FILENO, &sh()->new_settings)) == ERR)
 		g_fef(TCGETATTR_FAILED);
-	sh()->new_settings.c_lflag &= ~(ICANON | ECHO | ECHONL);
+	sh()->new_settings.c_lflag &= ~(ICANON | ECHO | ECHONL | IEXTEN);
 }
 
 static void	sh_init_term_fd(void)
