@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_htinsert.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 13:55:42 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/05 13:55:43 by prippa           ###   ########.fr       */

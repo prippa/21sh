@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/03 15:47:51 by prippa            #+#    #+#             */
 /*   Updated: 2017/11/03 15:47:55 by prippa           ###   ########.fr       */

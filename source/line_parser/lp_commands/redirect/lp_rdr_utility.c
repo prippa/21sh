@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lp_rdr_utility.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:16:41 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:16:43 by prippa           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   line_parser.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 18:49:33 by prippa            #+#    #+#             */
 /*   Updated: 2019/01/12 18:49:34 by prippa           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lp_arg_buf_control.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 18:47:49 by prippa            #+#    #+#             */
 /*   Updated: 2019/01/12 18:47:50 by prippa           ###   ########.fr       */

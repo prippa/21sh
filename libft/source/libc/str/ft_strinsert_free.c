@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strinsert_free.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 11:15:30 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/20 11:15:31 by prippa           ###   ########.fr       */

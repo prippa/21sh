@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_init_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:32:58 by prippa            #+#    #+#             */
 /*   Updated: 2019/02/25 12:32:59 by prippa           ###   ########.fr       */

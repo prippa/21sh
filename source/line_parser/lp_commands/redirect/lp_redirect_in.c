@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lp_redirect_in.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/17 14:07:26 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/17 14:07:27 by prippa           ###   ########.fr       */

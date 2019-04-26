@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lp_cmd_manipulation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 11:53:14 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/24 11:53:16 by prippa           ###   ########.fr       */

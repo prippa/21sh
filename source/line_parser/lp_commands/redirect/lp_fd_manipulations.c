@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lp_fd_manipulations.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 11:52:43 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/24 11:52:44 by prippa           ###   ########.fr       */

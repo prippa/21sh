@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   fpf_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 18:14:36 by prippa            #+#    #+#             */
 /*   Updated: 2018/08/25 18:14:38 by prippa           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 12:35:46 by prippa            #+#    #+#             */
 /*   Updated: 2018/10/04 12:35:47 by prippa           ###   ########.fr       */

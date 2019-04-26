@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lp_double_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:57:02 by prippa            #+#    #+#             */
 /*   Updated: 2019/02/11 12:57:03 by prippa           ###   ########.fr       */

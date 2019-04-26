@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_setenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 12:35:56 by prippa            #+#    #+#             */
 /*   Updated: 2018/10/04 12:35:59 by prippa           ###   ########.fr       */

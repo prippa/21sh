@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_init_read_line.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:07:05 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/12 15:07:07 by prippa           ###   ########.fr       */

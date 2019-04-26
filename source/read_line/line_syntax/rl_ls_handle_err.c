@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_ls_handle_err.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:50:51 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/06 12:50:53 by prippa           ###   ########.fr       */

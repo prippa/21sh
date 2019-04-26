@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcut_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 12:25:37 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/23 12:25:39 by prippa           ###   ########.fr       */

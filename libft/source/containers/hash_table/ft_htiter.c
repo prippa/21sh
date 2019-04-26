@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_htiter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:00:55 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:01:05 by prippa           ###   ########.fr       */

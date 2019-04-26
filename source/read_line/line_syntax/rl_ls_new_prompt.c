@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_ls_new_prompt.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:07:54 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:07:56 by prippa           ###   ########.fr       */

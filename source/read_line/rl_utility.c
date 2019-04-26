@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_utility.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:01:14 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/18 19:01:16 by prippa           ###   ########.fr       */

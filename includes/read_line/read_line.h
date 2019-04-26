@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   read_line.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 13:12:06 by prippa            #+#    #+#             */
 /*   Updated: 2019/02/27 13:12:07 by prippa           ###   ########.fr       */
@@ -15,7 +15,6 @@
 
 # include "shell.h"
 # include <term.h>
-# include <sys/ioctl.h>
 
 # define RL_BUFF_SIZE 8
 # define RL_BREAK 1

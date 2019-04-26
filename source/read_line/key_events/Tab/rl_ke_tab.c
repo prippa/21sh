@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_ke_tab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 10:50:16 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/08 10:50:17 by prippa           ###   ########.fr       */

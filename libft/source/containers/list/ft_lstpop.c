@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstpop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 12:33:35 by prippa            #+#    #+#             */
 /*   Updated: 2018/10/04 12:33:38 by prippa           ###   ########.fr       */

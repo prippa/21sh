@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_get_word.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:09:05 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:09:06 by prippa           ###   ########.fr       */

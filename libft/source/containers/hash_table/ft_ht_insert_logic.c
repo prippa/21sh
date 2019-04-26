@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ht_insert_logic.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:00:29 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:02:19 by prippa           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   history_search.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 20:41:46 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/04 20:42:07 by prippa           ###   ########.fr       */

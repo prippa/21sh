@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arr_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 14:29:03 by prippa            #+#    #+#             */
 /*   Updated: 2018/01/22 14:29:05 by prippa           ###   ########.fr       */

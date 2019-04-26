@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_check_path_permision.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:32:09 by prippa            #+#    #+#             */
 /*   Updated: 2019/02/25 12:32:11 by prippa           ###   ########.fr       */

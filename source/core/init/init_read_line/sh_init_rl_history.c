@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_init_rl_history.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 14:44:59 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/12 14:45:01 by prippa           ###   ########.fr       */

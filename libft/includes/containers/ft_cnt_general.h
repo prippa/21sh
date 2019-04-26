@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cnt_general.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 17:58:01 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 17:58:02 by prippa           ###   ########.fr       */

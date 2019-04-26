@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_unsetenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 12:36:02 by prippa            #+#    #+#             */
 /*   Updated: 2018/10/04 12:36:03 by prippa           ###   ########.fr       */

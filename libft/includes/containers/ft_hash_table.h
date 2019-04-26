@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hash_table.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 12:30:33 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/05 12:30:35 by prippa           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ht_change_arr_size.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:00:13 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:00:15 by prippa           ###   ########.fr       */

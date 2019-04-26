@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   lp_tilde.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:56:30 by prippa            #+#    #+#             */
 /*   Updated: 2019/02/11 12:56:31 by prippa           ###   ########.fr       */

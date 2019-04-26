@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   fpf_unicode.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/25 16:40:35 by prippa            #+#    #+#             */
 /*   Updated: 2018/08/25 16:40:36 by prippa           ###   ########.fr       */

@@ -52,6 +52,8 @@ Mkfile.old
 dkms.conf
 
 # Project
+.idea
+cmake-build-debug
 .vscode
 *.DS_Store
 21sh

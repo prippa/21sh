@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_make_tc_magic.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 13:54:17 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/30 13:54:18 by prippa           ###   ########.fr       */

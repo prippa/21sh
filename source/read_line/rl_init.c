@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 18:35:36 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/23 18:35:37 by prippa           ###   ########.fr       */
@@ -12,6 +12,7 @@
 
 #include "read_line.h"
 #include "heredoc.h"
+#include <sys/ioctl.h>
 
 t_read_line		*rl(void)
 {

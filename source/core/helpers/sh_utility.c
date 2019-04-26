@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_utility.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/06 18:10:52 by prippa            #+#    #+#             */
 /*   Updated: 2018/10/06 18:10:53 by prippa           ###   ########.fr       */

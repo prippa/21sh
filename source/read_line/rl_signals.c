@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_signals.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 15:52:58 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/28 15:53:00 by prippa           ###   ########.fr       */
@@ -12,6 +12,7 @@
 
 #include "history_search.h"
 #include "read_line_signals.h"
+#include <sys/ioctl.h>
 
 #define SIG_SIZE 2
 

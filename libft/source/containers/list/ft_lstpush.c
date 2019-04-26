@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstpush.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 13:38:15 by prippa            #+#    #+#             */
 /*   Updated: 2017/11/08 13:40:12 by prippa           ###   ########.fr       */

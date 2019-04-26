@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   sh_process_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:53:32 by prippa            #+#    #+#             */
 /*   Updated: 2019/02/11 12:53:33 by prippa           ###   ########.fr       */

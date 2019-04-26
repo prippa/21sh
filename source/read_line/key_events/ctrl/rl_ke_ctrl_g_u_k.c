@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_ke_ctrl_g_u_k.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 13:54:34 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/30 13:54:35 by prippa           ###   ########.fr       */

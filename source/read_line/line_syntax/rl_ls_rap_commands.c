@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   rl_ls_rap_commands.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/13 13:40:18 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/13 13:40:23 by prippa           ###   ########.fr       */

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/12 19:24:03 by prippa            #+#    #+#             */
 /*   Updated: 2019/01/12 19:24:08 by prippa           ###   ########.fr       */

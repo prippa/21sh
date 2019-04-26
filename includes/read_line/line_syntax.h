@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   line_syntax.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/23 18:06:38 by prippa            #+#    #+#             */
 /*   Updated: 2019/03/23 18:06:39 by prippa           ###   ########.fr       */

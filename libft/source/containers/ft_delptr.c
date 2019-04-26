@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_delptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:00:07 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:00:08 by prippa           ###   ########.fr       */

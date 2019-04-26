@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ht_hash.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: prippa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 11:44:00 by prippa            #+#    #+#             */
 /*   Updated: 2019/04/19 18:02:37 by prippa           ###   ########.fr       */
