@@ -75,7 +75,8 @@ RL_H		:=	$(DIR_RL_INC)read_line.h\
 				$(DIR_RL_INC)line_syntax.h\
 				$(DIR_RL_INC)history_search.h\
 				$(DIR_RL_INC)read_line_signals.h\
-				$(DIR_RL_INC)heredoc.h
+				$(DIR_RL_INC)heredoc.h\
+				$(DIR_RL_INC)auto_completion.h
 
 #-------------------------- Source files ---------------------------------------
 COR_C		:=	$(DIR_COR_SRC)main.c\
@@ -148,6 +149,7 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_KE)rl_basic_keys.c\
 				$(DIR_AC)rl_ke_tab.c\
 				$(DIR_AC)tab_proc_match.c\
+				$(DIR_AC)tab_get_matches.c\
 				$(DIR_AROWS)rl_ke_arrows.c\
 				$(DIR_AROWS)rl_ke_ctrl_arrows.c\
 				$(DIR_AROWS)rl_ke_ctrl_shift_arrows.c\

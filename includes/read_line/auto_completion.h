@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lp_pipe.c                                          :+:      :+:    :+:   */
+/*   auto_completion.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/17 14:07:42 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/27 19:26:13 by prippa           ###   ########.fr       */
+/*   Created: 2019/04/28 11:54:43 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/28 11:55:52 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "line_parser.h"
+#ifndef AUTO_COMPLETION_H
+# define AUTO_COMPLETION_H
 
-void	lp_pipe(t_line_parser *lp)
-{
-	lp_add_cmd(lp);
-	++lp->i;
-}
+# include "button_keys.h"
+
+t_list			rl_t_get_cmd_matches(const char *bc);
+t_list			rl_t_get_path_matches(const char *bc);
+int32_t			tab_process_matches(const t_list_elem *m,
+					size_t len, t_line *ln);
+
+#endif
