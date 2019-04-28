@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "button_keys.h"
+#include "auto_completion.h"
+#include "info.h"
 
 static size_t	rl_t_get_max_len(const t_list_elem *m)
 {
@@ -90,7 +91,8 @@ int32_t			tab_process_matches(const t_list_elem *m,
 	{
 		if (++len > elem_max_len)
 		{
-			if (ln->pc == ln->l_end)
+			if (ln->pc == ln->l_end &&
+				postfix[ft_strlen(postfix) - 1] != UNIX_PATH_SEPARATOR)
 				ft_strcat(postfix, " ");
 			break ;
 		}

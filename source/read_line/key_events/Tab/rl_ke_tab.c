@@ -6,12 +6,45 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 10:50:16 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/28 11:54:22 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/29 00:24:16 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "syntax_characters.h"
 #include "auto_completion.h"
+#include "environ_manipulation.h"
+#include "info.h"
+
+static void		rl_t_manage_tilde(char **path)
+{
+	const char	*home;
+	char 		*new_path;
+
+	if ((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)))
+	{
+		new_path = ft_strjoin(home, (char[2]){UNIX_PATH_SEPARATOR, 0});
+		ft_strjoin_free(&new_path, *path + 1,
+			ft_strlen(new_path), ft_strlen(*path + 1));
+		ft_strdel(path);
+		*path = new_path;
+	}
+}
+
+static t_bool	rl_t_check_path_access(const char *path)
+{
+	char		*as_path;
+	t_bool		res;
+
+	res = true;
+	if ((as_path = ft_strrchr(path, UNIX_PATH_SEPARATOR)))
+	{
+		as_path = ft_strsub(path, 0, as_path - path + 1);
+		if (access(as_path, F_OK) == ERR)
+			res = false;
+	}
+	ft_strdel(&as_path);
+	return (res);
+}
 
 static t_bool	rl_t_get_path_from_line(t_line *ln, char **path)
 {
@@ -27,7 +60,9 @@ static t_bool	rl_t_get_path_from_line(t_line *ln, char **path)
 		++len;
 	}
 	*path = ft_strsub(ln->line, ln->pc - len, len);
-	return (true);
+	if (**path == TILDE_C)
+		rl_t_manage_tilde(path);
+	return (rl_t_check_path_access(*path));
 }
 
 static t_bool	rl_t_get_cmd_from_line(t_line *ln, char **cmd)
@@ -61,12 +96,11 @@ int32_t			rl_ke_tab(t_line *ln)
 	int32_t	res;
 
 	res = ERR;
+	matches.start = NULL;
 	if (rl_t_get_cmd_from_line(ln, &match_str))
 		matches = rl_t_get_cmd_matches(match_str);
 	else if (rl_t_get_path_from_line(ln, &match_str))
-		matches = rl_t_get_path_matches(match_str);
-	else
-		return (res);
+		matches = rl_t_get_path_matches(&match_str);
 	if (matches.start)
 	{
 		res = tab_process_matches(matches.start, ft_strlen(match_str), ln);

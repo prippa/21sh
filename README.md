@@ -14,6 +14,10 @@ Project from UNIX branch in school 42
 
 [✓] Professional line editing features using **termcap library**
 
+[✓] Advanced auto completion using **tab**
+
+[✓] Search through history using **ctrl+R**
+
 ## Hotkey list for line editing:
 
 | Key |  | Details |

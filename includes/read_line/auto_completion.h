@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 11:54:43 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/28 11:55:52 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/28 12:06:20 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "button_keys.h"
 
 t_list			rl_t_get_cmd_matches(const char *bc);
-t_list			rl_t_get_path_matches(const char *bc);
+t_list			rl_t_get_path_matches(char **bc);
 int32_t			tab_process_matches(const t_list_elem *m,
 					size_t len, t_line *ln);
 
