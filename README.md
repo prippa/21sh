@@ -4,19 +4,24 @@ Project from UNIX branch in school 42
 ## Project 21sh is the continuation of the project [minishell](https://github.com/prippa/minishell)
 ### New in 21sh project
 
+## Mandatory implementations
 [✓] Pipes '**|**'
 
 [✓] The 4 following redirections '**<**', '**>**', '**<<**' and '**>>**'
 
 [✓] File descriptor aggregation '**<&**' and '**>&**'
 
-[✓] Implementation of **Hash Table** for binary files
+[✓] Basic line editing features using **termcap library**
 
-[✓] Professional line editing features using **termcap library**
+## Bonuses
+
+[✓] Implementation of **Hash Table** for binary files
 
 [✓] Advanced auto completion using **tab**
 
 [✓] Search through history using **ctrl+R**
+
+[✓] Some other line editing features (see below)
 
 ## Hotkey list for line editing:
 
