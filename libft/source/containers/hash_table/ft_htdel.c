@@ -28,4 +28,6 @@ void	ft_htdel(t_hash_table *ht)
 			ht->del_value(ht->arr[i].value, ht->arr[i].value_size);
 	}
 	ft_memdel((void **)&ht->arr);
+	ht->ht_size = 0;
+	ht->size = 0;
 }

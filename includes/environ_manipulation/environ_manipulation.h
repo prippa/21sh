@@ -37,7 +37,8 @@ char			**env_convert_to_arr(t_list_elem *start, size_t list_size);
 t_env			env_make_clone_of_body(const t_env *origin);
 void			env_make_clone(t_list *dst, t_list_elem *src_start);
 
-void			env_check_global_event(const t_env *e);
+void			env_check_global_event_set(const t_env *e);
+void			env_check_global_event_unset(const char *key);
 void			env_new_path(const char *paths_str);
 
 #endif

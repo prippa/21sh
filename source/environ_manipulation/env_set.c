@@ -34,5 +34,5 @@ void			env_set(t_list *env_list,
 		env_edit(obj, &new_env_cpy);
 	else
 		LST_PUSH_BACK(env_list, &new_env_cpy, sizeof(t_env));
-	env_check_global_event(new_env);
+	env_check_global_event_set(new_env);
 }
