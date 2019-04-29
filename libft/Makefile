@@ -160,6 +160,7 @@ CNT_C		:=	$(DIR_CNT_SRC)ft_delptr.c\
 				$(DIR_HASH)ft_htinsert.c\
 				$(DIR_HASH)ft_htiter.c\
 				$(DIR_HASH)ft_htdel.c\
+				$(DIR_HASH)ft_htclear.c\
 				$(DIR_HASH)ft_htget.c\
 				$(DIR_HASH)ft_htremove.c
 

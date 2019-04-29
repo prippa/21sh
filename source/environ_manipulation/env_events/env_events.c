@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 18:16:09 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/29 13:43:50 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/29 13:58:42 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	env_check_global_event_unset(const char *key)
 	if (sh()->env_exec_flag)
 		return ;
 	if (ft_strequ(key, PATH_ENV))
-		HT_DEL(&sh()->bin_path);
+		HT_CLEAR(&sh()->bin_path);
 	else if (ft_strequ(key, HOME_ENV))
 		sh_update_current_dir_name();
 }

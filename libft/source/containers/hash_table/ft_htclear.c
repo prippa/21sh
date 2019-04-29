@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_htdel.c                                         :+:      :+:    :+:   */
+/*   ft_htclear.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 18:01:27 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/19 18:01:29 by prippa           ###   ########.fr       */
+/*   Created: 2019/04/29 14:37:47 by prippa            #+#    #+#             */
+/*   Updated: 2019/04/29 14:37:47 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_hash_table.h"
-#include "ft_mem.h"
 
-void	ft_htdel(t_hash_table *ht)
+void	ft_htclear(t_hash_table *ht)
 {
-	uint32_t	i;
-	uint32_t	size;
-
-	i = -1;
-	size = ht->ht_size;
-	while (++i < size)
-	{
-		if (ht->del_key)
-			ht->del_key(ht->arr[i].key, ht->arr[i].key_size);
-		if (ht->del_value)
-			ht->del_value(ht->arr[i].value, ht->arr[i].value_size);
-	}
-	ft_memdel((void **)&ht->arr);
+	ft_htdel(ht);
+	ft_htinit(ht, 0, ht->del_key, ht->del_value);
 }

@@ -48,6 +48,7 @@ void		sh_init_env(void)
 
 	if (!(sh()->pwd = getcwd(NULL, 0)))
 		g_fef(GETCWD_FAILED);
+	HT_INIT(&sh()->bin_path, 0, &ft_cnt_delptr, &ft_cnt_delptr);
 	LST_INIT(&sh()->env, &env_del_list);
 	b.env = &sh()->env;
 	b.args = environ;

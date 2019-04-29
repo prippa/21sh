@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 12:30:33 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/05 12:30:35 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/29 14:41:03 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void				ft_htiter_all(t_hash_table *ht, t_ht_iter_f f);
 void				ft_htiter_exist(t_hash_table *ht, t_ht_iter_f f);
 
 void				ft_htdel(t_hash_table *ht);
+void				ft_htclear(t_hash_table *ht);
 
 # define HT_INIT(h,is,dk,dv) ft_htinit(h, is, dk, dv)
 
@@ -74,5 +75,6 @@ void				ft_htdel(t_hash_table *ht);
 # define HT_REMOVE(h,k,ks) ft_htremove(h, k, ks)
 
 # define HT_DEL(h) ft_htdel(h)
+# define HT_CLEAR(h) ft_htclear(h)
 
 #endif

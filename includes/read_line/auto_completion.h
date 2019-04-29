@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 11:54:43 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/28 12:06:20 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/29 20:08:17 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 # define AUTO_COMPLETION_H
 
 # include "button_keys.h"
+
+typedef struct		s_match
+{
+	char			*name;
+	int32_t			color;
+}					t_match;
+
+typedef struct		s_ac
+{
+	t_list			matches;
+	char			*main_match;
+}					t_ac;
+
+t_ac			*ac(void);
 
 t_list			rl_t_get_cmd_matches(const char *bc);
 t_list			rl_t_get_path_matches(char **bc);
