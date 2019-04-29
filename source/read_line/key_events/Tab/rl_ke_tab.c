@@ -18,7 +18,7 @@
 static void		rl_t_manage_tilde(char **path)
 {
 	const char	*home;
-	char 		*new_path;
+	char		*new_path;
 
 	if ((home = env_get_vlu_by_key(sh()->env.start, HOME_ENV)))
 	{
