@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/04 12:34:00 by prippa            #+#    #+#             */
-/*   Updated: 2018/10/04 12:34:02 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 01:03:43 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # include "ft_printf.h"
 # include "ft_list.h"
 # include "ft_hash_table.h"
-# include <stdio.h>
 # include <termios.h>
+# include <sys/syslimits.h>
 
-# define PATH_MAX			4096
 # define PROMPT_ADS			5
 # define PROMPT_COLORS_SIZE	100
 # define PROMPT_SIZE		FILENAME_MAX + PROMPT_ADS + PROMPT_COLORS_SIZE
@@ -57,7 +56,7 @@ void				sh_init_rl_history(void);
 void				sh_init_line_parser(void);
 
 t_bool				sh_is_dir(const char *path);
-t_bool				sh_is_valid_path(const char *path);
+t_bool				sh_is_valid_path_len(const char *path);
 
 t_bool				sh_path_access(const char *path, const char *prefix);
 char				*sh_join_path_to_pwd(const char *cur_pwd, const char *path);

@@ -32,6 +32,7 @@ DIR_TO		:=	$(DIR_LIB_SRC)to/
 DIR_PUT		:=	$(DIR_LIB_SRC)put/
 DIR_ARR		:=	$(DIR_LIB_SRC)arr/
 DIR_OTHER	:=	$(DIR_LIB_SRC)other/
+DIR_SYS		:=	$(DIR_LIB_SRC)sys/
 
 DIR_LST		:=	$(DIR_CNT_SRC)list/
 DIR_HASH	:=	$(DIR_CNT_SRC)hash_table/
@@ -45,7 +46,8 @@ LIB_H		:=	$(DIR_LIB_INC)libft.h\
 				$(DIR_LIB_INC)ft_to.h\
 				$(DIR_LIB_INC)ft_put.h\
 				$(DIR_LIB_INC)ft_arr.h\
-				$(DIR_LIB_INC)ft_other.h
+				$(DIR_LIB_INC)ft_other.h\
+				$(DIR_LIB_INC)ft_sys.h
 
 CNT_H		:=	$(DIR_CNT_INC)ft_containers.h\
 				$(DIR_CNT_INC)ft_list.h\
@@ -142,7 +144,8 @@ LIB_C		:=	$(DIR_MEM)ft_bzero.c\
 				$(DIR_OTHER)ft_perror_exit.c\
 				$(DIR_OTHER)ft_fatal_err_exit.c\
 				$(DIR_OTHER)ft_get_left_word.c\
-				$(DIR_OTHER)ft_get_right_word.c
+				$(DIR_OTHER)ft_get_right_word.c\
+				$(DIR_SYS)ft_sys_readdir.c
 
 CNT_C		:=	$(DIR_CNT_SRC)ft_delptr.c\
 				$(DIR_LST)ft_lstinit.c\

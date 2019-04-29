@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 12:50:02 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/29 15:31:03 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 01:04:40 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ t_bool		sh_is_dir(const char *path)
 	struct stat	sb;
 
 	if ((stat(path, &sb)) == ERR)
-		g_fef(STAT_FAILED);
+		return (false);
 	return (S_ISDIR(sb.st_mode));
 }
 
-t_bool		sh_is_valid_path(const char *path)
+t_bool		sh_is_valid_path_len(const char *path)
 {
 	uint16_t	i;
 
+	if (ft_strlen(path) >= PATH_MAX)
+		return (true);
 	i = 0;
 	while (*path)
 	{

@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:31:50 by prippa            #+#    #+#             */
-/*   Updated: 2019/02/25 12:31:52 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/29 22:45:38 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,8 @@
 # define GETCWD_FAILED		"getcwd() failed"
 # define FORK_FAILED		"fork() failed"
 # define WAIT_FAILED		"wait() failed"
-# define STAT_FAILED		"stat() failed"
 # define TCGETATTR_FAILED	"tcgetattr() failed"
 # define TCSETATTR_FAILED	"tcsetattr() failed"
-# define OPENDIR_FAILED		"opendir() failed"
-# define CLOSEDIR_FAILED	"closedir() failed"
 # define DUP2_FAILED		"dup2() failed"
 # define PIPE_FAILED		"pipe() failed"
 

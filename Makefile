@@ -51,6 +51,8 @@ DIR_LS		:=	$(DIR_RL_SRC)line_syntax/
 DIR_KE		:=	$(DIR_RL_SRC)key_events/
 DIR_HS		:=	$(DIR_RL_SRC)history/
 DIR_AC		:=	$(DIR_KE)Tab/
+DIR_ACCL	:=	$(DIR_AC)command_logic/
+DIR_ACPL	:=	$(DIR_AC)path_logic/
 DIR_AROWS	:=	$(DIR_KE)arrows/
 DIR_CTRL	:=	$(DIR_KE)ctrl/
 
@@ -149,7 +151,12 @@ RL_C		:=	$(DIR_RL_SRC)read_line.c\
 				$(DIR_KE)rl_basic_keys.c\
 				$(DIR_AC)rl_ke_tab.c\
 				$(DIR_AC)tab_proc_match.c\
-				$(DIR_AC)tab_get_matches.c\
+				$(DIR_AC)tab_utility.c\
+				$(DIR_AC)tab_print_matches.c\
+				$(DIR_ACCL)tab_get_cmd_input_word.c\
+				$(DIR_ACCL)tab_get_cmd_matches.c\
+				$(DIR_ACPL)tab_get_path_input_word.c\
+				$(DIR_ACPL)tab_get_path_matches.c\
 				$(DIR_AROWS)rl_ke_arrows.c\
 				$(DIR_AROWS)rl_ke_ctrl_arrows.c\
 				$(DIR_AROWS)rl_ke_ctrl_shift_arrows.c\

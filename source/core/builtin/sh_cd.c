@@ -27,7 +27,7 @@
 
 static t_bool	sh_cd_path_valid(const char *path)
 {
-	if (sh_is_valid_path(path))
+	if (sh_is_valid_path_len(path))
 		sh_print_err(EXIT_FAILURE, MSG(CD_FILENAME_TO_LONG, path));
 	else if (sh_path_access(path, CD))
 		return (sh()->ok);

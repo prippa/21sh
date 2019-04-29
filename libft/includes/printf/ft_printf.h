@@ -17,7 +17,7 @@
 # include <wchar.h>
 # include <stdint.h>
 
-# define FPF_BUF_SIZE 1024
+# define FPF_BUF_SIZE 2024
 
 typedef enum	e_fpf_size_flags
 {
