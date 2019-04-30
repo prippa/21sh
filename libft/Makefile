@@ -156,6 +156,7 @@ CNT_C		:=	$(DIR_CNT_SRC)ft_delptr.c\
 				$(DIR_LST)ft_lstnew.c\
 				$(DIR_LST)ft_lstpop.c\
 				$(DIR_LST)ft_lstrev.c\
+				$(DIR_LST)ft_lstsort.c\
 				$(DIR_HASH)ft_ht_hash.c\
 				$(DIR_HASH)ft_ht_insert_logic.c\
 				$(DIR_HASH)ft_ht_change_arr_size.c\

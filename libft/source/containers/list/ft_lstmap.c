@@ -6,14 +6,14 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 13:38:55 by prippa            #+#    #+#             */
-/*   Updated: 2017/11/08 13:39:04 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 11:56:21 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 #include "ft_mem.h"
 
-t_list	ft_lstmap(t_list *lst, t_map_elem f)
+t_list	ft_lstmap(t_list *lst, t_lst_map_f f)
 {
 	t_list		new_list;
 	t_list_elem	*elem;

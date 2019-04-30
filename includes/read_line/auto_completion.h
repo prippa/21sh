@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 11:54:43 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/29 23:51:15 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 17:32:59 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void			rl_t_get_cmd_matches(void);
 t_bool			rl_t_get_path_input_word(t_line *ln);
 void			rl_t_get_path_matches(void);
 
-int32_t			tab_process_matches(t_line *ln);
+int32_t			rl_t_process_matches(t_line *ln);
+
+void			rl_t_print_matches(t_line *ln, size_t width);
 
 #endif

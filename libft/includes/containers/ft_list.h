@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 12:30:18 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/05 12:30:20 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 12:00:12 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 # define FT_LIST_H
 
 # include <stdlib.h>
+# include "ft_def.h"
 # include "ft_cnt_general.h"
 
 typedef struct s_list_elem	t_list_elem;
 typedef struct s_list		t_list;
 
-typedef void	(*t_iter_elem)(t_list_elem *elem);
-typedef t_list_elem *(*t_map_elem)(t_list_elem *elem);
+typedef void	(*t_lst_iter_f)(t_list_elem *elem);
+typedef t_list_elem *(*t_lst_map_f)(t_list_elem *elem);
+typedef t_bool	(*t_lst_sort_f)(const void *left_cnt, const void *right_cnt);
 
 struct					s_list_elem
 {
@@ -51,10 +53,11 @@ void					ft_lstdel(t_list *lst);
 void					ft_lstdel_one(t_list_elem **elem, t_delptr f);
 void					ft_lstdel_by_obj(t_list *lst, t_list_elem *obj);
 
-void					ft_lstiter(t_list *lst, t_iter_elem f);
-t_list					ft_lstmap(t_list *lst, t_map_elem f);
+void					ft_lstiter(t_list *lst, t_lst_iter_f f);
+t_list					ft_lstmap(t_list *lst, t_lst_map_f f);
 
 void					ft_lstrev(t_list *lst);
+void					ft_lstsort(t_list *lst, t_lst_sort_f f);
 
 # define LST_INIT(l,d) ft_lstinit(l, d)
 

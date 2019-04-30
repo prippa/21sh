@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   readline.c                                         :+:      :+:    :+:   */
+/*   read_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 13:16:17 by prippa            #+#    #+#             */
-/*   Updated: 2019/02/27 13:16:19 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 11:39:21 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		rl_read(char buf[RL_BUFF_SIZE])
 	rl_init_sig();
 	ft_bzero(buf, RL_BUFF_SIZE);
 	if (read(STDIN_FILENO, buf, RL_BUFF_SIZE) == ERR)
-		g_fef(READ_ERR);
+		ft_strcpy(buf, (char[2]){ENDL, 0});
 	rl_init_sig_aside();
 }
 

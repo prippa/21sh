@@ -6,21 +6,21 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 22:20:32 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/29 23:17:01 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/29 23:40:09 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "auto_completion.h"
 
-t_ac			*ac(void)
+t_ac	*ac(void)
 {
 	static t_ac		ac;
 
 	return (&ac);
 }
 
-void		rl_t_push_match(const char *f, size_t f_len,
-				int32_t f_color, int32_t f_color_type)
+void	rl_t_push_match(const char *f, size_t f_len,
+			int32_t f_color, int32_t f_color_type)
 {
 	char	*cmd;
 	size_t	iw_len;
@@ -34,7 +34,7 @@ void		rl_t_push_match(const char *f, size_t f_len,
 	}
 }
 
-void		rl_t_del_match_list(void *content, size_t content_size)
+void	rl_t_del_match_list(void *content, size_t content_size)
 {
 	t_match		*m;
 

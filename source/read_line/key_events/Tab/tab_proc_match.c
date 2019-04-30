@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 10:50:22 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/30 00:15:05 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 18:45:16 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,60 +41,31 @@ static t_bool	rl_t_compare(const char *cmpr_str,
 	return (false);
 }
 
-static void		rl_t_draw_matches(const t_list_elem *start, size_t col, size_t max)
+static int32_t	rl_t_end_move(const char *postfix,
+		t_line *ln, size_t width)
 {
-	size_t	n;
-	t_match	*m;
-
-	n = 0;
-	while (start)
-	{
-		if ((n + max + 2) >= col)
-		{
-			rl_make_tc_magic(tc()->down);
-			n = 0;
-		}
-		m = (t_match *)start->content;
-		ft_dprintf(STDIN_FILENO, "%~-*s  ",
-			m->color_type, m->color, max, m->name);
-		start = start->next;
-		n += max + 2;
-	}
-	rl_make_tc_magic(tc()->down);
-}
-
-static int32_t	rl_t_end_move(const char *postfix, const t_list_elem *start,
-					t_line *ln, size_t max)
-{
-	t_line		buf_ln;
-
-	ft_memcpy(&buf_ln, ln, sizeof(t_line));
 	if (*postfix)
 	{
 		rl_add_to_line(ln, postfix, rl()->w.ws_col, true);
 		return (OK);
 	}
-	rl_ke_end(&buf_ln);
-	if (buf_ln.x)
-		rl_make_tc_magic(tc()->down);
-	rl_t_draw_matches(start, rl()->w.ws_col, max);
-	rl_redraw_line(ln, rl()->w.ws_col);
+	rl_t_print_matches(ln, width);
 	return (ERR);
 }
 
-int32_t			tab_process_matches(t_line *ln)
+int32_t			rl_t_process_matches(t_line *ln)
 {
 	char	postfix[FILENAME_MAX + 1];
-	size_t	elem_max_len;
+	size_t	width;
 	size_t	len;
 	t_match	*m;
 
 	ft_bzero(postfix, FILENAME_MAX + 1);
-	elem_max_len = rl_t_get_max_len(ac()->matches.start);
+	width = rl_t_get_max_len(ac()->matches.start);
 	len = ft_strlen(ac()->input_word);
 	while (true)
 	{
-		if (++len > elem_max_len)
+		if (++len > width)
 		{
 			if (ln->pc == ln->l_end &&
 				postfix[ft_strlen(postfix) - 1] != UNIX_PATH_SEPARATOR)
@@ -107,5 +78,5 @@ int32_t			tab_process_matches(t_line *ln)
 		else
 			ft_strncat(postfix, &m->name[len - 1], 1);
 	}
-	return (rl_t_end_move(postfix, ac()->matches.start, ln, elem_max_len));
+	return (rl_t_end_move(postfix, ln, width));
 }

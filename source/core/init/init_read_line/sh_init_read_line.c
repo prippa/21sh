@@ -6,12 +6,13 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 15:07:05 by prippa            #+#    #+#             */
-/*   Updated: 2019/04/12 15:07:07 by prippa           ###   ########.fr       */
+/*   Updated: 2019/04/30 17:42:35 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "button_keys.h"
 #include "heredoc.h"
+#include "auto_completion.h"
 
 #define KS sizeof(uint64_t)
 #define VS sizeof(t_ke_event)
@@ -96,4 +97,5 @@ void		sh_init_read_line(void)
 	rl_init_termcaps();
 	sh_init_rl_history();
 	LST_INIT(&hd()->heredoc, &ft_cnt_delptr);
+	LST_INIT(&ac()->matches, &rl_t_del_match_list);
 }
