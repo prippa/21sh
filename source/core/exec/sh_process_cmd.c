@@ -6,7 +6,7 @@
 /*   By: prippa <prippa@student.unit.ua>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 12:53:32 by prippa            #+#    #+#             */
-/*   Updated: 2019/02/11 12:53:33 by prippa           ###   ########.fr       */
+/*   Updated: 2019/05/01 10:31:03 by prippa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,7 @@ static t_bool		sh_exec_by_full_path(t_build *b, const char *cmd_prefix)
 		(!ups && !value && sh()->env_exec_flag))
 		return (false);
 	if (!sh_path_access(*b->args, cmd_prefix))
-	{
-		if (sh_is_dir(*b->args))
-			sh_print_err(EXIT_FAILURE, MSG(SH_IS_A_DIR, *b->args));
-		else
-			sh_exec(*b->args, b);
-	}
+		sh_exec(*b->args, b);
 	return (true);
 }
 
@@ -87,12 +82,20 @@ static t_bool		sh_exec_by_builtin(t_build *b)
 
 void				sh_process_cmd(t_build *b, const char *cmd_prefix)
 {
-	ft_to_str_lower(b->args);
-	if (!sh_exec_by_builtin(b) &&
-		!sh_exec_by_full_path(b, cmd_prefix) &&
-		!sh_exec_by_bin(b))
+	if (sh_is_dir(*b->args))
 	{
 		ft_putstr_fd(cmd_prefix, STDERR_FILENO);
-		sh_print_err(EXIT_FAILURE, MSG(SH_CMD_NOT_FOUND, *b->args));
+		sh_print_err(EXIT_FAILURE, MSG(IS_A_DIR, *b->args));
+	}
+	else
+	{
+		ft_to_str_lower(b->args);
+		if (!sh_exec_by_builtin(b) &&
+			!sh_exec_by_full_path(b, cmd_prefix) &&
+			!sh_exec_by_bin(b))
+		{
+			ft_putstr_fd(cmd_prefix, STDERR_FILENO);
+			sh_print_err(EXIT_FAILURE, MSG(SH_CMD_NOT_FOUND, *b->args));
+		}
 	}
 }
