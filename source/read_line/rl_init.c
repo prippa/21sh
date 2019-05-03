@@ -12,7 +12,6 @@
 
 #include "read_line.h"
 #include "heredoc.h"
-#include <sys/ioctl.h>
 
 t_read_line		*rl(void)
 {

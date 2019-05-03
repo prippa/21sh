@@ -22,15 +22,14 @@ t_ac	*ac(void)
 void	rl_t_push_match(const char *f, size_t f_len,
 			int32_t f_color, int32_t f_color_type)
 {
-	char	*cmd;
 	size_t	iw_len;
 
 	iw_len = ft_strlen(ac()->input_word);
-	if (iw_len <= f_len && ft_strnequ(ac()->input_word, f, iw_len))
+	if (iw_len <= f_len && !ft_memcmp(ac()->input_word, f, iw_len))
 	{
-		cmd = ft_strsub(f, 0, f_len);
 		LST_PUSH_BACK(&ac()->matches,
-			(MATCH(cmd, f_color, f_color_type)), sizeof(t_match));
+			(MATCH(ft_strsub(f, 0, f_len), f_color, f_color_type)),
+			sizeof(t_match));
 	}
 }
 

@@ -14,22 +14,22 @@
 #include "info.h"
 #include <dirent.h>
 
-static void	env_np_list_folder(char **dir)
+static void	env_np_list_folder(char *dir)
 {
 	DIR				*dip;
 	struct dirent	*dit;
 	char			*full_path;
 	char			*path;
 
-	if (!(dip = opendir(*dir)))
+	if (!(dip = opendir(dir)))
 		g_fef(OPENDIR_FAILED);
-	path = ft_strjoin(*dir, (char[2]){UNIX_PATH_SEPARATOR, 0});
+	path = ft_strjoin(dir, (char[2]){UNIX_PATH_SEPARATOR, 0});
 	while ((dit = readdir(dip)))
 	{
 		full_path = ft_strjoin(path, dit->d_name);
 		if (!access(full_path, X_OK) && !sh_is_dir(full_path))
-			HT_INSERT(&sh()->bin_path, dit->d_name, *dir,
-				ft_strlen(dit->d_name), ft_strlen(*dir));
+			HT_INSERT(&sh()->bin_path, dit->d_name, dir,
+				ft_strlen(dit->d_name), ft_strlen(dir));
 		ft_strdel(&full_path);
 	}
 	if ((closedir(dip)) == ERR)
@@ -48,6 +48,6 @@ void		env_new_path(const char *paths_str)
 	i = -1;
 	while (paths[++i])
 		if (!access(paths[i], R_OK) && !access(paths[i], X_OK))
-			env_np_list_folder(&paths[i]);
+			env_np_list_folder(paths[i]);
 	ft_arrdel(&paths);
 }

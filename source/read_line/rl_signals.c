@@ -12,7 +12,6 @@
 
 #include "history_search.h"
 #include "read_line_signals.h"
-#include <sys/ioctl.h>
 
 #define SIG_SIZE 2
 

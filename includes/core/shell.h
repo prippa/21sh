@@ -18,7 +18,8 @@
 # include "ft_list.h"
 # include "ft_hash_table.h"
 # include <termios.h>
-# include <sys/syslimits.h>
+# include <limits.h>
+# include <stdio.h>
 
 # define PROMPT_ADS			5
 # define PROMPT_COLORS_SIZE	100

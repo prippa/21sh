@@ -15,6 +15,7 @@
 
 # include "shell.h"
 # include <term.h>
+# include <sys/ioctl.h>
 
 # define RL_BUFF_SIZE 8
 # define RL_BREAK 1
