@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef FT_SYS_H
-#define FT_SYS_H
+# define FT_SYS_H
 
 # include <dirent.h>
 
