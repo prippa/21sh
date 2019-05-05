@@ -30,6 +30,7 @@ static const t_builtin_box	g_builtin_box[SH_BUILTIN_SIZE] =
 	{&sh_setenv, SETENV_CMD},
 	{&sh_unsetenv, UNSETENV_CMD},
 	{&sh_exit, EXIT_CMD},
+	{&sh_hash, HASH_CMD},
 };
 
 #endif

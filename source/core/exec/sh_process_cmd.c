@@ -46,7 +46,7 @@ static t_bool		sh_exec_by_bin(t_build *b)
 		return (sh_exec_by_bin_env_path(b));
 	bin = HT_GET(&sh()->bin_path, *b->args, ft_strlen(*b->args));
 	if (bin)
-		return (sh_check_path(bin->value, bin->value_size, b));
+		return (sh_check_full_path(bin->value, bin->value_size, b));
 	return (false);
 }
 

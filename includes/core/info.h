@@ -19,6 +19,7 @@
 # define KEY_VALUE_SEPARATOR	'='
 # define UNIX_PATH_SEPARATOR	'/'
 # define PATH_ENV_SEPARATOR		':'
+# define HASH_SEPARATOR			'='
 # define CLOSE_FD				"-"
 
 # define CUR_DIR				"."

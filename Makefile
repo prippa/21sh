@@ -95,8 +95,10 @@ COR_C		:=	$(DIR_COR_SRC)main.c\
 				$(DIR_BLT)sh_env.c\
 				$(DIR_BLT)sh_setenv.c\
 				$(DIR_BLT)sh_unsetenv.c\
+				$(DIR_BLT)sh_hash.c\
 				$(DIR_EXC)sh_exec.c\
 				$(DIR_EXC)sh_process_cmd.c\
+				$(DIR_EXC)sh_check_exec_path.c\
 				$(DIR_HLP)sh_check_path_permision.c\
 				$(DIR_HLP)sh_utility.c\
 				$(DIR_HLP)sh_is.c\

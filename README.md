@@ -15,7 +15,7 @@ Project from UNIX branch in school 42
 
 ## Bonuses
 
-[✓] Implementation of **Hash Table** for binary files
+[✓] Implementation of **Hash Table** for binary files, also the **hash** builtin command
 
 [✓] Advanced auto completion using **tab**
 
