@@ -191,7 +191,7 @@ $(DIR_OBJ):
 #-------------------------- Link Block -----------------------------------------
 $(NAME): $(OBJ) $(LIBFT)
 	@$(CC) -o $(NAME) $(OBJ) $(LIBFT) -ltermcap
-	@echo "Linking" [ $(NAME) ]
+	@echo "Compiling" [ $(NAME) ]
 
 #-------------------------- Compil Block ---------------------------------------
 #COR
@@ -199,28 +199,28 @@ $(DIR_OBJ)%.$(CH_OBJ): $(DIR_COR_SRC)%.$(CH_SRC)\
 $(COR_H)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) -c -o $@ $<
-	@echo "Compiling" [ $< ]
+	@echo "Linking" [ $< ]
 
 #ENV
 $(DIR_OBJ)%.$(CH_OBJ): $(DIR_ENV_SRC)%.$(CH_SRC)\
 $(ENV_H)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) -c -o $@ $<
-	@echo "Compiling" [ $< ]
+	@echo "Linking" [ $< ]
 
 #LNP
 $(DIR_OBJ)%.$(CH_OBJ): $(DIR_LNP_SRC)%.$(CH_SRC)\
 $(COR_H) $(LNP_H)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) -c -o $@ $<
-	@echo "Compiling" [ $< ]
+	@echo "Linking" [ $< ]
 
 #RL
 $(DIR_OBJ)%.$(CH_OBJ): $(DIR_RL_SRC)%.$(CH_SRC)\
 $(COR_H) $(RL_H)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) -c -o $@ $<
-	@echo "Compiling" [ $< ]
+	@echo "Linking" [ $< ]
 
 #-------------------------- Clean ----------------------------------------------
 clean:
