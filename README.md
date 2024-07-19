@@ -56,7 +56,7 @@ Project from UNIX branch in school 42
 
 ## Preview
 
-![](https://thumbs.gfycat.com/MarvelousPositiveAmphiuma-size_restricted.gif)
+![](https://github.com/prippa/my-projects-media/blob/main/21sh/MarvelousPositiveAmphiuma-size_restricted.gif)
 
 ### Preview output
 ```
